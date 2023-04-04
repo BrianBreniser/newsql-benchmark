@@ -1,4 +1,3 @@
-
 # Copyright 2021 Adobe. All rights reserved.
 # This file is licensed to you under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License. You may obtain a copy
@@ -11,14 +10,13 @@
 
 import json
 import os.path
-from os import path
 import time
 import subprocess
 from string import Template
-import requests
 import datetime
+import requests
 
-# Get the DB eval prefix first 
+# Get the DB eval prefix first
 dbeval_prefix  = os.getenv('DBEVAL_PREFIX', 'uis-dbeval-unknownuser')
 
 # ------------------------------------------------------------------------------------

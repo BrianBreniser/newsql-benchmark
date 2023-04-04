@@ -14,7 +14,7 @@
   vars:
     loadgen_start_key_per_host_process: "{{item|int}}"
   shell: "{{ ycsb_cmd }}"
-  async: 100000000
+  async: 100000000 # Let run for 3.17 years...
   poll: 0
   with_items : "{{loadgen_start_key_per_host_process_array}}"
 #- debug: var=ycsb_cmd

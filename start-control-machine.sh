@@ -20,7 +20,7 @@ fi
 
 # Create control machine
 echo "Creating control machine ..."
-cd terraform
+cd terraform || exit
 terraform init -var "prefix=$DBEVAL_PREFIX"
 terraform apply --auto-approve -var "prefix=$DBEVAL_PREFIX"
 
@@ -28,8 +28,9 @@ terraform apply --auto-approve -var "prefix=$DBEVAL_PREFIX"
 echo "Copying all files(tracked by git) from local machine to control machine ..."
 cd ..
 git ls-files | tar Tzcf - archive.tgz
-export CONTROL_MACHINE_IP=`cat ansible/inventory-cm.yaml| grep '\[control\]' -A 1| tail -n1`
-echo $CONTROL_MACHINE_IP
+CONTROL_MACHINE_IP=$(grep -A 1 '\[control\]' ansible/inventory-cm.yaml | tail -n1)
+export CONTROL_MACHINE_IP
+echo "$CONTROL_MACHINE_IP"
 scp -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i terraform/out/id_rsa_tf archive.tgz fdb@$CONTROL_MACHINE_IP:~/archive.tgz
 
 # copy the tfstate file to the control-machine and place it in the root dir
