@@ -25,22 +25,35 @@ fi
 #########################
 
 function install_prometheus() {
-    # Add the prometheus helm repo
-    helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-    helm repo update
 
-    # Install prometheus
-    helm install prometheus prometheus-community/prometheus
+    # Only install prometheus if it is not already installed
+    log "Checking if prometheus is already installed"
+    if ! helm list | grep -q prometheus; then
+        log "Installing prometheus"
+        helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+        helm repo update
+        helm install prometheus prometheus-community/prometheus
+        log "exposing the route"
+        oc expose svc/prometheus-server
+    else
+        log "Prometheus is already installed"
+    fi
 }
 
 # TODO: this is tempoarary, I'm just keeping this here for now, I may not use it
 function install_grafana() {
-    # Add the grafana helm repo
-    helm repo add grafana https://grafana.github.io/helm-charts
-    helm repo update
-
-    # Install grafana
-    helm install grafana grafana/grafana
+    # Only install grafana if it is not already installed
+    log "Checking if grafana is already installed"
+    if ! helm list | grep -q grafana; then
+        log "Installing grafana"
+        helm repo add grafana https://grafana.github.io/helm-charts
+        helm repo update
+        helm install grafana grafana/grafana
+        log "exposing the route"
+        oc expose svc/grafana
+    else
+        log "Grafana is already installed"
+    fi
 }
 
 # TODO: Determine if this is better than just installing with helm
@@ -54,55 +67,32 @@ function install_prometheus_operator() {
 }
 
 function install_fdb_operator() {
-    # Install the fdb operator from source
-    helm install fdb-kubernetes-operator fdb-kubernetes-operator/charts/fdb-operator
+    # Only install fdb if it is not already installed
+    log "Checking if fdb is already installed"
+    if ! helm list | grep -q fdb-kubernetes-operator; then
+        log "Installing fdb"
+        helm install fdb-kubernetes-operator fdb-kubernetes-operator/charts/fdb-operator
+    else
+        log "FDB is already installed"
+    fi
 }
 
 function install_fdb_cluster() {
-    oc apply -f fdb_cluster.yaml
+    log "Checking if fdb cluster is already installed"
+    if ! oc get foundationdbcluster | grep -q test-cluster; then
+        log "Installing fdb cluster"
+        oc apply -f fdb_cluster.yaml
+    else
+        log "FDB cluster is already installed"
+    fi
 }
 
 ##########
 ## Main ##
 ##########
 
-# Only install prometheus if it is not already installed
-log "Checking if prometheus is already installed"
-if ! helm list | grep -q prometheus; then
-    log "Installing prometheus"
-    install_prometheus
-    log "exposing the route"
-    oc expose svc/prometheus-server
-else
-    log "Prometheus is already installed"
-fi
-
-# Only install grafana if it is not already installed
-# TODO: This may not be needed in the real install
-log "Checking if grafana is already installed"
-if ! helm list | grep -q grafana; then
-    log "Installing grafana"
-    install_grafana
-    log "exposing the route"
-    oc expose svc/grafana
-else
-    log "Grafana is already installed"
-fi
-
-# Only install fdb if it is not already installed
-log "Checking if fdb is already installed"
-if ! helm list | grep -q fdb-kubernetes-operator; then
-    log "Installing fdb"
-    install_fdb_operator
-else
-    log "FDB is already installed"
-fi
-
-log "Checking if fdb cluster is already installed"
-if ! oc get foundationdbcluster | grep -q test-cluster; then
-    log "Installing fdb cluster"
-    install_fdb_cluster
-else
-    log "FDB cluster is already installed"
-fi
+install_prometheus
+install_grafana
+install_fdb_operator
+install_fdb_cluster
 
