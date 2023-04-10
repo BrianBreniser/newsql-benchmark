@@ -25,7 +25,6 @@ fi
 #########################
 
 function install_prometheus() {
-
     # Only install prometheus if it is not already installed
     log "Checking if prometheus is already installed"
     if ! helm list | grep -q prometheus; then
@@ -58,12 +57,18 @@ function install_grafana() {
 
 # TODO: Determine if this is better than just installing with helm
 function install_prometheus_operator() {
-    # Add the prometheus operator helm repo
-    helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-    helm repo update
-
-    # Install prometheus operator
-    helm install prometheus-operator prometheus-community/kube-prometheus-stack
+    # Only install prometheus operator if it is not already installed
+    # TODO: Is this the right name for the operator???
+    log "Checking if prometheus operator is already installed"
+    if ! helm list | grep -q prometheus-operator; then
+        log "Installing prometheus operator"
+        helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+        helm repo update
+        helm install prometheus-operator prometheus-community/kube-prometheus-stack
+        # TODO: expose the route (Have not installed using the operator yet, so don't know what the route is called)
+    else
+        log "Prometheus operator is already installed"
+    fi
 }
 
 function install_fdb_operator() {
@@ -91,7 +96,7 @@ function install_fdb_cluster() {
 ## Main ##
 ##########
 
-install_prometheus
+install_prometheus # TODO: Determine if this, or the operator, is better
 install_grafana
 install_fdb_operator
 install_fdb_cluster
