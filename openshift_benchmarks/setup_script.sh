@@ -92,6 +92,27 @@ function install_fdb_cluster() {
     fi
 }
 
+function install_local_storage_operator() {
+    # create the openshift-local-storage namespace if it doesn't already exist
+    log "Checking if openshift-local-storage namespace exists"
+    if ! oc get namespace | grep -q openshift-local-storage; then
+        log "Creating openshift-local-storage namespace"
+        oc create namespace openshift-local-storage
+    else
+        log "openshift-local-storage namespace already exists"
+    fi
+
+    # Only install local storage operator if it is not already installed
+    log "Checking if local storage operator is already installed"
+    if ! oc get Subscription -n openshift-local-storage | grep -q local-storage-operator; then
+        log "Installing local storage operator"
+        # OC_VERSION=$(oc version -o yaml | rg openshiftVersion | grep -o '[0-9]*[.][0-9]*' | head -1)
+        oc apply -f local_storage_operator.yaml
+    else
+        log "Local storage operator is already installed"
+    fi
+}
+
 ##########
 ## Main ##
 ##########
@@ -100,4 +121,5 @@ install_prometheus # TODO: Determine if this, or the operator, is better
 install_grafana
 install_fdb_operator
 install_fdb_cluster
+install_local_storage_operator
 
