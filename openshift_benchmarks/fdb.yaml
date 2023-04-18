@@ -3,7 +3,7 @@ kind: FoundationDBCluster
 metadata:
   name: test-cluster
   namespace: default
-  key: {{key}}
+  key: {{fdb.key}}
 spec:
   automationOptions:
     replacements:

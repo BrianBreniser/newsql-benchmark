@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-lseries-deployment
+    #name: ubuntu-default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-lseries-app
+  template:
+    metadata:
+      labels:
+        app: my-lseries-app
+    spec:
+      containers:
+      - name: ubuntu
+        image: ubuntu:latest
+        command: ["/bin/sh", "-c"]
+        args: ["while true; do echo 'hello, openshift'; sleep 10; done"]
+        volumeMounts:
+          - name: my-storage
+            mountPath: /data
+      volumes:
+      - name: my-storage
+        persistentVolumeClaim:
+        claimName: my-lseries-pvc

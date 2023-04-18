@@ -1,0 +1,16 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: CatalogSource
+metadata:
+  name: redhat-operators
+  namespace: openshift-marketplace
+spec:
+  displayName: Red Hat Operators
+  icon:
+    base64data: "" # You can leave this empty or provide a base64 encoded image for the icon
+    mediatype: image/png
+  image: registry.redhat.io/redhat/redhat-operator-index:v4.9
+  publisher: Red Hat
+  sourceType: grpc
+  updateStrategy:
+    registryPoll:
+      interval: 10m0s

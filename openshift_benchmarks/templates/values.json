@@ -1,0 +1,8 @@
+{
+    "fdb": {
+        "key": "fdbvalue"
+    },
+    "localstorage": {
+        "key": "localstoragevalue"
+    }
+}

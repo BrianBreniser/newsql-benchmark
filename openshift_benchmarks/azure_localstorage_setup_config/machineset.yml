@@ -1,0 +1,54 @@
+apiVersion: machine.openshift.io/v1beta1
+kind: MachineSet
+metadata:
+  name: example-worker-machineset-lseries
+  namespace: openshift-machine-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      machine.openshift.io/cluster-api-cluster:     aro-cluster-gpqcm-4p52n
+      machine.openshift.io/cluster-api-machineset:  aro-cluster-gpqcm-4p52n-example-worker-machineset
+  template:
+    metadata:
+      labels:
+        machine.openshift.io/cluster-api-cluster:       aro-cluster-gpqcm-4p52n
+        machine.openshift.io/cluster-api-machine-role:  worker
+        machine.openshift.io/cluster-api-machine-type:  worker
+        machine.openshift.io/cluster-api-machineset:    aro-cluster-gpqcm-4p52n-example-worker-machineset
+    spec:
+      Metadata:
+      providerSpec:
+        value:
+          apiVersion: machine.openshift.io/v1beta1
+          kind: AzureMachineProviderSpec
+          Credentials Secret:
+            Name:       azure-cloud-credentials
+            Namespace:  openshift-machine-api
+          Image:
+            Offer:        aro4
+            Publisher:    azureopenshift
+            Sku:          aro_410
+            Version:      410.84.20220125
+          location: eastus
+          networkResourceGroup: openenv-gpqcm
+          osDisk:
+            diskSizeGB: 128
+            managedDisk:
+              storageAccountType: Premium_LRS
+            osType: Linux
+          dataDisks: # This is a new section, I might be able to use this if my current test fails
+            - lun: 0
+              diskSizeGB: 100
+              managedDisk:
+                storageAccountType: Premium_LRS
+              createOption: Empty
+          publicip:                 false
+          publicloadbalancer: aro-cluster-gpqcm-4p52n
+          resourcegroup: aro-tbo7r7sp
+          Subnet: worker-subnet
+          userDataSecret:
+            name: worker-user-data
+          vmSize: Standard_L8s_v3
+          Vnet:     aro-vnet-gpqcm
+          Zone:     1

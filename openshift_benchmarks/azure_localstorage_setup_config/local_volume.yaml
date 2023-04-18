@@ -1,0 +1,20 @@
+apiVersion: local.storage.openshift.io/v1
+kind: LocalVolume
+metadata:
+  name: local-disks-l-series
+  namespace: openshift-local-storage
+spec:
+  nodeSelector:
+    nodeSelectorTerms:
+    - matchExpressions:
+      - key: kubernetes.io/hostname 
+        operator: In
+        values:
+        - example-worker-machineset-lseries-lkj4g
+  storageClassDevices:
+    - storageClassName: "local-storage"
+      volumeMode: Filesystem
+      fsType: xfs
+      devicePaths:
+        - /dev/sdb1 # TODO: Figure this out, because it's not right
+

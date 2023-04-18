@@ -118,8 +118,8 @@ function install_fdb_cluster() {
 ##########
 
 install_prometheus # TODO: Determine if this, or the operator, is better
-install_grafana
-install_local_storage_operator
+# install_grafana
+# install_local_storage_operator
 install_fdb_operator
 install_fdb_cluster
 
