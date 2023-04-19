@@ -1,8 +1,8 @@
 apiVersion: apps.foundationdb.org/v1beta2
 kind: FoundationDBCluster
 metadata:
-  name: test-cluster
-  namespace: default
+  name: {{name}}
+  namespace: {{namespace}}
   key: {{testkey}}
 spec:
   automationOptions:
@@ -13,17 +13,17 @@ spec:
   labels:
     filterOnOwnerReference: false
     matchLabels:
-      foundationdb.org/fdb-cluster-name: test-cluster
+      foundationdb.org/fdb-cluster-name: {{name}}
     processClassLabels:
     - foundationdb.org/fdb-process-class
     processGroupIDLabels:
     - foundationdb.org/fdb-process-group-id
   minimumUptimeSecondsForBounce: 60
   processCounts:
-    cluster_controller: 2
-    storage: 4
-    log: 2
-    stateless: 1
+    cluster_controller: {{cluster_controller}}
+    storage: {{storage}}
+    log: {{log}}
+    stateless: {{stateless}}
   processes:
     general:
       customParameters:
@@ -63,7 +63,7 @@ spec:
         spec:
           resources:
             requests:
-              storage: 16G
+              storage: {{volume_claim_storage}}
   routing:
     headlessService: true
   sidecarContainer:

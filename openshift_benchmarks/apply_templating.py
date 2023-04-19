@@ -4,63 +4,86 @@
 import json
 import sys
 
-# ignore lines too long
-# pylint: disable=C0301
+# Pylint: ignore lines too long
+# pylint: disable=C0301 # Yes it needs to be commented, this is how pylint works
 
 # set up logging
 import logging
 logging.basicConfig(level=logging.INFO)
 LOGGER = logging.getLogger(__name__)
 
-def apply_templating(config_option, file, json_arg, template_arg, output_arg):
-    """Apply templating from a 'json' file to 'template' file and store in 'output' file"""
+# The grunt of the templating engine
+def apply_templating(config_option, file, filename_for_json_values, filename_for_template, filename_for_results):
+    """
+    Apply templating to a file
 
-    # prepend 'templates/' to the file names using string interpolation
-    json_arg = f'templates/{json_arg}'
-    template_arg = f'templates/{template_arg}'
+    Args:
+        config_option (str): The config option to use from the JSON file, this is the first key in the JSON file
+        file (str): The file to apply templating to, this is the second key in the JSON file
+        filename_for_json_values (str): The name of the JSON file to use, probably values.json, but is configurable
+        filename_for_template (str): The name of the template file to use, the yaml file that has templating
+        filename_for_results (str): The name of the file to write the results to
+    """
+
+    # It's easer to hardcode the path here, unlikely to change
+    filename_for_json_values = f'templates/{filename_for_json_values}'
+    filename_for_template = f'templates/{filename_for_template}'
 
     # Get files
-    with open(json_arg, 'r', encoding='utf-8') as json_file:
-        # Try to get the config_option
+    with open(filename_for_json_values, 'r', encoding='utf-8') as json_file:
+        # Which config option should we be using? Try to get it.
         try:
             config = json.load(json_file)[config_option]
         except KeyError:
             LOGGER.error("Invalid config option, please see the values.json file in the templates/ dir for valid options")
             sys.exit(1)
 
-        # Try to get the parent
+        # Which file are we working on? Try to get those KV pairs from the json.
         try:
             data = config[file]
         except KeyError:
-            LOGGER.error("Invalid parent, please see the values.json file in the templates/ dir for valid parents")
+            LOGGER.error("Invalid file string, please see the values.json file in the templates/ dir for valid files (It is the second key in the JSON file)")
             sys.exit(1)
 
-    with open(template_arg, 'r', encoding='utf-8') as template_file:
-        template_arg = template_file.read()
+    # Grab the template
+    with open(filename_for_template, 'r', encoding='utf-8') as template_file:
+        filename_for_template = template_file.read()
 
     # Apply templating
     for key, value in data.items():
-        template_arg = template_arg.replace('{{' + key + '}}', value)
+        filename_for_template = filename_for_template.replace('{{' + key + '}}', value)
 
     # Write result
-    with open(output_arg, 'w', encoding='utf-8') as out_file:
-        out_file.write(template_arg)
+    with open(filename_for_results, 'w', encoding='utf-8') as out_file:
+        out_file.write(filename_for_template)
 
+# If this is run as a script, run the main function
 def main():
-    """Main function"""
+    """
+    Main function, called when the script is run
 
-    # If there are 5 arguments, grab the args and apply templating
+    If there are 5 arguments, grab the args and apply templating manually
+    Otherwise, the fist argument must be a config option string
+    """
+
+    # If there are 5 arguments, grab the args and apply templating manually
     if len(sys.argv) == 6:
         apply_templating(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])
         sys.exit(0)
 
-    # fist argument must be a config option string
+    # Otherwise, the fist argument must be a config option string
     if len(sys.argv) != 2:
-        LOGGER.error("Usage: apply_templating.py <config_option>")
-        LOGGER.error("See the values.json file in the templates/ dir for valid options")
+        LOGGER.error("Usage: ./apply_templating.py <config_option>")
+        LOGGER.error("See the values.json file in the templates/ dir for valid config_option values")
         sys.exit(1)
 
-    # Get the config option
+    # quick help flag
+    if sys.argv[1] == "-h" or sys.argv[1] == "--help":
+        LOGGER.info("Use defaults: ./apply_templating.py <config_option>")
+        LOGGER.info("Use custom files: ./apply_templating.py <config_option> <file> <filename_for_json_values> <filename_for_template> <filename_for_results>")
+        LOGGER.info("See the values.json file in the templates/ dir for valid config_option values")
+        sys.exit(0)
+
     config = sys.argv[1]
 
     template_list = [
