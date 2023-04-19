@@ -107,7 +107,7 @@ function install_fdb_cluster() {
     log "Checking if fdb cluster is already installed"
     if ! oc get foundationdbcluster | grep -q test-cluster; then
         log "Installing fdb cluster"
-        oc apply -f fdb_cluster.yaml
+        oc apply -f fdb.yaml
     else
         log "FDB cluster is already installed"
     fi

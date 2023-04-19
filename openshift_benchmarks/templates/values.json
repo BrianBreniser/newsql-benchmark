@@ -1,8 +1,8 @@
 {
     "fdb": {
-        "key": "fdbvalue"
+        "testkey": "fdb-test-value"
     },
     "localstorage": {
-        "key": "localstoragevalue"
+        "testkey": "local-storage-test-value"
     }
 }
