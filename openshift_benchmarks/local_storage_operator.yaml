@@ -3,7 +3,7 @@ kind: OperatorGroup
 metadata:
   name: local-operator-group
   namespace: openshift-local-storage
-  key: local-storage-test-value
+  key: local-storage-test-value2
 spec:
   targetNamespaces:
     - openshift-local-storage

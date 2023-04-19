@@ -1,8 +1,18 @@
 {
-    "fdb": {
-        "testkey": "fdb-test-value"
+    "testing1": {
+        "fdb": {
+            "testkey": "fdb-test-value1"
+        },
+        "localstorage": {
+            "testkey": "local-storage-test-value1"
+        }
     },
-    "localstorage": {
-        "testkey": "local-storage-test-value"
+    "testing2": {
+        "fdb": {
+            "testkey": "fdb-test-value2"
+        },
+        "localstorage": {
+            "testkey": "local-storage-test-value2"
+        }
     }
 }
