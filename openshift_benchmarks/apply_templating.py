@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """A module to apply templating from a JSON file to the openshift configs"""
 
 import json
