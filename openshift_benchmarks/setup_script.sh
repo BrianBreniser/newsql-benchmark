@@ -137,7 +137,11 @@ function check_args() {
 ## Main ##
 ##########
 
-check_args "$1"
+# if the number of arguments is more than 1
+if [[ "$#" -gt 0 ]]; then
+    check_args "$@"
+fi
+
 install_prometheus # TODO: Determine if this, or the operator, is better
 # install_grafana
 # install_local_storage_operator
