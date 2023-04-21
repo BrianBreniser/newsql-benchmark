@@ -113,10 +113,31 @@ function install_fdb_cluster() {
     fi
 }
 
+####################
+# Helper functions #
+####################
+
+function check_args() {
+    # if -h or --help is passed, show the help
+    if [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
+        echo "Usage: ./setup_script.sh"
+        echo "Or: ./setup_script.sh -h|--help"
+        echo "Use this script after running ./apply_templating.py if you updated the template files."
+        echo "This script will install the following:"
+        echo "  - Prometheus"
+        echo "  - Grafana (Currently disabled, used only for testing)"
+        echo "  - Local Storage Operator (currently disabled, used only for testing)"
+        echo "  - FoundationDB Operator"
+        echo "  - FoundationDB Cluster"
+        exit 0
+    fi
+}
+
 ##########
 ## Main ##
 ##########
 
+check_args "$1"
 install_prometheus # TODO: Determine if this, or the operator, is better
 # install_grafana
 # install_local_storage_operator

@@ -15,7 +15,7 @@
             "testkey": "local-storage-test-value2"
         }
     },
-    "minimal_setup": {
+    "demo_setup": {
         "fdb": {
             "testkey": "fdb-test-value2",
             "name": "test-cluster",
@@ -36,10 +36,10 @@
             "name": "test-cluster",
             "namespace": "default",
             "cluster_controller": "1",
-            "storage": "4",
+            "storage": "60",
             "log": "2",
-            "stateless": "1",
-            "volume_claim_storage": "16G"
+            "stateless": "3",
+            "volume_claim_storage": "128G"
         },
         "localstorage": {
             "testkey": "local-storage-test-value2"

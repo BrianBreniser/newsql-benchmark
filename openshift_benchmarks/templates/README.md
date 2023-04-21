@@ -1,8 +1,8 @@
 # Values.json
 
-- As of right now, testing1 and testing2 were just for testing, we can remove those once we are confident everything works properly.
-- minimal_setup is what we will use for demo.redhat clusers, as we don't want to overwhelm them which would be quite costly.
-- performance_load_setup_do_not_use_on_demo_system is what we will use for our performance testing, as we want to see how the system performs under load.
+- As of right now, testing1 and testing2 were just to help me build the tempating system, we can remove those once we are confident everything works properly.
+- demo_setup is what we will use for demo.redhat clusers, as we don't want to overwhelm them, since they are not set up for perf testing.
+- performance_load_setup_do_not_use_on_demo_system is what we will use for our performance testing (We can change the name later), as we want to see how the system performs under load.
     - We won't know these values for sure until we do some inital testing
     - cluster_controller: The number of cluster controllers to deploy, usually this will only be 1, but we may need more if we split up zones or find it's overloaded
     - storage: The number of storage nodes to deploy, I know we need 60 at some point

@@ -57,6 +57,23 @@ def apply_templating(config_option, file, filename_for_json_values, filename_for
     with open(filename_for_results, 'w', encoding='utf-8') as out_file:
         out_file.write(filename_for_template)
 
+def get_config_options():
+    """
+    Get the config options from the JSON file
+
+    Returns:
+        list: A list of the config options
+    """
+
+    # It's easer to hardcode the path here, unlikely to change
+    filename_for_json_values = 'templates/values.json'
+
+    # Get files
+    with open(filename_for_json_values, 'r', encoding='utf-8') as json_file:
+        config_options = json.load(json_file).keys()
+
+    return config_options
+
 # If this is run as a script, run the main function
 def main():
     """
@@ -79,9 +96,13 @@ def main():
 
     # quick help flag
     if sys.argv[1] == "-h" or sys.argv[1] == "--help":
-        LOGGER.info("Use defaults: ./apply_templating.py <config_option>")
-        LOGGER.info("Use custom files: ./apply_templating.py <config_option> <file> <filename_for_json_values> <filename_for_template> <filename_for_results>")
-        LOGGER.info("See the values.json file in the templates/ dir for valid config_option values")
+        options = get_config_options()
+        print("Use Default Template (demo_setup): ./apply_templating.py")
+        print("Use Specific Template: ./apply_templating.py <config_option>")
+        print("Use Custom Template files: ./apply_templating.py <config_option> <file> <filename_for_json_values> <filename_for_template> <filename_for_results>")
+        print("Valid config options:")
+        for option in options:
+            print(f"  {option}")
         sys.exit(0)
 
     config = sys.argv[1]
