@@ -8,6 +8,10 @@ terraform/.terraform/**
 terraform/.terraform.lock.hcl
 terraform/*tfstate*
 
+### ignore some temp files ###
+fdb.yaml
+local_storage_operator.yaml
+ycsb_deployment.yaml
 
 ### Ansible ###
 *.retry
