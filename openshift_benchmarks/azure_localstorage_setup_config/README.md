@@ -35,3 +35,24 @@
 
 - Also unnecessary if your ARO cluster is provisioned with your pull secret in the first place. I had to set this up manually becuase my operatorhub wasn't connected.
 
+# Notes (Some data here is repeated from above)
+
+- Directions
+    - Create Azure blank environment in demo.redhat.com
+    - Use the `az` cli to create an ARO cluster
+    - Set up operators to work (see below)
+    - Add the local_storage_operator
+    - Add the L-series VMs to the cluster using the machineset.yml
+    - Create the PVC using the pvc-local-l-series.yaml
+    - Create a deployment using the deployment_to_use_l_series_pvc.yaml
+        - Mapped the PVC to the deployment in /data
+- The test
+    - Write data to /data
+    - ???
+    - Profit
+- Results
+    - File was writen
+    - PNG has a screenshot of the command line output (I always forget vim isn't installed by default)
+- Problems
+    - Getting my cluster set up in ARO didn't work properly, as it wasn't seeded with my pull secret. I had to manually add the OperatorGroup and Subscription yaml's to get the local-storage-operator to install.
+
