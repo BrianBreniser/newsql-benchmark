@@ -88,14 +88,8 @@ def main():
         apply_templating(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])
         sys.exit(0)
 
-    # Otherwise, the fist argument must be a config option string
-    if len(sys.argv) != 2:
-        LOGGER.error("Usage: ./apply_templating.py <config_option>")
-        LOGGER.error("See the values.json file in the templates/ dir for valid config_option values")
-        sys.exit(1)
-
     # quick help flag
-    if sys.argv[1] == "-h" or sys.argv[1] == "--help":
+    if len(sys.argv) == 2 and (sys.argv[1] == "-h" or sys.argv[1] == "--help"):
         options = get_config_options()
         print("Use Default Template (demo_setup): ./apply_templating.py")
         print("Use Specific Template: ./apply_templating.py <config_option>")
@@ -105,11 +99,16 @@ def main():
             print(f"  {option}")
         sys.exit(0)
 
-    config = sys.argv[1]
+    # If we were not passed any args, use the demo, otherwise, use the argument
+    if len(sys.argv) == 1:
+        config = "demo_setup"
+    else:
+        config = sys.argv[1]
 
     template_list = [
         ("fdb", "values.json", "fdb_template.yaml", "fdb.yaml"),
-        ("localstorage", "values.json", "local_storage_operator_template.yaml", "local_storage_operator.yaml")
+        ("localstorage", "values.json", "local_storage_operator_template.yaml", "local_storage_operator.yaml"),
+        ("ycsb-deployment", "values.json", "ycsb_deployment_template.yaml", "ycsb_deployment.yaml")
     ]
 
     for template in template_list:

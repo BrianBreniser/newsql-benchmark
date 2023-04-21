@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ycsb-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ycsb
+  template:
+    metadata:
+      labels:
+        app: ycsb
+    spec:
+      containers:
+      - name: ycsb
+        image: registry.access.redhat.com/ubi8/ubi-minimal
+        command: ["/bin/bash", "-c"]
+        args:
+        - |
+          microdnf install -y wget java-11-openjdk-headless
+          wget https://github.com/brianfrankcooper/YCSB/releases/download/0.17.0/ycsb-0.17.0.tar.gz
+          tar xvfz ycsb-0.17.0.tar.gz
+          cd ycsb-0.17.0
+          while true; do
+            echo "YCSB container is running"
+            sleep 10
+          done
+

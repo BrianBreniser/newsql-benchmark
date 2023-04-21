@@ -20,7 +20,7 @@ spec:
     - foundationdb.org/fdb-process-group-id
   minimumUptimeSecondsForBounce: 60
   processCounts:
-    cluster_controller: 2
+    cluster_controller: 1
     storage: 4
     log: 2
     stateless: 1

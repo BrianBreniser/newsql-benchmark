@@ -5,6 +5,9 @@
         },
         "localstorage": {
             "testkey": "local-storage-test-value1"
+        },
+        "ycsb-deployment": {
+            "replicas": "1"
         }
     },
     "testing2": {
@@ -13,6 +16,9 @@
         },
         "localstorage": {
             "testkey": "local-storage-test-value2"
+        },
+        "ycsb-deployment": {
+            "replicas": "1"
         }
     },
     "demo_setup": {
@@ -28,6 +34,9 @@
         },
         "localstorage": {
             "testkey": "local-storage-test-value2"
+        },
+        "ycsb-deployment": {
+            "replicas": "1"
         }
     },
     "performance_load_setup_do_not_use_on_demo_system": {
@@ -43,6 +52,9 @@
         },
         "localstorage": {
             "testkey": "local-storage-test-value2"
+        },
+        "ycsb-deployment": {
+            "replicas": "1"
         }
     }
 }
