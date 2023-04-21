@@ -35,7 +35,8 @@
 # In order to add a new .yaml file
 
 - Some steps are required to adda a new templated yaml file to the list of generated files
-    1: Add the new template yaml file to the `templates` directory
-    2: Add the new template yaml file to the tempate_list in the `apply_templating.py` script
-    3: Add the new yaml file (The final name) to the .gitignore file (so you don't keep committing minor edits to git)
+    - 1: Add the new name-template.yaml file to the `templates` directory
+    - 2: Update the tempate_list in the `apply_templating.py` script to include the new template files (All values will be in values.json for now, even though it is configurable)
+    - 3: Add the config options to the templates/values.json file with any template values you added to the name-template.yaml file
+    - 4: Add the new yaml file (The final name) to the .gitignore file (so you don't keep committing minor edits to git)
 
