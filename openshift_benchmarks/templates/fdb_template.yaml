@@ -3,7 +3,6 @@ kind: FoundationDBCluster
 metadata:
   name: {{name}}
   namespace: {{namespace}}
-  key: {{testkey}}
 spec:
   automationOptions:
     replacements:
@@ -33,6 +32,7 @@ spec:
           containers:
           - name: foundationdb
             resources:
+              # TODO: Is there where we attach to PVC?
               requests:
                 cpu: 100m
                 memory: 128Mi

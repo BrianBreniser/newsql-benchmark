@@ -16,5 +16,5 @@ spec:
       volumeMode: Filesystem
       fsType: xfs
       devicePaths:
-        - /dev/sdb1 # TODO: Figure this out, because it's not right
+        - /dev/sdb1
 

@@ -113,6 +113,16 @@ function install_fdb_cluster() {
     fi
 }
 
+function run_ycsb_pod() {
+    log "Checking if ycsb pod is already running"
+    if ! oc get deployment | grep -q ycsb-deployment; then
+        log "Running ycsb pod"
+        oc apply -f ycsb_deployment.yaml
+    else
+        log "ycsb pod is already running"
+    fi
+}
+
 ####################
 # Helper functions #
 ####################
@@ -147,4 +157,6 @@ install_prometheus # TODO: Determine if this, or the operator, is better
 # install_local_storage_operator
 install_fdb_operator
 install_fdb_cluster
+run_ycsb_pod
+# ycsb is next
 

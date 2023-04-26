@@ -1,29 +1,6 @@
 {
-    "testing1": {
-        "fdb": {
-            "testkey": "fdb-test-value1"
-        },
-        "localstorage": {
-            "testkey": "local-storage-test-value1"
-        },
-        "ycsb-deployment": {
-            "replicas": "1"
-        }
-    },
-    "testing2": {
-        "fdb": {
-            "testkey": "fdb-test-value2"
-        },
-        "localstorage": {
-            "testkey": "local-storage-test-value2"
-        },
-        "ycsb-deployment": {
-            "replicas": "1"
-        }
-    },
     "demo_setup": {
         "fdb": {
-            "testkey": "fdb-test-value2",
             "name": "test-cluster",
             "namespace": "default",
             "cluster_controller": "1",
@@ -33,7 +10,6 @@
             "volume_claim_storage": "16G"
         },
         "localstorage": {
-            "testkey": "local-storage-test-value2"
         },
         "ycsb-deployment": {
             "replicas": "1"
@@ -41,7 +17,6 @@
     },
     "performance_load_setup_do_not_use_on_demo_system": {
         "fdb": {
-            "testkey": "fdb-test-value2",
             "name": "test-cluster",
             "namespace": "default",
             "cluster_controller": "1",
@@ -51,7 +26,6 @@
             "volume_claim_storage": "128G"
         },
         "localstorage": {
-            "testkey": "local-storage-test-value2"
         },
         "ycsb-deployment": {
             "replicas": "1"
