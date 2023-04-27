@@ -1,7 +1,7 @@
 {
     "demo_setup": {
         "fdb": {
-            "name": "test-cluster",
+            "name": "fdb-cluster",
             "namespace": "default",
             "cluster_controller": "1",
             "storage": "4",
@@ -15,9 +15,9 @@
             "replicas": "1"
         }
     },
-    "performance_load_setup_do_not_use_on_demo_system": {
+    "performance_load_60_60": {
         "fdb": {
-            "name": "test-cluster",
+            "name": "fdb-cluster",
             "namespace": "default",
             "cluster_controller": "1",
             "storage": "60",
@@ -28,7 +28,7 @@
         "localstorage": {
         },
         "ycsb-deployment": {
-            "replicas": "1"
+            "replicas": "60"
         }
     }
 }

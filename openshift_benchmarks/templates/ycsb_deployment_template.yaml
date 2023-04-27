@@ -16,6 +16,9 @@ spec:
       - name: ycsb
         image: registry.access.redhat.com/ubi8/ubi-minimal
         command: ["/bin/bash", "-c"]
+        volumeMounts:
+          - name: config-volume
+            mountPath: /mnt/config-volume
         args:
         - |
           microdnf install -y wget java-11-openjdk-headless
@@ -26,4 +29,7 @@ spec:
             echo "YCSB container is running"
             sleep 10
           done
-
+      volumes:
+        - name: config-volume
+          configMap:
+            name: fdb-cluster-config

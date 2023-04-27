@@ -40,3 +40,50 @@
     - 3: Add the config options to the templates/values.json file with any template values you added to the name_template.yaml file
     - 4: Add the new yaml file (The final name) to the .gitignore file (so you don't keep committing minor edits to git)
 
+# YCSB notes
+
+## Found these in the ansible configs
+- ycsb_cmd: "sh {{ycsb_dir}}/bin/ycsb.sh
+    - {{ycsb_operation}} // probably load or run based on loadgen_workload_name being 'insert' or not
+    - {{ycsb_binding_name}} // 'fdb' 
+    - -s -P {{ycsb_dir}}/workloads/{{ycsb_workload_name}} // either 'workloada' or 'workloadb' // based on loadgen_workload_name being 'insert' or not
+    - {{ycsb_params}} >> {{loadgen_log_file}} 2>&1" // see below
+
+- ycsb_params: 
+    - {{ycsb_db_specific_params}} // -p foundationdb.apiversion=620 -p foundationdb.clusterfile=/etc/foundationdb/fdb.cluster -p foundationdb.batchsize=100'
+        - is 620 still a correct apiversion?
+    - {{ycsb_insert_params}}
+        - ycsb_insert_params: "{% if loadgen_workload_name == 'insert' %} -p insertstart={{ loadgen_start_key_per_host_process | int }} -p insertcount={{ loadgen_keys_per_process| int }} -p operationcount={{( (loadgen_keys_per_process | int) / loadgen_batch_size | int) |int}}{% else %} -p operationcount={{ ycsb_op_count }} {% endif %}"
+            - loadgen_keys_per_process: "{{ ((loadgen_keys_per_host | int)/ (loadgen_process_per_host|int)) | int}}"
+    - -p recordcount={{loadgen_num_keys}} // 1000000
+    - -p readproportion={{ycsb_read_proportion}} // workoad config, 0-1, what % of operations are read (example, 0.9)
+    - -p updateproportion={{ycsb_update_proportion}} // workoad config, 0-1, what % of operations are write (example 0.1)
+        - These two values should equal 1, 0.9+0.1, 1.0+0.0, etc.
+    - {{ycsb_additional_params}} 
+    - -p threadcount={{ loadgen_threads_per_process }} // varied from 1-16 in the configs
+
+- ycsb_additional_params:
+    - -p requestdistribution=uniform 
+    - -p maxexecutiontime={{ ycsb_max_execution_time_seconds }} // 60 * 60 * 24 * 14 // 2 weeks
+    - -p table=usertable
+    - -p insertorder=hashed 
+    - -p zeropadding=12 
+    - -p fieldlength={{ycsb_field_length}} // 2000 
+    - -p fieldcount={{ycsb_field_count}} // 1
+
+
+# Notes on using FDB on kubectl
+
+- fdb analyze
+
+
+
+
+
+
+
+
+
+
+
+

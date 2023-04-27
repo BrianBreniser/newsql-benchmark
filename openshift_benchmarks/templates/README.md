@@ -9,6 +9,9 @@
     - log: The logging nodes, likely 1 per zone, but we might find out write performance is an issue and need more
     - stateless: A bunch of "other" things according to FDB, Docs look like they recommend 2-3 per zone
     - volume_claim_storage": Up to us, we need to determine how much storage we want to give to the cluster
+        - Found in <location> that the old FDB configuration used 128G memory and 1TB storage
+- ycsb_deployment.replicas: According to the VM config docs (loagen_config) there was an approx. equal number of loadgen nodes vs db nodes
+    - Examples: 20/20, 10/10, 5/10, 3/6
 
 # fdb_template.yaml
 
