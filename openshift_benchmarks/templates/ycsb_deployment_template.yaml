@@ -14,16 +14,21 @@ spec:
     spec:
       containers:
       - name: ycsb
-        image: registry.access.redhat.com/ubi8/ubi-minimal
+        image: docker.io/ubuntu:latest
         command: ["/bin/bash", "-c"]
         volumeMounts:
           - name: config-volume
             mountPath: /mnt/config-volume
         args:
         - |
-          microdnf install -y wget java-11-openjdk-headless
+          apt-get update
+          apt-get install -y wget openjdk-11-jdk tar python2
           wget https://github.com/brianfrankcooper/YCSB/releases/download/0.17.0/ycsb-0.17.0.tar.gz
-          tar xvfz ycsb-0.17.0.tar.gz
+          whoami
+          ls -la
+          echo ""
+          sleep 5
+          tar -xf ycsb-0.17.0.tar.gz
           cd ycsb-0.17.0
           while true; do
             echo "YCSB container is running"
