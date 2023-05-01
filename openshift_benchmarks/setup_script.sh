@@ -92,15 +92,21 @@ function install_local_storage_operator() {
     fi
 }
 
+# function install_fdb_operator() {
+#     # Only install fdb if it is not already installed
+#     log "Checking if fdb is already installed"
+#     if ! helm list | grep -q fdb-kubernetes-operator; then
+#         log "Installing fdb"
+#         helm install fdb-kubernetes-operator fdb-kubernetes-operator/charts/fdb-operator
+#     else
+#         log "FDB is already installed"
+#     fi
+# }
 function install_fdb_operator() {
-    # Only install fdb if it is not already installed
-    log "Checking if fdb is already installed"
-    if ! helm list | grep -q fdb-kubernetes-operator; then
-        log "Installing fdb"
-        helm install fdb-kubernetes-operator fdb-kubernetes-operator/charts/fdb-operator
-    else
-        log "FDB is already installed"
-    fi
+    oc apply -f https://raw.githubusercontent.com/FoundationDB/fdb-kubernetes-operator/main/config/crd/bases/apps.foundationdb.org_foundationdbclusters.yaml
+    oc apply -f https://raw.githubusercontent.com/FoundationDB/fdb-kubernetes-operator/main/config/crd/bases/apps.foundationdb.org_foundationdbbackups.yaml
+    oc apply -f https://raw.githubusercontent.com/FoundationDB/fdb-kubernetes-operator/main/config/crd/bases/apps.foundationdb.org_foundationdbrestores.yaml
+    oc apply -f https://raw.githubusercontent.com/foundationdb/fdb-kubernetes-operator/main/config/samples/deployment.yaml
 }
 
 function install_fdb_cluster() {

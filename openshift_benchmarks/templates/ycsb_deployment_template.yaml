@@ -14,27 +14,32 @@ spec:
     spec:
       containers:
       - name: ycsb
-        image: docker.io/ubuntu:latest
-        command: ["/bin/bash", "-c"]
-        volumeMounts:
-          - name: config-volume
-            mountPath: /mnt/config-volume
+        image: registry.redhat.io/ubi8/openjdk-11:latest
+        command: ["/bin/bash", "-c"] 
+        #run as root user to install packages
+        securityContext:
+          privileged: true  
         args:
         - |
-          apt-get update
-          apt-get install -y wget openjdk-11-jdk tar python2
-          wget https://github.com/brianfrankcooper/YCSB/releases/download/0.17.0/ycsb-0.17.0.tar.gz
-          whoami
-          ls -la
-          echo ""
-          sleep 5
-          tar -xf ycsb-0.17.0.tar.gz
-          cd ycsb-0.17.0
+          microdnf install -y git-core wget tar python2 
+          microdnf clean all 
+          ln -sf /usr/bin/python2.7 /usr/bin/python
+          wget https://github.com/brianfrankcooper/YCSB/releases/download/0.17.0/ycsb-0.17.0.tar.gz && \
+          tar xfvz ycsb-0.17.0.tar.gz && \
+          rm ycsb-0.17.0.tar.gz
+          rpm -i https://github.com/apple/foundationdb/releases/download/7.1.31/foundationdb-clients-7.1.31-1.el7.x86_64.rpm
           while true; do
             echo "YCSB container is running"
-            sleep 10
+            sleep 20
           done
+
+        env:
+          - name: FDB_CLUSTER_FILE
+            value: /mnt/config-volume/cluster-file
+        volumeMounts:
+          - name: config-volume
+            mountPath: /mnt/config-volume  
       volumes:
         - name: config-volume
           configMap:
-            name: fdb-cluster-config
+            name: test-cluster-config
