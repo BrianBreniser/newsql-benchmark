@@ -7,11 +7,11 @@ RUN \
     microdnf clean all && \
     ln -sf /usr/bin/python2.7 /usr/bin/python
 
-# install ycsb with wget
+# clone ycsb and build fdb binding
 RUN \
-    wget https://github.com/brianfrankcooper/YCSB/releases/download/0.17.0/ycsb-0.17.0.tar.gz && \
-    tar xfvz ycsb-0.17.0.tar.gz && \
-    rm ycsb-0.17.0.tar.gz
+    wget  https://github.com/adobe/newsql-benchmark/raw/main/ansible/roles/loadgen_ycsb_install/files/ycsb-foundationdb-binding-0.18.0-SNAPSHOT.tar.gz && \
+    tar -xvf ycsb-foundationdb-binding-0.18.0-SNAPSHOT.tar.gz 
+
 
 # install fdb client
 RUN \
