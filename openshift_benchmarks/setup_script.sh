@@ -158,11 +158,11 @@ if [[ "$#" -gt 0 ]]; then
     check_args "$@"
 fi
 
-install_prometheus # TODO: Determine if this, or the operator, is better
+# install_prometheus # TODO: Determine if this, or the operator, is better
 # install_grafana
 # install_local_storage_operator
 install_fdb_operator
 install_fdb_cluster
-run_ycsb_pod
+# run_ycsb_pod
 # ycsb is next
 
