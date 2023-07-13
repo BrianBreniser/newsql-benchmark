@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    foundationdb.org/fdb-cluster-name: fdb-cluster
+  name: fdb-cluster
+  namespace: default
+spec:
+  clusterIP: None
+  clusterIPs:
+  - None
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  selector:
+    foundationdb.org/fdb-cluster-name: fdb-cluster
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

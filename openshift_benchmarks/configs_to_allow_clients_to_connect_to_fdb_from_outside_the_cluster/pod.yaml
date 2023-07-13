@@ -1,0 +1,342 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    foundationdb.org/last-applied-config-map: be77167f8a507a1a4d384ab0ff99ed930c1462031e1c615cb9b53750b9a64777
+    foundationdb.org/last-applied-spec: 25f80a1a1b2cf3a3068120c8d464aefa6dd7499746cfa3e5c043787b341e32e9
+    foundationdb.org/public-ip: 172.30.170.224
+    foundationdb.org/public-ip-source: service
+    k8s.v1.cni.cncf.io/network-status: |-
+      [{
+          "name": "openshift-sdn",
+          "interface": "eth0",
+          "ips": [
+              "10.129.4.9"
+          ],
+          "default": true,
+          "dns": {}
+      }]
+    k8s.v1.cni.cncf.io/networks-status: |-
+      [{
+          "name": "openshift-sdn",
+          "interface": "eth0",
+          "ips": [
+              "10.129.4.9"
+          ],
+          "default": true,
+          "dns": {}
+      }]
+  creationTimestamp: "2023-06-29T18:47:50Z"
+  labels:
+    foundationdb.org/fdb-cluster-name: fdb-cluster-1
+    foundationdb.org/fdb-process-class: storage
+    foundationdb.org/fdb-process-group-id: storage-1
+  name: fdb-cluster-1-storage-1
+  namespace: default
+  ownerReferences:
+  - apiVersion: apps.foundationdb.org/v1beta2
+    controller: true
+    kind: FoundationDBCluster
+    name: fdb-cluster-1
+    uid: 69e5408a-0593-4f81-9843-3eb21912b0dc
+  resourceVersion: "3125886"
+  uid: ba236e3b-9d8c-4ee1-a816-a07134f28ab8
+spec:
+  containers:
+  - args:
+    - fdbmonitor --conffile /var/dynamic-conf/fdbmonitor.conf --lockfile /var/dynamic-conf/fdbmonitor.lockfile
+      --loggroup fdb-cluster-1 >> /var/log/fdb-trace-logs/fdbmonitor-$(date '+%Y-%m-%d').log
+      2>&1
+    command:
+    - sh
+    - -c
+    env:
+    - name: FDB_CLUSTER_FILE
+      value: /var/dynamic-conf/fdb.cluster
+    image: foundationdb/foundationdb:7.1.26
+    imagePullPolicy: IfNotPresent
+    name: foundationdb
+    resources:
+      limits:
+        cpu: 100m
+        memory: 128Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+    securityContext:
+      readOnlyRootFilesystem: true
+      runAsUser: 0
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/fdb/data
+      name: data
+    - mountPath: /var/dynamic-conf
+      name: dynamic-conf
+    - mountPath: /var/log/fdb-trace-logs
+      name: fdb-trace-logs
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-xzt6l
+      readOnly: true
+  - args:
+    - --copy-file
+    - fdb.cluster
+    - --input-monitor-conf
+    - fdbmonitor.conf
+    - --copy-binary
+    - fdbserver
+    - --copy-binary
+    - fdbcli
+    - --main-container-version
+    - 7.1.26
+    - --substitute-variable
+    - FDB_POD_IP
+    env:
+    - name: FDB_PUBLIC_IP
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.annotations['foundationdb.org/public-ip']
+    - name: FDB_POD_IP
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: status.podIP
+    - name: FDB_MACHINE_ID
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.name
+    - name: FDB_ZONE_ID
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.name
+    - name: FDB_INSTANCE_ID
+      value: storage-1
+    - name: FDB_TLS_VERIFY_PEERS
+    image: foundationdb/foundationdb-kubernetes-sidecar:7.1.26-1
+    imagePullPolicy: IfNotPresent
+    livenessProbe:
+      failureThreshold: 5
+      periodSeconds: 30
+      successThreshold: 1
+      tcpSocket:
+        port: 8080
+      timeoutSeconds: 1
+    name: foundationdb-kubernetes-sidecar
+    resources:
+      limits:
+        cpu: 100m
+        memory: 128Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+    securityContext:
+      readOnlyRootFilesystem: true
+      runAsUser: 0
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/input-files
+      name: config-map
+    - mountPath: /var/output-files
+      name: dynamic-conf
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-xzt6l
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  imagePullSecrets:
+  - name: fdb-dockercfg-tjv4l
+  initContainers:
+  - args:
+    - --copy-file
+    - fdb.cluster
+    - --input-monitor-conf
+    - fdbmonitor.conf
+    - --copy-binary
+    - fdbserver
+    - --copy-binary
+    - fdbcli
+    - --main-container-version
+    - 7.1.26
+    - --substitute-variable
+    - FDB_POD_IP
+    - --init-mode
+    env:
+    - name: FDB_PUBLIC_IP
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.annotations['foundationdb.org/public-ip']
+    - name: FDB_POD_IP
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: status.podIP
+    - name: FDB_MACHINE_ID
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.name
+    - name: FDB_ZONE_ID
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.name
+    - name: FDB_INSTANCE_ID
+      value: storage-1
+    image: foundationdb/foundationdb-kubernetes-sidecar:7.1.26-1
+    imagePullPolicy: IfNotPresent
+    name: foundationdb-kubernetes-init
+    resources:
+      limits:
+        cpu: 100m
+        memory: 128Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+    securityContext:
+      readOnlyRootFilesystem: true
+      runAsUser: 0
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/input-files
+      name: config-map
+    - mountPath: /var/output-files
+      name: dynamic-conf
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-xzt6l
+      readOnly: true
+  nodeName: aro-cluster-dd8v4-q9pfq-worker-eastus1-wjpnv
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: fdb
+  serviceAccountName: fdb
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoSchedule
+    key: node.kubernetes.io/memory-pressure
+    operator: Exists
+  volumes:
+  - name: data
+    persistentVolumeClaim:
+      claimName: fdb-cluster-1-storage-1-data
+  - emptyDir: {}
+    name: dynamic-conf
+  - configMap:
+      defaultMode: 420
+      items:
+      - key: fdbmonitor-conf-storage
+        path: fdbmonitor.conf
+      - key: cluster-file
+        path: fdb.cluster
+      name: fdb-cluster-1-config
+    name: config-map
+  - emptyDir: {}
+    name: fdb-trace-logs
+  - name: kube-api-access-xzt6l
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+      - configMap:
+          items:
+          - key: service-ca.crt
+            path: service-ca.crt
+          name: openshift-service-ca.crt
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2023-06-29T18:48:09Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2023-06-29T22:06:19Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2023-06-29T22:06:19Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2023-06-29T18:47:53Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: cri-o://fbde294924e161e8abb5ef7b9b01ca05952c441b65c039df1e7383aaf000785c
+    image: docker.io/foundationdb/foundationdb:7.1.26
+    imageID: docker.io/foundationdb/foundationdb@sha256:3db05fa00d2b57df541ac41c31ea74a2f8d821b5ad7270059a725d9f4a39107f
+    lastState:
+      terminated:
+        containerID: cri-o://abadf93b92c44b5d403c6d76cc47ea514a48206a940b0a7a175f6c2a96d6725e
+        exitCode: 137
+        finishedAt: "2023-06-29T22:06:17Z"
+        reason: Error
+        startedAt: "2023-06-29T18:48:10Z"
+    name: foundationdb
+    ready: true
+    restartCount: 1
+    started: true
+    state:
+      running:
+        startedAt: "2023-06-29T22:06:18Z"
+  - containerID: cri-o://a6a7561f4349317b7a59215e874f06cc8fd75620e96ce12e732fbe9c2f53bdc5
+    image: docker.io/foundationdb/foundationdb-kubernetes-sidecar:7.1.26-1
+    imageID: docker.io/foundationdb/foundationdb-kubernetes-sidecar@sha256:88b1aeb2374280d32f43b1ac68fe30b7b67a7268c16462ba1ed3b40d632e7113
+    lastState: {}
+    name: foundationdb-kubernetes-sidecar
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2023-06-29T18:48:10Z"
+  hostIP: 10.0.2.10
+  initContainerStatuses:
+  - containerID: cri-o://eeeafdeded3e2879ca0f59065dbe6d7d756bcbaceb151e4767deeaa0330a7e76
+    image: docker.io/foundationdb/foundationdb-kubernetes-sidecar:7.1.26-1
+    imageID: docker.io/foundationdb/foundationdb-kubernetes-sidecar@sha256:88b1aeb2374280d32f43b1ac68fe30b7b67a7268c16462ba1ed3b40d632e7113
+    lastState: {}
+    name: foundationdb-kubernetes-init
+    ready: true
+    restartCount: 0
+    state:
+      terminated:
+        containerID: cri-o://eeeafdeded3e2879ca0f59065dbe6d7d756bcbaceb151e4767deeaa0330a7e76
+        exitCode: 0
+        finishedAt: "2023-06-29T18:48:09Z"
+        reason: Completed
+        startedAt: "2023-06-29T18:48:08Z"
+  phase: Running
+  podIP: 10.129.4.9
+  podIPs:
+  - ip: 10.129.4.9
+  qosClass: Guaranteed
+  startTime: "2023-06-29T18:47:53Z"

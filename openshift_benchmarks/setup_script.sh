@@ -2,6 +2,12 @@
 set -eu # -e for exit on error, -u for error on unset variables
 set -o pipefail # fail if one part of a pipe fails (From manpage: If  set, the return value of a pipeline is the value of the last (rightmost) command to exit with a non-zero status, or zero if all commands in the pipeline exit successfully.  This option is disabled by default.)
 
+###################
+## Global params ##
+###################
+
+FORCE=false
+
 ######################
 ## Helper functiohs ##
 ######################
@@ -110,8 +116,18 @@ function install_fdb_operator() {
 }
 
 function install_fdb_cluster() {
+    # create the fdb-ns namespace if it doesn't already exist
+    #log "Checking if fdb-ns namespace exists"
+
+    #if oc get namespace | grep -q fdb-ns; then
+        #log "Creating fdb-ns namespace"
+        #oc create namespace fdb-ns
+    #else
+        #log "fdb-ns namespace already exists"
+    #fi
+
     log "Checking if fdb cluster is already installed"
-    if ! oc get foundationdbcluster | grep -q fdb-cluster; then
+    if [ "$(! oc get foundationdbcluster | grep -q fdb-cluster)" ] || $FORCE; then
         log "Installing fdb cluster"
         oc apply -f fdb.yaml
     else
@@ -146,6 +162,13 @@ function check_args() {
         echo "  - FoundationDB Operator"
         echo "  - FoundationDB Cluster"
         exit 0
+    fi
+
+    #if -f or --force is passed, force the re-installation of everything
+    if [[ "$1" == "-f" ]] || [[ "$1" == "--force" ]]; then
+        log "Forcing the re-installation of everything"
+        FORCE=true
+        return
     fi
 }
 

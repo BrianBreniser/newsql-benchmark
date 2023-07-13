@@ -51,7 +51,7 @@ def apply_templating(config_option, file, filename_for_json_values, filename_for
 
     # Apply templating
     for key, value in data.items():
-        filename_for_template = filename_for_template.replace('{{' + key + '}}', value)
+        filename_for_template = filename_for_template.replace('{{' + key + '}}', str(value))
 
     # Write result
     with open(filename_for_results, 'w', encoding='utf-8') as out_file:
@@ -108,7 +108,8 @@ def main():
     template_list = [
         ("fdb", "values.json", "fdb_template.yaml", "fdb.yaml"),
         ("localstorage", "values.json", "local_storage_operator_template.yaml", "local_storage_operator.yaml"),
-        ("ycsb-deployment", "values.json", "ycsb_deployment_template.yaml", "ycsb_deployment.yaml")
+        ("ycsb-statefulset", "values.json", "ycsb_statefulset_template.yaml", "ycsb_statefulset.yaml"),
+        ("machineset", "values.json", "machineset_template.yaml", "machineset.yaml")
     ]
 
     for template in template_list:

@@ -4,6 +4,7 @@ metadata:
   name: {{name}}
   namespace: {{namespace}}
 spec:
+  storageServersPerPod: {{storageServersPerPod}}
   automationOptions:
     replacements:
       enabled: true
@@ -31,6 +32,9 @@ spec:
         spec:
           containers:
           - name: foundationdb
+            metadata:
+              labels: 
+                podtype: fdblabel
             resources:
               # TODO: Is there where we attach to PVC?
               requests:
@@ -64,8 +68,12 @@ spec:
           resources:
             requests:
               storage: {{volume_claim_storage}}
+  podTemplate:
+    spec:
+      hostNetwork: {{hostNetwork}}
   routing:
-    headlessService: true
+    headlessService: {{headlessService}}
+    publicIPSource: {{publicIPSource}}
   sidecarContainer:
     enableLivenessProbe: true
     enableReadinessProbe: false

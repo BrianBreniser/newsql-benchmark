@@ -1,0 +1,131 @@
+apiVersion: apps.foundationdb.org/v1beta2
+kind: FoundationDBCluster
+metadata:
+  name: fdb-cluster
+  namespace: default
+spec:
+  automationOptions:
+    deletionMode: Zone
+    podUpdateStrategy: ReplaceTransactionSystem
+    removalMode: Zone
+    replacements:
+      enabled: true
+      maxConcurrentReplacements: 1
+  faultDomain:
+    key: foundationdb.org/none
+  labels:
+    filterOnOwnerReference: false
+    matchLabels:
+      foundationdb.org/fdb-cluster-name: fdb-cluster
+    processClassLabels:
+    - foundationdb.org/fdb-process-class
+    processGroupIDLabels:
+    - foundationdb.org/fdb-process-group-id
+  minimumUptimeSecondsForBounce: 60
+  processCounts:
+    cluster_controller: 1
+    log: 1
+    stateless: -1
+    storage: 3
+  processes:
+    general:
+      customParameters:
+      - knob_disable_posix_kernel_aio=1
+      podTemplate:
+        spec:
+          containers:
+          - name: foundationdb
+            resources:
+              requests:
+                cpu: 100m
+                memory: 128Mi
+            securityContext:
+              runAsUser: 0
+          - name: foundationdb-kubernetes-sidecar
+            resources:
+              limits:
+                cpu: 100m
+                memory: 128Mi
+              requests:
+                cpu: 100m
+                memory: 128Mi
+            securityContext:
+              runAsUser: 0
+          hostNetwork: true
+          initContainers:
+          - name: foundationdb-kubernetes-init
+            resources:
+              limits:
+                cpu: 100m
+                memory: 128Mi
+              requests:
+                cpu: 100m
+                memory: 128Mi
+            securityContext:
+              runAsUser: 0
+      volumeClaimTemplate:
+        spec:
+          resources:
+            requests:
+              storage: 16G
+  replaceInstancesWhenResourcesChange: false
+  routing:
+    headlessService: true
+    publicIPSource: pod
+  sidecarContainer:
+    enableLivenessProbe: true
+    enableReadinessProbe: false
+  skip: false
+  useExplicitListenAddress: true
+  version: 7.1.26
+status:
+  configured: true
+  connectionString: fdb_cluster:6XudTx4dWunrYS7qMEUvEnRCnItxGsch@10.0.2.6:4501,10.0.2.9:4501,10.0.2.5:4501
+  databaseConfiguration:
+    log_routers: -1
+    logs: 3
+    proxies: 3
+    redundancy_mode: double
+    remote_logs: -1
+    resolvers: 1
+    storage_engine: ssd-2
+    usable_regions: 1
+  desiredProcessGroups: 5
+  generations:
+    reconciled: 1
+  hasListenIPsForAllPods: true
+  health:
+    available: true
+    fullReplication: true
+    healthy: true
+  imageTypes:
+  - split
+  locks: {}
+  maintenanceModeInfo: {}
+  processGroups:
+  - addresses:
+    - 10.0.2.4
+    processClass: cluster_controller
+    processGroupID: cluster_controller-1
+  - addresses:
+    - 10.0.2.8
+    processClass: log
+    processGroupID: log-1
+  - addresses:
+    - 10.0.2.6
+    processClass: storage
+    processGroupID: storage-1
+  - addresses:
+    - 10.0.2.9
+    processClass: storage
+    processGroupID: storage-2
+  - addresses:
+    - 10.0.2.5
+    processClass: storage
+    processGroupID: storage-3
+  reconciledProcessGroups: 5
+  requiredAddresses:
+    nonTLS: true
+  runningVersion: 7.1.26
+  storageServersPerDisk:
+  - 1
