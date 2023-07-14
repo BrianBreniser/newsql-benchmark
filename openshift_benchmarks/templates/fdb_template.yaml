@@ -11,6 +11,7 @@ spec:
   faultDomain:
     key: foundationdb.org/none
   labels:
+    podlabel: fdblabel
     filterOnOwnerReference: false
     matchLabels:
       foundationdb.org/fdb-cluster-name: {{name}}
@@ -26,17 +27,23 @@ spec:
     stateless: {{stateless}}
   processes:
     general:
-      customParameters:
-      - knob_disable_posix_kernel_aio=1
       podTemplate:
+        metadata:
+            annotations:
+              #k8s.v1.cni.cncf.io/networks: bridge-main
+              #v1.multus-cni.io/default-network: default/bridge-main
         spec:
+          hostNetwork: true
+          topologySpreadConstraints:
+          - maxSkew: 1
+            topologyKey: kubernetes.io/hostname
+            whenUnsatisfiable: DoNotSchedule
+            labelSelector:
+              matchLabels:
+                foundationdb.org/fdb-cluster-name: fdb-cluster-1
           containers:
           - name: foundationdb
-            metadata:
-              labels: 
-                podtype: fdblabel
             resources:
-              # TODO: Is there where we attach to PVC?
               requests:
                 cpu: 100m
                 memory: 128Mi
@@ -63,19 +70,18 @@ spec:
                 memory: 128Mi
             securityContext:
               runAsUser: 0
+      customParameters:
+      - knob_disable_posix_kernel_aio=1
       volumeClaimTemplate:
         spec:
           resources:
             requests:
               storage: {{volume_claim_storage}}
-  podTemplate:
-    spec:
-      hostNetwork: {{hostNetwork}}
   routing:
     headlessService: {{headlessService}}
     publicIPSource: {{publicIPSource}}
   sidecarContainer:
     enableLivenessProbe: true
-    enableReadinessProbe: false
+    enableReadinessProbe: true
   useExplicitListenAddress: true
   version: 7.1.26
