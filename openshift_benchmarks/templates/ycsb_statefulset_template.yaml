@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: ycsb
-          image: docker.io/traceherrell/ycsb:latest
+          image: quay.io/breniserbrian/ycsb:latest
           command: ["/bin/bash", "-c"]
           args:
             - |

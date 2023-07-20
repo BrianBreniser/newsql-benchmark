@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-oc delete deployment ycsb-deployment
-./apply_templating.py
-./setup_script.sh
+oc delete statefulset ycsb-benchmark
+./apply_templating.py 3_read
+oc apply -f ycsb_statefulset.yaml
 

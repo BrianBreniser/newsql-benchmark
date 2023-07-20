@@ -40,7 +40,7 @@ spec:
             whenUnsatisfiable: DoNotSchedule
             labelSelector:
               matchLabels:
-                foundationdb.org/fdb-cluster-name: fdb-cluster-1
+                foundationdb.org/fdb-cluster-name: fdb-cluster
           containers:
           - name: foundationdb
             resources:

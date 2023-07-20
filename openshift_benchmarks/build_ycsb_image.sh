@@ -1,7 +1,7 @@
 #!/bin/env bash
 
 # build ycsb image
-docker build -t traceherrell/ycsb .
+podman build -t quay.io/breniserbrian/ycsb .
 
 # push to docker hub
-docker push traceherrell/ycsb
+podman push quay.io/breniserbrian/ycsb
