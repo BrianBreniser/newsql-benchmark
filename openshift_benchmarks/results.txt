@@ -1,0 +1,1748 @@
+Notes:
+    The foundation to be cluster is highly unreliable
+    The first problem seems to be the extremely slow response times.  less than 1000 operations per second.
+    The second problem is that the cluster becomes unresponsive, even the `fdbcli` command running `status` will produce errors
+        Although these errors are not consistent, sometimes the cluster comes back up
+    As well, sometimes the cluster is up and properly running, but  testing shows zero operations per second
+         Confirmed that the cluster is healthy with the `fdb analyze` command
+            Although i get unknown data when running the `status` command
+    Running more than 4 storageServersPerPod seems to be unreliable
+        Although even running only 1 storageServersPerPod does not produce stable results either, but the cluster will come up
+---
+Example test
+
+    "example_test": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 1,
+            "storage": 3,
+            "log": 1,
+            "stateless": 1,
+            "volume_claim_storage": "128G",
+            "hostNetwork": "true",
+            "headlessService": "true",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 1
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        },
+        "ycsb-statefulset": {
+            "replicas": 1,
+            "num_keys": 10000,
+            "process_per_host": 8,
+            "threads_per_process": 50,
+            "batch_size": 100,
+            "update_proportion": 0.0,
+            "read_proportion": 1.0,
+            "max_execution_time_seconds": 300
+        }
+    },
+
+
+Throughput (ops/sec): 747
+Runtime (ms): 72338
+OperationCountInsert: 10000
+ErrorCountInsert: 0
+SuccessCountInsert: 10000
+UnknownCountInsert: 0
+AverageInsertLatency: 5455
+OperationCountRead: 10000
+ErrorCountRead: 0
+SuccessCountRead: 10000
+UnknownCountRead: 0
+AverageReadLatency: 1760
+95thPercentileReadLatency: 95
+99thPercentileReadLatency: 99
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 0
+99thPercentileUpdateLatency: 0
+
+---
+
+fdb 3, ycsb 1, 1M keys, 8 processes, 50 threads, 100 batch size, 0.0 update proportion, 1.0 read proportion, 300 seconds
+
+    "3_read": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 1,
+            "storage": 3,
+            "log": 1,
+            "stateless": 1,
+            "volume_claim_storage": "128G",
+            "hostNetwork": "true",
+            "headlessService": "true",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 1
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        },
+        "ycsb-statefulset": {
+            "replicas": 1,
+            "num_keys": 1000000,
+            "process_per_host": 8,
+            "threads_per_process": 50,
+            "batch_size": 100,
+            "update_proportion": 0.0,
+            "read_proportion": 1.0,
+            "max_execution_time_seconds": 300
+        }
+    },
+Throughput (ops/sec): 8
+Runtime (ms): 2322608
+OperationCountInsert: 19473
+ErrorCountInsert: 0
+SuccessCountInsert: 19474
+UnknownCountInsert: 0
+AverageInsertLatency: 8071
+OperationCountRead: 0
+ErrorCountRead: 0
+SuccessCountRead: 0
+UnknownCountRead: 0
+AverageReadLatency: 0
+95thPercentileReadLatency: 0
+99thPercentileReadLatency: 0
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 0
+99thPercentileUpdateLatency: 0
+
+---
+
+    "20_read_write": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 1,
+            "storage": 20,
+            "log": 2,
+            "stateless": 2,
+            "volume_claim_storage": "16G",
+            "hostNetwork": "true",
+            "headlessService": "true",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 8
+        },
+        "ycsb-statefulset": {
+            "replicas": 1,
+            "num_keys": 1000000,
+            "process_per_host": 8,
+            "threads_per_process": 50,
+            "batch_size": 100,
+            "update_proportion": 0.5,
+            "read_proportion": 0.5,
+            "max_execution_time_seconds": 600
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        }
+    },
+
+---
+
+    "20_20_read_write": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 1,
+            "storage": 20,
+            "log": 2,
+            "stateless": 2,
+            "volume_claim_storage": "16G",
+            "hostNetwork": "true",
+            "headlessService": "true",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 8
+        },
+        "ycsb-statefulset": {
+            "replicas": 20,
+            "num_keys": 1000000,
+            "process_per_host": 8,
+            "threads_per_process": 50,
+            "batch_size": 100,
+            "update_proportion": 0.5,
+            "read_proportion": 0.5,
+            "max_execution_time_seconds": 600
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        }
+    },
+
+testing had unstable results
+
+---
+
+    "testing": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 1,
+            "storage": 20,
+            "log": 2,
+            "stateless": 2,
+            "volume_claim_storage": "16G",
+            "hostNetwork": "true",
+            "headlessService": "true",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 1
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        },
+        "ycsb-statefulset": {
+            "replicas": 1,
+            "num_keys": 100000,
+            "process_per_host": 1,
+            "threads_per_process": 16,
+            "batch_size": 100,
+            "update_proportion": 0.5,
+            "read_proportion": 0.5,
+            "max_execution_time_seconds": 3000
+        }
+    },
+
+testing had unstable results
+
+---
+
+    "testing": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 3, <-- changed to 3 from example above
+            "storage": 20,
+            "log": 2,
+            "stateless": 2,
+            "volume_claim_storage": "16G",
+            "hostNetwork": "true",
+            "headlessService": "true",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 1
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        },
+        "ycsb-statefulset": {
+            "replicas": 1,
+            "num_keys": 100000,
+            "process_per_host": 1,
+            "threads_per_process": 16,
+            "batch_size": 100,
+            "update_proportion": 0.5,
+            "read_proportion": 0.5,
+            "max_execution_time_seconds": 3000
+        }
+    },
+
+Example output after running ycsb:
+
+108.09 current ops/sec; [INSERT: Count=1081, Max=39359, Min=4760, Avg=9161.7, 90=15911, 99=23615, 99.9=33791, 99.99=39359]
+104.6 current ops/sec; [INSERT: Count=1046, Max=108479, Min=4792, Avg=9545.1, 90=15623, 99=31183, 99.9=97215, 99.99=108479]
+113.3 current ops/sec; [INSERT: Count=1133, Max=82367, Min=4676, Avg=8817.35, 90=15327, 99=23951, 99.9=66815, 99.99=82367]
+114.1 current ops/sec; [INSERT: Count=1141, Max=70335, Min=4536, Avg=8754.8, 90=15871, 99=22367, 99.9=36991, 99.99=70335]
+124.5 current ops/sec; [INSERT: Count=1245, Max=111807, Min=2438, Avg=7999.67, 90=14879, 99=29279, 99.9=110207, 99.99=111807]
+171.8 current ops/sec; [INSERT: Count=1718, Max=123455, Min=2454, Avg=5832.07, 90=8767, 99=37471, 99.9=83839, 99.99=123455]
+168.4 current ops/sec; [INSERT: Count=1684, Max=105663, Min=2484, Avg=5933.2, 90=8959, 99=39839, 99.9=82431, 99.99=105663]
+173.5 current ops/sec; [INSERT: Count=1735, Max=48767, Min=2480, Avg=5758.95, 90=8799, 99=33439, 99.9=46143, 99.99=48767]
+170.4 current ops/sec; [INSERT: Count=1704, Max=61887, Min=2410, Avg=5862.25, 90=8967, 99=37055, 99.9=58335, 99.99=61887]
+175.6 current ops/sec; [INSERT: Count=1756, Max=57951, Min=2444, Avg=5691.93, 90=8583, 99=35295, 99.9=52383, 99.99=57951]
+175.2 current ops/sec; [INSERT: Count=1752, Max=64735, Min=2420, Avg=5703.99, 90=8567, 99=36127, 99.9=47455, 99.99=64735]
+169.7 current ops/sec; [INSERT: Count=1697, Max=56191, Min=2376, Avg=5890.23, 90=8847, 99=35807, 99.9=55071, 99.99=56191]
+174.2 current ops/sec; [INSERT: Count=1742, Max=51647, Min=2398, Avg=5736.69, 90=9031, 99=34175, 99.9=48479, 99.99=51647]
+179 current ops/sec; [INSERT: Count=1790, Max=55807, Min=2420, Avg=5586.88, 90=8343, 99=32671, 99.9=49343, 99.99=55807]
+180.3 current ops/sec; [INSERT: Count=1803, Max=48959, Min=2408, Avg=5540.84, 90=8375, 99=30959, 99.9=42143, 99.99=48959]
+177.7 current ops/sec; [INSERT: Count=1777, Max=50751, Min=2478, Avg=5626.54, 90=8479, 99=33759, 99.9=47391, 99.99=50751]
+183.4 current ops/sec; [INSERT: Count=1834, Max=50879, Min=2420, Avg=5448.76, 90=8383, 99=32607, 99.9=43679, 99.99=50879]
+176 current ops/sec; [INSERT: Count=1760, Max=48383, Min=2446, Avg=5673.55, 90=8607, 99=36255, 99.9=45695, 99.99=48383]
+177 current ops/sec; [INSERT: Count=1770, Max=68095, Min=2402, Avg=5648.53, 90=8231, 99=39487, 99.9=51103, 99.99=68095]
+176.1 current ops/sec; [INSERT: Count=1761, Max=53759, Min=2436, Avg=5678.53, 90=8559, 99=38111, 99.9=50271, 99.99=53759]
+179.2 current ops/sec; [INSERT: Count=1792, Max=49279, Min=2366, Avg=5575.11, 90=8879, 99=32223, 99.9=43199, 99.99=49279]
+176.9 current ops/sec; [INSERT: Count=1769, Max=80127, Min=2402, Avg=5649.43, 90=8599, 99=36511, 99.9=57535, 99.99=80127]
+174.9 current ops/sec; [INSERT: Count=1749, Max=56575, Min=2376, Avg=5695.03, 90=8855, 99=35935, 99.9=46015, 99.99=56575]
+182.2 current ops/sec; [INSERT: Count=1822, Max=56735, Min=2414, Avg=5488.06, 90=8695, 99=35519, 99.9=49855, 99.99=56735]
+177.6 current ops/sec; [INSERT: Count=1776, Max=57983, Min=2420, Avg=5628.04, 90=8575, 99=31311, 99.9=46015, 99.99=57983]
+135 current ops/sec; [INSERT: Count=1350, Max=87167, Min=4404, Avg=7403.65, 90=12967, 99=21167, 99.9=37119, 99.99=87167]
+120.7 current ops/sec; [INSERT: Count=1207, Max=67519, Min=4388, Avg=8280.96, 90=15015, 99=21839, 99.9=58271, 99.99=67519]
+84.9 current ops/sec; [INSERT: Count=849, Max=104575, Min=4508, Avg=9245.94, 90=15839, 99=40831, 99.9=101503, 99.99=104575]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+22.7 current ops/sec; [INSERT: Count=227, Max=29982719, Min=4544, Avg=141597.36, 90=17119, 99=60895, 99.9=29982719, 99.99=29982719]
+110.7 current ops/sec; [INSERT: Count=1107, Max=276223, Min=4508, Avg=9037.34, 90=16279, 99=22495, 99.9=56191, 99.99=276223]
+116.8 current ops/sec; [INSERT: Count=1168, Max=156543, Min=4456, Avg=8557.12, 90=14839, 99=43647, 99.9=98943, 99.99=156543]
+138.6 current ops/sec; [INSERT: Count=1386, Max=56927, Min=4368, Avg=7210.37, 90=12535, 99=19743, 99.9=52159, 99.99=56927]
+111.2 current ops/sec; [INSERT: Count=1112, Max=40639, Min=4540, Avg=8720.89, 90=15743, 99=22735, 99.9=35679, 99.99=40639]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+36.7 current ops/sec; [INSERT: Count=367, Max=27033599, Min=4620, Avg=82564.91, 90=15727, 99=22271, 99.9=27033599, 99.99=27033599]
+112.7 current ops/sec; [INSERT: Count=1127, Max=72127, Min=4564, Avg=8868.24, 90=15967, 99=22543, 99.9=36479, 99.99=72127]
+109.3 current ops/sec; [INSERT: Count=1093, Max=78591, Min=4656, Avg=9136.23, 90=15999, 99=25599, 99.9=67519, 99.99=78591]
+111 current ops/sec; [INSERT: Count=1110, Max=95103, Min=4680, Avg=9014.24, 90=15639, 99=23807, 99.9=85503, 99.99=95103]
+60.4 current ops/sec; [INSERT: Count=604, Max=47199, Min=4768, Avg=8736.11, 90=14943, 99=21055, 99.9=30047, 99.99=47199]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+10.6 current ops/sec; [INSERT: Count=106, Max=23691263, Min=5068, Avg=233084.83, 90=14319, 99=18095, 99.9=23691263, 99.99=23691263]
+114 current ops/sec; [INSERT: Count=1140, Max=32223, Min=4580, Avg=8769.66, 90=15175, 99=20399, 99.9=27567, 99.99=32223]
+110.2 current ops/sec; [INSERT: Count=1102, Max=30367, Min=4532, Avg=9061.47, 90=16199, 99=21199, 99.9=28655, 99.99=30367]
+97.1 current ops/sec; [INSERT: Count=971, Max=75135, Min=4488, Avg=10312.89, 90=18703, 99=28271, 99.9=64127, 99.99=75135]
+95.9 current ops/sec; [INSERT: Count=959, Max=104511, Min=4528, Avg=10418.64, 90=19375, 99=34079, 99.9=65055, 99.99=104511]
+62.5 current ops/sec; [INSERT: Count=625, Max=39455, Min=4556, Avg=10411.43, 90=18751, 99=23087, 99.9=27727, 99.99=39455]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+48 current ops/sec; [INSERT: Count=480, Max=18169855, Min=4672, Avg=48896.28, 90=18559, 99=27199, 99.9=18169855, 99.99=18169855]
+91.5 current ops/sec; [INSERT: Count=915, Max=68607, Min=4596, Avg=10928.2, 90=19263, 99=28319, 99.9=62655, 99.99=68607]
+98.3 current ops/sec; [INSERT: Count=983, Max=44607, Min=4656, Avg=10174.71, 90=18767, 99=23887, 99.9=29039, 99.99=44607]
+95.5 current ops/sec; [INSERT: Count=955, Max=91327, Min=4676, Avg=10465.62, 90=18943, 99=27935, 99.9=48895, 99.99=91327]
+87.5 current ops/sec; [INSERT: Count=875, Max=132095, Min=4680, Avg=11418.19, 90=19855, 99=40639, 99.9=111743, 99.99=132095]
+42 current ops/sec; [INSERT: Count=420, Max=101119, Min=4660, Avg=11107.71, 90=19567, 99=28911, 99.9=101119, 99.99=101119]
+22.9 current ops/sec; [INSERT: Count=229, Max=12681215, Min=4644, Avg=66974.87, 90=21647, 99=35295, 99.9=12681215, 99.99=12681215]
+94.7 current ops/sec; [INSERT: Count=947, Max=116415, Min=4500, Avg=10559.01, 90=19455, 99=28655, 99.9=83711, 99.99=116415]
+97.3 current ops/sec; [INSERT: Count=973, Max=36255, Min=4584, Avg=10265.86, 90=18527, 99=25199, 99.9=33919, 99.99=36255]
+94.8 current ops/sec; [INSERT: Count=948, Max=34527, Min=4672, Avg=10550.74, 90=19423, 99=26159, 99.9=32335, 99.99=34527]
+96.1 current ops/sec; [INSERT: Count=961, Max=46815, Min=4772, Avg=10397.01, 90=19551, 99=23471, 99.9=29599, 99.99=46815]
+94.7 current ops/sec; [INSERT: Count=947, Max=64703, Min=4712, Avg=10558.07, 90=19455, 99=26959, 99.9=57727, 99.99=64703]
+34.4 current ops/sec; [INSERT: Count=344, Max=6094847, Min=4716, Avg=29078.74, 90=19055, 99=34591, 99.9=6094847, 99.99=6094847]
+90 current ops/sec; [INSERT: Count=900, Max=39295, Min=4628, Avg=11095.33, 90=18623, 99=27375, 99.9=39039, 99.99=39295]
+96 current ops/sec; [INSERT: Count=960, Max=43999, Min=4604, Avg=10424.33, 90=18511, 99=22911, 99.9=33599, 99.99=43999]
+94.5 current ops/sec; [INSERT: Count=945, Max=41727, Min=4672, Avg=10574.23, 90=18719, 99=25599, 99.9=41663, 99.99=41727]
+87.3 current ops/sec; [INSERT: Count=873, Max=91839, Min=4632, Avg=11439.43, 90=19567, 99=37023, 99.9=65855, 99.99=91839]
+90.7 current ops/sec; [INSERT: Count=907, Max=141567, Min=4652, Avg=11030.97, 90=18831, 99=25215, 99.9=36863, 99.99=141567]
+91.6 current ops/sec; [INSERT: Count=916, Max=136575, Min=4728, Avg=10905.51, 90=18735, 99=26575, 99.9=57087, 99.99=136575]
+94.7 current ops/sec; [INSERT: Count=947, Max=50783, Min=4708, Avg=10564.33, 90=19231, 99=27247, 99.9=45631, 99.99=50783]
+47.7 current ops/sec; [INSERT: Count=477, Max=29071, Min=4708, Avg=10362.81, 90=18287, 99=24191, 99.9=29071, 99.99=29071]
+53.8 current ops/sec; [INSERT: Count=538, Max=9175039, Min=4640, Avg=27972.75, 90=18527, 99=24607, 99.9=60991, 99.99=9175039]
+85.9 current ops/sec; [INSERT: Count=859, Max=72383, Min=4664, Avg=11638.31, 90=18815, 99=25247, 99.9=40191, 99.99=72383]
+88.3 current ops/sec; [INSERT: Count=883, Max=80383, Min=4548, Avg=11313.2, 90=19247, 99=28815, 99.9=74431, 99.99=80383]
+90.6 current ops/sec; [INSERT: Count=906, Max=35775, Min=4572, Avg=11042.74, 90=20431, 99=26943, 99.9=34559, 99.99=35775]
+95.7 current ops/sec; [INSERT: Count=957, Max=33663, Min=4496, Avg=10436.46, 90=18495, 99=23151, 99.9=29151, 99.99=33663]
+88.7 current ops/sec; [INSERT: Count=887, Max=61855, Min=4524, Avg=10474.76, 90=18383, 99=23503, 99.9=38431, 99.99=61855]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+51 current ops/sec; [INSERT: Count=510, Max=14802943, Min=4668, Avg=40620.88, 90=18655, 99=25455, 99.9=118079, 99.99=14802943]
+40.3 current ops/sec; [INSERT: Count=403, Max=5742591, Min=4392, Avg=24771.06, 90=18655, 99=31759, 99.9=5742591, 99.99=5742591]
+98 current ops/sec; [INSERT: Count=980, Max=141311, Min=4400, Avg=10215.94, 90=17903, 99=25455, 99.9=36895, 99.99=141311]
+107.6 current ops/sec; [INSERT: Count=1076, Max=111935, Min=4224, Avg=9286.18, 90=16927, 99=24911, 99.9=58527, 99.99=111935]
+96.1 current ops/sec; [INSERT: Count=961, Max=79103, Min=4360, Avg=10409.81, 90=18287, 99=25935, 99.9=44671, 99.99=79103]
+98.2 current ops/sec; [INSERT: Count=982, Max=38143, Min=4352, Avg=10181.09, 90=18031, 99=23215, 99.9=32159, 99.99=38143]
+52.6 current ops/sec; [INSERT: Count=526, Max=25727, Min=4308, Avg=10346.87, 90=18223, 99=21791, 99.9=23055, 99.99=25727]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+15.4 current ops/sec; [INSERT: Count=154, Max=163053567, Min=4488, Avg=1068404.05, 90=19135, 99=23055, 99.9=163053567, 99.99=163053567]
+97 current ops/sec; [INSERT: Count=970, Max=79295, Min=4520, Avg=10295.82, 90=19023, 99=24079, 99.9=41023, 99.99=79295]
+96.5 current ops/sec; [INSERT: Count=965, Max=77823, Min=4364, Avg=10367.39, 90=18639, 99=25503, 99.9=38943, 99.99=77823]
+98.8 current ops/sec; [INSERT: Count=988, Max=75135, Min=4404, Avg=10111.05, 90=18383, 99=24767, 99.9=42783, 99.99=75135]
+22 current ops/sec; [INSERT: Count=220, Max=41855, Min=4376, Avg=10419.85, 90=18223, 99=27215, 99.9=41855, 99.99=41855]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+
+^ Once there are this many 0 ops/sec in a row, FDB never responds again. The cluster is still "up" according to 'fdb analyze' though:
+
+fdb analyze fdb-cluster                                                   
+Checking cluster: default/fdb-cluster
+✔ Cluster is available
+✔ Cluster is fully replicated
+✔ Cluster is reconciled
+✔ ProcessGroups are all in ready condition
+✔ Pods are all running and available
+Checking cluster: default/fdb-cluster with auto-fix: false
+
+But `fdb status details` does show some problems:
+
+fdb exec -c fdb-cluster -- fdbcli --exec "status details"
+Defaulted container "foundationdb" out of: foundationdb, foundationdb-kubernetes-sidecar, foundationdb-kubernetes-init (init)
+Using cluster file `/var/dynamic-conf/fdb.cluster'.
+
+Unable to read database configuration.
+
+Configuration:
+  Redundancy mode        - unknown
+  Storage engine         - unknown
+  Coordinators           - unknown
+  Usable Regions         - unknown
+
+Cluster:
+  FoundationDB processes - 25
+  Zones                  - 25
+  Machines               - 25
+  Memory availability    - 8.0 GB per process on machine with least available
+  Retransmissions rate   - 2 Hz
+  Server time            - 07/21/23 17:29:35
+
+Data:
+  Replication health     - unknown
+  Moving data            - unknown
+  Sum of key-value sizes - unknown
+  Disk space used        - unknown
+
+Operating space:
+  Unable to retrieve operating space status
+
+Workload:
+  Read rate              - unknown
+  Write rate             - unknown
+  Transactions started   - unknown
+  Transactions committed - unknown
+  Conflict rate          - unknown
+
+Backup and DR:
+  Running backups        - 0
+  Running DRs            - 0
+
+Process performance details:
+  10.23.115.137:4501     (  1% cpu;  1% machine; 0.000 Gbps;  0% disk IO; 0.3 GB / 8.0 GB RAM  )
+  10.23.115.139:4501     (  1% cpu;  1% machine; 0.000 Gbps;  0% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.23.115.141:4501     (  1% cpu;  1% machine; 0.000 Gbps;  0% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.23.115.148:4501     (  0% cpu;  1% machine; 0.000 Gbps;  1% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.23.115.149:4501     (  0% cpu;  2% machine; 0.000 Gbps;  0% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.23.115.151:4501     (  1% cpu;  1% machine; 0.000 Gbps;  0% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.23.115.154:4501     (  1% cpu;  1% machine; 0.000 Gbps;  0% disk IO; 0.3 GB / 8.0 GB RAM  )
+  10.23.115.158:4501     (  1% cpu;  1% machine; 0.000 Gbps;  0% disk IO; 0.3 GB / 8.0 GB RAM  )
+  10.23.115.159:4501     (  1% cpu;  1% machine; 0.000 Gbps;  0% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.23.115.160:4501     (  0% cpu;  1% machine; 0.000 Gbps;  1% disk IO; 0.1 GB / 8.0 GB RAM  )
+  10.23.115.163:4501     (  1% cpu;  1% machine; 0.000 Gbps;  1% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.23.115.168:4501     (  0% cpu;  1% machine; 0.000 Gbps;  1% disk IO; 0.1 GB / 8.0 GB RAM  )
+  10.23.115.169:4501     (  0% cpu;  1% machine; 0.000 Gbps;  0% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.23.115.171:4501     (  0% cpu;  1% machine; 0.000 Gbps;  1% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.23.115.172:4501     (  1% cpu;  1% machine; 0.000 Gbps;  0% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.23.115.177:4501     (  0% cpu;  1% machine; 0.000 Gbps;  0% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.23.115.179:4501     (  0% cpu;  1% machine; 0.000 Gbps;  0% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.23.115.180:4501     (  1% cpu;  1% machine; 0.000 Gbps;  1% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.23.115.181:4501     (  1% cpu;  1% machine; 0.000 Gbps;  0% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.23.115.183:4501     (  0% cpu;  1% machine; 0.000 Gbps;  0% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.23.115.185:4501     (  1% cpu;  1% machine; 0.001 Gbps;  1% disk IO; 0.1 GB / 8.0 GB RAM  )
+  10.23.115.187:4501     (  0% cpu;  1% machine; 0.000 Gbps;  0% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.23.115.189:4501     (  4% cpu;  2% machine; 0.001 Gbps;  1% disk IO; 0.1 GB / 8.0 GB RAM  )
+  10.23.115.191:4501     (  1% cpu;  1% machine; 0.000 Gbps;  0% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.23.115.194:4501     (  1% cpu;  1% machine; 0.000 Gbps;  1% disk IO; 0.1 GB / 8.0 GB RAM  )
+
+Coordination servers:
+  10.23.115.137:4501  (reachable)
+  10.23.115.158:4501  (reachable)
+  10.23.115.141:4501  (reachable)
+
+Client time: 07/21/23 17:29:30
+
+You can see that there are a lot of 'unknown' fields, which should be returning information. But the coordination servers are all reachable, and the performance metrics show that the FDB cluster is not being hit hard (Or, at all).
+
+Restarting the YCSB test shows 0 ops/sec permanently, and the cluster status is still the same.
+
+---
+
+    "testing": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 1,
+            "storage": 20,
+            "log": 2,
+            "stateless": 2,
+            "volume_claim_storage": "32G",
+            "hostNetwork": "true",
+            "headlessService": "true",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 2
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        },
+        "ycsb-statefulset": {
+            "replicas": 1,
+            "num_keys": 100000,
+            "process_per_host": 1,
+            "threads_per_process": 1,
+            "batch_size": 100,
+            "update_proportion": 0.5,
+            "read_proportion": 0.5,
+            "max_execution_time_seconds": 3000
+        }
+    },
+
+150.28 current ops/sec; [INSERT: Count=1503, Max=57151, Min=2748, Avg=6602.75, 90=7243, 99=45055, 99.9=54047, 99.99=57151]
+150.02 current ops/sec; [INSERT: Count=1500, Max=61471, Min=3698, Avg=6658.59, 90=7651, 99=45311, 99.9=58975, 99.99=61471]
+152.5 current ops/sec; [INSERT: Count=1525, Max=55647, Min=3602, Avg=6537.72, 90=6779, 99=42303, 99.9=53055, 99.99=55647]
+154.9 current ops/sec; [INSERT: Count=1549, Max=65983, Min=2584, Avg=6435.44, 90=6819, 99=51391, 99.9=59647, 99.99=65983]
+160.2 current ops/sec; [INSERT: Count=1602, Max=63327, Min=2544, Avg=6240.51, 90=5947, 99=53887, 99.9=60799, 99.99=63327]
+159.3 current ops/sec; [INSERT: Count=1593, Max=64287, Min=2508, Avg=6269.63, 90=6231, 99=56671, 99.9=62175, 99.99=64287]
+157.4 current ops/sec; [INSERT: Count=1574, Max=65183, Min=2512, Avg=6380.5, 90=6187, 99=56223, 99.9=63519, 99.99=65183]
+161.5 current ops/sec; [INSERT: Count=1616, Max=67391, Min=2554, Avg=6185.79, 90=5855, 99=55103, 99.9=61375, 99.99=67391]
+155.1 current ops/sec; [INSERT: Count=1550, Max=65791, Min=2528, Avg=6418.54, 90=5895, 99=56991, 99.9=64671, 99.99=65791]
+162.5 current ops/sec; [INSERT: Count=1625, Max=65407, Min=2464, Avg=6165.45, 90=6271, 99=55807, 99.9=61759, 99.99=65407]
+159.9 current ops/sec; [INSERT: Count=1599, Max=54911, Min=3712, Avg=6260.25, 90=6467, 99=41727, 99.9=52767, 99.99=54911]
+157.1 current ops/sec; [INSERT: Count=1571, Max=55199, Min=3704, Avg=6346.05, 90=6687, 99=39935, 99.9=49983, 99.99=55199]
+151.5 current ops/sec; [INSERT: Count=1515, Max=54623, Min=3734, Avg=6578.39, 90=7227, 99=44223, 99.9=52415, 99.99=54623]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+51.4 current ops/sec; [INSERT: Count=514, Max=216924159, Min=3790, Avg=428162.41, 90=7967, 99=42623, 99.9=49759, 99.99=216924159]
+155.7 current ops/sec; [INSERT: Count=1557, Max=55007, Min=3782, Avg=6411.39, 90=7263, 99=39327, 99.9=46623, 99.99=55007]
+152.6 current ops/sec; [INSERT: Count=1526, Max=47103, Min=3784, Avg=6556.39, 90=7147, 99=41183, 99.9=46143, 99.99=47103]
+152.5 current ops/sec; [INSERT: Count=1525, Max=54047, Min=3832, Avg=6558.21, 90=7427, 99=42975, 99.9=50271, 99.99=54047]
+21.5 current ops/sec; [INSERT: Count=215, Max=41951, Min=3872, Avg=6573.42, 90=8895, 99=37727, 99.9=41951, 99.99=41951]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+21.4 current ops/sec; [INSERT: Count=214, Max=37126143, Min=3958, Avg=180118.22, 90=8495, 99=39519, 99.9=37126143, 99.99=37126143]
+154 current ops/sec; [INSERT: Count=1540, Max=53023, Min=3790, Avg=6517.09, 90=7647, 99=40863, 99.9=48447, 99.99=53023]
+154.9 current ops/sec; [INSERT: Count=1549, Max=61759, Min=3832, Avg=6451.42, 90=7143, 99=39999, 99.9=53535, 99.99=61759]
+156.3 current ops/sec; [INSERT: Count=1563, Max=53823, Min=3790, Avg=6376.74, 90=7539, 99=38687, 99.9=51839, 99.99=53823]
+49 current ops/sec; [INSERT: Count=490, Max=47615, Min=3796, Avg=6505.3, 90=7015, 99=40127, 99.9=47615, 99.99=47615]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+67.3 current ops/sec; [INSERT: Count=673, Max=32227327, Min=3844, Avg=54682.39, 90=8359, 99=38879, 99.9=53087, 99.99=32227327]
+152 current ops/sec; [INSERT: Count=1520, Max=54719, Min=3802, Avg=6569.84, 90=7575, 99=41311, 99.9=49055, 99.99=54719]
+157.6 current ops/sec; [INSERT: Count=1576, Max=53695, Min=3716, Avg=6340.19, 90=7599, 99=40415, 99.9=51167, 99.99=53695]
+153.4 current ops/sec; [INSERT: Count=1534, Max=60767, Min=3748, Avg=6464.26, 90=7047, 99=41183, 99.9=54975, 99.99=60767]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+
+---
+
+Note: This cluster does not have each FDB pod running on their own separate node, they are scheduled any way Openshift decides to schedule them.
+
+    "testing": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 1,
+            "storage": 20,
+            "log": 2,
+            "stateless": 2,
+            "volume_claim_storage": "32G",
+            "hostNetwork": "false",
+            "headlessService": "false",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 2
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        },
+        "ycsb-statefulset": {
+            "replicas": 1,
+            "num_keys": 100000,
+            "process_per_host": 1,
+            "threads_per_process": 1,
+            "batch_size": 100,
+            "update_proportion": 0.5,
+            "read_proportion": 0.5,
+            "max_execution_time_seconds": 3000
+        }
+    },
+
+124.7 current ops/sec; [INSERT: Count=1247, Max=54207, Min=3192, Avg=7971.75, 90=11703, 99=44895, 99.9=53695, 99.99=54207]
+125 current ops/sec; [INSERT: Count=1250, Max=61503, Min=3054, Avg=7992.97, 90=9175, 99=49247, 99.9=57471, 99.99=61503]
+127.2 current ops/sec; [INSERT: Count=1272, Max=64255, Min=2906, Avg=7856.79, 90=10983, 99=52863, 99.9=63487, 99.99=64255]
+125.8 current ops/sec; [INSERT: Count=1258, Max=68863, Min=2866, Avg=7942.12, 90=17663, 99=57951, 99.9=66751, 99.99=68863]
+125.1 current ops/sec; [INSERT: Count=1251, Max=67135, Min=2884, Avg=7987.26, 90=17567, 99=56479, 99.9=66687, 99.99=67135]
+127 current ops/sec; [INSERT: Count=1270, Max=70207, Min=2844, Avg=7868.6, 90=10943, 99=61183, 99.9=69695, 99.99=70207]
+125.9 current ops/sec; [INSERT: Count=1259, Max=70207, Min=2792, Avg=7939.98, 90=9863, 99=61471, 99.9=68351, 99.99=70207]
+124.8 current ops/sec; [INSERT: Count=1248, Max=76479, Min=2836, Avg=8010.07, 90=12823, 99=60447, 99.9=74303, 99.99=76479]
+131.3 current ops/sec; [INSERT: Count=1314, Max=67711, Min=2784, Avg=7609.84, 90=22175, 99=56927, 99.9=63007, 99.99=67711]
+133.3 current ops/sec; [INSERT: Count=1332, Max=62687, Min=2840, Avg=7503.54, 90=16023, 99=54495, 99.9=61375, 99.99=62687]
+132.3 current ops/sec; [INSERT: Count=1323, Max=66495, Min=2762, Avg=7554.96, 90=9559, 99=51359, 99.9=61695, 99.99=66495]
+128.6 current ops/sec; [INSERT: Count=1286, Max=71551, Min=2838, Avg=7775.27, 90=17135, 99=57215, 99.9=66943, 99.99=71551]
+128.8 current ops/sec; [INSERT: Count=1288, Max=68351, Min=2808, Avg=7759.8, 90=15415, 99=51199, 99.9=64575, 99.99=68351]
+124.7 current ops/sec; [INSERT: Count=1247, Max=67327, Min=2872, Avg=8016.25, 90=15423, 99=55263, 99.9=64735, 99.99=67327]
+127 current ops/sec; [INSERT: Count=1271, Max=62079, Min=4084, Avg=7865.62, 90=15159, 99=44383, 99.9=56447, 99.99=62079]
+132.6 current ops/sec; [INSERT: Count=1325, Max=53375, Min=2934, Avg=7542.48, 90=9735, 99=42175, 99.9=51423, 99.99=53375]
+133.7 current ops/sec; [INSERT: Count=1338, Max=61183, Min=3956, Avg=7473.04, 90=12303, 99=41343, 99.9=61183, 99.99=61183]
+126.5 current ops/sec; [INSERT: Count=1264, Max=58399, Min=4172, Avg=7905.57, 90=9455, 99=48095, 99.9=54335, 99.99=58399]
+43.9 current ops/sec; [INSERT: Count=439, Max=56031, Min=4216, Avg=7506.15, 90=8623, 99=43103, 99.9=56031, 99.99=56031]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+38.4 current ops/sec; [INSERT: Count=384, Max=23724031, Min=4380, Avg=69555.69, 90=10255, 99=42431, 99.9=23724031, 99.99=23724031]
+132 current ops/sec; [INSERT: Count=1320, Max=53183, Min=4200, Avg=7572.37, 90=8335, 99=44031, 99.9=52959, 99.99=53183]
+130 current ops/sec; [INSERT: Count=1300, Max=50559, Min=4300, Avg=7690.36, 90=9775, 99=40479, 99.9=50399, 99.99=50559]
+128.6 current ops/sec; [INSERT: Count=1286, Max=56287, Min=4248, Avg=7771.41, 90=13223, 99=41183, 99.9=54719, 99.99=56287]
+127.5 current ops/sec; [INSERT: Count=1275, Max=52063, Min=4300, Avg=7841.65, 90=10679, 99=46079, 99.9=51935, 99.99=52063]
+16.2 current ops/sec; [INSERT: Count=162, Max=48959, Min=4172, Avg=7587.51, 90=8051, 99=43199, 99.9=48959, 99.99=48959]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+116.9 current ops/sec; [INSERT: Count=1169, Max=29786111, Min=4180, Avg=33164.45, 90=11775, 99=43199, 99.9=52927, 99.99=29786111]
+127.4 current ops/sec; [INSERT: Count=1274, Max=56895, Min=4100, Avg=7847.28, 90=9415, 99=41023, 99.9=54687, 99.99=56895]
+124.8 current ops/sec; [INSERT: Count=1248, Max=60863, Min=4228, Avg=8010.41, 90=10575, 99=46655, 99.9=59903, 99.99=60863]
+88.6 current ops/sec; [INSERT: Count=886, Max=54655, Min=4216, Avg=7740.81, 90=12407, 99=39679, 99.9=51327, 99.99=54655]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0.9 current ops/sec; [INSERT: Count=9, Max=23068671, Min=7824, Avg=2570518, 90=11975, 99=23068671, 99.9=23068671, 99.99=23068671]
+123 current ops/sec; [INSERT: Count=1230, Max=68863, Min=4312, Avg=8130.08, 90=14871, 99=47199, 99.9=59199, 99.99=68863]
+121.8 current ops/sec; [INSERT: Count=1218, Max=58463, Min=4108, Avg=8202.95, 90=10399, 99=45695, 99.9=56575, 99.99=58463]
+124.3 current ops/sec; [INSERT: Count=1243, Max=58591, Min=4296, Avg=8046.94, 90=10391, 99=46591, 99.9=56511, 99.99=58591]
+61.8 current ops/sec; [INSERT: Count=618, Max=59135, Min=4416, Avg=8095.19, 90=10519, 99=44991, 99.9=53567, 99.99=59135]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+0 current ops/sec; [INSERT: Count=0, Max=0, Min=9223372036854775807, Avg=NaN, 90=0, 99=0, 99.9=0, 99.99=0]
+
+Still broken
+
+---
+
+After messing with limits/requests, we have it completing tests...
+
+    "testing": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 1,
+            "storage": 20,
+            "log": 1,
+            "stateless": 1,
+            "volume_claim_storage": "32G",
+            "hostNetwork": "false",
+            "headlessService": "false",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 2
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        },
+        "ycsb-statefulset": {
+            "replicas": 10,
+            "num_keys": 100000,
+            "process_per_host": 2,
+            "threads_per_process": 8,
+            "batch_size": 100,
+            "update_proportion": 0.5,
+            "read_proportion": 0.5,
+            "max_execution_time_seconds": 100000
+        }
+    },
+
+
+
+Throughput (ops/sec): 3859
+Runtime (ms): 1108094
+OperationCountInsert: 100000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000
+UnknownCountInsert: 0
+AverageInsertLatency: 7421
+OperationCountRead: 50073
+ErrorCountRead: 0
+SuccessCountRead: 50073
+UnknownCountRead: 0
+AverageReadLatency: 749
+95thPercentileReadLatency: 95
+99thPercentileReadLatency: 99
+OperationCountUpdate: 49927
+ErrorCountUpdate: 0
+SuccessCountUpdate: 49927
+UnknownCountUpdate: 0
+AverageUpdateLatency: 7804
+95thPercentileUpdateLatency: 95
+99thPercentileUpdateLatency: 99
+
+---
+
+    "testing": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 1,
+            "storage": 20,
+            "log": 1,
+            "stateless": 1,
+            "volume_claim_storage": "32G",
+            "hostNetwork": "false",
+            "headlessService": "false",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 8
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        },
+        "ycsb-statefulset": {
+            "replicas": 10,
+            "num_keys": 100000,
+            "process_per_host": 2,
+            "threads_per_process": 8,
+            "batch_size": 100,
+            "update_proportion": 0.5,
+            "read_proportion": 0.5,
+            "max_execution_time_seconds": 100000
+        }
+    },
+
+
+Throughput (ops/sec): 4551
+Runtime (ms): 943679
+OperationCountInsert: 100000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000
+UnknownCountInsert: 0
+AverageInsertLatency: 6196
+OperationCountRead: 49850
+ErrorCountRead: 0
+SuccessCountRead: 49850
+UnknownCountRead: 0
+AverageReadLatency: 999
+95thPercentileReadLatency: 95
+99thPercentileReadLatency: 99
+OperationCountUpdate: 50150
+ErrorCountUpdate: 0
+SuccessCountUpdate: 50150
+UnknownCountUpdate: 0
+AverageUpdateLatency: 6245
+95thPercentileUpdateLatency: 95
+99thPercentileUpdateLatency: 99
+
+---
+
+    "testing": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 1,
+            "storage": 20,
+            "log": 1,
+            "stateless": 1,
+            "volume_claim_storage": "16G",
+            "hostNetwork": "false",
+            "headlessService": "false",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 8
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        },
+        "ycsb-statefulset": {
+            "replicas": 10,
+            "num_keys": 100000,
+            "process_per_host": 2,
+            "threads_per_process": 8,
+            "batch_size": 100,
+            "update_proportion": 0.5,
+            "read_proportion": 0.5,
+            "max_execution_time_seconds": 100000
+        }
+    },
+
+
+Throughput (ops/sec): 3075
+Runtime (ms): 1488756
+OperationCountInsert: 100000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000
+UnknownCountInsert: 0
+AverageInsertLatency: 10551
+OperationCountRead: 49728
+ErrorCountRead: 0
+SuccessCountRead: 49728
+UnknownCountRead: 0
+AverageReadLatency: 951
+95thPercentileReadLatency: 95
+99thPercentileReadLatency: 99
+OperationCountUpdate: 50272
+ErrorCountUpdate: 0
+SuccessCountUpdate: 50272
+UnknownCountUpdate: 0
+AverageUpdateLatency: 11091
+95thPercentileUpdateLatency: 95
+99thPercentileUpdateLatency: 99
+
+---
+
+    "testing": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 1,
+            "storage": 20,
+            "log": 1,
+            "stateless": 1,
+            "volume_claim_storage": "64G",
+            "hostNetwork": "false",
+            "headlessService": "false",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 8
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        },
+        "ycsb-statefulset": {
+            "replicas": 10,
+            "num_keys": 100000,
+            "process_per_host": 2,
+            "threads_per_process": 8,
+            "batch_size": 100,
+            "update_proportion": 0.5,
+            "read_proportion": 0.5,
+            "max_execution_time_seconds": 100000
+        }
+    },
+
+
+
+Throughput (ops/sec): 3391
+Runtime (ms): 1275074
+OperationCountInsert: 100000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000
+UnknownCountInsert: 0
+AverageInsertLatency: 8269
+OperationCountRead: 50191
+ErrorCountRead: 0
+SuccessCountRead: 50191
+UnknownCountRead: 0
+AverageReadLatency: 989
+95thPercentileReadLatency: 95
+99thPercentileReadLatency: 99
+OperationCountUpdate: 49809
+ErrorCountUpdate: 0
+SuccessCountUpdate: 49809
+UnknownCountUpdate: 0
+AverageUpdateLatency: 9146
+95thPercentileUpdateLatency: 95
+99thPercentileUpdateLatency: 99
+
+---
+
+    "testing": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 1,
+            "storage": 20,
+            "log": 1,
+            "stateless": 1,
+            "volume_claim_storage": "32G",
+            "hostNetwork": "false",
+            "headlessService": "false",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 8
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        },
+        "ycsb-statefulset": {
+            "replicas": 10,
+            "num_keys": 100000,
+            "process_per_host": 8,
+            "threads_per_process": 2,
+            "batch_size": 100,
+            "update_proportion": 0.5,
+            "read_proportion": 0.5,
+            "max_execution_time_seconds": 100000
+        }
+    },
+
+
+
+Throughput (ops/sec): 3469
+Runtime (ms): 1265734
+OperationCountInsert: 100000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000
+UnknownCountInsert: 0
+AverageInsertLatency: 8919
+OperationCountRead: 49964
+ErrorCountRead: 0
+SuccessCountRead: 49964
+UnknownCountRead: 0
+AverageReadLatency: 938
+95thPercentileReadLatency: 95
+99thPercentileReadLatency: 99
+OperationCountUpdate: 50036
+ErrorCountUpdate: 0
+SuccessCountUpdate: 50036
+UnknownCountUpdate: 0
+AverageUpdateLatency: 9965
+95thPercentileUpdateLatency: 95
+99thPercentileUpdateLatency: 99
+
+---
+
+    "testing": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 1,
+            "storage": 20,
+            "log": 1,
+            "stateless": 1,
+            "volume_claim_storage": "32G",
+            "hostNetwork": "false",
+            "headlessService": "false",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 8
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        },
+        "ycsb-statefulset": {
+            "replicas": 10,
+            "num_keys": 100000,
+            "process_per_host": 2,
+            "threads_per_process": 8,
+            "batch_size": 100,
+            "update_proportion": 0.5,
+            "read_proportion": 0.5,
+            "max_execution_time_seconds": 100000
+        }
+    },
+
+
+Throughput (ops/sec): 5037
+Runtime (ms): 811450
+OperationCountInsert: 100000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000
+UnknownCountInsert: 0
+AverageInsertLatency: 4794
+OperationCountRead: 50104
+ErrorCountRead: 0
+SuccessCountRead: 50104
+UnknownCountRead: 0
+AverageReadLatency: 967
+95thPercentileReadLatency: 95
+99thPercentileReadLatency: 99
+OperationCountUpdate: 49896
+ErrorCountUpdate: 0
+SuccessCountUpdate: 49896
+UnknownCountUpdate: 0
+AverageUpdateLatency: 6389
+95thPercentileUpdateLatency: 95
+99thPercentileUpdateLatency: 99
+
+---
+
+    "testing": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 1,
+            "storage": 20,
+            "log": 1,
+            "stateless": 1,
+            "volume_claim_storage": "32G",
+            "hostNetwork": "false",
+            "headlessService": "false",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 8
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        },
+        "ycsb-statefulset": {
+            "replicas": 10,
+            "num_keys": 100000,
+            "process_per_host": 2,
+            "threads_per_process": 8,
+            "batch_size": 100,
+            "update_proportion": 0.5,
+            "read_proportion": 0.5,
+            "max_execution_time_seconds": 6000
+        }
+    },
+
+
+Throughput (ops/sec): 12101
+Runtime (ms): 321935
+OperationCountInsert: 100000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000
+UnknownCountInsert: 0
+AverageInsertLatency: 31032
+OperationCountRead: 5048
+ErrorCountRead: 0
+SuccessCountRead: 5048
+UnknownCountRead: 0
+AverageReadLatency: 1481
+95thPercentileReadLatency: 95
+99thPercentileReadLatency: 99
+OperationCountUpdate: 4952
+ErrorCountUpdate: 0
+SuccessCountUpdate: 4952
+UnknownCountUpdate: 0
+AverageUpdateLatency: 38313
+95thPercentileUpdateLatency: 95
+99thPercentileUpdateLatency: 99
+
+---
+
+    "testing": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 1,
+            "storage": 20,
+            "log": 1,
+            "stateless": 1,
+            "volume_claim_storage": "32G",
+            "hostNetwork": "false",
+            "headlessService": "false",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 8
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        },
+        "ycsb-statefulset": {
+            "replicas": 1,
+            "num_keys": 100000,
+            "process_per_host": 2,
+            "threads_per_process": 8,
+            "batch_size": 100,
+            "update_proportion": 0.5,
+            "read_proportion": 0.5,
+            "max_execution_time_seconds": 6000
+        }
+    },
+
+
+Throughput (ops/sec): 2944
+Runtime (ms): 70628
+OperationCountInsert: 100000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000
+UnknownCountInsert: 0
+AverageInsertLatency: 5588
+OperationCountRead: 481
+ErrorCountRead: 0
+SuccessCountRead: 481
+UnknownCountRead: 0
+AverageReadLatency: 1196
+95thPercentileReadLatency: 95
+99thPercentileReadLatency: 99
+OperationCountUpdate: 519
+ErrorCountUpdate: 0
+SuccessCountUpdate: 519
+UnknownCountUpdate: 0
+AverageUpdateLatency: 7472
+95thPercentileUpdateLatency: 95
+99thPercentileUpdateLatency: 99
+
+---
+
+    "testing": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 1,
+            "storage": 20,
+            "log": 1,
+            "stateless": 1,
+            "volume_claim_storage": "32G",
+            "hostNetwork": "false",
+            "headlessService": "false",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 8
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        },
+        "ycsb-statefulset": {
+            "replicas": 20,
+            "num_keys": 100000,
+            "process_per_host": 2,
+            "threads_per_process": 8,
+            "batch_size": 100,
+            "update_proportion": 0.5,
+            "read_proportion": 0.5,
+            "max_execution_time_seconds": 6000
+        }
+    },
+
+
+Throughput (ops/sec): 23351
+Runtime (ms): 432067
+OperationCountInsert: 100000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000
+UnknownCountInsert: 0
+AverageInsertLatency: 50518
+OperationCountRead: 9869
+ErrorCountRead: 0
+SuccessCountRead: 9869
+UnknownCountRead: 0
+AverageReadLatency: 1540
+95thPercentileReadLatency: 95
+99thPercentileReadLatency: 99
+OperationCountUpdate: 10131
+ErrorCountUpdate: 0
+SuccessCountUpdate: 10131
+UnknownCountUpdate: 0
+AverageUpdateLatency: 160229
+95thPercentileUpdateLatency: 95
+99thPercentileUpdateLatency: 99
+
+---
+
+    "testing": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 3,
+            "storage": 20,
+            "log": 3,
+            "stateless": 3,
+            "volume_claim_storage": "32G",
+            "hostNetwork": "false",
+            "headlessService": "false",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 8
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        },
+        "ycsb-statefulset": {
+            "replicas": 20,
+            "num_keys": 100000,
+            "process_per_host": 2,
+            "threads_per_process": 8,
+            "batch_size": 100,
+            "update_proportion": 0.5,
+            "read_proportion": 0.5,
+            "max_execution_time_seconds": 6000
+        }
+    },
+
+
+Throughput (ops/sec): 63460
+Runtime (ms): 85369
+OperationCountInsert: 100000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000
+UnknownCountInsert: 0
+AverageInsertLatency: 7811
+OperationCountRead: 9954
+ErrorCountRead: 0
+SuccessCountRead: 9954
+UnknownCountRead: 0
+AverageReadLatency: 1650
+95thPercentileReadLatency: 95
+99thPercentileReadLatency: 99
+OperationCountUpdate: 10046
+ErrorCountUpdate: 0
+SuccessCountUpdate: 10046
+UnknownCountUpdate: 0
+AverageUpdateLatency: 9503
+95thPercentileUpdateLatency: 95
+99thPercentileUpdateLatency: 99
+
+---
+
+    "testing": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 3,
+            "storage": 20,
+            "log": 1,
+            "stateless": 1,
+            "volume_claim_storage": "32G",
+            "hostNetwork": "false",
+            "headlessService": "false",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 8
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        },
+        "ycsb-statefulset": {
+            "replicas": 20,
+            "num_keys": 100000,
+            "process_per_host": 2,
+            "threads_per_process": 8,
+            "batch_size": 100,
+            "update_proportion": 0.5,
+            "read_proportion": 0.5,
+            "max_execution_time_seconds": 6000
+        }
+    },
+
+
+Throughput (ops/sec): 47541
+Runtime (ms): 112673
+OperationCountInsert: 100000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000
+UnknownCountInsert: 0
+AverageInsertLatency: 10902
+OperationCountRead: 9965
+ErrorCountRead: 0
+SuccessCountRead: 9965
+UnknownCountRead: 0
+AverageReadLatency: 1803
+95thPercentileReadLatency: 95
+99thPercentileReadLatency: 99
+OperationCountUpdate: 10035
+ErrorCountUpdate: 0
+SuccessCountUpdate: 10035
+UnknownCountUpdate: 0
+AverageUpdateLatency: 15957
+95thPercentileUpdateLatency: 95
+99thPercentileUpdateLatency: 99
+
+---
+
+    "testing": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 3,
+            "storage": 20,
+            "log": 3,
+            "stateless": 1,
+            "volume_claim_storage": "32G",
+            "hostNetwork": "false",
+            "headlessService": "false",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 8
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        },
+        "ycsb-statefulset": {
+            "replicas": 20,
+            "num_keys": 100000,
+            "process_per_host": 2,
+            "threads_per_process": 8,
+            "batch_size": 100,
+            "update_proportion": 0.5,
+            "read_proportion": 0.5,
+            "max_execution_time_seconds": 6000
+        }
+    },
+
+
+Throughput (ops/sec): 34976
+Runtime (ms): 168447
+OperationCountInsert: 75000
+ErrorCountInsert: 0
+SuccessCountInsert: 75000
+UnknownCountInsert: 0
+AverageInsertLatency: 39898
+OperationCountRead: 7562
+ErrorCountRead: 503
+SuccessCountRead: 7562
+UnknownCountRead: 0
+AverageReadLatency: 1452
+95thPercentileReadLatency: 95
+99thPercentileReadLatency: 99
+OperationCountUpdate: 7438
+ErrorCountUpdate: 497
+SuccessCountUpdate: 7438
+UnknownCountUpdate: 0
+AverageUpdateLatency: 8634
+95thPercentileUpdateLatency: 95
+99thPercentileUpdateLatency: 99
+
+---
+
+    "testing": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 3,
+            "storage": 20,
+            "log": 1,
+            "stateless": 3,
+            "volume_claim_storage": "32G",
+            "hostNetwork": "false",
+            "headlessService": "false",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 8
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        },
+        "ycsb-statefulset": {
+            "replicas": 20,
+            "num_keys": 100000,
+            "process_per_host": 2,
+            "threads_per_process": 8,
+            "batch_size": 100,
+            "update_proportion": 0.5,
+            "read_proportion": 0.5,
+            "max_execution_time_seconds": 6000
+        }
+    },
+
+
+Throughput (ops/sec): 57479
+Runtime (ms): 92382
+OperationCountInsert: 100000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000
+UnknownCountInsert: 0
+AverageInsertLatency: 7204
+OperationCountRead: 10035
+ErrorCountRead: 0
+SuccessCountRead: 10035
+UnknownCountRead: 0
+AverageReadLatency: 1801
+95thPercentileReadLatency: 95
+99thPercentileReadLatency: 99
+OperationCountUpdate: 9965
+ErrorCountUpdate: 0
+SuccessCountUpdate: 9965
+UnknownCountUpdate: 0
+AverageUpdateLatency: 10694
+95thPercentileUpdateLatency: 95
+99thPercentileUpdateLatency: 99
+
+---
+
+    "testing": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 3,
+            "storage": 20,
+            "log": 3,
+            "stateless": 3,
+            "volume_claim_storage": "32G",
+            "hostNetwork": "false",
+            "headlessService": "false",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 8
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        },
+        "ycsb-statefulset": {
+            "replicas": 20,
+            "num_keys": 100000,
+            "process_per_host": 2,
+            "threads_per_process": 8,
+            "batch_size": 100,
+            "update_proportion": 0.5,
+            "read_proportion": 0.5,
+            "max_execution_time_seconds": 6000
+        }
+    },
+
+
+Throughput (ops/sec): 54876
+Runtime (ms): 110738
+OperationCountInsert: 100000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000
+UnknownCountInsert: 0
+AverageInsertLatency: 20070
+OperationCountRead: 9930
+ErrorCountRead: 0
+SuccessCountRead: 9930
+UnknownCountRead: 0
+AverageReadLatency: 1393
+95thPercentileReadLatency: 95
+99thPercentileReadLatency: 99
+OperationCountUpdate: 10070
+ErrorCountUpdate: 0
+SuccessCountUpdate: 10070
+UnknownCountUpdate: 0
+AverageUpdateLatency: 9683
+95thPercentileUpdateLatency: 95
+99thPercentileUpdateLatency: 99
+
+---
+
+    "testing": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 6,
+            "storage": 20,
+            "log": 3,
+            "stateless": 6,
+            "volume_claim_storage": "32G",
+            "hostNetwork": "false",
+            "headlessService": "false",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 8
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        },
+        "ycsb-statefulset": {
+            "replicas": 20,
+            "num_keys": 100000,
+            "process_per_host": 2,
+            "threads_per_process": 8,
+            "batch_size": 100,
+            "update_proportion": 0.5,
+            "read_proportion": 0.5,
+            "max_execution_time_seconds": 6000
+        }
+    },
+
+
+Throughput (ops/sec): 50981
+Runtime (ms): 105187
+OperationCountInsert: 100000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000
+UnknownCountInsert: 0
+AverageInsertLatency: 8050
+OperationCountRead: 10038
+ErrorCountRead: 0
+SuccessCountRead: 10038
+UnknownCountRead: 0
+AverageReadLatency: 1327
+95thPercentileReadLatency: 95
+99thPercentileReadLatency: 99
+OperationCountUpdate: 9962
+ErrorCountUpdate: 0
+SuccessCountUpdate: 9962
+UnknownCountUpdate: 0
+AverageUpdateLatency: 8919
+95thPercentileUpdateLatency: 95
+99thPercentileUpdateLatency: 99
+
+---
+
+    "testing": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 4,
+            "storage": 20,
+            "log": 1,
+            "stateless": 4,
+            "volume_claim_storage": "32G",
+            "hostNetwork": "false",
+            "headlessService": "false",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 8
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        },
+        "ycsb-statefulset": {
+            "replicas": 20,
+            "num_keys": 100000,
+            "process_per_host": 2,
+            "threads_per_process": 8,
+            "batch_size": 100,
+            "update_proportion": 0.5,
+            "read_proportion": 0.5,
+            "max_execution_time_seconds": 6000
+        }
+    },
+
+Throughput (ops/sec): 55441
+Runtime (ms): 97356
+OperationCountInsert: 100000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000
+UnknownCountInsert: 0
+AverageInsertLatency: 13485
+OperationCountRead: 10017
+ErrorCountRead: 0
+SuccessCountRead: 10017
+UnknownCountRead: 0
+AverageReadLatency: 1399
+95thPercentileReadLatency: 95
+99thPercentileReadLatency: 99
+OperationCountUpdate: 9983
+ErrorCountUpdate: 0
+SuccessCountUpdate: 9983
+UnknownCountUpdate: 0
+AverageUpdateLatency: 8668
+95thPercentileUpdateLatency: 95
+99thPercentileUpdateLatency: 99
+
+---
+
+    "testing": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 3,
+            "storage": 20,
+            "log": 1,
+            "stateless": 3,
+            "volume_claim_storage": "32G",
+            "hostNetwork": "false",
+            "headlessService": "false",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 8
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        },
+        "ycsb-statefulset": {
+            "replicas": 20,
+            "num_keys": 1000000,
+            "process_per_host": 2,
+            "threads_per_process": 8,
+            "batch_size": 100,
+            "update_proportion": 0.5,
+            "read_proportion": 0.5,
+            "max_execution_time_seconds": 6000
+        }
+    },
+
+
+Throughput (ops/sec): 23686
+Runtime (ms): 2809927
+OperationCountInsert: 1000000
+ErrorCountInsert: 0
+SuccessCountInsert: 1000000
+UnknownCountInsert: 0
+AverageInsertLatency: 23905
+OperationCountRead: 100171
+ErrorCountRead: 0
+SuccessCountRead: 100171
+UnknownCountRead: 0
+AverageReadLatency: 1179
+95thPercentileReadLatency: 95
+99thPercentileReadLatency: 99
+OperationCountUpdate: 99829
+ErrorCountUpdate: 0
+SuccessCountUpdate: 99829
+UnknownCountUpdate: 0
+AverageUpdateLatency: 28781
+95thPercentileUpdateLatency: 95
+99thPercentileUpdateLatency: 99
+
+---
+
+    "testing": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 4,
+            "storage": 20,
+            "log": 2,
+            "stateless": 4,
+            "volume_claim_storage": "32G",
+            "hostNetwork": "false",
+            "headlessService": "false",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 8
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        },
+        "ycsb-statefulset": {
+            "replicas": 20,
+            "num_keys": 1000000,
+            "process_per_host": 2,
+            "threads_per_process": 8,
+            "batch_size": 100,
+            "update_proportion": 0.5,
+            "read_proportion": 0.5,
+            "max_execution_time_seconds": 3600
+        }
+    },
+
+
+Throughput (ops/sec): 25871
+Runtime (ms): 2442427
+OperationCountInsert: 1000000
+ErrorCountInsert: 0
+SuccessCountInsert: 1000000
+UnknownCountInsert: 0
+AverageInsertLatency: 21043
+OperationCountRead: 99894
+ErrorCountRead: 0
+SuccessCountRead: 99894
+UnknownCountRead: 0
+AverageReadLatency: 1476
+95thPercentileReadLatency: 95
+99thPercentileReadLatency: 99
+OperationCountUpdate: 100106
+ErrorCountUpdate: 0
+SuccessCountUpdate: 100106
+UnknownCountUpdate: 0
+AverageUpdateLatency: 38904
+95thPercentileUpdateLatency: 95
+99thPercentileUpdateLatency: 99
