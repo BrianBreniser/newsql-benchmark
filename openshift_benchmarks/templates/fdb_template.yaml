@@ -45,8 +45,8 @@ spec:
           - name: foundationdb
             resources:
               requests:
-                cpu: 100m
-                memory: 128Mi
+                cpu: 7000m
+                memory: 31Gi
             securityContext:
               runAsUser: 0
           - name: foundationdb-kubernetes-sidecar
@@ -74,6 +74,7 @@ spec:
       - knob_disable_posix_kernel_aio=1
       volumeClaimTemplate:
         spec:
+          storageClassName: managed-premium
           resources:
             requests:
               storage: {{volume_claim_storage}}

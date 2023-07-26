@@ -116,23 +116,7 @@ function install_fdb_operator() {
 }
 
 function install_fdb_cluster() {
-    # create the fdb-ns namespace if it doesn't already exist
-    #log "Checking if fdb-ns namespace exists"
-
-    #if oc get namespace | grep -q fdb-ns; then
-        #log "Creating fdb-ns namespace"
-        #oc create namespace fdb-ns
-    #else
-        #log "fdb-ns namespace already exists"
-    #fi
-
-    log "Checking if fdb cluster is already installed"
-    if [ "$(! oc get foundationdbcluster | grep -q fdb-cluster)" ] || $FORCE; then
-        log "Installing fdb cluster"
-        oc apply -f fdb.yaml
-    else
-        log "FDB cluster is already installed"
-    fi
+    oc apply -f fdb.yaml
 }
 
 function run_ycsb_pod() {
@@ -185,7 +169,7 @@ fi
 # install_grafana
 # install_local_storage_operator
 install_fdb_operator
-install_fdb_cluster
+# install_fdb_cluster
 # run_ycsb_pod
 # ycsb is next
 

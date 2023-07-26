@@ -13,77 +13,84 @@ spec:
         app: ycsb
     spec:
       containers:
-        - name: ycsb
-          image: quay.io/breniserbrian/ycsb:latest
-          command: ["/bin/bash", "-c"]
-          args:
-            - |
-              host_index=$(echo $HOSTNAME | grep -o '[0-9]\+')
-              cd ycsb-foundationdb-binding-0.18.0-SNAPSHOT
-              now=$(date +"%Y_%m_%d_%H_%M_%S")
-              log_file="ycsb_host_${host_index}__$now.log"
-              workload='workloads/workloada'
-              num_keys={{num_keys}}
-              value_size_bytes=2000
-              update_proportion={{update_proportion}}
-              read_proportion={{read_proportion}}
-              threads_per_process={{threads_per_process}}
-              process_per_host={{process_per_host}}
-              batch_size={{batch_size}}
-              num_clients={{replicas}}
-              field_count=10
-              field_length=100
-              max_execution_time_seconds={{max_execution_time_seconds}}
-              keys_per_host=$((num_keys / num_clients))
-              keys_per_process=$((keys_per_host / process_per_host))
-              start_key_offset=0
-              start_key_per_host=$((host_index*keys_per_host+start_key_offset))
-              while true; do
-                echo "Waiting for cluster file to be created"
-                if [ -f $FDB_CLUSTER_FILE ]; then
-                  break
-                fi
-                sleep 5
-              done
-              ycsb_load_cmd="./bin/ycsb load foundationdb -s \
-                -P $workload \
-                -p foundationdb.apiversion=620 \
-                -p foundationdb.clusterfile=$FDB_CLUSTER_FILE \
-                -p foundationdb.batchsize=$batch_size \
-                -p recordcount=$num_keys \
-                -p operationcount=$keys_per_host \
-                -p maxexecutiontime=$max_execution_time_seconds \
-                -p fieldcount=$field_count \
-                -p fieldlength=$field_length \
-                -p readproportion=1.0 \
-                -p updateproportion=0.0 \
-                -p requestdistribution=uniform 2>&1 | tee -a $log_file"
-
-              ycsb_run_cmd="./bin/ycsb run foundationdb -s \
-                -P $workload \
-                -p foundationdb.apiversion=620 \
-                -p foundationdb.clusterfile=$FDB_CLUSTER_FILE \
-                -p foundationdb.batchsize=$batch_size \
-                -p recordcount=$num_keys \
-                -p operationcount=$keys_per_host \
-                -p maxexecutiontime=$max_execution_time_seconds \
-                -p fieldcount=$field_count \
-                -p fieldlength=$field_length \
-                -p readproportion=1.0 \
-                -p updateproportion=0.0 \
-                -p requestdistribution=uniform 2>&1 | tee -a $log_file"
-              sh -c "$ycsb_load_cmd"
-              sh -c "$ycsb_run_cmd"
-              while true; do
-                echo "Waiting for load to finish"
-                sleep 20
-              done
-          env:
-            - name: FDB_CLUSTER_FILE
-              value: /mnt/config-volume/cluster-file
-          volumeMounts:
-            - name: config-volume
-              mountPath: /mnt/config-volume
+      - name: ycsb
+        image: quay.io/breniserbrian/ycsb:latest
+        command: ["/bin/bash", "-c"] 
+        #run as root user to install packages
+        securityContext:
+          privileged: true  
+        args:
+        - |
+          host_index=$(echo $HOSTNAME | grep -o '[0-9]\+')
+          cd ycsb-foundationdb-binding-0.18.0-SNAPSHOT
+          now=$(date +"%Y_%m_%d_%H_%M_%S")
+          log_file="ycsb_host_${host_index}__$now.log"
+          workload='workloads/workloada'
+          update_proportion={{update_proportion}}
+          read_proportion={{read_proportion}}
+          num_keys={{num_keys}}
+          value_size_bytes=2000 
+          batch_size={{batch_size}}
+          operation_count=$((num_keys / batch_size))
+          num_clients={{replicas}}
+          field_count=10
+          field_length=100
+          threads_per_process={{threads_per_process}}
+          max_execution_time_seconds={{max_execution_time_seconds}}
+          keys_per_host=$((num_keys / num_clients))
+          process_per_host={{process_per_host}}
+          keys_per_process=$((keys_per_host / process_per_host))
+          start_key_offset=0
+          start_key_per_host=$((host_index*keys_per_host+start_key_offset))
+          while true; do
+            echo "Waiting for cluster file to be created"
+            if [ -f $FDB_CLUSTER_FILE ]; then
+              break
+            fi
+            sleep 5
+          done
+          ycsb_load_cmd="./bin/ycsb load foundationdb -s \
+            -P $workload \
+            -p foundationdb.apiversion=620 \
+            -p foundationdb.clusterfile=$FDB_CLUSTER_FILE \
+            -p recordcount=$num_keys \
+            -p insertstart=$start_key_per_host \
+            -p insertcount=$keys_per_host \
+            -p operationcount=$operation_count \
+            -p maxexecutiontime=$max_execution_time_seconds \
+            -p fieldcount=$field_count \
+            -p fieldlength=$field_length \
+            -p readproportion=$read_proportion \
+            -p updateproportion=$update_proportion \
+            -p requestdistribution=uniform \
+            -p threadcount=$threads_per_process"
+          ycsb_run_cmd="./bin/ycsb run foundationdb -s \
+            -P $workload \
+            -p foundationdb.apiversion=620 \
+            -p foundationdb.clusterfile=$FDB_CLUSTER_FILE \
+            -p recordcount=$num_keys \
+            -p insertstart=$start_key_per_host \
+            -p insertcount=$keys_per_host \
+            -p operationcount=$operation_count \
+            -p maxexecutiontime=$max_execution_time_seconds \
+            -p fieldcount=$field_count \
+            -p fieldlength=$field_length \
+            -p readproportion=$read_proportion \
+            -p updateproportion=$update_proportion \
+            -p requestdistribution=uniform \
+            -p threadcount=$threads_per_process"
+          sh -c "$ycsb_load_cmd"
+          sh -c "$ycsb_run_cmd"
+          while true; do
+            echo "finished... host $HOSTNAME"
+            sleep 20
+          done
+        env:
+          - name: FDB_CLUSTER_FILE
+            value: /mnt/config-volume/cluster-file
+        volumeMounts:
+          - name: config-volume
+            mountPath: /mnt/config-volume  
       volumes:
         - name: config-volume
           configMap:
