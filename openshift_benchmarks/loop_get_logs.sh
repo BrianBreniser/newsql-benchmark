@@ -6,5 +6,6 @@ while true; do
     for pod in $pods; do
         oc logs "$pod"
     done
+    sleep 10
 done
 
