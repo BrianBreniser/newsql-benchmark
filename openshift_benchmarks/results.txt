@@ -2012,3 +2012,24 @@ After running a write test with 10,000,000 inputs, we ran this read test, to see
 
 
 
+Throughput (ops/sec): 8181
+Runtime (ms): 61068290
+OperationCountInsert: 10000000
+ErrorCountInsert: 0
+SuccessCountInsert: 10000000
+UnknownCountInsert: 0
+AverageInsertLatency: 41992
+OperationCountRead: 2000000
+ErrorCountRead: 0
+SuccessCountRead: 2000000
+UnknownCountRead: 0
+AverageReadLatency: 54705
+95thPercentileReadLatency: 101695
+99thPercentileReadLatency: 105791
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 0
+99thPercentileUpdateLatency: 0
