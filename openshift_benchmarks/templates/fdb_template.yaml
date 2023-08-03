@@ -74,7 +74,7 @@ spec:
       - knob_disable_posix_kernel_aio=1
       volumeClaimTemplate:
         spec:
-          storageClassName: managed-premium
+          storageClassName: fdb-nvme
           resources:
             requests:
               storage: {{volume_claim_storage}}

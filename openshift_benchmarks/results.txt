@@ -2033,3 +2033,363 @@ UnknownCountUpdate: 0
 AverageUpdateLatency: 0
 95thPercentileUpdateLatency: 0
 99thPercentileUpdateLatency: 0
+
+---
+
+    "20_large_r": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 1,
+            "storage": 17,
+            "log": 9,
+            "stateless": 4,
+            "volume_claim_storage": "64G",
+            "hostNetwork": "true",
+            "headlessService": "true",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 7
+        },
+        "ycsb-statefulset": {
+            "replicas": 20,
+            "num_keys": 100000000,
+            "process_per_host": 2,
+            "threads_per_process": 8,
+            "batch_size": 100,
+            "update_proportion": 0.0,
+            "read_proportion": 1.0,
+            "max_execution_time_seconds": 200000
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        }
+    },
+
+Throughput (ops/sec): 0
+Runtime (ms): 0
+OperationCountInsert: 0
+ErrorCountInsert: 0
+SuccessCountInsert: 0
+UnknownCountInsert: 0
+AverageInsertLatency: 0
+OperationCountRead: 0
+ErrorCountRead: 0
+SuccessCountRead: 0
+UnknownCountRead: 0
+AverageReadLatency: 0
+95thPercentileReadLatency: 0
+99thPercentileReadLatency: 0
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 0
+99thPercentileUpdateLatency: 0
+
+Notes: Obviously failed, ran `fdb analyze fdb-cluster` and got:
+Checking cluster: default/fdb-cluster
+✔ Cluster is available
+✔ Cluster is fully replicated
+✔ Cluster is reconciled
+✔ ProcessGroups are all in ready condition
+✔ Pods are all running and available
+Checking cluster: default/fdb-cluster with auto-fix: false
+✖ Process: storage-14 with address: 10.23.115.152:4505 error: io_timeout type: StorageServerFailed, time: 2023-07-28 17:20:00 -0700 PDT
+✖ Process: storage-5 with address: 10.23.115.163:4513 error: io_timeout type: StorageServerFailed, time: 2023-07-28 17:20:00 -0700 PDT
+✖ Process: storage-7 with address: 10.23.115.188:4513 error: io_timeout type: StorageServerFailed, time: 2023-07-28 17:20:00 -0700 PDT
+... (goes on for 68 lines total)
+
+---
+
+Runing agian, this time with read/write, but watching things more closely to see where it fails
+
+    "20_large_rw": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 1,
+            "storage": 17,
+            "log": 9,
+            "stateless": 4,
+            "volume_claim_storage": "64G",
+            "hostNetwork": "true",
+            "headlessService": "true",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 7
+        },
+        "ycsb-statefulset": {
+            "replicas": 20,
+            "num_keys": 100000000,
+            "process_per_host": 2,
+            "threads_per_process": 8,
+            "batch_size": 100,
+            "update_proportion": 0.5,
+            "read_proportion": 0.5,
+            "max_execution_time_seconds": 200000
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        }
+    },
+
+<A sample of the fdb status details output>
+
+10.23.115.185:4513     (  2% cpu;  3% machine; 0.004 Gbps;100% disk IO; 2.8 GB / 8.0 GB RAM  )
+10.23.115.189:4501     (  2% cpu;  6% machine; 0.063 Gbps; 65% disk IO; 2.8 GB / 8.0 GB RAM  )
+10.23.115.189:4503     (  2% cpu;  6% machine; 0.063 Gbps; 65% disk IO; 2.8 GB / 8.0 GB RAM  )
+10.23.115.189:4505     (  8% cpu;  6% machine; 0.063 Gbps; 65% disk IO; 2.7 GB / 8.0 GB RAM  )
+10.23.115.189:4507     (  3% cpu;  6% machine; 0.063 Gbps; 65% disk IO; 2.4 GB / 8.0 GB RAM  )
+10.23.115.189:4509     (  9% cpu;  6% machine; 0.063 Gbps; 65% disk IO; 2.4 GB / 8.0 GB RAM  )
+10.23.115.189:4511     (  2% cpu;  6% machine; 0.063 Gbps; 65% disk IO; 2.8 GB / 8.0 GB RAM  )
+10.23.115.189:4513     (  8% cpu;  6% machine; 0.063 Gbps; 65% disk IO; 2.8 GB / 8.0 GB RAM  )
+10.23.115.191:4501     (  2% cpu;  2% machine; 0.001 Gbps;  3% disk IO; 0.2 GB / 8.0 GB RAM  )
+10.23.115.194:4501     (  1% cpu;  3% machine; 0.004 Gbps; 71% disk IO; 2.4 GB / 8.0 GB RAM  )
+10.23.115.194:4503     (  1% cpu;  3% machine; 0.004 Gbps; 71% disk IO; 2.4 GB / 8.0 GB RAM  )
+  Last logged error: StorageServerFailed: io_timeout at Mon Jul 31 19:40:24 2023
+10.23.115.194:4505     (  2% cpu;  3% machine; 0.004 Gbps; 71% disk IO; 2.7 GB / 8.0 GB RAM  )
+  Last logged error: StorageServerFailed: io_timeout at Mon Jul 31 19:53:39 2023
+10.23.115.194:4507     (  2% cpu;  3% machine; 0.004 Gbps; 71% disk IO; 2.8 GB / 8.0 GB RAM  )
+  Last logged error: StorageServerFailed: io_timeout at Mon Jul 31 19:40:16 2023
+10.23.115.194:4509     (  1% cpu;  3% machine; 0.004 Gbps; 71% disk IO; 2.0 GB / 8.0 GB RAM  )
+  Last logged error: StorageServerFailed: io_timeout at Mon Jul 31 19:40:20 2023
+10.23.115.194:4511     (  1% cpu;  3% machine; 0.004 Gbps; 71% disk IO; 2.4 GB / 8.0 GB RAM  )
+10.23.115.194:4513     (  2% cpu;  3% machine; 0.004 Gbps; 71% disk IO; 2.8 GB / 8.0 GB RAM  )
+  Last logged error: StorageServerFailed: io_timeout at Mon Jul 31 19:41:25 2023
+
+<A sample of the fdb status details output>
+
+After watching the status details output for long enough, I noticed that io_timeout errors became more and more common, eventually overwhelming the processes, leaving only 1 or 2 processes without this error.
+
+In the openshift_fdb_fails_over_time_io_timeout.png file you can see the total read/write speed slowly trend dowwards. There are some attempts at recovery, but ultimately the failures overload the server. The downward trend on this graph coorelates with the increase in io_timeout errors on the status details page
+
+---
+From this point on, we are using the new storage template, in this first test, I will put the details of the template down
+---
+
+The localstorage operator was used to create a new storageclass that should map nvme properly:
+
+      volumeClaimTemplate:
+        spec:
+          storageClassName: fdb-nvme
+          resources:
+            requests:
+              storage: {{volume_claim_storage}}
+
+Logging into a pod and checking df looks like this:
+
+╰$ fdb exec -c fdb-cluster                                  
+Defaulted container "foundationdb" out of: foundationdb, foundationdb-kubernetes-sidecar, foundationdb-kubernetes-init (init)
+[root@fdb01-dev-va7-9d958-worker-eastus21-gnwdh /]# df -h
+Filesystem      Size  Used Avail Use% Mounted on
+overlay         128G  9.5G  119G   8% /
+tmpfs            64M     0   64M   0% /dev
+tmpfs            32G     0   32G   0% /sys/fs/cgroup
+shm              64M     0   64M   0% /dev/shm
+tmpfs            32G   46M   32G   1% /etc/hostname
+/dev/sda4       128G  9.5G  119G   8% /etc/hosts
+/dev/nvme0n1    1.8T   15G  1.8T   1% /var/fdb/data
+tmpfs            32G   24K   32G   1% /run/secrets/kubernetes.io/serviceaccount
+tmpfs            32G     0   32G   0% /proc/acpi
+tmpfs            32G     0   32G   0% /proc/scsi
+tmpfs            32G     0   32G   0% /sys/firmware
+
+And the workload looks like this
+
+    "20_large_rw": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 1,
+            "storage": 17,
+            "log": 9,
+            "stateless": 4,
+            "volume_claim_storage": "64G",
+            "hostNetwork": "true",
+            "headlessService": "true",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 7
+        },
+        "ycsb-statefulset": {
+            "replicas": 20,
+            "num_keys": 100000000,
+            "process_per_host": 2,
+            "threads_per_process": 8,
+            "batch_size": 100,
+            "update_proportion": 0.5,
+            "read_proportion": 0.5,
+            "max_execution_time_seconds": 200000
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        }
+    },
+
+And the results are:
+
+Throughput (ops/sec): 129960
+Runtime (ms): 40658570
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 2864
+OperationCountRead: 10000290
+ErrorCountRead: 0
+SuccessCountRead: 10000290
+UnknownCountRead: 0
+AverageReadLatency: 1255
+95thPercentileReadLatency: 1701
+99thPercentileReadLatency: 2249
+OperationCountUpdate: 9999710
+ErrorCountUpdate: 0
+SuccessCountUpdate: 9999710
+UnknownCountUpdate: 0
+AverageUpdateLatency: 3226
+95thPercentileUpdateLatency: 111
+99thPercentileUpdateLatency: 111
+95thPercentileInsertLatency: 3577
+99thPercentileInsertLatency: 4247
+
+---
+
+Load phase
+
+    "20_med_w": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 1,
+            "storage": 17,
+            "log": 9,
+            "stateless": 4,
+            "volume_claim_storage": "64G",
+            "hostNetwork": "true",
+            "headlessService": "true",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 7
+        },
+        "ycsb-statefulset": {
+            "replicas": 20,
+            "num_keys": 100000000,
+            "process_per_host": 2,
+            "threads_per_process": 8,
+            "batch_size": 100,
+            "update_proportion": 1.0,
+            "read_proportion": 0.0,
+            "max_execution_time_seconds": 200000
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        }
+    },
+
+
+Throughput (ops/sec): 105354
+Runtime (ms): 43461228
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 2869
+OperationCountRead: 0
+ErrorCountRead: 0
+SuccessCountRead: 0
+UnknownCountRead: 0
+AverageReadLatency: 0
+95thPercentileReadLatency: 0
+99thPercentileReadLatency: 0
+OperationCountUpdate: 20000000
+ErrorCountUpdate: 0
+SuccessCountUpdate: 20000000
+UnknownCountUpdate: 0
+AverageUpdateLatency: 3365
+95thPercentileUpdateLatency: 156
+99thPercentileUpdateLatency: 156
+95thPercentileInsertLatency: 3589
+99thPercentileInsertLatency: 4263
+
+---
+
+Read phase (Large read dataset)
+
+    "20_large_r": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 1,
+            "storage": 17,
+            "log": 9,
+            "stateless": 4,
+            "volume_claim_storage": "64G",
+            "hostNetwork": "true",
+            "headlessService": "true",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 7
+        },
+        "ycsb-statefulset": {
+            "replicas": 20,
+            "num_keys": 1000000000,
+            "process_per_host": 2,
+            "threads_per_process": 8,
+            "batch_size": 100,
+            "update_proportion": 0.0,
+            "read_proportion": 1.0,
+            "max_execution_time_seconds": 200000
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        }
+    },
+
+
+Throughput (ops/sec): 155835
+Runtime (ms): 400754481
+OperationCountInsert: 1000000000
+ErrorCountInsert: 0
+SuccessCountInsert: 1000000000
+UnknownCountInsert: 0
+AverageInsertLatency: 2930
+OperationCountRead: 200000000
+ErrorCountRead: 0
+SuccessCountRead: 200000000
+UnknownCountRead: 0
+AverageReadLatency: 1666
+95thPercentileReadLatency: 2259
+99thPercentileReadLatency: 4331
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 91
+99thPercentileUpdateLatency: 91
+95thPercentileInsertLatency: 3725
+99thPercentileInsertLatency: 4471
+
+

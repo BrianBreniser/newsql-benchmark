@@ -133,7 +133,7 @@
         "localstorage": {
         }
     },
-    "20_large_w": {
+    "20_med_w": {
         "fdb": {
             "name": "fdb-cluster",
             "namespace": "default",
@@ -149,7 +149,7 @@
         },
         "ycsb-statefulset": {
             "replicas": 20,
-            "num_keys": 10000000,
+            "num_keys": 100000000,
             "process_per_host": 2,
             "threads_per_process": 8,
             "batch_size": 100,
@@ -166,7 +166,72 @@
         "localstorage": {
         }
     },
-
+    "20_large_w": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 1,
+            "storage": 17,
+            "log": 9,
+            "stateless": 4,
+            "volume_claim_storage": "64G",
+            "hostNetwork": "true",
+            "headlessService": "true",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 7
+        },
+        "ycsb-statefulset": {
+            "replicas": 20,
+            "num_keys": 1000000000,
+            "process_per_host": 2,
+            "threads_per_process": 8,
+            "batch_size": 100,
+            "update_proportion": 1.0,
+            "read_proportion": 0.0,
+            "max_execution_time_seconds": 200000
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        }
+    },
+    "20_large_rw": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 1,
+            "storage": 17,
+            "log": 9,
+            "stateless": 4,
+            "volume_claim_storage": "64G",
+            "hostNetwork": "true",
+            "headlessService": "true",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 7
+        },
+        "ycsb-statefulset": {
+            "replicas": 20,
+            "num_keys": 100000000,
+            "process_per_host": 2,
+            "threads_per_process": 8,
+            "batch_size": 100,
+            "update_proportion": 0.5,
+            "read_proportion": 0.5,
+            "max_execution_time_seconds": 200000
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        }
+    },
 
     "3_6_read": {
         "fdb": {
