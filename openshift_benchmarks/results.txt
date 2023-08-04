@@ -2331,6 +2331,12 @@ AverageUpdateLatency: 3365
 
 ---
 
+#######################################################################################################
+From this point on, these results should be considered final, high quality, and properly tested.
+#######################################################################################################
+
+---
+
 Read phase (Large read dataset)
 
     "20_large_r": {
@@ -2392,4 +2398,160 @@ AverageUpdateLatency: 0
 95thPercentileInsertLatency: 3725
 99thPercentileInsertLatency: 4471
 
+---
+
+    "20_large_w": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 1,
+            "storage": 17,
+            "log": 9,
+            "stateless": 4,
+            "volume_claim_storage": "64G",
+            "hostNetwork": "true",
+            "headlessService": "true",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 7
+        },
+        "ycsb-statefulset": {
+            "replicas": 20,
+            "num_keys": 1000000000,
+            "process_per_host": 2,
+            "threads_per_process": 8,
+            "batch_size": 100,
+            "update_proportion": 1.0,
+            "read_proportion": 0.0,
+            "max_execution_time_seconds": 200000
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        }
+    },
+
+
+Throughput (ops/sec): 100334
+Runtime (ms): 448577153
+OperationCountInsert: 1000000000
+ErrorCountInsert: 0
+SuccessCountInsert: 1000000000
+UnknownCountInsert: 0
+AverageInsertLatency: 2922
+OperationCountRead: 0
+ErrorCountRead: 0
+SuccessCountRead: 0
+UnknownCountRead: 0
+AverageReadLatency: 0
+95thPercentileReadLatency: 0
+99thPercentileReadLatency: 0
+OperationCountUpdate: 200000000
+ErrorCountUpdate: 0
+SuccessCountUpdate: 200000000
+UnknownCountUpdate: 0
+AverageUpdateLatency: 3634
+95thPercentileUpdateLatency: 108
+99thPercentileUpdateLatency: 108
+95thPercentileInsertLatency: 3653
+99thPercentileInsertLatency: 4279
+
+---
+
+    "20_large_rw": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 1,
+            "storage": 17,
+            "log": 9,
+            "stateless": 4,
+            "volume_claim_storage": "64G",
+            "hostNetwork": "true",
+            "headlessService": "true",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 7
+        },
+        "ycsb-statefulset": {
+            "replicas": 20,
+            "num_keys": 1000000000,
+            "process_per_host": 2,
+            "threads_per_process": 8,
+            "batch_size": 100,
+            "update_proportion": 0.5,
+            "read_proportion": 0.5,
+            "max_execution_time_seconds": 200000
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        }
+    },
+
+Throughput (ops/sec): 100110
+Runtime (ms): 449094345
+OperationCountInsert: 1000000000
+ErrorCountInsert: 0
+SuccessCountInsert: 1000000000
+UnknownCountInsert: 0
+AverageInsertLatency: 2940
+OperationCountRead: 0
+ErrorCountRead: 0
+SuccessCountRead: 0
+UnknownCountRead: 0
+AverageReadLatency: 0
+95thPercentileReadLatency: 0
+99thPercentileReadLatency: 0
+OperationCountUpdate: 200000000
+ErrorCountUpdate: 0
+SuccessCountUpdate: 200000000
+UnknownCountUpdate: 0
+AverageUpdateLatency: 3668
+95thPercentileUpdateLatency: 101
+99thPercentileUpdateLatency: 101
+95thPercentileInsertLatency: 3695
+99thPercentileInsertLatency: 4331
+
+---
+
+    "20_large_r90w10": {
+        "fdb": {
+            "name": "fdb-cluster",
+            "namespace": "default",
+            "cluster_controller": 1,
+            "storage": 17,
+            "log": 9,
+            "stateless": 4,
+            "volume_claim_storage": "64G",
+            "hostNetwork": "true",
+            "headlessService": "true",
+            "publicIPSource": "pod",
+            "storageServersPerPod": 7
+        },
+        "ycsb-statefulset": {
+            "replicas": 20,
+            "num_keys": 1000000000,
+            "process_per_host": 2,
+            "threads_per_process": 8,
+            "batch_size": 100,
+            "update_proportion": 0.1,
+            "read_proportion": 0.9,
+            "max_execution_time_seconds": 200000
+        },
+        "machineset": {
+            "name": "extra-machines-for-fdb",
+            "replicas": 3,
+            "disksizegb": 15,
+            "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+        },
+        "localstorage": {
+        }
+    },
 
