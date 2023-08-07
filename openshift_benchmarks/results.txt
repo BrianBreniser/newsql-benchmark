@@ -2555,3 +2555,87 @@ AverageUpdateLatency: 3668
         }
     },
 
+Throughput (ops/sec): 144879
+Runtime (ms): 403418589
+OperationCountInsert: 1000000000
+ErrorCountInsert: 0
+SuccessCountInsert: 1000000000
+UnknownCountInsert: 0
+AverageInsertLatency: 2917
+OperationCountRead: 180003035
+ErrorCountRead: 0
+SuccessCountRead: 180003035
+UnknownCountRead: 0
+AverageReadLatency: 1692
+95thPercentileReadLatency: 2223
+99thPercentileReadLatency: 2601
+OperationCountUpdate: 19996965
+ErrorCountUpdate: 0
+SuccessCountUpdate: 19996965
+UnknownCountUpdate: 0
+AverageUpdateLatency: 3198
+95thPercentileUpdateLatency: 93
+99thPercentileUpdateLatency: 93
+95thPercentileInsertLatency: 3667
+99thPercentileInsertLatency: 4303
+
+---
+
+Note: Repeating the 20_large_r test to see if all the previous writes makes a difference
+
+  "20_large_r": {
+    "fdb": {
+      "name": "fdb-cluster",
+      "namespace": "default",
+      "cluster_controller": 1,
+      "storage": 17,
+      "log": 9,
+      "stateless": 4,
+      "volume_claim_storage": "64G",
+      "hostNetwork": "true",
+      "headlessService": "true",
+      "publicIPSource": "pod",
+      "storageServersPerPod": 7
+    },
+    "ycsb-statefulset": {
+      "replicas": 20,
+      "num_keys": 1000000000,
+      "process_per_host": 2,
+      "threads_per_process": 8,
+      "batch_size": 100,
+      "update_proportion": 0.0,
+      "read_proportion": 1.0,
+      "max_execution_time_seconds": 200000
+    },
+    "machineset": {
+      "name": "extra-machines-for-fdb",
+      "replicas": 3,
+      "disksizegb": 15,
+      "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+    },
+    "localstorage": {}
+  },
+
+Throughput (ops/sec): 158638
+Runtime (ms): 397298675
+OperationCountInsert: 1000000000
+ErrorCountInsert: 0
+SuccessCountInsert: 1000000000
+UnknownCountInsert: 0
+AverageInsertLatency: 2914
+OperationCountRead: 200000000
+ErrorCountRead: 0
+SuccessCountRead: 200000000
+UnknownCountRead: 0
+AverageReadLatency: 1678
+95thPercentileReadLatency: 2275
+99thPercentileReadLatency: 2689
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 93
+99thPercentileUpdateLatency: 93
+95thPercentileInsertLatency: 3675
+99thPercentileInsertLatency: 4311
