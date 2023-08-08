@@ -2639,3 +2639,44 @@ AverageUpdateLatency: 0
 99thPercentileUpdateLatency: 93
 95thPercentileInsertLatency: 3675
 99thPercentileInsertLatency: 4311
+
+---
+
+The following results will be for CPU/RAM/Disk usage
+
+---
+
+20_large_r
+
+73% cpu; 15% machine; 0.454 Gbps; 92% disk IO; 0.7 GB / 8.0 GB RAM
+
+Monitoring Nodes on OpenShift reveals:
+- 6 log nodes have nearly zero CPU usage
+- 3 stateless nodes have low CPU usage
+
+It appears we have more logs/stateless services than we need
+
+---
+
+20_large_w
+
+34% cpu; 30% machine; 0.079 Gbps;100% disk IO; 4.5 GB / 8.0 GB RAM
+
+Monitoring Nodes on OpenShift reveals:
+- 6 log nodes have nearly zero CPU usage
+- 3 stateless nodes have low CPU usage
+
+It appears we have more logs/stateless services than we need
+
+---
+
+20_large_rw
+
+33% cpu; 30% machine; 0.079 Gbps;100% disk IO; 4.5 GB / 8.0 GB RAM
+
+Monitoring Nodes on OpenShift reveals:
+- 6 log nodes have nearly zero CPU usage
+- 3 stateless nodes have low CPU usage
+
+It appears we have more logs/stateless services than we need
+
