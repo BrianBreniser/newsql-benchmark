@@ -84,5 +84,7 @@ spec:
   sidecarContainer:
     enableLivenessProbe: true
     enableReadinessProbe: true
+  databaseConfiguration:
+    redundancy_mode: triple
   useExplicitListenAddress: true
   version: 7.1.26

@@ -1,1 +1,6 @@
 *.tmp
+current_cluster_notes.txt
+ntfy_results.sh
+statefulset-logs.txt
+status_json_details.json
+ycsb_statefulset.yaml

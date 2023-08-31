@@ -169,7 +169,7 @@ fi
 # install_grafana
 # install_local_storage_operator
 install_fdb_operator
-# install_fdb_cluster
+install_fdb_cluster
 # run_ycsb_pod
 # ycsb is next
 

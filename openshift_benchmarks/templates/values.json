@@ -143,11 +143,11 @@
       "hostNetwork": "true",
       "headlessService": "true",
       "publicIPSource": "pod",
-      "storageServersPerPod": 2
+      "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
       "replicas": 20,
-      "num_keys": 10000000,
+      "num_keys": 1000000000,
       "process_per_host": 2,
       "threads_per_process": 7,
       "batch_size": 100,
@@ -163,7 +163,11 @@
     },
     "localstorage": {}
   },
-  "20_med_r": {
+
+
+
+
+  "20_lg_r_1": {
     "fdb": {
       "name": "fdb-cluster",
       "namespace": "default",
@@ -175,13 +179,13 @@
       "hostNetwork": "true",
       "headlessService": "true",
       "publicIPSource": "pod",
-      "storageServersPerPod": 2
+      "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
       "replicas": 20,
-      "num_keys": 10000000,
-      "process_per_host": 2,
-      "threads_per_process": 7,
+      "num_keys": 1000000000,
+      "process_per_host": 8,
+      "threads_per_process": 64,
       "batch_size": 100,
       "update_proportion": 0.0,
       "read_proportion": 1.0,
@@ -195,6 +199,360 @@
     },
     "localstorage": {}
   },
+
+
+
+
+
+
+
+
+
+
+
+  "20_med_r_1": {
+    "fdb": {
+      "name": "fdb-cluster",
+      "namespace": "default",
+      "cluster_controller": 1,
+      "storage": 17,
+      "log": 9,
+      "stateless": 4,
+      "volume_claim_storage": "64G",
+      "hostNetwork": "true",
+      "headlessService": "true",
+      "publicIPSource": "pod",
+      "storageServersPerPod": 8
+    },
+    "ycsb-statefulset": {
+      "replicas": 20,
+      "num_keys": 100000000,
+      "process_per_host": 2,
+      "threads_per_process": 8,
+      "batch_size": 100,
+      "update_proportion": 0.0,
+      "read_proportion": 1.0,
+      "max_execution_time_seconds": 200000
+    },
+    "machineset": {
+      "name": "extra-machines-for-fdb",
+      "replicas": 3,
+      "disksizegb": 15,
+      "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+    },
+    "localstorage": {}
+  },
+  "20_med_r_2": {
+    "fdb": {
+      "name": "fdb-cluster",
+      "namespace": "default",
+      "cluster_controller": 1,
+      "storage": 17,
+      "log": 9,
+      "stateless": 4,
+      "volume_claim_storage": "64G",
+      "hostNetwork": "true",
+      "headlessService": "true",
+      "publicIPSource": "pod",
+      "storageServersPerPod": 8
+    },
+    "ycsb-statefulset": {
+      "replicas": 20,
+      "num_keys": 100000000,
+      "process_per_host": 2,
+      "threads_per_process": 16,
+      "batch_size": 100,
+      "update_proportion": 0.0,
+      "read_proportion": 1.0,
+      "max_execution_time_seconds": 200000
+    },
+    "machineset": {
+      "name": "extra-machines-for-fdb",
+      "replicas": 3,
+      "disksizegb": 15,
+      "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+    },
+    "localstorage": {}
+  },
+  "20_med_r_3": {
+    "fdb": {
+      "name": "fdb-cluster",
+      "namespace": "default",
+      "cluster_controller": 1,
+      "storage": 17,
+      "log": 9,
+      "stateless": 4,
+      "volume_claim_storage": "64G",
+      "hostNetwork": "true",
+      "headlessService": "true",
+      "publicIPSource": "pod",
+      "storageServersPerPod": 8
+    },
+    "ycsb-statefulset": {
+      "replicas": 20,
+      "num_keys": 100000000,
+      "process_per_host": 2,
+      "threads_per_process": 32,
+      "batch_size": 100,
+      "update_proportion": 0.0,
+      "read_proportion": 1.0,
+      "max_execution_time_seconds": 200000
+    },
+    "machineset": {
+      "name": "extra-machines-for-fdb",
+      "replicas": 3,
+      "disksizegb": 15,
+      "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+    },
+    "localstorage": {}
+  },
+  "20_med_r_4": {
+    "fdb": {
+      "name": "fdb-cluster",
+      "namespace": "default",
+      "cluster_controller": 1,
+      "storage": 17,
+      "log": 9,
+      "stateless": 4,
+      "volume_claim_storage": "64G",
+      "hostNetwork": "true",
+      "headlessService": "true",
+      "publicIPSource": "pod",
+      "storageServersPerPod": 8
+    },
+    "ycsb-statefulset": {
+      "replicas": 20,
+      "num_keys": 100000000,
+      "process_per_host": 4,
+      "threads_per_process": 8,
+      "batch_size": 100,
+      "update_proportion": 0.0,
+      "read_proportion": 1.0,
+      "max_execution_time_seconds": 200000
+    },
+    "machineset": {
+      "name": "extra-machines-for-fdb",
+      "replicas": 3,
+      "disksizegb": 15,
+      "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+    },
+    "localstorage": {}
+  },
+  "20_med_r_5": {
+    "fdb": {
+      "name": "fdb-cluster",
+      "namespace": "default",
+      "cluster_controller": 1,
+      "storage": 17,
+      "log": 9,
+      "stateless": 4,
+      "volume_claim_storage": "64G",
+      "hostNetwork": "true",
+      "headlessService": "true",
+      "publicIPSource": "pod",
+      "storageServersPerPod": 8
+    },
+    "ycsb-statefulset": {
+      "replicas": 20,
+      "num_keys": 100000000,
+      "process_per_host": 4,
+      "threads_per_process": 16,
+      "batch_size": 100,
+      "update_proportion": 0.0,
+      "read_proportion": 1.0,
+      "max_execution_time_seconds": 200000
+    },
+    "machineset": {
+      "name": "extra-machines-for-fdb",
+      "replicas": 3,
+      "disksizegb": 15,
+      "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+    },
+    "localstorage": {}
+  },
+  "20_med_r_6": {
+    "fdb": {
+      "name": "fdb-cluster",
+      "namespace": "default",
+      "cluster_controller": 1,
+      "storage": 17,
+      "log": 9,
+      "stateless": 4,
+      "volume_claim_storage": "64G",
+      "hostNetwork": "true",
+      "headlessService": "true",
+      "publicIPSource": "pod",
+      "storageServersPerPod": 8
+    },
+    "ycsb-statefulset": {
+      "replicas": 20,
+      "num_keys": 100000000,
+      "process_per_host": 4,
+      "threads_per_process": 32,
+      "batch_size": 100,
+      "update_proportion": 0.0,
+      "read_proportion": 1.0,
+      "max_execution_time_seconds": 200000
+    },
+    "machineset": {
+      "name": "extra-machines-for-fdb",
+      "replicas": 3,
+      "disksizegb": 15,
+      "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+    },
+    "localstorage": {}
+  },
+  "20_med_r_7": {
+    "fdb": {
+      "name": "fdb-cluster",
+      "namespace": "default",
+      "cluster_controller": 1,
+      "storage": 17,
+      "log": 9,
+      "stateless": 4,
+      "volume_claim_storage": "64G",
+      "hostNetwork": "true",
+      "headlessService": "true",
+      "publicIPSource": "pod",
+      "storageServersPerPod": 8
+    },
+    "ycsb-statefulset": {
+      "replicas": 20,
+      "num_keys": 100000000,
+      "process_per_host": 8,
+      "threads_per_process": 8,
+      "batch_size": 100,
+      "update_proportion": 0.0,
+      "read_proportion": 1.0,
+      "max_execution_time_seconds": 200000
+    },
+    "machineset": {
+      "name": "extra-machines-for-fdb",
+      "replicas": 3,
+      "disksizegb": 15,
+      "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+    },
+    "localstorage": {}
+  },
+  "20_med_r_8": {
+    "fdb": {
+      "name": "fdb-cluster",
+      "namespace": "default",
+      "cluster_controller": 1,
+      "storage": 17,
+      "log": 9,
+      "stateless": 4,
+      "volume_claim_storage": "64G",
+      "hostNetwork": "true",
+      "headlessService": "true",
+      "publicIPSource": "pod",
+      "storageServersPerPod": 8
+    },
+    "ycsb-statefulset": {
+      "replicas": 20,
+      "num_keys": 100000000,
+      "process_per_host": 8,
+      "threads_per_process": 16,
+      "batch_size": 100,
+      "update_proportion": 0.0,
+      "read_proportion": 1.0,
+      "max_execution_time_seconds": 200000
+    },
+    "machineset": {
+      "name": "extra-machines-for-fdb",
+      "replicas": 3,
+      "disksizegb": 15,
+      "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+    },
+    "localstorage": {}
+  },
+  "20_med_r_9": {
+    "fdb": {
+      "name": "fdb-cluster",
+      "namespace": "default",
+      "cluster_controller": 1,
+      "storage": 17,
+      "log": 9,
+      "stateless": 4,
+      "volume_claim_storage": "64G",
+      "hostNetwork": "true",
+      "headlessService": "true",
+      "publicIPSource": "pod",
+      "storageServersPerPod": 8
+    },
+    "ycsb-statefulset": {
+      "replicas": 20,
+      "num_keys": 100000000,
+      "process_per_host": 8,
+      "threads_per_process": 32,
+      "batch_size": 100,
+      "update_proportion": 0.0,
+      "read_proportion": 1.0,
+      "max_execution_time_seconds": 200000
+    },
+    "machineset": {
+      "name": "extra-machines-for-fdb",
+      "replicas": 3,
+      "disksizegb": 15,
+      "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+    },
+    "localstorage": {}
+  },
+  "20_med_r_10": {
+    "fdb": {
+      "name": "fdb-cluster",
+      "namespace": "default",
+      "cluster_controller": 1,
+      "storage": 17,
+      "log": 9,
+      "stateless": 4,
+      "volume_claim_storage": "64G",
+      "hostNetwork": "true",
+      "headlessService": "true",
+      "publicIPSource": "pod",
+      "storageServersPerPod": 8
+    },
+    "ycsb-statefulset": {
+      "replicas": 20,
+      "num_keys": 100000000,
+      "process_per_host": 8,
+      "threads_per_process": 64,
+      "batch_size": 100,
+      "update_proportion": 0.0,
+      "read_proportion": 1.0,
+      "max_execution_time_seconds": 200000
+    },
+    "machineset": {
+      "name": "extra-machines-for-fdb",
+      "replicas": 3,
+      "disksizegb": 15,
+      "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+    },
+    "localstorage": {}
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   "20_large_w": {

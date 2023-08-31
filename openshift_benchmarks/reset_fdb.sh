@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # cleanup our cluster
-oc delete fdb/fdb-cluster
 oc delete statefulset ycsb-benchmark
+oc delete fdb/fdb-cluster
 
 # apply our templating
 ./apply_templating.py "$1"
@@ -30,6 +30,10 @@ done
 
 sleep 120 # Possibly something still needs to load even after the pods are up
 
-# Finnally, run our ycsb benchmark
-oc apply -f ycsb_statefulset.yaml
+# Every 2 minutes send out a notifcation
+while true
+do
+    sleep 120
+    notify-send "Reminder: FDB is now up and running"
+done
 
