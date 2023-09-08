@@ -34,8 +34,13 @@ while true; do
         sleep 120
         notify-send "Collecting metrics from fdbcli"
         echo "Collecting metrics from fdbcli"
-        fdb exec -c fdb-cluster -- fdbcli --exec "status details" | rg Redundancy >> results.txt && echo "" >> results.txt
-        fdb exec -c fdb-cluster -- fdbcli --exec "status details" | rg cpu | head -16 >> results.txt && echo "" >> results.txt
+        fdb exec -c fdb-cluster -- fdbcli --exec "status details" | rg Redundancy >> results.txt
+        echo "" >> results.txt
+        # Had some broken pipe problems without using a tmp file.
+        fdb exec -c fdb-cluster -- fdbcli --exec "status details" > tmp.txt
+        grep cpu tmp.txt | head >> results.txt
+        rm tmp.txt
+        echo "" >> results.txt
     fi
 
     if [[ "$allDone" == "true" ]]; then
