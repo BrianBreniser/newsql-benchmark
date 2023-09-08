@@ -17,11 +17,10 @@ RUN \
 RUN \
     rpm -i https://github.com/apple/foundationdb/releases/download/7.1.31/foundationdb-clients-7.1.31-1.el7.x86_64.rpm
 
+USER 1001
 
 # command that just loops and does nothing, so container does not exit
 CMD ["tail", "-f", "/dev/null"]
-
-
 
 # docker build -t ycsb .
 

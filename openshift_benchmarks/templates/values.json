@@ -131,7 +131,7 @@
 
 
 
-  "20_med_w": {
+  "20_lg_w": {
     "fdb": {
       "name": "fdb-cluster",
       "namespace": "default",
@@ -148,8 +148,8 @@
     "ycsb-statefulset": {
       "replicas": 20,
       "num_keys": 1000000000,
-      "process_per_host": 2,
-      "threads_per_process": 7,
+      "process_per_host": 8,
+      "threads_per_process": 32,
       "batch_size": 100,
       "update_proportion": 1.0,
       "read_proportion": 0.0,

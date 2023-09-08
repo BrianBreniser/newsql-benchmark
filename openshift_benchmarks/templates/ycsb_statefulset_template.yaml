@@ -18,7 +18,7 @@ spec:
         command: ["/bin/bash", "-c"] 
         #run as root user to install packages
         securityContext:
-          privileged: true  
+          privileged: false
         args:
         - |
           host_index=$(echo $HOSTNAME | grep -o '[0-9]\+')
@@ -90,8 +90,8 @@ spec:
             value: /mnt/config-volume/cluster-file
         volumeMounts:
           - name: config-volume
-            mountPath: /mnt/config-volume  
+            mountPath: /mnt/config-volume
       volumes:
         - name: config-volume
           configMap:
-            name: fdb-cluster-config
+            name: fdb-cluster-2-config
