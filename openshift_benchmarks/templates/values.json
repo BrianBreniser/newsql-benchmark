@@ -128,6 +128,38 @@
     "localstorage": {}
   },
 
+  "20_sm_r": {
+    "fdb": {
+      "name": "fdb-cluster",
+      "namespace": "default",
+      "cluster_controller": 1,
+      "storage": 17,
+      "log": 9,
+      "stateless": 4,
+      "volume_claim_storage": "64G",
+      "hostNetwork": "true",
+      "headlessService": "true",
+      "publicIPSource": "pod",
+      "storageServersPerPod": 8
+    },
+    "ycsb-statefulset": {
+      "replicas": 20,
+      "num_keys": 20000000,
+      "process_per_host": 8,
+      "threads_per_process": 32,
+      "batch_size": 100,
+      "update_proportion": 0.0,
+      "read_proportion": 1.0,
+      "max_execution_time_seconds": 200000
+    },
+    "machineset": {
+      "name": "extra-machines-for-fdb",
+      "replicas": 3,
+      "disksizegb": 15,
+      "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+    },
+    "localstorage": {}
+  },
 
 
 
@@ -225,10 +257,10 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-      "replicas": 20,
+      "replicas": 10,
       "num_keys": 100000000,
       "process_per_host": 8,
-      "threads_per_process": 32,
+      "threads_per_process": 8,
       "batch_size": 100,
       "update_proportion": 0.0,
       "read_proportion": 1.0,
@@ -257,10 +289,10 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-      "replicas": 20,
+      "replicas": 10,
       "num_keys": 100000000,
-      "process_per_host": 16,
-      "threads_per_process": 32,
+      "process_per_host": 8,
+      "threads_per_process": 16,
       "batch_size": 100,
       "update_proportion": 0.0,
       "read_proportion": 1.0,
@@ -289,10 +321,10 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-      "replicas": 30,
+      "replicas": 10,
       "num_keys": 100000000,
       "process_per_host": 8,
-      "threads_per_process": 16,
+      "threads_per_process": 32,
       "batch_size": 100,
       "update_proportion": 0.0,
       "read_proportion": 1.0,
@@ -321,10 +353,10 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-      "replicas": 30,
+      "replicas": 10,
       "num_keys": 100000000,
-      "process_per_host": 8,
-      "threads_per_process": 32,
+      "process_per_host": 16,
+      "threads_per_process": 16,
       "batch_size": 100,
       "update_proportion": 0.0,
       "read_proportion": 1.0,
@@ -353,7 +385,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-      "replicas": 30,
+      "replicas": 10,
       "num_keys": 100000000,
       "process_per_host": 16,
       "threads_per_process": 32,
@@ -385,10 +417,10 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-      "replicas": 30,
+      "replicas": 10,
       "num_keys": 100000000,
-      "process_per_host": 16,
-      "threads_per_process": 64,
+      "process_per_host": 32,
+      "threads_per_process": 32,
       "batch_size": 100,
       "update_proportion": 0.0,
       "read_proportion": 1.0,
@@ -417,10 +449,10 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-      "replicas": 40,
+      "replicas": 10,
       "num_keys": 100000000,
       "process_per_host": 4,
-      "threads_per_process": 8,
+      "threads_per_process": 4,
       "batch_size": 100,
       "update_proportion": 0.0,
       "read_proportion": 1.0,
@@ -449,10 +481,10 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-      "replicas": 40,
+      "replicas": 10,
       "num_keys": 100000000,
       "process_per_host": 4,
-      "threads_per_process": 16,
+      "threads_per_process": 8,
       "batch_size": 100,
       "update_proportion": 0.0,
       "read_proportion": 1.0,
@@ -481,9 +513,9 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-      "replicas": 40,
+      "replicas": 20,
       "num_keys": 100000000,
-      "process_per_host": 8,
+      "process_per_host": 16,
       "threads_per_process": 16,
       "batch_size": 100,
       "update_proportion": 0.0,
@@ -513,7 +545,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-      "replicas": 40,
+      "replicas": 20,
       "num_keys": 100000000,
       "process_per_host": 8,
       "threads_per_process": 32,
@@ -545,7 +577,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-      "replicas": 40,
+      "replicas": 20,
       "num_keys": 100000000,
       "process_per_host": 16,
       "threads_per_process": 32,
@@ -577,7 +609,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-      "replicas": 40,
+      "replicas": 20,
       "num_keys": 100000000,
       "process_per_host": 16,
       "threads_per_process": 64,

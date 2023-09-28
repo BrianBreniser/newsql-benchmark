@@ -9,5 +9,7 @@ do
     notify-send "Running test $arg"
 
     ./reset_ycsb.sh "$arg"
+    notify-send "Finished test $arg"
+    #ntfy "finished test $arg"
 done
 
