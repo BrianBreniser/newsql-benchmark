@@ -88,10 +88,26 @@ spec:
         env:
           - name: FDB_CLUSTER_FILE
             value: /mnt/config-volume/cluster-file
+          - name: FDB_TLS_CERTIFICATE_FILE
+            value: /var/fdb-certs/cert.pem
+          - name: FDB_TLS_KEY_FILE
+            value: /var/fdb-certs/key.pem
+          - name: FDB_TLS_CA_FILE
+            value: /var/fdb-ca-certs/cert.pem
         volumeMounts:
+          - name: fdb-certs
+            mountPath: /var/fdb-certs
+          - name: fdb-ca-certs
+            mountPath: /var/fdb-ca-certs
           - name: config-volume
             mountPath: /mnt/config-volume
       volumes:
         - name: config-volume
           configMap:
             name: fdb-cluster-2-config
+        - name: fdb-certs
+          secret:
+            secretName: fdb-certs
+        - name: fdb-ca-certs
+          secret:
+            secretName: fdb-ca-certs
