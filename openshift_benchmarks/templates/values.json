@@ -2,7 +2,7 @@
   "demo_setup": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 1,
       "storage": 1,
       "log": 1,
@@ -34,7 +34,7 @@
   "testing": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 4,
       "storage": 20,
       "log": 2,
@@ -66,7 +66,7 @@
   "20_small_r": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 1,
       "storage": 17,
       "log": 9,
@@ -98,7 +98,7 @@
   "20_large_r": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 1,
       "storage": 17,
       "log": 9,
@@ -131,7 +131,7 @@
   "20_sm_r": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 1,
       "storage": 17,
       "log": 9,
@@ -166,7 +166,7 @@
   "20_lg_w": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 1,
       "storage": 17,
       "log": 9,
@@ -202,7 +202,7 @@
   "20_lg_r_1": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 1,
       "storage": 17,
       "log": 9,
@@ -245,7 +245,7 @@
   "20_med_w_1": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 1,
       "storage": 17,
       "log": 2,
@@ -277,7 +277,7 @@
   "20_med_r_1": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 1,
       "storage": 17,
       "log": 2,
@@ -309,7 +309,7 @@
   "20_med_r_2": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 1,
       "storage": 17,
       "log": 2,
@@ -341,7 +341,7 @@
   "20_med_r_3": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 1,
       "storage": 17,
       "log": 2,
@@ -373,7 +373,7 @@
   "20_med_r_4": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 1,
       "storage": 17,
       "log": 2,
@@ -405,7 +405,7 @@
   "20_med_r_5": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 1,
       "storage": 17,
       "log": 2,
@@ -437,7 +437,7 @@
   "20_med_r_6": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 1,
       "storage": 17,
       "log": 2,
@@ -454,6 +454,200 @@
       "process_per_host": 16,
       "threads_per_process": 32,
       "batch_size": 100,
+      "update_proportion": 0.0,
+      "read_proportion": 1.0,
+      "max_execution_time_seconds": 200000
+    },
+    "machineset": {
+      "name": "extra-machines-for-fdb",
+      "replicas": 3,
+      "disksizegb": 15,
+      "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+    },
+    "localstorage": {}
+  },
+
+
+  "20_perf_tweaked_w_1": {
+    "fdb": {
+      "name": "fdb-cluster",
+      "namespace": "dc1",
+      "cluster_controller": 1,
+      "storage": 17,
+      "log": 2,
+      "stateless": 4,
+      "volume_claim_storage": "64G",
+      "hostNetwork": "true",
+      "headlessService": "true",
+      "publicIPSource": "pod",
+      "storageServersPerPod": 8
+    },
+    "ycsb-statefulset": {
+      "replicas": 20,
+      "num_keys": 100000000,
+      "process_per_host": 16,
+      "threads_per_process": 32,
+      "batch_size": 1000,
+      "update_proportion": 1.0,
+      "read_proportion": 0.0,
+      "max_execution_time_seconds": 200000
+    },
+    "machineset": {
+      "name": "extra-machines-for-fdb",
+      "replicas": 3,
+      "disksizegb": 15,
+      "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+    },
+    "localstorage": {}
+  },
+  "20_perf_tweaked_r_1": {
+    "fdb": {
+      "name": "fdb-cluster",
+      "namespace": "dc1",
+      "cluster_controller": 1,
+      "storage": 17,
+      "log": 2,
+      "stateless": 4,
+      "volume_claim_storage": "64G",
+      "hostNetwork": "true",
+      "headlessService": "true",
+      "publicIPSource": "pod",
+      "storageServersPerPod": 8
+    },
+    "ycsb-statefulset": {
+      "replicas": 20,
+      "num_keys": 100000000,
+      "process_per_host": 4,
+      "threads_per_process": 8,
+      "batch_size": 1000,
+      "update_proportion": 0.0,
+      "read_proportion": 1.0,
+      "max_execution_time_seconds": 200000
+    },
+    "machineset": {
+      "name": "extra-machines-for-fdb",
+      "replicas": 3,
+      "disksizegb": 15,
+      "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+    },
+    "localstorage": {}
+  },
+  "20_perf_tweaked_r_2": {
+    "fdb": {
+      "name": "fdb-cluster",
+      "namespace": "dc1",
+      "cluster_controller": 1,
+      "storage": 17,
+      "log": 2,
+      "stateless": 4,
+      "volume_claim_storage": "64G",
+      "hostNetwork": "true",
+      "headlessService": "true",
+      "publicIPSource": "pod",
+      "storageServersPerPod": 8
+    },
+    "ycsb-statefulset": {
+      "replicas": 20,
+      "num_keys": 100000000,
+      "process_per_host": 8,
+      "threads_per_process": 8,
+      "batch_size": 1000,
+      "update_proportion": 0.0,
+      "read_proportion": 1.0,
+      "max_execution_time_seconds": 200000
+    },
+    "machineset": {
+      "name": "extra-machines-for-fdb",
+      "replicas": 3,
+      "disksizegb": 15,
+      "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+    },
+    "localstorage": {}
+  },
+  "20_perf_tweaked_r_3": {
+    "fdb": {
+      "name": "fdb-cluster",
+      "namespace": "dc1",
+      "cluster_controller": 1,
+      "storage": 17,
+      "log": 2,
+      "stateless": 4,
+      "volume_claim_storage": "64G",
+      "hostNetwork": "true",
+      "headlessService": "true",
+      "publicIPSource": "pod",
+      "storageServersPerPod": 8
+    },
+    "ycsb-statefulset": {
+      "replicas": 20,
+      "num_keys": 100000000,
+      "process_per_host": 8,
+      "threads_per_process": 16,
+      "batch_size": 1000,
+      "update_proportion": 0.0,
+      "read_proportion": 1.0,
+      "max_execution_time_seconds": 200000
+    },
+    "machineset": {
+      "name": "extra-machines-for-fdb",
+      "replicas": 3,
+      "disksizegb": 15,
+      "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+    },
+    "localstorage": {}
+  },
+  "20_perf_tweaked_r_4": {
+    "fdb": {
+      "name": "fdb-cluster",
+      "namespace": "dc1",
+      "cluster_controller": 1,
+      "storage": 17,
+      "log": 2,
+      "stateless": 4,
+      "volume_claim_storage": "64G",
+      "hostNetwork": "true",
+      "headlessService": "true",
+      "publicIPSource": "pod",
+      "storageServersPerPod": 8
+    },
+    "ycsb-statefulset": {
+      "replicas": 20,
+      "num_keys": 100000000,
+      "process_per_host": 16,
+      "threads_per_process": 16,
+      "batch_size": 1000,
+      "update_proportion": 0.0,
+      "read_proportion": 1.0,
+      "max_execution_time_seconds": 200000
+    },
+    "machineset": {
+      "name": "extra-machines-for-fdb",
+      "replicas": 3,
+      "disksizegb": 15,
+      "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+    },
+    "localstorage": {}
+  },
+  "20_perf_tweaked_r_5": {
+    "fdb": {
+      "name": "fdb-cluster",
+      "namespace": "dc1",
+      "cluster_controller": 1,
+      "storage": 17,
+      "log": 2,
+      "stateless": 4,
+      "volume_claim_storage": "64G",
+      "hostNetwork": "true",
+      "headlessService": "true",
+      "publicIPSource": "pod",
+      "storageServersPerPod": 8
+    },
+    "ycsb-statefulset": {
+      "replicas": 20,
+      "num_keys": 100000000,
+      "process_per_host": 16,
+      "threads_per_process": 32,
+      "batch_size": 1000,
       "update_proportion": 0.0,
       "read_proportion": 1.0,
       "max_execution_time_seconds": 200000
@@ -488,13 +682,10 @@
 
 
 
-
-
-
   "20_large_w": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 1,
       "storage": 17,
       "log": 9,
@@ -526,7 +717,7 @@
   "20_large_rw": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 1,
       "storage": 17,
       "log": 9,
@@ -558,7 +749,7 @@
   "20_large_r90w10": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 1,
       "storage": 17,
       "log": 9,
@@ -594,7 +785,7 @@
   "3_6_read": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 2,
       "storage": 3,
       "log": 1,
@@ -626,7 +817,7 @@
   "5_10_read": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 2,
       "storage": 5,
       "log": 1,
@@ -658,7 +849,7 @@
   "10_10_read": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 2,
       "storage": 10,
       "log": 1,
@@ -690,7 +881,7 @@
   "20_20_read": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 2,
       "storage": 20,
       "log": 1,
@@ -722,7 +913,7 @@
   "3_6_rw": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 2,
       "storage": 3,
       "log": 1,
@@ -754,7 +945,7 @@
   "5_10_rw": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 2,
       "storage": 5,
       "log": 1,
@@ -786,7 +977,7 @@
   "10_10_rw": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 2,
       "storage": 10,
       "log": 1,
@@ -818,7 +1009,7 @@
   "20_20_rw": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 2,
       "storage": 20,
       "log": 1,
@@ -850,7 +1041,7 @@
   "3_6_r90w10": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 2,
       "storage": 3,
       "log": 1,
@@ -882,7 +1073,7 @@
   "5_10_r90w10": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 2,
       "storage": 5,
       "log": 1,
@@ -914,7 +1105,7 @@
   "10_10_r90w10": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 2,
       "storage": 10,
       "log": 1,
@@ -946,7 +1137,7 @@
   "20_20_r90w10": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 2,
       "storage": 20,
       "log": 1,
@@ -978,7 +1169,7 @@
   "3_6_write": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 2,
       "storage": 3,
       "log": 1,
@@ -1010,7 +1201,7 @@
   "5_10_write": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 2,
       "storage": 5,
       "log": 1,
@@ -1042,7 +1233,7 @@
   "10_10_write": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 2,
       "storage": 10,
       "log": 1,
@@ -1074,7 +1265,7 @@
   "20_20_write": {
     "fdb": {
       "name": "fdb-cluster",
-      "namespace": "default",
+      "namespace": "dc1",
       "cluster_controller": 2,
       "storage": 20,
       "log": 1,

@@ -2089,13 +2089,617 @@ AverageUpdateLatency: 0
 95thPercentileInsertLatency: 63103
 99thPercentileInsertLatency: 71999
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ---
 ---
 
 
-Situation: Multi dc, 2x, but with more log nodes (dc2: instead of 2, 5, dc1 and dc3, instead of 3, 5)
+Changing gears, we are now going to do a deep dive into performance. We will be settting up prometheus/graphana, gathering tlogs, and trying to get a more accurate picture from fdb about *why* performance is low.
 
 
 ---
 ---
 
+---
+---
+
+Single cluster, 17, 2, 3, with prometheus and grafana
+
+---
+---
+
+---
+
+Running test 20_med_r_5
+
+---
+
+
+
+Throughput (ops/sec): 155620
+Runtime (ms): 47542778
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 15164
+OperationCountRead: 20000000
+ErrorCountRead: 0
+SuccessCountRead: 20000000
+UnknownCountRead: 0
+AverageReadLatency: 8668
+95thPercentileReadLatency: 21391
+99thPercentileReadLatency: 42239
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 89
+99thPercentileUpdateLatency: 177
+95thPercentileInsertLatency: 21151
+99thPercentileInsertLatency: 38783
+
+---
+
+Running test 20_med_r_6
+
+---
+
+
+
+Throughput (ops/sec): 162548
+Runtime (ms): 47002189
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 14946
+OperationCountRead: 20000000
+ErrorCountRead: 0
+SuccessCountRead: 20000000
+UnknownCountRead: 0
+AverageReadLatency: 8570
+95thPercentileReadLatency: 20671
+99thPercentileReadLatency: 40415
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 90
+99thPercentileUpdateLatency: 186
+95thPercentileInsertLatency: 20703
+99thPercentileInsertLatency: 30399
+
+---
+---
+
+---
+---
+
+Single cluster, 17, 2, 3, with prometheus and grafana
++ limiting ycsb to not run on the stateless nodes (too small and prom is already killing them)
+
+---
+---
+
+---
+
+Running test 20_med_r_5
+
+---
+
+
+Throughput (ops/sec): 234736
+Runtime (ms): 43901527
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 13981
+OperationCountRead: 20000000
+ErrorCountRead: 0
+SuccessCountRead: 20000000
+UnknownCountRead: 0
+AverageReadLatency: 4431
+95thPercentileReadLatency: 7419
+99thPercentileReadLatency: 12727
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 78
+99thPercentileUpdateLatency: 178
+95thPercentileInsertLatency: 18063
+99thPercentileInsertLatency: 21471
+
+---
+---
+
+Single cluster, 17, 2, 3, with prometheus and grafana
++ limiting ycsb to not run on the stateless nodes (too small and prom is already killing them)
++ ycsb *might* have had the wrong settings for threads, fixed templates and running again with 32 threads
+
+---
+---
+
+---
+
+Running test 20_med_r_5
+
+---
+
+Throughput (ops/sec): 163947
+Runtime (ms): 46304347
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 13949
+OperationCountRead: 20000000
+ErrorCountRead: 0
+SuccessCountRead: 20000000
+UnknownCountRead: 0
+AverageReadLatency: 6078
+95thPercentileReadLatency: 11935
+99thPercentileReadLatency: 31439
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 61
+99thPercentileUpdateLatency: 179
+95thPercentileInsertLatency: 18031
+99thPercentileInsertLatency: 25487
+
+---
+---
+
+Single cluster, 17, 2, 3, with prometheus and grafana
++ limiting ycsb to not run on the stateless nodes (too small and prom is already killing them)
++ ycsb *might* have had the wrong settings for threads, fixed templates and running again with 32 threads
++ ycsb, fdb storage, and fdb_not_storage have dedicated nodes
+
+---
+---
+
+
+
+---
+
+Running test 20_perf_tweaked_w_1
+
+---
+
+Throughput (ops/sec): 65265
+Runtime (ms): 48668474
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 15235
+OperationCountRead: 0
+ErrorCountRead: 0
+SuccessCountRead: 0
+UnknownCountRead: 0
+AverageReadLatency: 0
+95thPercentileReadLatency: 0
+99thPercentileReadLatency: 0
+OperationCountUpdate: 2000000
+ErrorCountUpdate: 0
+SuccessCountUpdate: 2000000
+UnknownCountUpdate: 0
+AverageUpdateLatency: 33427
+95thPercentileUpdateLatency: 128
+99thPercentileUpdateLatency: 207
+95thPercentileInsertLatency: 20383
+99thPercentileInsertLatency: 24655
+
+---
+---
+
+Single cluster, 17, 2, 3, with prometheus and grafana
++ limiting ycsb to not run on the stateless nodes (too small and prom is already killing them)
++ ycsb *might* have had the wrong settings for threads, fixed templates and running again with 32 threads
++ ycsb, fdb storage, and fdb_not_storage have dedicated nodes
++ ycsb hostNetwork
+
+---
+---
+
+---
+
+Running test 20_perf_tweaked_r_1
+
+---
+
+Throughput (ops/sec): 141406
+Runtime (ms): 46422579
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 14906
+OperationCountRead: 2000000
+ErrorCountRead: 0
+SuccessCountRead: 2000000
+UnknownCountRead: 0
+AverageReadLatency: 12102
+95thPercentileReadLatency: 32111
+99thPercentileReadLatency: 44415
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 81
+99thPercentileUpdateLatency: 567
+95thPercentileInsertLatency: 19663
+99thPercentileInsertLatency: 23535
+
+
+---
+
+Running test 20_perf_tweaked_r_1
+
+---
+
+
+
+Throughput (ops/sec): 153090
+Runtime (ms): 46463632
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 14956
+OperationCountRead: 2000000
+ErrorCountRead: 0
+SuccessCountRead: 2000000
+UnknownCountRead: 0
+AverageReadLatency: 11076
+95thPercentileReadLatency: 30335
+99thPercentileReadLatency: 38847
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 72
+99thPercentileUpdateLatency: 184
+95thPercentileInsertLatency: 19519
+99thPercentileInsertLatency: 23375
+
+
+---
+
+Running test 20_perf_tweaked_r_1
+
+---
+
+
+Throughput (ops/sec): 82175
+Runtime (ms): 45214347
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 28349
+OperationCountRead: 2000000
+ErrorCountRead: 0
+SuccessCountRead: 2000000
+UnknownCountRead: 0
+AverageReadLatency: 43323
+95thPercentileReadLatency: 119871
+99thPercentileReadLatency: 169471
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 67
+99thPercentileUpdateLatency: 90
+95thPercentileInsertLatency: 35199
+99thPercentileInsertLatency: 40639
+
+---
+---
+
+Running some overnight tests with these scenarios:
+
+---
+---
+
+  "20_perf_tweaked_r_1": {
+    "ycsb-statefulset": {
+      "replicas": 20,
+      "num_keys": 100000000,
+      "process_per_host": 4,
+      "threads_per_process": 8,
+      "batch_size": 1000,
+      "update_proportion": 0.0,
+      "read_proportion": 1.0,
+      "max_execution_time_seconds": 200000
+    },
+  },
+  "20_perf_tweaked_r_2": {
+    "ycsb-statefulset": {
+      "replicas": 20,
+      "num_keys": 100000000,
+      "process_per_host": 8,
+      "threads_per_process": 8,
+      "batch_size": 1000,
+      "update_proportion": 0.0,
+      "read_proportion": 1.0,
+      "max_execution_time_seconds": 200000
+    },
+  },
+  "20_perf_tweaked_r_3": {
+    "ycsb-statefulset": {
+      "replicas": 20,
+      "num_keys": 100000000,
+      "process_per_host": 8,
+      "threads_per_process": 16,
+      "batch_size": 1000,
+      "update_proportion": 0.0,
+      "read_proportion": 1.0,
+      "max_execution_time_seconds": 200000
+    },
+  },
+  "20_perf_tweaked_r_4": {
+    "ycsb-statefulset": {
+      "replicas": 20,
+      "num_keys": 100000000,
+      "process_per_host": 16,
+      "threads_per_process": 16,
+      "batch_size": 1000,
+      "update_proportion": 0.0,
+      "read_proportion": 1.0,
+      "max_execution_time_seconds": 200000
+    },
+  },
+  "20_perf_tweaked_r_5": {
+    "ycsb-statefulset": {
+      "replicas": 20,
+      "num_keys": 100000000,
+      "process_per_host": 16,
+      "threads_per_process": 32,
+      "batch_size": 1000,
+      "update_proportion": 0.0,
+      "read_proportion": 1.0,
+      "max_execution_time_seconds": 200000
+    },
+  },
+
+
+
+---
+
+Running test 20_perf_tweaked_r_1
+
+---
+
+
+
+Throughput (ops/sec): 91265
+Runtime (ms): 77155426
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 6241
+OperationCountRead: 2000000
+ErrorCountRead: 0
+SuccessCountRead: 2000000
+UnknownCountRead: 0
+AverageReadLatency: 2838
+95thPercentileReadLatency: 4089
+99thPercentileReadLatency: 6047
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 190
+99thPercentileUpdateLatency: 190
+95thPercentileInsertLatency: 8407
+99thPercentileInsertLatency: 11095
+
+---
+
+Running test 20_perf_tweaked_r_2
+
+---
+
+
+
+Throughput (ops/sec): 90919
+Runtime (ms): 76622308
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 6216
+OperationCountRead: 2000000
+ErrorCountRead: 0
+SuccessCountRead: 2000000
+UnknownCountRead: 0
+AverageReadLatency: 2857
+95thPercentileReadLatency: 4009
+99thPercentileReadLatency: 5951
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 216
+99thPercentileUpdateLatency: 216
+95thPercentileInsertLatency: 8471
+99thPercentileInsertLatency: 11183
+
+---
+
+Running test 20_perf_tweaked_r_3
+
+---
+
+
+
+Throughput (ops/sec): 146257
+Runtime (ms): 54124252
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 8778
+OperationCountRead: 2000000
+ErrorCountRead: 0
+SuccessCountRead: 2000000
+UnknownCountRead: 0
+AverageReadLatency: 3805
+95thPercentileReadLatency: 6579
+99thPercentileReadLatency: 9567
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 86
+99thPercentileUpdateLatency: 221
+95thPercentileInsertLatency: 11967
+99thPercentileInsertLatency: 14863
+
+---
+
+Running test 20_perf_tweaked_r_4
+
+---
+
+
+
+Throughput (ops/sec): 140777
+Runtime (ms): 53941648
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 8818
+OperationCountRead: 2000000
+ErrorCountRead: 0
+SuccessCountRead: 2000000
+UnknownCountRead: 0
+AverageReadLatency: 4099
+95thPercentileReadLatency: 7655
+99thPercentileReadLatency: 11431
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 94
+99thPercentileUpdateLatency: 130
+95thPercentileInsertLatency: 12119
+99thPercentileInsertLatency: 15039
+
+---
+
+Running test 20_perf_tweaked_r_5
+
+---
+
+Throughput (ops/sec): 139123
+Runtime (ms): 46019911
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 14783
+OperationCountRead: 2000000
+ErrorCountRead: 0
+SuccessCountRead: 2000000
+UnknownCountRead: 0
+AverageReadLatency: 10575
+95thPercentileReadLatency: 25983
+99thPercentileReadLatency: 34751
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 79
+99thPercentileUpdateLatency: 177
+95thPercentileInsertLatency: 19375
+99thPercentileInsertLatency: 23167
+
+
+---
+---
+
+Single cluster, 17, 2, 3, with prometheus and grafana
++ limiting ycsb to not run on the stateless nodes (too small and prom is already killing them)
+- ycsb *might* have had the wrong settings for threads, fixed templates and running again with 32 threads
+    Reverted back to old settings. Might have broken threads instead of fixing it...?
++ ycsb, fdb storage, and fdb_not_storage have dedicated nodes
++ ycsb hostNetwork
+
+YCSB:
+            -p requestdistribution=uniform \
+            -p threadcount=$threads_per_process"
+          sh -c "$ycsb_load_cmd"
+
+---
+---
+
+
+---
+
+Running test 20_perf_tweaked_r_3
+
+---
+
+
+
+Throughput (ops/sec): 144054
+Runtime (ms): 54384607
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 8861
+OperationCountRead: 2000000
+ErrorCountRead: 0
+SuccessCountRead: 2000000
+UnknownCountRead: 0
+AverageReadLatency: 3595
+95thPercentileReadLatency: 6135
+99thPercentileReadLatency: 9023
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 115
+99thPercentileUpdateLatency: 170
+95thPercentileInsertLatency: 12063
+99thPercentileInsertLatency: 15063

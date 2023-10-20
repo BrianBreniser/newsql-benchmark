@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: ycsb-benchmark
+  labels:
+    app: ycsb-runner
 spec:
   replicas: {{replicas}}
   selector:
@@ -12,6 +14,10 @@ spec:
       labels:
         app: ycsb
     spec:
+      serviceAccountName: ycsb-service-account
+      hostNetwork: true
+      nodeSelector:
+        ycsbrunner: "true"
       containers:
       - name: ycsb
         image: quay.io/breniserbrian/ycsb:latest
@@ -21,7 +27,7 @@ spec:
           privileged: false
         args:
         - |
-          host_index=$(echo $HOSTNAME | grep -o '[0-9]\+')
+          host_index=$(echo $POD_NAME | grep -o '[0-9]\+')
           cd ycsb-foundationdb-binding-0.18.0-SNAPSHOT
           now=$(date +"%Y_%m_%d_%H_%M_%S")
           log_file="ycsb_host_${host_index}__$now.log"
@@ -82,7 +88,7 @@ spec:
           sh -c "$ycsb_load_cmd"
           sh -c "$ycsb_run_cmd"
           while true; do
-            echo "finished... host $HOSTNAME"
+            echo "finished... host $POD_NAME"
             sleep 20
           done
         env:
@@ -94,6 +100,10 @@ spec:
             value: /var/fdb-certs/key.pem
           - name: FDB_TLS_CA_FILE
             value: /var/fdb-ca-certs/cert.pem
+          - name: POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
         volumeMounts:
           - name: fdb-certs
             mountPath: /var/fdb-certs
@@ -104,7 +114,7 @@ spec:
       volumes:
         - name: config-volume
           configMap:
-            name: fdb-cluster-2-config
+            name: fdb-cluster-1-config
         - name: fdb-certs
           secret:
             secretName: fdb-certs

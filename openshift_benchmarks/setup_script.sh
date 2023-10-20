@@ -151,7 +151,7 @@ function check_args() {
     #if -f or --force is passed, force the re-installation of everything
     if [[ "$1" == "-f" ]] || [[ "$1" == "--force" ]]; then
         log "Forcing the re-installation of everything"
-        FORCE=true
+        export FORCE=true
         return
     fi
 }
@@ -169,6 +169,7 @@ fi
 # install_grafana
 # install_local_storage_operator
 install_fdb_operator
+oc adm policy add-scc-to-user anyuid -z fdb-kubernetes-operator-controller-manager # Patch job, TODO: make this better
 install_fdb_cluster
 # run_ycsb_pod
 # ycsb is next
