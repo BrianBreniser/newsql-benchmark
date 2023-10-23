@@ -16,8 +16,12 @@ spec:
     spec:
       serviceAccountName: ycsb-service-account
       hostNetwork: true
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: ScheduleAnyway
       nodeSelector:
-        ycsbrunner: "true"
+        beta.kubernetes.io/instance-type: Standard_F8s_v2
       containers:
       - name: ycsb
         image: quay.io/breniserbrian/ycsb:latest
@@ -55,7 +59,7 @@ spec:
             fi
             sleep 5
           done
-          ycsb_load_cmd="./bin/ycsb load foundationdb -s \
+          ycsb_load_cmd="./bin/ycsb.sh load foundationdb -s \
             -P $workload \
             -p foundationdb.apiversion=620 \
             -p foundationdb.clusterfile=$FDB_CLUSTER_FILE \
@@ -70,7 +74,7 @@ spec:
             -p updateproportion=$update_proportion \
             -p requestdistribution=uniform \
             -p threadcount=$threads_per_process"
-          ycsb_run_cmd="./bin/ycsb run foundationdb -s \
+          ycsb_run_cmd="./bin/ycsb.sh run foundationdb -s \
             -P $workload \
             -p foundationdb.apiversion=620 \
             -p foundationdb.clusterfile=$FDB_CLUSTER_FILE \

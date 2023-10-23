@@ -485,8 +485,8 @@
     "ycsb-statefulset": {
       "replicas": 20,
       "num_keys": 100000000,
-      "process_per_host": 16,
-      "threads_per_process": 32,
+      "process_per_host": 8,
+      "threads_per_process": 16,
       "batch_size": 1000,
       "update_proportion": 1.0,
       "read_proportion": 0.0,
