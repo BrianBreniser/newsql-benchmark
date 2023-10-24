@@ -19,7 +19,10 @@ spec:
       topologySpreadConstraints:
       - maxSkew: 1
         topologyKey: kubernetes.io/hostname
-        whenUnsatisfiable: ScheduleAnyway
+        whenUnsatisfiable: DoNotSchedule
+      labelSelector:
+        matchLabels:
+          app: ycsb
       nodeSelector:
         beta.kubernetes.io/instance-type: Standard_F8s_v2
       containers:

@@ -3105,3 +3105,813 @@ Running test 20_med_r_6
 
 
 
+
+---
+
+Running test 20_perf_tweaked_w_1
+
+---
+
+  Redundancy mode        - double
+
+  10.113.232.156:4501    ( 68% cpu; 15% machine; 0.457 Gbps; 66% disk IO; 0.9 GB / 8.0 GB RAM  )
+  10.113.232.156:4503    (  0% cpu; 15% machine; 0.457 Gbps; 66% disk IO; 0.1 GB / 8.0 GB RAM  )
+  10.113.232.157:4501    (  1% cpu;  1% machine; 0.000 Gbps;  0% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.113.232.157:4503    (  0% cpu;  1% machine; 0.000 Gbps;  0% disk IO; 0.1 GB / 8.0 GB RAM  )
+  10.113.232.158:4501    ( 11% cpu; 15% machine; 0.147 Gbps; 32% disk IO; 0.5 GB / 7.5 GB RAM  )
+  10.113.232.158:4503    ( 11% cpu; 15% machine; 0.147 Gbps; 32% disk IO; 0.5 GB / 7.5 GB RAM  )
+  10.113.232.158:4505    ( 10% cpu; 15% machine; 0.147 Gbps; 32% disk IO; 0.5 GB / 7.5 GB RAM  )
+  10.113.232.158:4507    ( 10% cpu; 15% machine; 0.147 Gbps; 32% disk IO; 0.4 GB / 7.5 GB RAM  )
+  10.113.232.158:4509    ( 13% cpu; 15% machine; 0.147 Gbps; 32% disk IO; 0.6 GB / 7.5 GB RAM  )
+  10.113.232.158:4511    ( 15% cpu; 15% machine; 0.147 Gbps; 32% disk IO; 0.5 GB / 7.5 GB RAM  )
+
+Throughput (ops/sec): 105602
+Runtime (ms): 38381804
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 6296
+OperationCountRead: 0
+ErrorCountRead: 0
+SuccessCountRead: 0
+UnknownCountRead: 0
+AverageReadLatency: 0
+95thPercentileReadLatency: 0
+99thPercentileReadLatency: 0
+OperationCountUpdate: 2000000
+ErrorCountUpdate: 0
+SuccessCountUpdate: 2000000
+UnknownCountUpdate: 0
+AverageUpdateLatency: 7575
+95thPercentileUpdateLatency: 267
+99thPercentileUpdateLatency: 296
+95thPercentileInsertLatency: 8815
+99thPercentileInsertLatency: 10023
+
+---
+
+Running test 20_med_r_5
+
+---
+
+  Redundancy mode        - double
+
+  10.113.232.156:4501    ( 72% cpu; 16% machine; 0.576 Gbps; 60% disk IO; 1.0 GB / 8.0 GB RAM  )
+  10.113.232.156:4503    (  0% cpu; 16% machine; 0.576 Gbps; 60% disk IO; 0.1 GB / 8.0 GB RAM  )
+  10.113.232.157:4501    (  1% cpu;  1% machine; 0.000 Gbps;  0% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.113.232.157:4503    (  0% cpu;  1% machine; 0.000 Gbps;  0% disk IO; 0.1 GB / 8.0 GB RAM  )
+  10.113.232.158:4501    ( 15% cpu; 18% machine; 0.103 Gbps; 46% disk IO; 2.7 GB / 7.2 GB RAM  )
+  10.113.232.158:4503    ( 15% cpu; 18% machine; 0.103 Gbps; 46% disk IO; 2.7 GB / 7.2 GB RAM  )
+  10.113.232.158:4505    ( 14% cpu; 18% machine; 0.103 Gbps; 46% disk IO; 2.7 GB / 7.2 GB RAM  )
+  10.113.232.158:4507    ( 14% cpu; 18% machine; 0.103 Gbps; 46% disk IO; 2.7 GB / 7.2 GB RAM  )
+  10.113.232.158:4509    ( 14% cpu; 18% machine; 0.103 Gbps; 46% disk IO; 2.7 GB / 7.2 GB RAM  )
+  10.113.232.158:4511    ( 15% cpu; 18% machine; 0.103 Gbps; 46% disk IO; 2.7 GB / 7.2 GB RAM  )
+
+Throughput (ops/sec): 261708
+Runtime (ms): 28562678
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 8823
+OperationCountRead: 20000000
+ErrorCountRead: 0
+SuccessCountRead: 20000000
+UnknownCountRead: 0
+AverageReadLatency: 3696
+95thPercentileReadLatency: 5407
+99thPercentileReadLatency: 9071
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 56
+99thPercentileUpdateLatency: 141
+95thPercentileInsertLatency: 11943
+99thPercentileInsertLatency: 13623
+
+---
+
+Running test 20_med_r_6
+
+---
+
+  Redundancy mode        - double
+
+  10.113.232.156:4501    ( 73% cpu; 16% machine; 0.561 Gbps; 58% disk IO; 1.0 GB / 8.0 GB RAM  )
+  10.113.232.156:4503    (  0% cpu; 16% machine; 0.561 Gbps; 58% disk IO; 0.1 GB / 8.0 GB RAM  )
+  10.113.232.157:4501    (  1% cpu;  2% machine; 0.001 Gbps;  0% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.113.232.157:4503    (  0% cpu;  2% machine; 0.001 Gbps;  0% disk IO; 0.1 GB / 8.0 GB RAM  )
+  10.113.232.158:4501    ( 14% cpu; 18% machine; 0.100 Gbps; 51% disk IO; 2.8 GB / 7.2 GB RAM  )
+  10.113.232.158:4503    ( 13% cpu; 18% machine; 0.100 Gbps; 51% disk IO; 2.8 GB / 7.2 GB RAM  )
+  10.113.232.158:4505    ( 14% cpu; 18% machine; 0.100 Gbps; 51% disk IO; 2.8 GB / 7.2 GB RAM  )
+  10.113.232.158:4507    ( 14% cpu; 18% machine; 0.100 Gbps; 51% disk IO; 2.8 GB / 7.2 GB RAM  )
+  10.113.232.158:4509    ( 15% cpu; 18% machine; 0.100 Gbps; 51% disk IO; 2.8 GB / 7.2 GB RAM  )
+  10.113.232.158:4511    ( 15% cpu; 18% machine; 0.100 Gbps; 51% disk IO; 2.8 GB / 7.2 GB RAM  )
+
+Throughput (ops/sec): 264937
+Runtime (ms): 28504967
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 8768
+OperationCountRead: 20000000
+ErrorCountRead: 0
+SuccessCountRead: 20000000
+UnknownCountRead: 0
+AverageReadLatency: 3650
+95thPercentileReadLatency: 5131
+99thPercentileReadLatency: 8815
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 56
+99thPercentileUpdateLatency: 164
+95thPercentileInsertLatency: 11839
+99thPercentileInsertLatency: 13439
+
+---
+
+Running test 20_perf_tweaked_r_3
+
+---
+
+  Redundancy mode        - double
+
+  10.113.232.156:4501    ( 68% cpu; 15% machine; 0.431 Gbps; 67% disk IO; 1.0 GB / 8.0 GB RAM  )
+  10.113.232.156:4503    (  0% cpu; 15% machine; 0.431 Gbps; 67% disk IO; 0.1 GB / 8.0 GB RAM  )
+  10.113.232.157:4501    (  1% cpu;  1% machine; 0.000 Gbps;  0% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.113.232.157:4503    (  0% cpu;  1% machine; 0.000 Gbps;  0% disk IO; 0.1 GB / 8.0 GB RAM  )
+  10.113.232.158:4501    ( 11% cpu; 15% machine; 0.076 Gbps; 36% disk IO; 2.8 GB / 7.2 GB RAM  )
+  10.113.232.158:4503    ( 11% cpu; 15% machine; 0.076 Gbps; 36% disk IO; 2.8 GB / 7.2 GB RAM  )
+  10.113.232.158:4505    ( 11% cpu; 15% machine; 0.076 Gbps; 36% disk IO; 2.8 GB / 7.2 GB RAM  )
+  10.113.232.158:4507    ( 11% cpu; 15% machine; 0.076 Gbps; 36% disk IO; 2.8 GB / 7.2 GB RAM  )
+  10.113.232.158:4509    ( 12% cpu; 15% machine; 0.076 Gbps; 36% disk IO; 2.8 GB / 7.2 GB RAM  )
+  10.113.232.158:4511    ( 11% cpu; 15% machine; 0.076 Gbps; 36% disk IO; 2.8 GB / 7.2 GB RAM  )
+
+Throughput (ops/sec): 196718
+Runtime (ms): 37682205
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 6194
+OperationCountRead: 2000000
+ErrorCountRead: 0
+SuccessCountRead: 2000000
+UnknownCountRead: 0
+AverageReadLatency: 2430
+95thPercentileReadLatency: 3525
+99thPercentileReadLatency: 6907
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 133
+99thPercentileUpdateLatency: 233
+95thPercentileInsertLatency: 8759
+99thPercentileInsertLatency: 9983
+
+---
+---
+
+Specified how many proxy processes to run
+
+---
+---
+
+---
+
+Running test 20_perf_tweaked_w_1
+
+---
+
+  Redundancy mode        - double
+
+  10.113.232.157:4501    ( 35% cpu;  8% machine; 0.303 Gbps;  1% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.113.232.158:4501    ( 16% cpu; 20% machine; 0.115 Gbps; 32% disk IO; 0.7 GB / 7.5 GB RAM  )
+  10.113.232.158:4503    ( 15% cpu; 20% machine; 0.115 Gbps; 32% disk IO; 0.7 GB / 7.5 GB RAM  )
+  10.113.232.158:4505    ( 12% cpu; 20% machine; 0.115 Gbps; 32% disk IO; 0.5 GB / 7.5 GB RAM  )
+  10.113.232.158:4507    ( 13% cpu; 20% machine; 0.115 Gbps; 32% disk IO; 0.6 GB / 7.5 GB RAM  )
+  10.113.232.158:4509    ( 16% cpu; 20% machine; 0.115 Gbps; 32% disk IO; 0.7 GB / 7.5 GB RAM  )
+  10.113.232.158:4511    ( 17% cpu; 20% machine; 0.115 Gbps; 32% disk IO; 0.6 GB / 7.5 GB RAM  )
+  10.113.232.158:4513    ( 13% cpu; 20% machine; 0.115 Gbps; 32% disk IO; 0.5 GB / 7.5 GB RAM  )
+  10.113.232.158:4515    ( 16% cpu; 20% machine; 0.115 Gbps; 32% disk IO; 0.7 GB / 7.5 GB RAM  )
+  10.113.232.159:4501    ( 71% cpu; 15% machine; 0.338 Gbps; 81% disk IO; 1.2 GB / 8.0 GB RAM  )
+
+Throughput (ops/sec): 122956
+Runtime (ms): 31807794
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 5136
+OperationCountRead: 0
+ErrorCountRead: 0
+SuccessCountRead: 0
+UnknownCountRead: 0
+AverageReadLatency: 0
+95thPercentileReadLatency: 0
+99thPercentileReadLatency: 0
+OperationCountUpdate: 2000000
+ErrorCountUpdate: 0
+SuccessCountUpdate: 2000000
+UnknownCountUpdate: 0
+AverageUpdateLatency: 6583
+95thPercentileUpdateLatency: 136
+99thPercentileUpdateLatency: 192
+95thPercentileInsertLatency: 7479
+99thPercentileInsertLatency: 9863
+
+---
+
+Running test 20_med_r_5
+
+---
+
+  Redundancy mode        - double
+
+  10.113.232.157:4501    ( 43% cpu;  9% machine; 0.476 Gbps;  1% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.113.232.158:4501    ( 20% cpu; 27% machine; 0.139 Gbps; 76% disk IO; 2.7 GB / 7.1 GB RAM  )
+  10.113.232.158:4503    ( 20% cpu; 27% machine; 0.139 Gbps; 76% disk IO; 2.7 GB / 7.1 GB RAM  )
+  10.113.232.158:4505    ( 22% cpu; 27% machine; 0.139 Gbps; 76% disk IO; 2.8 GB / 7.1 GB RAM  )
+  10.113.232.158:4507    ( 20% cpu; 27% machine; 0.139 Gbps; 76% disk IO; 2.8 GB / 7.1 GB RAM  )
+  10.113.232.158:4509    ( 20% cpu; 27% machine; 0.139 Gbps; 76% disk IO; 2.7 GB / 7.1 GB RAM  )
+  10.113.232.158:4511    ( 22% cpu; 27% machine; 0.139 Gbps; 76% disk IO; 2.8 GB / 7.1 GB RAM  )
+  10.113.232.158:4513    ( 19% cpu; 27% machine; 0.139 Gbps; 76% disk IO; 2.7 GB / 7.1 GB RAM  )
+  10.113.232.158:4515    ( 21% cpu; 27% machine; 0.139 Gbps; 76% disk IO; 2.8 GB / 7.1 GB RAM  )
+  10.113.232.159:4501    ( 80% cpu; 17% machine; 0.498 Gbps; 82% disk IO; 1.2 GB / 8.0 GB RAM  )
+
+Throughput (ops/sec): 291742
+Runtime (ms): 21492692
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 6417
+OperationCountRead: 20000000
+ErrorCountRead: 0
+SuccessCountRead: 20000000
+UnknownCountRead: 0
+AverageReadLatency: 3785
+95thPercentileReadLatency: 5559
+99thPercentileReadLatency: 9183
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 62
+99thPercentileUpdateLatency: 172
+95thPercentileInsertLatency: 9911
+99thPercentileInsertLatency: 12343
+
+---
+
+Running test 20_med_r_6
+
+---
+
+  Redundancy mode        - double
+
+  10.113.232.157:4501    ( 43% cpu;  9% machine; 0.479 Gbps;  1% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.113.232.158:4501    ( 19% cpu; 26% machine; 0.140 Gbps; 74% disk IO; 2.8 GB / 7.1 GB RAM  )
+  10.113.232.158:4503    ( 21% cpu; 26% machine; 0.140 Gbps; 74% disk IO; 2.8 GB / 7.1 GB RAM  )
+  10.113.232.158:4505    ( 22% cpu; 26% machine; 0.140 Gbps; 74% disk IO; 2.8 GB / 7.1 GB RAM  )
+  10.113.232.158:4507    ( 21% cpu; 26% machine; 0.140 Gbps; 74% disk IO; 2.8 GB / 7.1 GB RAM  )
+  10.113.232.158:4509    ( 22% cpu; 26% machine; 0.140 Gbps; 74% disk IO; 2.8 GB / 7.1 GB RAM  )
+  10.113.232.158:4511    ( 23% cpu; 26% machine; 0.140 Gbps; 74% disk IO; 2.8 GB / 7.1 GB RAM  )
+  10.113.232.158:4513    ( 21% cpu; 26% machine; 0.140 Gbps; 74% disk IO; 2.8 GB / 7.1 GB RAM  )
+  10.113.232.158:4515    ( 21% cpu; 26% machine; 0.140 Gbps; 74% disk IO; 3.2 GB / 7.1 GB RAM  )
+  10.113.232.159:4501    ( 80% cpu; 17% machine; 0.498 Gbps; 83% disk IO; 1.2 GB / 8.0 GB RAM  )
+
+Throughput (ops/sec): 289082
+Runtime (ms): 21464144
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 6343
+OperationCountRead: 20000000
+ErrorCountRead: 0
+SuccessCountRead: 20000000
+UnknownCountRead: 0
+AverageReadLatency: 3767
+95thPercentileReadLatency: 5447
+99thPercentileReadLatency: 9135
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 63
+99thPercentileUpdateLatency: 148
+95thPercentileInsertLatency: 9815
+99thPercentileInsertLatency: 12151
+
+---
+
+Running test 20_perf_tweaked_r_3
+
+---
+
+  Redundancy mode        - double
+
+  10.113.232.157:4501    ( 37% cpu;  8% machine; 0.304 Gbps;  1% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.113.232.158:4501    ( 13% cpu; 19% machine; 0.095 Gbps; 50% disk IO; 2.8 GB / 7.1 GB RAM  )
+  10.113.232.158:4503    ( 15% cpu; 19% machine; 0.095 Gbps; 50% disk IO; 2.8 GB / 7.1 GB RAM  )
+  10.113.232.158:4505    ( 15% cpu; 19% machine; 0.095 Gbps; 50% disk IO; 2.8 GB / 7.1 GB RAM  )
+  10.113.232.158:4507    ( 15% cpu; 19% machine; 0.095 Gbps; 50% disk IO; 2.8 GB / 7.1 GB RAM  )
+  10.113.232.158:4509    ( 15% cpu; 19% machine; 0.095 Gbps; 50% disk IO; 2.8 GB / 7.1 GB RAM  )
+  10.113.232.158:4511    ( 16% cpu; 19% machine; 0.095 Gbps; 50% disk IO; 2.8 GB / 7.1 GB RAM  )
+  10.113.232.158:4513    ( 15% cpu; 19% machine; 0.095 Gbps; 50% disk IO; 2.8 GB / 7.1 GB RAM  )
+  10.113.232.158:4515    ( 15% cpu; 19% machine; 0.095 Gbps; 50% disk IO; 3.2 GB / 7.1 GB RAM  )
+  10.113.232.159:4501    ( 72% cpu; 16% machine; 0.339 Gbps; 82% disk IO; 1.2 GB / 8.0 GB RAM  )
+
+Throughput (ops/sec): 212420
+Runtime (ms): 30593944
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 4970
+OperationCountRead: 2000000
+ErrorCountRead: 0
+SuccessCountRead: 2000000
+UnknownCountRead: 0
+AverageReadLatency: 2672
+95thPercentileReadLatency: 4439
+99thPercentileReadLatency: 8743
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 114
+99thPercentileUpdateLatency: 179
+95thPercentileInsertLatency: 7303
+99thPercentileInsertLatency: 9143
+
+---
+---
+
+No change, seeing consistency and watching nodes
+
+---
+---
+
+---
+
+Running test 20_med_r_5
+
+---
+
+  Redundancy mode        - double
+
+  10.113.232.157:4501    ( 43% cpu; 10% machine; 0.464 Gbps;  1% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.113.232.158:4501    ( 19% cpu; 25% machine; 0.140 Gbps; 66% disk IO; 3.2 GB / 7.6 GB RAM  )
+  10.113.232.158:4503    ( 19% cpu; 25% machine; 0.140 Gbps; 66% disk IO; 2.8 GB / 7.6 GB RAM  )
+  10.113.232.158:4505    ( 19% cpu; 25% machine; 0.140 Gbps; 66% disk IO; 2.8 GB / 7.6 GB RAM  )
+  10.113.232.158:4507    ( 19% cpu; 25% machine; 0.140 Gbps; 66% disk IO; 3.2 GB / 7.6 GB RAM  )
+  10.113.232.158:4509    ( 20% cpu; 25% machine; 0.140 Gbps; 66% disk IO; 2.8 GB / 7.6 GB RAM  )
+  10.113.232.158:4511    ( 20% cpu; 25% machine; 0.140 Gbps; 66% disk IO; 2.8 GB / 7.6 GB RAM  )
+  10.113.232.158:4513    ( 19% cpu; 25% machine; 0.140 Gbps; 66% disk IO; 2.8 GB / 7.6 GB RAM  )
+  10.113.232.158:4515    ( 18% cpu; 25% machine; 0.140 Gbps; 66% disk IO; 3.2 GB / 7.6 GB RAM  )
+  10.113.232.159:4501    ( 79% cpu; 17% machine; 0.497 Gbps; 81% disk IO; 1.2 GB / 8.0 GB RAM  )
+
+Throughput (ops/sec): 288547
+Runtime (ms): 21596696
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 6474
+OperationCountRead: 20000000
+ErrorCountRead: 0
+SuccessCountRead: 20000000
+UnknownCountRead: 0
+AverageReadLatency: 3942
+95thPercentileReadLatency: 5607
+99thPercentileReadLatency: 9287
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 69
+99thPercentileUpdateLatency: 138
+95thPercentileInsertLatency: 10031
+99thPercentileInsertLatency: 12383
+
+---
+
+Running test 20_med_r_6
+
+---
+
+  Redundancy mode        - double
+
+  10.113.232.157:4501    ( 44% cpu; 10% machine; 0.479 Gbps;  1% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.113.232.158:4501    ( 19% cpu; 25% machine; 0.140 Gbps; 67% disk IO; 3.2 GB / 7.5 GB RAM  )
+  10.113.232.158:4503    ( 20% cpu; 25% machine; 0.140 Gbps; 67% disk IO; 3.2 GB / 7.5 GB RAM  )
+  10.113.232.158:4505    ( 20% cpu; 25% machine; 0.140 Gbps; 67% disk IO; 2.8 GB / 7.5 GB RAM  )
+  10.113.232.158:4507    ( 19% cpu; 25% machine; 0.140 Gbps; 67% disk IO; 3.2 GB / 7.5 GB RAM  )
+  10.113.232.158:4509    ( 20% cpu; 25% machine; 0.140 Gbps; 67% disk IO; 3.2 GB / 7.5 GB RAM  )
+  10.113.232.158:4511    ( 21% cpu; 25% machine; 0.140 Gbps; 67% disk IO; 2.8 GB / 7.5 GB RAM  )
+  10.113.232.158:4513    ( 19% cpu; 25% machine; 0.140 Gbps; 67% disk IO; 2.8 GB / 7.5 GB RAM  )
+  10.113.232.158:4515    ( 19% cpu; 25% machine; 0.140 Gbps; 67% disk IO; 3.2 GB / 7.5 GB RAM  )
+  10.113.232.159:4501    ( 79% cpu; 17% machine; 0.502 Gbps; 83% disk IO; 1.2 GB / 8.0 GB RAM  )
+
+Throughput (ops/sec): 289389
+Runtime (ms): 21722472
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 6472
+OperationCountRead: 20000000
+ErrorCountRead: 0
+SuccessCountRead: 20000000
+UnknownCountRead: 0
+AverageReadLatency: 3808
+95thPercentileReadLatency: 5691
+99thPercentileReadLatency: 10015
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 77
+99thPercentileUpdateLatency: 300
+95thPercentileInsertLatency: 10023
+99thPercentileInsertLatency: 12391
+
+---
+
+Running test 20_perf_tweaked_r_3
+
+---
+
+  Redundancy mode        - double
+
+  10.113.232.157:4501    ( 35% cpu;  8% machine; 0.306 Gbps;  1% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.113.232.158:4501    ( 14% cpu; 19% machine; 0.095 Gbps; 41% disk IO; 3.2 GB / 7.4 GB RAM  )
+  10.113.232.158:4503    ( 14% cpu; 19% machine; 0.095 Gbps; 41% disk IO; 3.2 GB / 7.4 GB RAM  )
+  10.113.232.158:4505    ( 15% cpu; 19% machine; 0.095 Gbps; 41% disk IO; 3.2 GB / 7.4 GB RAM  )
+  10.113.232.158:4507    ( 14% cpu; 19% machine; 0.095 Gbps; 41% disk IO; 3.2 GB / 7.4 GB RAM  )
+  10.113.232.158:4509    ( 14% cpu; 19% machine; 0.095 Gbps; 41% disk IO; 3.2 GB / 7.4 GB RAM  )
+  10.113.232.158:4511    ( 15% cpu; 19% machine; 0.095 Gbps; 41% disk IO; 3.2 GB / 7.4 GB RAM  )
+  10.113.232.158:4513    ( 14% cpu; 19% machine; 0.095 Gbps; 41% disk IO; 3.2 GB / 7.4 GB RAM  )
+  10.113.232.158:4515    ( 14% cpu; 19% machine; 0.095 Gbps; 41% disk IO; 3.2 GB / 7.4 GB RAM  )
+  10.113.232.159:4501    ( 72% cpu; 15% machine; 0.340 Gbps; 82% disk IO; 1.2 GB / 8.0 GB RAM  )
+
+Throughput (ops/sec): 213666
+Runtime (ms): 30672061
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 4969
+OperationCountRead: 2000000
+ErrorCountRead: 0
+SuccessCountRead: 2000000
+UnknownCountRead: 0
+AverageReadLatency: 2529
+95thPercentileReadLatency: 4029
+99thPercentileReadLatency: 7503
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 137
+99thPercentileUpdateLatency: 640
+95thPercentileInsertLatency: 7347
+99thPercentileInsertLatency: 9103
+
+---
+---
+
+More proxies/grv
+databaseConfiguration:
+    commit_proxies: 3
+    grv_proxies: 3
+    logs: 5
+    redundancy_mode: double
+    regions:
+    - datacenters:
+      - id: dc1
+        priority: 1
+    resolvers: 3
+    storage_engine: ssd-2
+    usable_regions: 1
+processCounts:
+    commit_proxy: 3
+    grv_proxy: 3
+    log: 5
+    stateless: 3
+    storage: 17
+
+
+---
+---
+
+
+---
+
+Running test 20_med_r_5
+
+---
+
+  Redundancy mode        - double
+
+  10.113.232.156:4501    ( 26% cpu; 32% machine; 0.216 Gbps; 56% disk IO; 0.8 GB / 7.5 GB RAM  )
+  10.113.232.156:4503    ( 23% cpu; 32% machine; 0.216 Gbps; 56% disk IO; 0.9 GB / 7.5 GB RAM  )
+  10.113.232.156:4505    ( 25% cpu; 32% machine; 0.216 Gbps; 56% disk IO; 0.8 GB / 7.5 GB RAM  )
+  10.113.232.156:4507    ( 26% cpu; 32% machine; 0.216 Gbps; 56% disk IO; 0.9 GB / 7.5 GB RAM  )
+  10.113.232.156:4509    ( 26% cpu; 32% machine; 0.216 Gbps; 56% disk IO; 0.9 GB / 7.5 GB RAM  )
+  10.113.232.156:4511    ( 21% cpu; 32% machine; 0.216 Gbps; 56% disk IO; 0.8 GB / 7.5 GB RAM  )
+  10.113.232.156:4513    ( 26% cpu; 32% machine; 0.216 Gbps; 56% disk IO; 0.8 GB / 7.5 GB RAM  )
+  10.113.232.156:4515    ( 29% cpu; 32% machine; 0.216 Gbps; 56% disk IO; 0.9 GB / 7.5 GB RAM  )
+  10.113.232.157:4501    ( 79% cpu; 17% machine; 0.521 Gbps; 90% disk IO; 1.9 GB / 8.0 GB RAM  )
+  10.113.232.157:4503    (  0% cpu; 17% machine; 0.521 Gbps; 90% disk IO; 0.1 GB / 8.0 GB RAM  )
+
+Throughput (ops/sec): 345126
+Runtime (ms): 19234714
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 5768
+OperationCountRead: 20000000
+ErrorCountRead: 0
+SuccessCountRead: 20000000
+UnknownCountRead: 0
+AverageReadLatency: 2886
+95thPercentileReadLatency: 4107
+99thPercentileReadLatency: 6519
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 55
+99thPercentileUpdateLatency: 139
+95thPercentileInsertLatency: 8943
+99thPercentileInsertLatency: 10719
+
+---
+
+Running test 20_med_r_6
+
+---
+
+  Redundancy mode        - double
+
+  10.113.232.156:4501    ( 22% cpu; 28% machine; 0.151 Gbps; 81% disk IO; 2.8 GB / 7.1 GB RAM  )
+  10.113.232.156:4503    ( 20% cpu; 28% machine; 0.151 Gbps; 81% disk IO; 2.7 GB / 7.1 GB RAM  )
+  10.113.232.156:4505    ( 23% cpu; 28% machine; 0.151 Gbps; 81% disk IO; 2.8 GB / 7.1 GB RAM  )
+  10.113.232.156:4507    ( 22% cpu; 28% machine; 0.151 Gbps; 81% disk IO; 2.8 GB / 7.1 GB RAM  )
+  10.113.232.156:4509    ( 22% cpu; 28% machine; 0.151 Gbps; 81% disk IO; 2.8 GB / 7.1 GB RAM  )
+  10.113.232.156:4511    ( 22% cpu; 28% machine; 0.151 Gbps; 81% disk IO; 2.8 GB / 7.1 GB RAM  )
+  10.113.232.156:4513    ( 22% cpu; 28% machine; 0.151 Gbps; 81% disk IO; 2.8 GB / 7.1 GB RAM  )
+  10.113.232.156:4515    ( 22% cpu; 28% machine; 0.151 Gbps; 81% disk IO; 2.8 GB / 7.1 GB RAM  )
+  10.113.232.157:4501    ( 77% cpu; 16% machine; 0.524 Gbps; 89% disk IO; 1.9 GB / 8.0 GB RAM  )
+  10.113.232.157:4503    (  0% cpu; 16% machine; 0.524 Gbps; 89% disk IO; 0.1 GB / 8.0 GB RAM  )
+
+Throughput (ops/sec): 347123
+Runtime (ms): 19033657
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 5733
+OperationCountRead: 20000000
+ErrorCountRead: 0
+SuccessCountRead: 20000000
+UnknownCountRead: 0
+AverageReadLatency: 2996
+95thPercentileReadLatency: 4451
+99thPercentileReadLatency: 6943
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 44
+99thPercentileUpdateLatency: 142
+95thPercentileInsertLatency: 8911
+99thPercentileInsertLatency: 10583
+
+---
+---
+
+Upping storageServersPerPod to 15
+
+---
+---
+
+
+
+
+
+
+
+---
+
+Running test 20_med_r_5
+
+---
+
+  Redundancy mode        - double
+
+  10.113.232.153:4501    ( 68% cpu; 10% machine; 0.160 Gbps;  1% disk IO; 0.5 GB / 8.0 GB RAM  )
+  10.113.232.156:4501    ( 19% cpu; 26% machine; 0.164 Gbps; 44% disk IO; 0.7 GB / 6.0 GB RAM  )
+  10.113.232.156:4503    ( 18% cpu; 26% machine; 0.164 Gbps; 44% disk IO; 0.7 GB / 6.0 GB RAM  )
+  10.113.232.156:4505    ( 14% cpu; 26% machine; 0.164 Gbps; 44% disk IO; 0.6 GB / 6.0 GB RAM  )
+  10.113.232.156:4507    ( 18% cpu; 26% machine; 0.164 Gbps; 44% disk IO; 0.7 GB / 6.0 GB RAM  )
+  10.113.232.156:4509    ( 13% cpu; 26% machine; 0.164 Gbps; 44% disk IO; 0.5 GB / 6.0 GB RAM  )
+  10.113.232.156:4511    ( 17% cpu; 26% machine; 0.164 Gbps; 44% disk IO; 0.6 GB / 6.0 GB RAM  )
+  10.113.232.156:4513    ( 16% cpu; 26% machine; 0.164 Gbps; 44% disk IO; 0.7 GB / 6.0 GB RAM  )
+  10.113.232.156:4515    ( 13% cpu; 26% machine; 0.164 Gbps; 44% disk IO; 0.6 GB / 6.0 GB RAM  )
+  10.113.232.156:4517    ( 16% cpu; 26% machine; 0.164 Gbps; 44% disk IO; 0.7 GB / 6.0 GB RAM  )
+
+Throughput (ops/sec): 325239
+Runtime (ms): 22417449
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 7106
+OperationCountRead: 20000000
+ErrorCountRead: 0
+SuccessCountRead: 20000000
+UnknownCountRead: 0
+AverageReadLatency: 3350
+95thPercentileReadLatency: 5243
+99thPercentileReadLatency: 7935
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 52
+99thPercentileUpdateLatency: 141
+95thPercentileInsertLatency: 10463
+99thPercentileInsertLatency: 12055
+
+---
+
+Running test 20_med_r_6
+
+---
+
+  Redundancy mode        - double
+
+  10.113.232.153:4501    ( 65% cpu; 10% machine; 0.153 Gbps;  1% disk IO; 0.5 GB / 8.0 GB RAM  )
+  10.113.232.156:4501    ( 15% cpu; 26% machine; 0.132 Gbps; 34% disk IO; 2.3 GB / 5.7 GB RAM  )
+  10.113.232.156:4503    ( 15% cpu; 26% machine; 0.132 Gbps; 34% disk IO; 2.3 GB / 5.7 GB RAM  )
+  10.113.232.156:4505    ( 16% cpu; 26% machine; 0.132 Gbps; 34% disk IO; 2.7 GB / 5.7 GB RAM  )
+  10.113.232.156:4507    ( 16% cpu; 26% machine; 0.132 Gbps; 34% disk IO; 2.7 GB / 5.7 GB RAM  )
+  10.113.232.156:4509    ( 16% cpu; 26% machine; 0.132 Gbps; 34% disk IO; 2.7 GB / 5.7 GB RAM  )
+  10.113.232.156:4511    ( 15% cpu; 26% machine; 0.132 Gbps; 34% disk IO; 2.7 GB / 5.7 GB RAM  )
+  10.113.232.156:4513    ( 15% cpu; 26% machine; 0.132 Gbps; 34% disk IO; 2.7 GB / 5.7 GB RAM  )
+  10.113.232.156:4515    ( 16% cpu; 26% machine; 0.132 Gbps; 34% disk IO; 2.7 GB / 5.7 GB RAM  )
+  10.113.232.156:4517    ( 15% cpu; 26% machine; 0.132 Gbps; 34% disk IO; 2.7 GB / 5.7 GB RAM  )
+
+Throughput (ops/sec): 327849
+Runtime (ms): 22481471
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 7099
+OperationCountRead: 20000000
+ErrorCountRead: 0
+SuccessCountRead: 20000000
+UnknownCountRead: 0
+AverageReadLatency: 2989
+95thPercentileReadLatency: 4359
+99thPercentileReadLatency: 6595
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 54
+99thPercentileUpdateLatency: 175
+95thPercentileInsertLatency: 10423
+99thPercentileInsertLatency: 11943
+
+
+---
+
+Running test 20_med_r_5
+
+---
+
+  Redundancy mode        - double
+
+  10.113.232.153:4501    ( 23% cpu; 28% machine; 0.159 Gbps; 47% disk IO; 0.9 GB / 7.5 GB RAM  )
+  10.113.232.153:4503    ( 21% cpu; 28% machine; 0.159 Gbps; 47% disk IO; 1.1 GB / 7.5 GB RAM  )
+  10.113.232.153:4505    ( 22% cpu; 28% machine; 0.159 Gbps; 48% disk IO; 0.9 GB / 7.5 GB RAM  )
+  10.113.232.153:4507    ( 23% cpu; 28% machine; 0.159 Gbps; 48% disk IO; 0.8 GB / 7.5 GB RAM  )
+  10.113.232.153:4509    ( 21% cpu; 28% machine; 0.159 Gbps; 47% disk IO; 0.9 GB / 7.5 GB RAM  )
+  10.113.232.153:4511    ( 21% cpu; 28% machine; 0.159 Gbps; 47% disk IO; 0.9 GB / 7.5 GB RAM  )
+  10.113.232.153:4513    ( 26% cpu; 28% machine; 0.159 Gbps; 47% disk IO; 1.0 GB / 7.5 GB RAM  )
+  10.113.232.153:4515    ( 18% cpu; 28% machine; 0.159 Gbps; 47% disk IO; 0.8 GB / 7.5 GB RAM  )
+  10.113.232.156:4501    ( 24% cpu; 27% machine; 0.151 Gbps; 47% disk IO; 1.7 GB / 7.4 GB RAM  )
+  10.113.232.156:4503    ( 21% cpu; 27% machine; 0.151 Gbps; 47% disk IO; 0.8 GB / 7.4 GB RAM  )
+
+Throughput (ops/sec): 344099
+Runtime (ms): 19142314
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 5722
+OperationCountRead: 20000000
+ErrorCountRead: 0
+SuccessCountRead: 20000000
+UnknownCountRead: 0
+AverageReadLatency: 3189
+95thPercentileReadLatency: 4643
+99thPercentileReadLatency: 7483
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 55
+99thPercentileUpdateLatency: 152
+95thPercentileInsertLatency: 8951
+99thPercentileInsertLatency: 10751
+
+---
+
+Running test 20_med_r_6
+
+---
+
+  Redundancy mode        - double
+
+  10.113.232.153:4501    ( 20% cpu; 27% machine; 0.151 Gbps; 80% disk IO; 2.8 GB / 7.2 GB RAM  )
+  10.113.232.153:4503    ( 22% cpu; 27% machine; 0.151 Gbps; 80% disk IO; 2.8 GB / 7.2 GB RAM  )
+  10.113.232.153:4505    ( 21% cpu; 27% machine; 0.151 Gbps; 80% disk IO; 2.8 GB / 7.2 GB RAM  )
+  10.113.232.153:4507    ( 19% cpu; 27% machine; 0.151 Gbps; 80% disk IO; 2.7 GB / 7.2 GB RAM  )
+  10.113.232.153:4509    ( 19% cpu; 27% machine; 0.151 Gbps; 80% disk IO; 2.7 GB / 7.2 GB RAM  )
+  10.113.232.153:4511    ( 23% cpu; 27% machine; 0.151 Gbps; 80% disk IO; 2.8 GB / 7.2 GB RAM  )
+  10.113.232.153:4513    ( 21% cpu; 27% machine; 0.151 Gbps; 80% disk IO; 2.8 GB / 7.2 GB RAM  )
+  10.113.232.153:4515    ( 22% cpu; 27% machine; 0.151 Gbps; 80% disk IO; 2.8 GB / 7.2 GB RAM  )
+  10.113.232.156:4501    ( 25% cpu; 30% machine; 0.151 Gbps; 73% disk IO; 2.8 GB / 7.1 GB RAM  )
+  10.113.232.156:4503    ( 22% cpu; 30% machine; 0.151 Gbps; 73% disk IO; 2.7 GB / 7.1 GB RAM  )
+
+Throughput (ops/sec): 344873
+Runtime (ms): 19379423
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 5894
+OperationCountRead: 20000000
+ErrorCountRead: 0
+SuccessCountRead: 20000000
+UnknownCountRead: 0
+AverageReadLatency: 3102
+95thPercentileReadLatency: 4583
+99thPercentileReadLatency: 7043
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 42
+99thPercentileUpdateLatency: 266
+95thPercentileInsertLatency: 9215
+99thPercentileInsertLatency: 11047
+
+---
+
+Running test 20_perf_tweaked_r_3
+
+---
+
+  Redundancy mode        - double
+
+  10.113.232.153:4501    ( 15% cpu; 21% machine; 0.108 Gbps; 57% disk IO; 2.8 GB / 7.2 GB RAM  )
+  10.113.232.153:4503    ( 16% cpu; 21% machine; 0.108 Gbps; 57% disk IO; 2.8 GB / 7.2 GB RAM  )
+  10.113.232.153:4505    ( 17% cpu; 21% machine; 0.108 Gbps; 57% disk IO; 2.8 GB / 7.2 GB RAM  )
+  10.113.232.153:4507    ( 16% cpu; 21% machine; 0.108 Gbps; 57% disk IO; 2.8 GB / 7.2 GB RAM  )
+  10.113.232.153:4509    ( 14% cpu; 21% machine; 0.108 Gbps; 57% disk IO; 2.8 GB / 7.2 GB RAM  )
+  10.113.232.153:4511    ( 16% cpu; 21% machine; 0.108 Gbps; 57% disk IO; 2.8 GB / 7.2 GB RAM  )
+  10.113.232.153:4513    ( 16% cpu; 21% machine; 0.108 Gbps; 57% disk IO; 2.8 GB / 7.2 GB RAM  )
+  10.113.232.153:4515    ( 16% cpu; 21% machine; 0.108 Gbps; 57% disk IO; 2.8 GB / 7.2 GB RAM  )
+  10.113.232.156:4501    ( 18% cpu; 22% machine; 0.108 Gbps; 51% disk IO; 2.8 GB / 7.1 GB RAM  )
+  10.113.232.156:4503    ( 17% cpu; 22% machine; 0.108 Gbps; 51% disk IO; 2.8 GB / 7.1 GB RAM  )
+

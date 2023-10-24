@@ -1,0 +1,775 @@
+
+ANCHOR: pod fdb-cluster-1-storage-1 in namespace dc1
+
+Time="1698104191.581096" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Started FoundationDB Process Monitor 7.1 (v7.1.26)
+Time="1698104191.581232" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104191.581242" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (2)
+Time="1698104191.581249" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104192.322449" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104192.322479" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104192.322485" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (4)
+Time="1698104192.322488" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104202.885138" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104202.885258" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104202.885278" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (6)
+Time="1698104202.885288" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.028407" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104228.028438" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.028444" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (8)
+Time="1698104228.028447" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.002320" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104252.002350" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.002357" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (10)
+Time="1698104252.002361" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.002567" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.1
+Time="1698104252.002745" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.2
+Time="1698104252.002858" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.3
+Time="1698104252.002974" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.4
+Time="1698104252.003100" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.5
+Time="1698104252.003252" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.6
+Time="1698104252.003408" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.7
+Time="1698104252.003568" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.8
+Time="1698104252.003906" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": Launching /usr/bin/fdbserver (16) for fdbserver.7
+Time="1698104252.003928" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": Launching /usr/bin/fdbserver (11) for fdbserver.2
+Time="1698104252.003934" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": Launching /usr/bin/fdbserver (10) for fdbserver.1
+Time="1698104252.003939" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": Launching /usr/bin/fdbserver (15) for fdbserver.6
+Time="1698104252.003952" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": Launching /usr/bin/fdbserver (12) for fdbserver.3
+Time="1698104252.003957" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": Launching /usr/bin/fdbserver (13) for fdbserver.4
+Time="1698104252.003962" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": Launching /usr/bin/fdbserver (14) for fdbserver.5
+Time="1698104252.013941" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": Launching /usr/bin/fdbserver (17) for fdbserver.8
+Time="1698104252.057086" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": FDBD joined cluster.
+Time="1698104252.057949" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": FDBD joined cluster.
+Time="1698104252.057960" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": FDBD joined cluster.
+Time="1698104252.057976" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": FDBD joined cluster.
+Time="1698104252.058187" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": FDBD joined cluster.
+Time="1698104252.058237" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": FDBD joined cluster.
+Time="1698104252.058361" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": FDBD joined cluster.
+Time="1698104252.076801" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": FDBD joined cluster.
+
+ANCHOR: pod fdb-cluster-1-storage-10 in namespace dc1
+
+Time="1698104191.926624" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Started FoundationDB Process Monitor 7.1 (v7.1.26)
+Time="1698104191.926753" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104191.926759" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (2)
+Time="1698104191.926766" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104192.609257" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104192.609292" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104192.609298" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (4)
+Time="1698104192.609301" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104202.917345" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104202.917377" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104202.917383" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (6)
+Time="1698104202.917386" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.062158" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104228.062191" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.062196" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (8)
+Time="1698104228.062199" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.037414" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104252.037446" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.037451" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (10)
+Time="1698104252.037453" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.037637" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.1
+Time="1698104252.037775" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.2
+Time="1698104252.037895" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.3
+Time="1698104252.038021" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.4
+Time="1698104252.038193" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.5
+Time="1698104252.038385" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.6
+Time="1698104252.038575" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.7
+Time="1698104252.038782" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.8
+Time="1698104252.039169" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": Launching /usr/bin/fdbserver (11) for fdbserver.2
+Time="1698104252.039199" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": Launching /usr/bin/fdbserver (10) for fdbserver.1
+Time="1698104252.039206" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": Launching /usr/bin/fdbserver (15) for fdbserver.6
+Time="1698104252.039211" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": Launching /usr/bin/fdbserver (12) for fdbserver.3
+Time="1698104252.039229" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": Launching /usr/bin/fdbserver (13) for fdbserver.4
+Time="1698104252.039235" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": Launching /usr/bin/fdbserver (14) for fdbserver.5
+Time="1698104252.049264" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": Launching /usr/bin/fdbserver (17) for fdbserver.8
+Time="1698104252.049280" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": Launching /usr/bin/fdbserver (16) for fdbserver.7
+Time="1698104252.055897" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": FDBD joined cluster.
+Time="1698104252.056779" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": FDBD joined cluster.
+Time="1698104252.057408" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": FDBD joined cluster.
+Time="1698104252.057706" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": FDBD joined cluster.
+Time="1698104252.058030" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": FDBD joined cluster.
+Time="1698104252.058720" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": FDBD joined cluster.
+Time="1698104252.058774" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": FDBD joined cluster.
+Time="1698104252.058848" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": FDBD joined cluster.
+
+ANCHOR: pod fdb-cluster-1-storage-11 in namespace dc1
+
+Time="1698104191.632966" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Started FoundationDB Process Monitor 7.1 (v7.1.26)
+Time="1698104191.633106" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104191.633113" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (2)
+Time="1698104191.633120" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104192.427911" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104192.427947" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104192.427952" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (4)
+Time="1698104192.427955" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104202.956756" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104202.956783" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104202.956789" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (6)
+Time="1698104202.956791" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.096908" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104228.096935" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.096940" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (8)
+Time="1698104228.096943" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.082784" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104252.082811" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.082817" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (10)
+Time="1698104252.082819" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.082978" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.1
+Time="1698104252.083169" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.2
+Time="1698104252.083289" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.3
+Time="1698104252.083403" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.4
+Time="1698104252.083532" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.5
+Time="1698104252.083680" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.6
+Time="1698104252.083838" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.7
+Time="1698104252.084005" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.8
+Time="1698104252.084330" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": Launching /usr/bin/fdbserver (11) for fdbserver.2
+Time="1698104252.084351" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": Launching /usr/bin/fdbserver (10) for fdbserver.1
+Time="1698104252.084355" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": Launching /usr/bin/fdbserver (15) for fdbserver.6
+Time="1698104252.084359" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": Launching /usr/bin/fdbserver (12) for fdbserver.3
+Time="1698104252.084372" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": Launching /usr/bin/fdbserver (13) for fdbserver.4
+Time="1698104252.084377" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": Launching /usr/bin/fdbserver (14) for fdbserver.5
+Time="1698104252.087159" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": Launching /usr/bin/fdbserver (17) for fdbserver.8
+Time="1698104252.087176" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": Launching /usr/bin/fdbserver (16) for fdbserver.7
+Time="1698104252.101492" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": FDBD joined cluster.
+Time="1698104252.102033" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": FDBD joined cluster.
+Time="1698104252.102654" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": FDBD joined cluster.
+Time="1698104252.103408" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": FDBD joined cluster.
+Time="1698104252.103677" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": FDBD joined cluster.
+Time="1698104252.104148" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": FDBD joined cluster.
+Time="1698104252.105320" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": FDBD joined cluster.
+Time="1698104252.105541" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": FDBD joined cluster.
+
+ANCHOR: pod fdb-cluster-1-storage-12 in namespace dc1
+
+Time="1698104208.639795" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Started FoundationDB Process Monitor 7.1 (v7.1.26)
+Time="1698104208.639915" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104208.639921" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (2)
+Time="1698104208.639928" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104209.381158" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104209.381193" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104209.381199" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (4)
+Time="1698104209.381201" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.130902" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104228.130933" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.130938" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (6)
+Time="1698104228.130941" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.116892" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104252.116923" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.116928" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (8)
+Time="1698104252.116931" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.117106" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.1
+Time="1698104252.117252" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.2
+Time="1698104252.117378" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.3
+Time="1698104252.117519" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.4
+Time="1698104252.117734" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.5
+Time="1698104252.117916" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.6
+Time="1698104252.118103" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.7
+Time="1698104252.118299" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.8
+Time="1698104252.118687" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": Launching /usr/bin/fdbserver (11) for fdbserver.2
+Time="1698104252.118715" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": Launching /usr/bin/fdbserver (10) for fdbserver.1
+Time="1698104252.118720" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": Launching /usr/bin/fdbserver (15) for fdbserver.6
+Time="1698104252.118725" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": Launching /usr/bin/fdbserver (12) for fdbserver.3
+Time="1698104252.118730" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": Launching /usr/bin/fdbserver (13) for fdbserver.4
+Time="1698104252.118735" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": Launching /usr/bin/fdbserver (14) for fdbserver.5
+Time="1698104252.128510" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": Launching /usr/bin/fdbserver (17) for fdbserver.8
+Time="1698104252.128537" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": Launching /usr/bin/fdbserver (16) for fdbserver.7
+Time="1698104252.136144" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": FDBD joined cluster.
+Time="1698104252.136597" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": FDBD joined cluster.
+Time="1698104252.136605" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": FDBD joined cluster.
+Time="1698104252.137110" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": FDBD joined cluster.
+Time="1698104252.137601" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": FDBD joined cluster.
+Time="1698104252.137695" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": FDBD joined cluster.
+Time="1698104252.139469" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": FDBD joined cluster.
+Time="1698104252.140920" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": FDBD joined cluster.
+
+ANCHOR: pod fdb-cluster-1-storage-13 in namespace dc1
+
+Time="1698104208.496994" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Started FoundationDB Process Monitor 7.1 (v7.1.26)
+Time="1698104208.497109" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104208.497115" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (2)
+Time="1698104208.497122" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104209.190757" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104209.190778" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104209.190782" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (4)
+Time="1698104209.190785" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.168315" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104228.168342" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.168346" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (6)
+Time="1698104228.168349" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.156664" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104252.156697" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.156703" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (8)
+Time="1698104252.156705" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.156851" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.1
+Time="1698104252.156978" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.2
+Time="1698104252.157086" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.3
+Time="1698104252.157192" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.4
+Time="1698104252.157319" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.5
+Time="1698104252.157478" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.6
+Time="1698104252.157634" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.7
+Time="1698104252.157793" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.8
+Time="1698104252.158101" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": Launching /usr/bin/fdbserver (16) for fdbserver.7
+Time="1698104252.158118" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": Launching /usr/bin/fdbserver (11) for fdbserver.2
+Time="1698104252.158122" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": Launching /usr/bin/fdbserver (10) for fdbserver.1
+Time="1698104252.158126" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": Launching /usr/bin/fdbserver (15) for fdbserver.6
+Time="1698104252.158129" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": Launching /usr/bin/fdbserver (12) for fdbserver.3
+Time="1698104252.158133" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": Launching /usr/bin/fdbserver (13) for fdbserver.4
+Time="1698104252.158137" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": Launching /usr/bin/fdbserver (14) for fdbserver.5
+Time="1698104252.167476" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": Launching /usr/bin/fdbserver (17) for fdbserver.8
+Time="1698104252.175238" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": FDBD joined cluster.
+Time="1698104252.175823" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": FDBD joined cluster.
+Time="1698104252.176835" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": FDBD joined cluster.
+Time="1698104252.177052" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": FDBD joined cluster.
+Time="1698104252.177776" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": FDBD joined cluster.
+Time="1698104252.177788" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": FDBD joined cluster.
+Time="1698104252.178732" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": FDBD joined cluster.
+Time="1698104252.179004" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": FDBD joined cluster.
+
+ANCHOR: pod fdb-cluster-1-storage-14 in namespace dc1
+
+Time="1698104217.241548" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Started FoundationDB Process Monitor 7.1 (v7.1.26)
+Time="1698104217.241707" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104217.241715" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (2)
+Time="1698104217.241725" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104218.004705" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104218.004756" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104218.004764" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (4)
+Time="1698104218.004776" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.206352" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104228.206382" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.206390" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (6)
+Time="1698104228.206393" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.195068" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104252.195097" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.195102" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (8)
+Time="1698104252.195105" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.195258" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.1
+Time="1698104252.195387" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.2
+Time="1698104252.195501" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.3
+Time="1698104252.195616" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.4
+Time="1698104252.195758" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.5
+Time="1698104252.195912" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.6
+Time="1698104252.196065" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.7
+Time="1698104252.196221" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.8
+Time="1698104252.196531" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": Launching /usr/bin/fdbserver (16) for fdbserver.7
+Time="1698104252.196552" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": Launching /usr/bin/fdbserver (11) for fdbserver.2
+Time="1698104252.196557" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": Launching /usr/bin/fdbserver (10) for fdbserver.1
+Time="1698104252.196561" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": Launching /usr/bin/fdbserver (15) for fdbserver.6
+Time="1698104252.196566" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": Launching /usr/bin/fdbserver (12) for fdbserver.3
+Time="1698104252.196570" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": Launching /usr/bin/fdbserver (13) for fdbserver.4
+Time="1698104252.196575" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": Launching /usr/bin/fdbserver (14) for fdbserver.5
+Time="1698104252.199408" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": Launching /usr/bin/fdbserver (17) for fdbserver.8
+Time="1698104252.214091" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": FDBD joined cluster.
+Time="1698104252.214279" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": FDBD joined cluster.
+Time="1698104252.214768" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": FDBD joined cluster.
+Time="1698104252.214781" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": FDBD joined cluster.
+Time="1698104252.215010" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": FDBD joined cluster.
+Time="1698104252.215185" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": FDBD joined cluster.
+Time="1698104252.215476" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": FDBD joined cluster.
+Time="1698104252.216640" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": FDBD joined cluster.
+
+ANCHOR: pod fdb-cluster-1-storage-15 in namespace dc1
+
+Time="1698104217.261376" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Started FoundationDB Process Monitor 7.1 (v7.1.26)
+Time="1698104217.261497" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104217.261503" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (2)
+Time="1698104217.261510" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104218.117962" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104218.118024" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104218.118029" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (4)
+Time="1698104218.118032" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.242572" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104228.242599" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.242605" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (6)
+Time="1698104228.242607" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.238668" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104252.238697" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.238702" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (8)
+Time="1698104252.238704" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.238882" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.1
+Time="1698104252.239028" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.2
+Time="1698104252.239141" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.3
+Time="1698104252.239259" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.4
+Time="1698104252.239383" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.5
+Time="1698104252.239528" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.6
+Time="1698104252.239687" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.7
+Time="1698104252.239854" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.8
+Time="1698104252.240173" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": Launching /usr/bin/fdbserver (16) for fdbserver.7
+Time="1698104252.240199" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": Launching /usr/bin/fdbserver (11) for fdbserver.2
+Time="1698104252.240204" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": Launching /usr/bin/fdbserver (10) for fdbserver.1
+Time="1698104252.240209" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": Launching /usr/bin/fdbserver (15) for fdbserver.6
+Time="1698104252.240214" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": Launching /usr/bin/fdbserver (12) for fdbserver.3
+Time="1698104252.240218" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": Launching /usr/bin/fdbserver (13) for fdbserver.4
+Time="1698104252.240223" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": Launching /usr/bin/fdbserver (14) for fdbserver.5
+Time="1698104252.250042" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": Launching /usr/bin/fdbserver (17) for fdbserver.8
+Time="1698104252.260665" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": FDBD joined cluster.
+Time="1698104252.261692" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": FDBD joined cluster.
+Time="1698104252.262030" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": FDBD joined cluster.
+Time="1698104252.262203" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": FDBD joined cluster.
+Time="1698104252.262611" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": FDBD joined cluster.
+Time="1698104252.263242" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": FDBD joined cluster.
+Time="1698104252.263918" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": FDBD joined cluster.
+Time="1698104252.264228" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": FDBD joined cluster.
+
+ANCHOR: pod fdb-cluster-1-storage-16 in namespace dc1
+
+Time="1698104216.984462" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Started FoundationDB Process Monitor 7.1 (v7.1.26)
+Time="1698104216.984587" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104216.984593" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (2)
+Time="1698104216.984599" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104217.701001" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104217.701039" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104217.701044" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (4)
+Time="1698104217.701047" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.280591" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104228.280627" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.280634" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (6)
+Time="1698104228.280639" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.280996" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104252.281028" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.281035" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (8)
+Time="1698104252.281039" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.281339" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.1
+Time="1698104252.281496" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.2
+Time="1698104252.281626" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.3
+Time="1698104252.281752" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.4
+Time="1698104252.281905" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.5
+Time="1698104252.282075" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.6
+Time="1698104252.282258" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.7
+Time="1698104252.282450" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.8
+Time="1698104252.282780" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": Launching /usr/bin/fdbserver (11) for fdbserver.2
+Time="1698104252.282797" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": Launching /usr/bin/fdbserver (10) for fdbserver.1
+Time="1698104252.282801" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": Launching /usr/bin/fdbserver (15) for fdbserver.6
+Time="1698104252.282805" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": Launching /usr/bin/fdbserver (12) for fdbserver.3
+Time="1698104252.282809" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": Launching /usr/bin/fdbserver (13) for fdbserver.4
+Time="1698104252.282813" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": Launching /usr/bin/fdbserver (14) for fdbserver.5
+Time="1698104252.282963" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": Launching /usr/bin/fdbserver (16) for fdbserver.7
+Time="1698104252.291968" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": Launching /usr/bin/fdbserver (17) for fdbserver.8
+Time="1698104252.300194" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": FDBD joined cluster.
+Time="1698104252.300334" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": FDBD joined cluster.
+Time="1698104252.300583" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": FDBD joined cluster.
+Time="1698104252.300799" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": FDBD joined cluster.
+Time="1698104252.300802" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": FDBD joined cluster.
+Time="1698104252.302406" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": FDBD joined cluster.
+Time="1698104252.302867" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": FDBD joined cluster.
+Time="1698104252.303963" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": FDBD joined cluster.
+
+ANCHOR: pod fdb-cluster-1-storage-17 in namespace dc1
+
+Time="1698104216.868683" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Started FoundationDB Process Monitor 7.1 (v7.1.26)
+Time="1698104216.868803" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104216.868809" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (2)
+Time="1698104216.868816" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104217.599957" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104217.599996" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104217.600002" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (4)
+Time="1698104217.600005" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.314555" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104228.314584" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.314593" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (6)
+Time="1698104228.314596" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.320462" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104252.320494" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.320502" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (8)
+Time="1698104252.320507" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.320749" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.1
+Time="1698104252.320931" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.2
+Time="1698104252.321065" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.3
+Time="1698104252.321233" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.4
+Time="1698104252.321393" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.5
+Time="1698104252.321572" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.6
+Time="1698104252.321759" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.7
+Time="1698104252.321948" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.8
+Time="1698104252.322364" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": Launching /usr/bin/fdbserver (11) for fdbserver.2
+Time="1698104252.322394" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": Launching /usr/bin/fdbserver (10) for fdbserver.1
+Time="1698104252.322400" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": Launching /usr/bin/fdbserver (15) for fdbserver.6
+Time="1698104252.322405" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": Launching /usr/bin/fdbserver (12) for fdbserver.3
+Time="1698104252.322410" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": Launching /usr/bin/fdbserver (13) for fdbserver.4
+Time="1698104252.322415" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": Launching /usr/bin/fdbserver (14) for fdbserver.5
+Time="1698104252.332554" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": Launching /usr/bin/fdbserver (17) for fdbserver.8
+Time="1698104252.332574" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": Launching /usr/bin/fdbserver (16) for fdbserver.7
+Time="1698104252.341018" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": FDBD joined cluster.
+Time="1698104252.341531" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": FDBD joined cluster.
+Time="1698104252.341672" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": FDBD joined cluster.
+Time="1698104252.341846" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": FDBD joined cluster.
+Time="1698104252.341936" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": FDBD joined cluster.
+Time="1698104252.342102" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": FDBD joined cluster.
+Time="1698104252.343852" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": FDBD joined cluster.
+Time="1698104252.344740" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": FDBD joined cluster.
+
+ANCHOR: pod fdb-cluster-1-storage-2 in namespace dc1
+
+Time="1698104191.855889" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Started FoundationDB Process Monitor 7.1 (v7.1.26)
+Time="1698104191.856051" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104191.856058" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (2)
+Time="1698104191.856066" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104192.530173" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104192.530206" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104192.530212" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (4)
+Time="1698104192.530215" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104203.104454" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104203.104492" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104203.104501" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (6)
+Time="1698104203.104504" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.349073" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104228.349104" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.349112" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (8)
+Time="1698104228.349116" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.354000" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104252.354027" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.354033" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (10)
+Time="1698104252.354035" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.354186" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.1
+Time="1698104252.354317" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.2
+Time="1698104252.354423" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.3
+Time="1698104252.354561" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.4
+Time="1698104252.354696" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.5
+Time="1698104252.354850" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.6
+Time="1698104252.355019" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.7
+Time="1698104252.355264" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.8
+Time="1698104252.355731" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": Launching /usr/bin/fdbserver (16) for fdbserver.7
+Time="1698104252.355760" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": Launching /usr/bin/fdbserver (11) for fdbserver.2
+Time="1698104252.355765" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": Launching /usr/bin/fdbserver (10) for fdbserver.1
+Time="1698104252.355769" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": Launching /usr/bin/fdbserver (15) for fdbserver.6
+Time="1698104252.355781" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": Launching /usr/bin/fdbserver (12) for fdbserver.3
+Time="1698104252.355786" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": Launching /usr/bin/fdbserver (13) for fdbserver.4
+Time="1698104252.355790" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": Launching /usr/bin/fdbserver (14) for fdbserver.5
+Time="1698104252.365752" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": Launching /usr/bin/fdbserver (17) for fdbserver.8
+Time="1698104252.373243" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": FDBD joined cluster.
+Time="1698104252.373444" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": FDBD joined cluster.
+Time="1698104252.373851" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": FDBD joined cluster.
+Time="1698104252.373856" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": FDBD joined cluster.
+Time="1698104252.375123" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": FDBD joined cluster.
+Time="1698104252.375862" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": FDBD joined cluster.
+Time="1698104252.376599" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": FDBD joined cluster.
+Time="1698104252.377155" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": FDBD joined cluster.
+
+ANCHOR: pod fdb-cluster-1-storage-3 in namespace dc1
+
+Time="1698104191.536111" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Started FoundationDB Process Monitor 7.1 (v7.1.26)
+Time="1698104191.536253" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104191.536260" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (2)
+Time="1698104191.536267" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104192.240499" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104192.240532" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104192.240538" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (4)
+Time="1698104192.240540" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104203.136487" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104203.136516" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104203.136522" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (6)
+Time="1698104203.136524" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.382269" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104228.382299" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.382304" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (8)
+Time="1698104228.382307" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.388406" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104252.388435" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.388441" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (10)
+Time="1698104252.388443" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.388592" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.1
+Time="1698104252.388725" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.2
+Time="1698104252.388833" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.3
+Time="1698104252.388951" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.4
+Time="1698104252.389080" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.5
+Time="1698104252.389275" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.6
+Time="1698104252.389474" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.7
+Time="1698104252.389661" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.8
+Time="1698104252.390027" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": Launching /usr/bin/fdbserver (11) for fdbserver.2
+Time="1698104252.390049" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": Launching /usr/bin/fdbserver (10) for fdbserver.1
+Time="1698104252.390056" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": Launching /usr/bin/fdbserver (15) for fdbserver.6
+Time="1698104252.390062" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": Launching /usr/bin/fdbserver (12) for fdbserver.3
+Time="1698104252.390079" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": Launching /usr/bin/fdbserver (13) for fdbserver.4
+Time="1698104252.390084" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": Launching /usr/bin/fdbserver (14) for fdbserver.5
+Time="1698104252.396241" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": Launching /usr/bin/fdbserver (17) for fdbserver.8
+Time="1698104252.396262" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": Launching /usr/bin/fdbserver (16) for fdbserver.7
+Time="1698104252.406409" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": FDBD joined cluster.
+Time="1698104252.406480" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": FDBD joined cluster.
+Time="1698104252.407500" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": FDBD joined cluster.
+Time="1698104252.407845" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": FDBD joined cluster.
+Time="1698104252.408003" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": FDBD joined cluster.
+Time="1698104252.408546" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": FDBD joined cluster.
+Time="1698104252.408745" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": FDBD joined cluster.
+Time="1698104252.409943" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": FDBD joined cluster.
+
+ANCHOR: pod fdb-cluster-1-storage-4 in namespace dc1
+
+Time="1698104191.768517" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Started FoundationDB Process Monitor 7.1 (v7.1.26)
+Time="1698104191.768636" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104191.768643" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (2)
+Time="1698104191.768654" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104192.469579" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104192.469613" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104192.469618" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (4)
+Time="1698104192.469621" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104203.192078" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104203.192115" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104203.192123" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (6)
+Time="1698104203.192128" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.424647" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104228.424680" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.424686" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (8)
+Time="1698104228.424689" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.434280" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104252.434304" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.434310" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (10)
+Time="1698104252.434312" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.434463" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.1
+Time="1698104252.434593" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.2
+Time="1698104252.434710" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.3
+Time="1698104252.434825" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.4
+Time="1698104252.435005" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.5
+Time="1698104252.435194" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.6
+Time="1698104252.435391" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.7
+Time="1698104252.435586" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.8
+Time="1698104252.435979" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": Launching /usr/bin/fdbserver (16) for fdbserver.7
+Time="1698104252.436005" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": Launching /usr/bin/fdbserver (11) for fdbserver.2
+Time="1698104252.436010" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": Launching /usr/bin/fdbserver (10) for fdbserver.1
+Time="1698104252.436015" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": Launching /usr/bin/fdbserver (15) for fdbserver.6
+Time="1698104252.436028" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": Launching /usr/bin/fdbserver (12) for fdbserver.3
+Time="1698104252.436033" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": Launching /usr/bin/fdbserver (13) for fdbserver.4
+Time="1698104252.436038" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": Launching /usr/bin/fdbserver (14) for fdbserver.5
+Time="1698104252.443494" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": Launching /usr/bin/fdbserver (17) for fdbserver.8
+Time="1698104252.454570" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": FDBD joined cluster.
+Time="1698104252.454672" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": FDBD joined cluster.
+Time="1698104252.454678" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": FDBD joined cluster.
+Time="1698104252.454683" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": FDBD joined cluster.
+Time="1698104252.454929" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": FDBD joined cluster.
+Time="1698104252.455111" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": FDBD joined cluster.
+Time="1698104252.456049" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": FDBD joined cluster.
+Time="1698104252.456668" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": FDBD joined cluster.
+
+ANCHOR: pod fdb-cluster-1-storage-5 in namespace dc1
+
+Time="1698104192.179263" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Started FoundationDB Process Monitor 7.1 (v7.1.26)
+Time="1698104192.179387" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104192.179393" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (2)
+Time="1698104192.179400" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104192.953940" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104192.953999" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104192.954005" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (4)
+Time="1698104192.954008" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104203.229425" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104203.229451" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104203.229457" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (6)
+Time="1698104203.229460" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.455698" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104228.455723" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.455728" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (8)
+Time="1698104228.455731" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.483325" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104252.483352" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.483358" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (10)
+Time="1698104252.483360" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.483510" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.1
+Time="1698104252.483639" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.2
+Time="1698104252.483758" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.3
+Time="1698104252.483866" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.4
+Time="1698104252.484008" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.5
+Time="1698104252.484163" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.6
+Time="1698104252.484323" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.7
+Time="1698104252.484484" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.8
+Time="1698104252.484800" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": Launching /usr/bin/fdbserver (11) for fdbserver.2
+Time="1698104252.484817" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": Launching /usr/bin/fdbserver (10) for fdbserver.1
+Time="1698104252.484822" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": Launching /usr/bin/fdbserver (15) for fdbserver.6
+Time="1698104252.484826" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": Launching /usr/bin/fdbserver (12) for fdbserver.3
+Time="1698104252.484836" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": Launching /usr/bin/fdbserver (13) for fdbserver.4
+Time="1698104252.484840" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": Launching /usr/bin/fdbserver (14) for fdbserver.5
+Time="1698104252.484850" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": Launching /usr/bin/fdbserver (16) for fdbserver.7
+Time="1698104252.494890" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": Launching /usr/bin/fdbserver (17) for fdbserver.8
+Time="1698104252.502725" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": FDBD joined cluster.
+Time="1698104252.503243" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": FDBD joined cluster.
+Time="1698104252.503464" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": FDBD joined cluster.
+Time="1698104252.503760" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": FDBD joined cluster.
+Time="1698104252.503827" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": FDBD joined cluster.
+Time="1698104252.505453" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": FDBD joined cluster.
+Time="1698104252.505680" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": FDBD joined cluster.
+Time="1698104252.505776" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": FDBD joined cluster.
+
+ANCHOR: pod fdb-cluster-1-storage-6 in namespace dc1
+
+Time="1698104191.882742" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Started FoundationDB Process Monitor 7.1 (v7.1.26)
+Time="1698104191.882869" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104191.882874" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (2)
+Time="1698104191.882881" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104192.651897" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104192.651935" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104192.651941" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (4)
+Time="1698104192.651944" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104203.261826" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104203.261863" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104203.261869" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (6)
+Time="1698104203.261872" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.491233" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104228.491260" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.491266" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (8)
+Time="1698104228.491269" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.535529" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104252.535559" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.535566" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (10)
+Time="1698104252.535569" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.535780" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.1
+Time="1698104252.535926" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.2
+Time="1698104252.536056" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.3
+Time="1698104252.536187" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.4
+Time="1698104252.536333" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.5
+Time="1698104252.536513" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.6
+Time="1698104252.536715" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.7
+Time="1698104252.536915" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.8
+Time="1698104252.537283" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": Launching /usr/bin/fdbserver (17) for fdbserver.8
+Time="1698104252.537299" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": Launching /usr/bin/fdbserver (11) for fdbserver.2
+Time="1698104252.537304" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": Launching /usr/bin/fdbserver (10) for fdbserver.1
+Time="1698104252.537309" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": Launching /usr/bin/fdbserver (15) for fdbserver.6
+Time="1698104252.537322" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": Launching /usr/bin/fdbserver (12) for fdbserver.3
+Time="1698104252.537327" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": Launching /usr/bin/fdbserver (13) for fdbserver.4
+Time="1698104252.537333" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": Launching /usr/bin/fdbserver (14) for fdbserver.5
+Time="1698104252.547027" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": Launching /usr/bin/fdbserver (16) for fdbserver.7
+Time="1698104252.555418" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": FDBD joined cluster.
+Time="1698104252.555440" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": FDBD joined cluster.
+Time="1698104252.555607" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": FDBD joined cluster.
+Time="1698104252.555722" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": FDBD joined cluster.
+Time="1698104252.556643" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": FDBD joined cluster.
+Time="1698104252.557502" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": FDBD joined cluster.
+Time="1698104252.557852" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": FDBD joined cluster.
+Time="1698104252.558324" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": FDBD joined cluster.
+
+ANCHOR: pod fdb-cluster-1-storage-7 in namespace dc1
+
+Time="1698104192.334066" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Started FoundationDB Process Monitor 7.1 (v7.1.26)
+Time="1698104192.334206" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104192.334213" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (2)
+Time="1698104192.334221" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104193.033999" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104193.034031" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104193.034037" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (4)
+Time="1698104193.034040" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104203.297571" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104203.297606" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104203.297615" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (6)
+Time="1698104203.297620" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.522492" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104228.522519" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.522526" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (8)
+Time="1698104228.522529" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.577382" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104252.577410" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.577416" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (10)
+Time="1698104252.577419" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.577583" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.1
+Time="1698104252.577715" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.2
+Time="1698104252.577827" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.3
+Time="1698104252.577938" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.4
+Time="1698104252.578068" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.5
+Time="1698104252.578228" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.6
+Time="1698104252.578405" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.7
+Time="1698104252.578570" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.8
+Time="1698104252.578895" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": Launching /usr/bin/fdbserver (16) for fdbserver.7
+Time="1698104252.578916" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": Launching /usr/bin/fdbserver (11) for fdbserver.2
+Time="1698104252.578922" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": Launching /usr/bin/fdbserver (10) for fdbserver.1
+Time="1698104252.578927" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": Launching /usr/bin/fdbserver (15) for fdbserver.6
+Time="1698104252.578951" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": Launching /usr/bin/fdbserver (12) for fdbserver.3
+Time="1698104252.578957" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": Launching /usr/bin/fdbserver (13) for fdbserver.4
+Time="1698104252.578962" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": Launching /usr/bin/fdbserver (14) for fdbserver.5
+Time="1698104252.588864" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": Launching /usr/bin/fdbserver (17) for fdbserver.8
+Time="1698104252.597215" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": FDBD joined cluster.
+Time="1698104252.598414" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": FDBD joined cluster.
+Time="1698104252.598440" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": FDBD joined cluster.
+Time="1698104252.600092" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": FDBD joined cluster.
+Time="1698104252.600120" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": FDBD joined cluster.
+Time="1698104252.600715" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": FDBD joined cluster.
+Time="1698104252.601035" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": FDBD joined cluster.
+Time="1698104252.601072" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": FDBD joined cluster.
+
+ANCHOR: pod fdb-cluster-1-storage-8 in namespace dc1
+
+Time="1698104191.528017" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Started FoundationDB Process Monitor 7.1 (v7.1.26)
+Time="1698104191.528136" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104191.528141" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (2)
+Time="1698104191.528148" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104192.226344" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104192.226386" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104192.226391" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (4)
+Time="1698104192.226393" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104203.332536" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104203.332567" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104203.332573" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (6)
+Time="1698104203.332576" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.562979" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104228.563007" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.563013" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (8)
+Time="1698104228.563015" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.614441" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104252.614469" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.614474" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (10)
+Time="1698104252.614476" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.614642" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.1
+Time="1698104252.614792" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.2
+Time="1698104252.614900" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.3
+Time="1698104252.615009" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.4
+Time="1698104252.615140" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.5
+Time="1698104252.615292" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.6
+Time="1698104252.615450" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.7
+Time="1698104252.615613" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.8
+Time="1698104252.615938" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": Launching /usr/bin/fdbserver (16) for fdbserver.7
+Time="1698104252.615964" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": Launching /usr/bin/fdbserver (11) for fdbserver.2
+Time="1698104252.615970" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": Launching /usr/bin/fdbserver (10) for fdbserver.1
+Time="1698104252.615975" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": Launching /usr/bin/fdbserver (15) for fdbserver.6
+Time="1698104252.615989" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": Launching /usr/bin/fdbserver (12) for fdbserver.3
+Time="1698104252.615994" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": Launching /usr/bin/fdbserver (13) for fdbserver.4
+Time="1698104252.615999" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": Launching /usr/bin/fdbserver (14) for fdbserver.5
+Time="1698104252.624730" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": Launching /usr/bin/fdbserver (17) for fdbserver.8
+Time="1698104252.633284" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": FDBD joined cluster.
+Time="1698104252.633823" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": FDBD joined cluster.
+Time="1698104252.634142" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": FDBD joined cluster.
+Time="1698104252.634647" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": FDBD joined cluster.
+Time="1698104252.635911" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": FDBD joined cluster.
+Time="1698104252.636127" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": FDBD joined cluster.
+Time="1698104252.639853" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": FDBD joined cluster.
+Time="1698104252.641576" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": FDBD joined cluster.
+
+ANCHOR: pod fdb-cluster-1-storage-9 in namespace dc1
+
+Time="1698104191.511759" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Started FoundationDB Process Monitor 7.1 (v7.1.26)
+Time="1698104191.511884" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104191.511890" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (2)
+Time="1698104191.511897" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104192.265936" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104192.265968" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104192.265973" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (4)
+Time="1698104192.265975" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104203.387946" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104203.387974" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104203.387980" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (6)
+Time="1698104203.387983" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.598264" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104228.598297" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104228.598304" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (8)
+Time="1698104228.598309" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.664992" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Could not remove inotify conf file watch, continuing...
+Time="1698104252.665028" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf file /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.665036" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Watching conf dir /var/dynamic-conf/ (10)
+Time="1698104252.665041" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Loading configuration /var/dynamic-conf/fdbmonitor.conf
+Time="1698104252.665273" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.1
+Time="1698104252.665425" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.2
+Time="1698104252.665555" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.3
+Time="1698104252.665714" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.4
+Time="1698104252.665862" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.5
+Time="1698104252.666035" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.6
+Time="1698104252.666227" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.7
+Time="1698104252.666410" Severity="10" LogGroup="fdb-cluster-1" Process="fdbmonitor": Starting fdbserver.8
+Time="1698104252.666725" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": Launching /usr/bin/fdbserver (11) for fdbserver.2
+Time="1698104252.666748" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": Launching /usr/bin/fdbserver (10) for fdbserver.1
+Time="1698104252.666754" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": Launching /usr/bin/fdbserver (15) for fdbserver.6
+Time="1698104252.666760" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": Launching /usr/bin/fdbserver (12) for fdbserver.3
+Time="1698104252.666775" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": Launching /usr/bin/fdbserver (13) for fdbserver.4
+Time="1698104252.666779" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": Launching /usr/bin/fdbserver (14) for fdbserver.5
+Time="1698104252.675699" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": Launching /usr/bin/fdbserver (17) for fdbserver.8
+Time="1698104252.675721" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": Launching /usr/bin/fdbserver (16) for fdbserver.7
+Time="1698104252.683945" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.5": FDBD joined cluster.
+Time="1698104252.683962" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.7": FDBD joined cluster.
+Time="1698104252.683966" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.3": FDBD joined cluster.
+Time="1698104252.684633" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.6": FDBD joined cluster.
+Time="1698104252.684715" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.4": FDBD joined cluster.
+Time="1698104252.685257" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.2": FDBD joined cluster.
+Time="1698104252.686193" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.8": FDBD joined cluster.
+Time="1698104252.687302" Severity="10" LogGroup="fdb-cluster-1" Process="fdbserver.1": FDBD joined cluster.
