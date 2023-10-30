@@ -3,7 +3,7 @@ FROM registry.redhat.io/ubi8/openjdk-11:latest
 USER root
 # need to install python2.7 for ycsb
 RUN \
-    microdnf install -y git-core wget tar python2 && \
+    microdnf install -y git-core wget tar python2 procps-ng && \
     microdnf clean all && \
     ln -sf /usr/bin/python2.7 /usr/bin/python
 

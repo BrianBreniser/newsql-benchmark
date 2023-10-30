@@ -34,8 +34,8 @@ while true; do
         notify-send "All pods started"
         checkAllStarted="false"
         notify-send "Waiting 2 minutes for pods to warm up"
-        echo "Waiting 2 minutes for pods to warm up"
-        sleep 120
+        echo "Waiting 10 seconds for pods to warm up"
+        sleep 10
         notify-send "Collecting metrics from fdbcli"
         echo "Collecting metrics from fdbcli"
         #fdb exec -c fdb-cluster-1 -- fdbcli --exec "status details" | rg Redundancy >> results.txt
@@ -57,12 +57,12 @@ while true; do
     fi
 
     # Needs to run last, because of the 'continue' statement that skips the rest of the loop
-    # If 5 minutes have passed, then collect latency metrics
+    # If 30 seconds have passed, then collect latency metrics
     current_time=$(date +%s)
-    if (( current_time > start_time + 150 )); then
+    if (( current_time > start_time + 120 )); then
         if [[ "$gatherLatencyMetrics" == "true" ]]; then
-            echo "5 minutes have passed, saving latency probe and grv_latency metrics into results.txt"
-            notify-send "5 minutes have passed, saving latency probe and grv_latency metrics into results.txt"
+            echo "2 minutes have passed, saving latency probe and grv_latency metrics into results.txt"
+            notify-send "2 minutes have passed, saving latency probe and grv_latency metrics into results.txt"
 
             echo "latency probes after 5 minutes of running" >> results.txt
             echo "" >> results.txt
