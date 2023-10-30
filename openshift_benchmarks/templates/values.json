@@ -21,6 +21,7 @@
     },
     "localstorage": {},
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 1,
       "num_keys": 10000,
       "process_per_host": 1,
@@ -53,6 +54,7 @@
     },
     "localstorage": {},
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 20,
       "num_keys": 1000000,
       "process_per_host": 2,
@@ -78,6 +80,7 @@
       "storageServersPerPod": 7
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 20,
       "num_keys": 10000000,
       "process_per_host": 2,
@@ -110,6 +113,7 @@
       "storageServersPerPod": 7
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 20,
       "num_keys": 1000000000,
       "process_per_host": 2,
@@ -143,6 +147,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 20,
       "num_keys": 20000000,
       "process_per_host": 8,
@@ -178,6 +183,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_load_cmd",
       "replicas": 20,
       "num_keys": 1000000000,
       "process_per_host": 8,
@@ -214,6 +220,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 20,
       "num_keys": 1000000000,
       "process_per_host": 8,
@@ -257,6 +264,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_load_cmd",
       "replicas": 10,
       "num_keys": 100000000,
       "process_per_host": 8,
@@ -289,6 +297,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 10,
       "num_keys": 100000000,
       "process_per_host": 8,
@@ -321,6 +330,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 10,
       "num_keys": 100000000,
       "process_per_host": 16,
@@ -353,6 +363,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 10,
       "num_keys": 100000000,
       "process_per_host": 32,
@@ -385,6 +396,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 20,
       "num_keys": 100000000,
       "process_per_host": 16,
@@ -417,6 +429,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 20,
       "num_keys": 100000000,
       "process_per_host": 8,
@@ -449,11 +462,278 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 20,
       "num_keys": 100000000,
       "process_per_host": 16,
       "threads_per_process": 32,
       "batch_size": 100,
+      "update_proportion": 0.0,
+      "read_proportion": 1.0,
+      "max_execution_time_seconds": 200000
+    },
+    "machineset": {
+      "name": "extra-machines-for-fdb",
+      "replicas": 3,
+      "disksizegb": 15,
+      "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+    },
+    "localstorage": {}
+  },
+
+
+  "new_perf_tweaked_w_1": {
+    "fdb": {
+      "name": "fdb-cluster",
+      "namespace": "dc1",
+      "cluster_controller": 1,
+      "storage": 17,
+      "log": 2,
+      "stateless": 4,
+      "volume_claim_storage": "64G",
+      "hostNetwork": "true",
+      "headlessService": "true",
+      "publicIPSource": "pod",
+      "storageServersPerPod": 8
+    },
+    "ycsb-statefulset": {
+      "ycsb_load_or_run": "ycsb_load_cmd",
+      "replicas": 20,
+      "num_keys": 100000000,
+      "process_per_host": 16,
+      "threads_per_process": 32,
+      "batch_size": 100,
+      "update_proportion": 1.0,
+      "read_proportion": 0.0,
+      "max_execution_time_seconds": 200000
+    },
+    "machineset": {
+      "name": "extra-machines-for-fdb",
+      "replicas": 3,
+      "disksizegb": 15,
+      "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+    },
+    "localstorage": {}
+  },
+  "new_perf_tweaked_r_1": {
+    "fdb": {
+      "name": "fdb-cluster",
+      "namespace": "dc1",
+      "cluster_controller": 1,
+      "storage": 17,
+      "log": 2,
+      "stateless": 4,
+      "volume_claim_storage": "64G",
+      "hostNetwork": "true",
+      "headlessService": "true",
+      "publicIPSource": "pod",
+      "storageServersPerPod": 8
+    },
+    "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
+      "replicas": 20,
+      "num_keys": 100000000,
+      "process_per_host": 8,
+      "threads_per_process": 32,
+      "batch_size": 100,
+      "update_proportion": 0.0,
+      "read_proportion": 1.0,
+      "max_execution_time_seconds": 200000
+    },
+    "machineset": {
+      "name": "extra-machines-for-fdb",
+      "replicas": 3,
+      "disksizegb": 15,
+      "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+    },
+    "localstorage": {}
+  },
+  "new_perf_tweaked_r_2": {
+    "fdb": {
+      "name": "fdb-cluster",
+      "namespace": "dc1",
+      "cluster_controller": 1,
+      "storage": 17,
+      "log": 2,
+      "stateless": 4,
+      "volume_claim_storage": "64G",
+      "hostNetwork": "true",
+      "headlessService": "true",
+      "publicIPSource": "pod",
+      "storageServersPerPod": 8
+    },
+    "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
+      "replicas": 20,
+      "num_keys": 100000000,
+      "process_per_host": 16,
+      "threads_per_process": 32,
+      "batch_size": 100,
+      "update_proportion": 0.0,
+      "read_proportion": 1.0,
+      "max_execution_time_seconds": 200000
+    },
+    "machineset": {
+      "name": "extra-machines-for-fdb",
+      "replicas": 3,
+      "disksizegb": 15,
+      "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+    },
+    "localstorage": {}
+  },
+  "new_perf_tweaked_r_3": {
+    "fdb": {
+      "name": "fdb-cluster",
+      "namespace": "dc1",
+      "cluster_controller": 1,
+      "storage": 17,
+      "log": 2,
+      "stateless": 4,
+      "volume_claim_storage": "64G",
+      "hostNetwork": "true",
+      "headlessService": "true",
+      "publicIPSource": "pod",
+      "storageServersPerPod": 8
+    },
+    "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
+      "replicas": 20,
+      "num_keys": 100000000,
+      "process_per_host": 16,
+      "threads_per_process": 32,
+      "batch_size": 100,
+      "update_proportion": 0.0,
+      "read_proportion": 1.0,
+      "max_execution_time_seconds": 200000
+    },
+    "machineset": {
+      "name": "extra-machines-for-fdb",
+      "replicas": 3,
+      "disksizegb": 15,
+      "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+    },
+    "localstorage": {}
+  },
+  "new_perf_tweaked_r_4": {
+    "fdb": {
+      "name": "fdb-cluster",
+      "namespace": "dc1",
+      "cluster_controller": 1,
+      "storage": 17,
+      "log": 2,
+      "stateless": 4,
+      "volume_claim_storage": "64G",
+      "hostNetwork": "true",
+      "headlessService": "true",
+      "publicIPSource": "pod",
+      "storageServersPerPod": 8
+    },
+    "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
+      "replicas": 20,
+      "num_keys": 100000000,
+      "process_per_host": 8,
+      "threads_per_process": 32,
+      "batch_size": 200,
+      "update_proportion": 0.0,
+      "read_proportion": 1.0,
+      "max_execution_time_seconds": 200000
+    },
+    "machineset": {
+      "name": "extra-machines-for-fdb",
+      "replicas": 3,
+      "disksizegb": 15,
+      "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+    },
+    "localstorage": {}
+  },
+  "new_perf_tweaked_r_5": {
+    "fdb": {
+      "name": "fdb-cluster",
+      "namespace": "dc1",
+      "cluster_controller": 1,
+      "storage": 17,
+      "log": 2,
+      "stateless": 4,
+      "volume_claim_storage": "64G",
+      "hostNetwork": "true",
+      "headlessService": "true",
+      "publicIPSource": "pod",
+      "storageServersPerPod": 8
+    },
+    "ycsb-statefulset": {
+      "ycsb_load_or_run": "ycsb_run_cmd",
+      "replicas": 20,
+      "num_keys": 500000000,
+      "process_per_host": 8,
+      "threads_per_process": 32,
+      "batch_size": 200,
+      "update_proportion": 0.0,
+      "read_proportion": 1.0,
+      "max_execution_time_seconds": 200000
+    },
+    "machineset": {
+      "name": "extra-machines-for-fdb",
+      "replicas": 3,
+      "disksizegb": 15,
+      "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+    },
+    "localstorage": {}
+  },
+  "new_perf_tweaked_r_6": {
+    "fdb": {
+      "name": "fdb-cluster",
+      "namespace": "dc1",
+      "cluster_controller": 1,
+      "storage": 17,
+      "log": 2,
+      "stateless": 4,
+      "volume_claim_storage": "64G",
+      "hostNetwork": "true",
+      "headlessService": "true",
+      "publicIPSource": "pod",
+      "storageServersPerPod": 8
+    },
+    "ycsb-statefulset": {
+      "ycsb_load_or_run": "ycsb_run_cmd",
+      "replicas": 20,
+      "num_keys": 100000000,
+      "process_per_host": 16,
+      "threads_per_process": 32,
+      "batch_size": 100,
+      "update_proportion": 0.0,
+      "read_proportion": 1.0,
+      "max_execution_time_seconds": 200000
+    },
+    "machineset": {
+      "name": "extra-machines-for-fdb",
+      "replicas": 3,
+      "disksizegb": 15,
+      "clusterid": "07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90"
+    },
+    "localstorage": {}
+  },
+  "new_perf_tweaked_r_7": {
+    "fdb": {
+      "name": "fdb-cluster",
+      "namespace": "dc1",
+      "cluster_controller": 1,
+      "storage": 17,
+      "log": 2,
+      "stateless": 4,
+      "volume_claim_storage": "64G",
+      "hostNetwork": "true",
+      "headlessService": "true",
+      "publicIPSource": "pod",
+      "storageServersPerPod": 8
+    },
+    "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
+      "replicas": 40,
+      "num_keys": 1000000000,
+      "process_per_host": 8,
+      "threads_per_process": 32,
+      "batch_size": 1000,
       "update_proportion": 0.0,
       "read_proportion": 1.0,
       "max_execution_time_seconds": 200000
@@ -483,11 +763,12 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_load_cmd",
       "replicas": 20,
       "num_keys": 100000000,
       "process_per_host": 8,
       "threads_per_process": 16,
-      "batch_size": 1000,
+      "batch_size": 100,
       "update_proportion": 1.0,
       "read_proportion": 0.0,
       "max_execution_time_seconds": 200000
@@ -515,6 +796,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 20,
       "num_keys": 100000000,
       "process_per_host": 4,
@@ -547,6 +829,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 20,
       "num_keys": 100000000,
       "process_per_host": 8,
@@ -579,6 +862,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 20,
       "num_keys": 100000000,
       "process_per_host": 8,
@@ -611,6 +895,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 20,
       "num_keys": 100000000,
       "process_per_host": 16,
@@ -643,6 +928,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 20,
       "num_keys": 100000000,
       "process_per_host": 16,
@@ -697,6 +983,7 @@
       "storageServersPerPod": 7
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_load_cmd",
       "replicas": 20,
       "num_keys": 1000000000,
       "process_per_host": 2,
@@ -729,6 +1016,7 @@
       "storageServersPerPod": 7
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 20,
       "num_keys": 1000000000,
       "process_per_host": 2,
@@ -761,6 +1049,7 @@
       "storageServersPerPod": 7
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 20,
       "num_keys": 1000000000,
       "process_per_host": 2,
@@ -797,6 +1086,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 6,
       "num_keys": 100000000,
       "process_per_host": 2,
@@ -829,6 +1119,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 10,
       "num_keys": 100000000,
       "process_per_host": 2,
@@ -861,6 +1152,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 10,
       "num_keys": 100000000,
       "process_per_host": 2,
@@ -893,6 +1185,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 20,
       "num_keys": 1000000000,
       "process_per_host": 2,
@@ -925,6 +1218,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 6,
       "num_keys": 100000000,
       "process_per_host": 2,
@@ -957,6 +1251,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 10,
       "num_keys": 100000000,
       "process_per_host": 2,
@@ -989,6 +1284,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 10,
       "num_keys": 100000000,
       "process_per_host": 2,
@@ -1021,6 +1317,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 20,
       "num_keys": 1000000000,
       "process_per_host": 2,
@@ -1053,6 +1350,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 6,
       "num_keys": 100000000,
       "process_per_host": 2,
@@ -1085,6 +1383,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 10,
       "num_keys": 100000000,
       "process_per_host": 2,
@@ -1117,6 +1416,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 10,
       "num_keys": 100000000,
       "process_per_host": 2,
@@ -1149,6 +1449,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 20,
       "num_keys": 1000000000,
       "process_per_host": 2,
@@ -1181,6 +1482,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 6,
       "num_keys": 100000000,
       "process_per_host": 2,
@@ -1213,6 +1515,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_load_cmd",
       "replicas": 10,
       "num_keys": 100000000,
       "process_per_host": 2,
@@ -1245,6 +1548,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+        "ycsb_load_or_run": "ycsb_load_cmd",
       "replicas": 10,
       "num_keys": 100000000,
       "process_per_host": 2,
@@ -1277,6 +1581,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
+      "ycsb_load_or_run": "ycsb_load_cmd",
       "replicas": 20,
       "num_keys": 1000000000,
       "process_per_host": 2,

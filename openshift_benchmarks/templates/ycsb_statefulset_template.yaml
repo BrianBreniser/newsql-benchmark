@@ -14,12 +14,22 @@ spec:
       labels:
         app: ycsb
     spec:
-      serviceAccountName: ycsb-service-account
       hostNetwork: true
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: app
+              operator: In
+              values:
+              - ycsb-runner
+          topologyKey: topology.kubernetes.io/zone```
+      serviceAccountName: ycsb-service-account
       topologySpreadConstraints:
       - maxSkew: 1
         topologyKey: kubernetes.io/hostname
-        whenUnsatisfiable: DoNotSchedule
+        whenUnsatisfiable: ScheduleAnyway
       labelSelector:
         matchLabels:
           app: ycsb
@@ -38,7 +48,8 @@ spec:
           cd ycsb-foundationdb-binding-0.18.0-SNAPSHOT
           now=$(date +"%Y_%m_%d_%H_%M_%S")
           log_file="ycsb_host_${host_index}__$now.log"
-          workload='workloads/workloada'
+          workloada='workloads/workloada'
+          workloadb='workloads/workloadb'
           update_proportion={{update_proportion}}
           read_proportion={{read_proportion}}
           num_keys={{num_keys}}
@@ -63,7 +74,7 @@ spec:
             sleep 5
           done
           ycsb_load_cmd="./bin/ycsb.sh load foundationdb -s \
-            -P $workload \
+            -P $workloada \
             -p foundationdb.apiversion=620 \
             -p foundationdb.clusterfile=$FDB_CLUSTER_FILE \
             -p recordcount=$num_keys \
@@ -78,7 +89,7 @@ spec:
             -p requestdistribution=uniform \
             -p threadcount=$threads_per_process"
           ycsb_run_cmd="./bin/ycsb.sh run foundationdb -s \
-            -P $workload \
+            -P $workloadb \
             -p foundationdb.apiversion=620 \
             -p foundationdb.clusterfile=$FDB_CLUSTER_FILE \
             -p recordcount=$num_keys \
@@ -92,8 +103,7 @@ spec:
             -p updateproportion=$update_proportion \
             -p requestdistribution=uniform \
             -p threadcount=$threads_per_process"
-          sh -c "$ycsb_load_cmd"
-          sh -c "$ycsb_run_cmd"
+          sh -c "${{ycsb_load_or_run}}"
           while true; do
             echo "finished... host $POD_NAME"
             sleep 20
