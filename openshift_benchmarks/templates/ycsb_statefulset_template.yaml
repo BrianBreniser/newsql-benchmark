@@ -111,7 +111,7 @@ spec:
               -p threadcount=$threads_per_process
           }
           for i in `seq 0 4`; do
-            {{ycsb_load_or_run_phase}} $i
+            {{ycsb_load_or_run_phase}} $i &
           done
           wait
           while true; do
