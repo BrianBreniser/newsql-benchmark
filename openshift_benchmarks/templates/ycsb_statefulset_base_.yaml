@@ -15,6 +15,18 @@ spec:
         app: ycsb
     spec:
       hostNetwork: true
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - ycsb-runner
+              topologyKey: topology.kubernetes.io/zone
       preferredDuringSchedulingIgnoredDuringExecution:
       - weight: 100
         podAffinityTerm:
@@ -26,10 +38,11 @@ spec:
               - ycsb-runner
           topologyKey: topology.kubernetes.io/zone```
       serviceAccountName: ycsb-service-account
+      hostNetwork: true
       topologySpreadConstraints:
       - maxSkew: 1
         topologyKey: kubernetes.io/hostname
-        whenUnsatisfiable: ScheduleAnyway
+        whenUnsatisfiable: DoNotSchedule
       labelSelector:
         matchLabels:
           app: ycsb
@@ -53,15 +66,17 @@ spec:
           update_proportion={{update_proportion}}
           read_proportion={{read_proportion}}
           num_keys={{num_keys}}
-          value_size_bytes=2000
+          value_size_bytes=2000 
           batch_size={{batch_size}}
+          operation_count=$((num_keys / batch_size))
           num_clients={{replicas}}
           field_count=10
           field_length=100
           threads_per_process={{threads_per_process}}
           max_execution_time_seconds={{max_execution_time_seconds}}
           keys_per_host=$((num_keys / num_clients))
-          operation_count=$((num_keys / batch_size))
+          process_per_host={{process_per_host}}
+          keys_per_process=$((keys_per_host / process_per_host))
           start_key_offset=0
           start_key_per_host=$((host_index*keys_per_host+start_key_offset))
           while true; do
@@ -79,7 +94,6 @@ spec:
             -p insertstart=$start_key_per_host \
             -p insertcount=$keys_per_host \
             -p operationcount=$operation_count \
-            -p db.batchsize=$batch_size \
             -p maxexecutiontime=$max_execution_time_seconds \
             -p fieldcount=$field_count \
             -p fieldlength=$field_length \
@@ -95,7 +109,6 @@ spec:
             -p insertstart=$start_key_per_host \
             -p insertcount=$keys_per_host \
             -p operationcount=$operation_count \
-            -p foundationdb.batchsize=$batch_size \
             -p maxexecutiontime=$max_execution_time_seconds \
             -p fieldcount=$field_count \
             -p fieldlength=$field_length \

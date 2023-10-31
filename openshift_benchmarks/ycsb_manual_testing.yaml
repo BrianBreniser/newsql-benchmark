@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: ycsb-benchmark
+  name: ycsb-benchmark-manual-testing
   labels:
     app: ycsb-runner
 spec:
-  replicas: {{replicas}}
+  replicas: 1
   selector:
     matchLabels:
       app: ycsb
@@ -50,18 +50,20 @@ spec:
           log_file="ycsb_host_${host_index}__$now.log"
           workloada='workloads/workloada'
           workloadb='workloads/workloadb'
-          update_proportion={{update_proportion}}
-          read_proportion={{read_proportion}}
-          num_keys={{num_keys}}
+          update_proportion=0.0
+          read_proportion=1.0
+          num_keys=200000000
           value_size_bytes=2000
-          batch_size={{batch_size}}
-          num_clients={{replicas}}
+          batch_size=200
+          num_clients=60
           field_count=10
           field_length=100
-          threads_per_process={{threads_per_process}}
-          max_execution_time_seconds={{max_execution_time_seconds}}
+          threads_per_process=32
+          max_execution_time_seconds=200000
           keys_per_host=$((num_keys / num_clients))
-          operation_count=$((num_keys / batch_size))
+          process_per_host=8
+          keys_per_process=$((keys_per_host / process_per_host))
+          operation_count=$(keys_per_host)
           start_key_offset=0
           start_key_per_host=$((host_index*keys_per_host+start_key_offset))
           while true; do
@@ -103,10 +105,9 @@ spec:
             -p updateproportion=$update_proportion \
             -p requestdistribution=uniform \
             -p threadcount=$threads_per_process"
-          sh -c "${{ycsb_load_or_run}}"
           while true; do
-            echo "finished... host $POD_NAME"
-            sleep 20
+            echo "Whatever... host $POD_NAME"
+            sleep 100
           done
         env:
           - name: FDB_CLUSTER_FILE

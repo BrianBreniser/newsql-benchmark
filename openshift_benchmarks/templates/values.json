@@ -645,7 +645,7 @@
     "ycsb-statefulset": {
       "ycsb_load_or_run": "ycsb_run_cmd",
       "replicas": 60,
-      "num_keys": 100000000,
+      "num_keys": 200000000,
       "threads_per_process": 32,
       "batch_size": 200,
       "update_proportion": 0.0,
