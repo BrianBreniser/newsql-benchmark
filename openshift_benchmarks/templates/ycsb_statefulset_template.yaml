@@ -52,6 +52,7 @@ spec:
           workloadb='workloads/workloadb'
           update_proportion={{update_proportion}}
           read_proportion={{read_proportion}}
+          insert_proportion={{insert_proportion}}
           num_keys={{num_keys}}
           value_size_bytes=2000
           batch_size={{batch_size}}
@@ -60,8 +61,10 @@ spec:
           field_length=100
           threads_per_process={{threads_per_process}}
           max_execution_time_seconds={{max_execution_time_seconds}}
+          process_per_pod=5
           keys_per_host=$((num_keys / num_clients))
-          operation_count=$((num_keys / batch_size))
+          keys_per_process=$((keys_per_host / process_per_pod))
+          operation_count=$((keys_per_process / batch_size))
           start_key_offset=0
           start_key_per_host=$((host_index*keys_per_host+start_key_offset))
           while true; do
@@ -71,39 +74,45 @@ spec:
             fi
             sleep 5
           done
-          ycsb_load_cmd="./bin/ycsb.sh load foundationdb -s \
-            -P $workloada \
-            -p foundationdb.apiversion=620 \
-            -p foundationdb.clusterfile=$FDB_CLUSTER_FILE \
-            -p recordcount=$num_keys \
-            -p insertstart=$start_key_per_host \
-            -p insertcount=$keys_per_host \
-            -p operationcount=$operation_count \
-            -p db.batchsize=$batch_size \
-            -p maxexecutiontime=$max_execution_time_seconds \
-            -p fieldcount=$field_count \
-            -p fieldlength=$field_length \
-            -p readproportion=$read_proportion \
-            -p updateproportion=$update_proportion \
-            -p requestdistribution=uniform \
-            -p threadcount=$threads_per_process"
-          ycsb_run_cmd="./bin/ycsb.sh run foundationdb -s \
-            -P $workloadb \
-            -p foundationdb.apiversion=620 \
-            -p foundationdb.clusterfile=$FDB_CLUSTER_FILE \
-            -p recordcount=$num_keys \
-            -p insertstart=$start_key_per_host \
-            -p insertcount=$keys_per_host \
-            -p operationcount=$operation_count \
-            -p foundationdb.batchsize=$batch_size \
-            -p maxexecutiontime=$max_execution_time_seconds \
-            -p fieldcount=$field_count \
-            -p fieldlength=$field_length \
-            -p readproportion=$read_proportion \
-            -p updateproportion=$update_proportion \
-            -p requestdistribution=uniform \
-            -p threadcount=$threads_per_process"
-          sh -c "${{ycsb_load_or_run}}"
+          load_phase() {
+            ./bin/ycsb.sh load foundationdb -s \
+              -P $workloada \
+              -p foundationdb.apiversion=620 \
+              -p foundationdb.clusterfile=$FDB_CLUSTER_FILE \
+              -p recordcount=$num_keys \
+              -p insertstart=$(($1*keys_per_process+start_key_per_host)) \
+              -p insertcount=$keys_per_process \
+              -p operationcount=$operation_count \
+              -p db.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p fieldcount=$field_count \
+              -p fieldlength=$field_length \
+              -p readproportion=$read_proportion \
+              -p updateproportion=$update_proportion \
+              -p insertproportion=$insert_proportion \
+              -p requestdistribution=uniform \
+              -p threadcount=$threads_per_process
+          }
+          run_phase() {
+            ./bin/ycsb.sh run foundationdb -s \
+              -P $workloadb \
+              -p foundationdb.apiversion=620 \
+              -p foundationdb.clusterfile=$FDB_CLUSTER_FILE \
+              -p recordcount=$num_keys \
+              -p operationcount=$operation_count \
+              -p foundationdb.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p fieldcount=$field_count \
+              -p fieldlength=$field_length \
+              -p readproportion=$read_proportion \
+              -p insertproportion=$insert_proportion \
+              -p updateproportion=$update_proportion \
+              -p requestdistribution=uniform \
+              -p threadcount=$threads_per_process
+          }
+          for i in `seq 0 4`; do
+            {{ycsb_load_or_run_phase}} $i
+          done
           while true; do
             echo "finished... host $POD_NAME"
             sleep 20

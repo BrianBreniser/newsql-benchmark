@@ -21,7 +21,7 @@
     },
     "localstorage": {},
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 1,
       "num_keys": 10000,
       "threads_per_process": 16,
@@ -53,7 +53,7 @@
     },
     "localstorage": {},
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 20,
       "num_keys": 1000000,
       "threads_per_process": 8,
@@ -63,6 +63,49 @@
       "max_execution_time_seconds": 3600
     }
   },
+
+
+  "final_w_1": {
+    "fdb": {},
+    "ycsb-statefulset": {
+      "ycsb_load_or_run_phase": "load_phase",
+      "replicas": 20,
+      "num_keys": 100000000,
+      "threads_per_process": 32,
+      "batch_size": 100,
+      "read_proportion": 0.0,
+      "update_proportion": 0.0,
+      "insert_proportion": 1.0,
+      "max_execution_time_seconds": 200000
+    },
+    "machineset": {},
+    "localstorage": {}
+  },
+  "final_r_1": {
+    "fdb": {},
+    "ycsb-statefulset": {
+      "ycsb_load_or_run_phase": "run_phase",
+      "replicas": 20,
+      "num_keys": 100000000,
+      "threads_per_process": 32,
+      "batch_size": 100,
+      "read_proportion": 1.0,
+      "update_proportion": 0.0,
+      "insert_proportion": 0.0,
+      "max_execution_time_seconds": 200000
+    },
+    "machineset": {},
+    "localstorage": {}
+  },
+
+
+
+
+
+
+
+
+
   "20_small_r": {
     "fdb": {
       "name": "fdb-cluster",
@@ -78,7 +121,7 @@
       "storageServersPerPod": 7
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 20,
       "num_keys": 10000000,
       "threads_per_process": 8,
@@ -110,7 +153,7 @@
       "storageServersPerPod": 7
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 20,
       "num_keys": 1000000000,
       "threads_per_process": 8,
@@ -143,7 +186,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 20,
       "num_keys": 20000000,
       "threads_per_process": 32,
@@ -178,7 +221,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_load_cmd",
+        "ycsb_load_or_run_phase": "load_phase",
       "replicas": 20,
       "num_keys": 1000000000,
       "threads_per_process": 32,
@@ -214,7 +257,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 20,
       "num_keys": 1000000000,
       "threads_per_process": 64,
@@ -257,7 +300,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_load_cmd",
+        "ycsb_load_or_run_phase": "load_phase",
       "replicas": 10,
       "num_keys": 100000000,
       "threads_per_process": 32,
@@ -289,7 +332,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 10,
       "num_keys": 100000000,
       "threads_per_process": 32,
@@ -321,7 +364,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 10,
       "num_keys": 100000000,
       "threads_per_process": 32,
@@ -353,7 +396,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 10,
       "num_keys": 100000000,
       "threads_per_process": 32,
@@ -385,7 +428,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 20,
       "num_keys": 100000000,
       "threads_per_process": 16,
@@ -417,7 +460,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 20,
       "num_keys": 100000000,
       "threads_per_process": 32,
@@ -449,7 +492,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 20,
       "num_keys": 100000000,
       "threads_per_process": 32,
@@ -483,7 +526,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-      "ycsb_load_or_run": "ycsb_load_cmd",
+      "ycsb_load_or_run_phase": "load_phase",
       "replicas": 60,
       "num_keys": 200000000,
       "threads_per_process": 32,
@@ -515,7 +558,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-      "ycsb_load_or_run": "ycsb_run_cmd",
+      "ycsb_load_or_run_phase": "run_phase",
       "replicas": 20,
       "num_keys": 100000000,
       "threads_per_process": 32,
@@ -547,7 +590,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-      "ycsb_load_or_run": "ycsb_run_cmd",
+      "ycsb_load_or_run_phase": "run_phase",
       "replicas": 40,
       "num_keys": 100000000,
       "threads_per_process": 32,
@@ -579,7 +622,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-      "ycsb_load_or_run": "ycsb_run_cmd",
+      "ycsb_load_or_run_phase": "run_phase",
       "replicas": 40,
       "num_keys": 100000000,
       "threads_per_process": 32,
@@ -611,7 +654,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-      "ycsb_load_or_run": "ycsb_run_cmd",
+      "ycsb_load_or_run_phase": "run_phase",
       "replicas": 60,
       "num_keys": 100000000,
       "threads_per_process": 32,
@@ -643,7 +686,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-      "ycsb_load_or_run": "ycsb_run_cmd",
+      "ycsb_load_or_run_phase": "run_phase",
       "replicas": 60,
       "num_keys": 200000000,
       "threads_per_process": 32,
@@ -675,7 +718,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-      "ycsb_load_or_run": "ycsb_run_cmd",
+      "ycsb_load_or_run_phase": "run_phase",
       "replicas": 20,
       "num_keys": 100000000,
       "threads_per_process": 32,
@@ -707,7 +750,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 40,
       "num_keys": 1000000000,
       "threads_per_process": 32,
@@ -741,7 +784,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_load_cmd",
+        "ycsb_load_or_run_phase": "load_phase",
       "replicas": 20,
       "num_keys": 100000000,
       "threads_per_process": 16,
@@ -773,7 +816,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 20,
       "num_keys": 100000000,
       "threads_per_process": 8,
@@ -805,7 +848,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 20,
       "num_keys": 100000000,
       "threads_per_process": 8,
@@ -837,7 +880,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 20,
       "num_keys": 100000000,
       "threads_per_process": 16,
@@ -869,7 +912,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 20,
       "num_keys": 100000000,
       "threads_per_process": 16,
@@ -901,7 +944,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 20,
       "num_keys": 100000000,
       "threads_per_process": 32,
@@ -955,7 +998,7 @@
       "storageServersPerPod": 7
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_load_cmd",
+        "ycsb_load_or_run_phase": "load_phase",
       "replicas": 20,
       "num_keys": 1000000000,
       "threads_per_process": 8,
@@ -987,7 +1030,7 @@
       "storageServersPerPod": 7
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 20,
       "num_keys": 1000000000,
       "threads_per_process": 8,
@@ -1019,7 +1062,7 @@
       "storageServersPerPod": 7
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 20,
       "num_keys": 1000000000,
       "threads_per_process": 8,
@@ -1055,7 +1098,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 6,
       "num_keys": 100000000,
       "threads_per_process": 8,
@@ -1087,7 +1130,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 10,
       "num_keys": 100000000,
       "threads_per_process": 8,
@@ -1119,7 +1162,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 10,
       "num_keys": 100000000,
       "threads_per_process": 8,
@@ -1151,7 +1194,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 20,
       "num_keys": 1000000000,
       "threads_per_process": 8,
@@ -1183,7 +1226,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 6,
       "num_keys": 100000000,
       "threads_per_process": 8,
@@ -1215,7 +1258,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 10,
       "num_keys": 100000000,
       "threads_per_process": 8,
@@ -1247,7 +1290,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 10,
       "num_keys": 100000000,
       "threads_per_process": 8,
@@ -1279,7 +1322,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 20,
       "num_keys": 1000000000,
       "threads_per_process": 8,
@@ -1311,7 +1354,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 6,
       "num_keys": 100000000,
       "threads_per_process": 8,
@@ -1343,7 +1386,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 10,
       "num_keys": 100000000,
       "threads_per_process": 8,
@@ -1375,7 +1418,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 10,
       "num_keys": 100000000,
       "threads_per_process": 8,
@@ -1407,7 +1450,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+        "ycsb_load_or_run_phase": "run_phase",
       "replicas": 20,
       "num_keys": 1000000000,
       "threads_per_process": 8,
@@ -1439,7 +1482,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_run_cmd",
+      "ycsb_load_or_run_phase": "run_phase",
       "replicas": 6,
       "num_keys": 100000000,
       "threads_per_process": 8,
@@ -1471,7 +1514,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_load_cmd",
+        "ycsb_load_or_run_phase": "load_phase",
       "replicas": 10,
       "num_keys": 100000000,
       "threads_per_process": 8,
@@ -1503,7 +1546,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-        "ycsb_load_or_run": "ycsb_load_cmd",
+        "ycsb_load_or_run_phase": "load_phase",
       "replicas": 10,
       "num_keys": 100000000,
       "threads_per_process": 8,
@@ -1535,7 +1578,7 @@
       "storageServersPerPod": 8
     },
     "ycsb-statefulset": {
-      "ycsb_load_or_run": "ycsb_load_cmd",
+      "ycsb_load_or_run_phase": "load_phase",
       "replicas": 20,
       "num_keys": 1000000000,
       "threads_per_process": 8,

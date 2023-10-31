@@ -2,27 +2,27 @@ apiVersion: machine.openshift.io/v1beta1
 kind: MachineSet
 metadata:
   labels:
-    machine.openshift.io/cluster-api-cluster: 07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90
-  name: extra-machines-for-fdb
+    machine.openshift.io/cluster-api-cluster: {{clusterid}}
+  name: {{name}}
   namespace: openshift-machine-api
 spec:
-  replicas: 3
+  replicas: {{replicas}}
   selector:
     matchLabels:
-      machine.openshift.io/cluster-api-machineset: extra-machines-for-fdb
-      machine.openshift.io/cluster-api-cluster: 07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90
+      machine.openshift.io/cluster-api-machineset: {{name}}
+      machine.openshift.io/cluster-api-cluster: {{clusterid}}
   template:
     metadata:
       labels:
-        machine.openshift.io/cluster-api-machineset: extra-machines-for-fdb
-        machine.openshift.io/cluster-api-cluster: 07e8c4bb-9891-4b7d-b3c9-c9b881fc9a90
+        machine.openshift.io/cluster-api-machineset: {{name}}
+        machine.openshift.io/cluster-api-cluster: {{clusterid}}
     spec:
       providerSpec:
         value:
           apiVersion: azureproviderconfig.openshift.io/v1beta1
           kind: AzureMachineProviderSpec
           osDisk:
-            diskSizeGB: 15
+            diskSizeGB: {{disksizegb}}
             managedDisk:
               storageAccountType: Standard_LRS
             osType: Linux

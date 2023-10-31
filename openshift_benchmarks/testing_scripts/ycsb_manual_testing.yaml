@@ -63,7 +63,7 @@ spec:
           keys_per_host=$((num_keys / num_clients))
           process_per_host=8
           keys_per_process=$((keys_per_host / process_per_host))
-          operation_count=$(keys_per_host)
+          operation_count=$((keys_per_host / batch_size))
           start_key_offset=0
           start_key_per_host=$((host_index*keys_per_host+start_key_offset))
           while true; do

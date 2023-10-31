@@ -33,7 +33,7 @@ while true; do
     if [[ "$allStarted" == "true" && "$checkAllStarted" == "true" ]]; then
         notify-send "All pods started"
         checkAllStarted="false"
-        notify-send "Waiting 2 minutes for pods to warm up"
+        notify-send "Waiting 10 seconds for pods to warm up"
         echo "Waiting 10 seconds for pods to warm up"
         sleep 10
         notify-send "Collecting metrics from fdbcli"
