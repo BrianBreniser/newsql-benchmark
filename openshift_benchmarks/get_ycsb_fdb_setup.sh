@@ -3,7 +3,7 @@
 
 # Get ycsb setup
 
-ycsbsetup=$(cat 'ycsb_statefulset.yaml' | rg 'update_proportion|read_proportion|num_keys|value_size_bytes|batch_size|num_clients|threads_per_process|process_per_host' | head -10 | rg -v 'operation_count|keys_per_host')
+ycsbsetup=$(cat 'ycsb_statefulset.yaml' | rg 'update_proportion|read_proportion|num_keys|value_size_bytes|batch_size|num_clients|threads_per_process|process_per_host|max_execution_time_seconds')
 
 echo "YCSB Setup:" >> results.txt
 echo "$ycsbsetup" >> results.txt

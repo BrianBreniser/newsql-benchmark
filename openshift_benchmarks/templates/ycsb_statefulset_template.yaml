@@ -113,6 +113,7 @@ spec:
           for i in `seq 0 4`; do
             {{ycsb_load_or_run_phase}} $i
           done
+          wait
           while true; do
             echo "finished... host $POD_NAME"
             sleep 20

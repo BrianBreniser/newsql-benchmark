@@ -297,3 +297,822 @@ latency probes after 5 minutes of running
     "p99.9": 0.0034124899999999998
   }
 }
+Throughput (ops/sec): 446904
+Runtime (ms): 22601898
+OperationCountInsert: 100000000
+ErrorCountInsert: 0
+SuccessCountInsert: 100000000
+UnknownCountInsert: 0
+AverageInsertLatency: 8594
+OperationCountRead: 0
+ErrorCountRead: 0
+SuccessCountRead: 0
+UnknownCountRead: 0
+AverageReadLatency: 0
+95thPercentileReadLatency: 0
+99thPercentileReadLatency: 0
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 74
+99thPercentileUpdateLatency: 4623
+95thPercentileInsertLatency: 11311
+99thPercentileInsertLatency: 13735
+
+---
+
+Running test final_r_1
+
+---
+
+YCSB Setup:
+          update_proportion=0.0
+          read_proportion=1.0
+          num_keys=100000000
+          value_size_bytes=2000
+          batch_size=100
+          num_clients=20
+          threads_per_process=32
+              -p recordcount=$num_keys \
+
+Database Config:
+cluster_controller: 1
+commit_proxy: 2
+grv_proxy: 5
+log: 6
+stateless: 3
+storage: 17
+
+Process Counts:
+commit_proxies: 2
+grv_proxies: 6
+logs: 6
+redundancy_mode: double
+resolvers: 2
+storage: 17
+storage_engine: ssd-2
+usable_regions: 1
+
+Throughput (ops/sec): 924126
+Runtime (ms): 108423
+OperationCountInsert: 0
+ErrorCountInsert: 0
+SuccessCountInsert: 0
+UnknownCountInsert: 0
+AverageInsertLatency: 0
+OperationCountRead: 1000000
+ErrorCountRead: 0
+SuccessCountRead: 9600
+UnknownCountRead: 0
+AverageReadLatency: 3201
+95thPercentileReadLatency: 19
+99thPercentileReadLatency: 19567
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 256127
+99thPercentileUpdateLatency: 288255
+95thPercentileInsertLatency: 0
+99thPercentileInsertLatency: 0
+
+---
+---
+
+with wait command
+
+---
+---
+
+---
+
+Running test final_r_1
+
+---
+
+YCSB Setup:
+          update_proportion=0.0
+          read_proportion=1.0
+          num_keys=100000000
+          value_size_bytes=2000
+          batch_size=100
+          num_clients=20
+          threads_per_process=32
+              -p recordcount=$num_keys \
+
+Database Config:
+cluster_controller: 1
+commit_proxy: 2
+grv_proxy: 5
+log: 6
+stateless: 3
+storage: 17
+
+Process Counts:
+commit_proxies: 2
+grv_proxies: 6
+logs: 6
+redundancy_mode: double
+resolvers: 2
+storage: 17
+storage_engine: ssd-2
+usable_regions: 1
+
+Throughput (ops/sec): 904925
+Runtime (ms): 111388
+OperationCountInsert: 0
+ErrorCountInsert: 0
+SuccessCountInsert: 0
+UnknownCountInsert: 0
+AverageInsertLatency: 0
+OperationCountRead: 1000000
+ErrorCountRead: 0
+SuccessCountRead: 9600
+UnknownCountRead: 0
+AverageReadLatency: 4328
+95thPercentileReadLatency: 20
+99thPercentileReadLatency: 26047
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 348415
+99thPercentileUpdateLatency: 358399
+95thPercentileInsertLatency: 0
+99thPercentileInsertLatency: 0
+
+---
+
+Running test final_r_1
+
+---
+
+YCSB Setup:
+          update_proportion=0.0
+          read_proportion=1.0
+          num_keys=100000000
+          value_size_bytes=2000
+          batch_size=100
+          num_clients=20
+          threads_per_process=32
+              -p recordcount=$num_keys \
+
+Database Config:
+cluster_controller: 1
+commit_proxy: 2
+grv_proxy: 5
+log: 6
+stateless: 3
+storage: 17
+
+Process Counts:
+commit_proxies: 2
+grv_proxies: 6
+logs: 6
+redundancy_mode: double
+resolvers: 2
+storage: 17
+storage_engine: ssd-2
+usable_regions: 1
+
+
+---
+
+Running test final_r_1
+
+---
+
+YCSB Setup:
+          update_proportion=0.0
+          read_proportion=1.0
+          num_keys=100000000
+          value_size_bytes=2000
+          batch_size=100
+          num_clients=20
+          threads_per_process=32
+          max_execution_time_seconds=200000
+          keys_per_host=$((num_keys / num_clients))
+          operation_count=$((keys_per_process / batch_size))
+              -p recordcount=$num_keys \
+              -p db.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p updateproportion=$update_proportion \
+              -p threadcount=$threads_per_process
+              -p recordcount=$num_keys \
+              -p foundationdb.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p updateproportion=$update_proportion \
+              -p threadcount=$threads_per_process
+
+Database Config:
+cluster_controller: 1
+commit_proxy: 2
+grv_proxy: 5
+log: 6
+stateless: 3
+storage: 17
+
+Process Counts:
+commit_proxies: 2
+grv_proxies: 6
+logs: 6
+redundancy_mode: double
+resolvers: 2
+storage: 17
+storage_engine: ssd-2
+usable_regions: 1
+
+Throughput (ops/sec): 917061
+Runtime (ms): 109280
+OperationCountInsert: 0
+ErrorCountInsert: 0
+SuccessCountInsert: 0
+UnknownCountInsert: 0
+AverageInsertLatency: 0
+OperationCountRead: 1000000
+ErrorCountRead: 0
+SuccessCountRead: 9600
+UnknownCountRead: 0
+AverageReadLatency: 3202
+95thPercentileReadLatency: 19
+99thPercentileReadLatency: 19183
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 285439
+99thPercentileUpdateLatency: 313599
+95thPercentileInsertLatency: 0
+99thPercentileInsertLatency: 0
+
+---
+
+Running test final_w_1
+
+---
+
+YCSB Setup:
+          update_proportion=0.0
+          read_proportion=0.0
+          num_keys=100000000
+          value_size_bytes=2000
+          batch_size=100
+          num_clients=20
+          threads_per_process=32
+          max_execution_time_seconds=200000
+          keys_per_host=$((num_keys / num_clients))
+          operation_count=$((keys_per_process / batch_size))
+              -p recordcount=$num_keys \
+              -p db.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p updateproportion=$update_proportion \
+              -p threadcount=$threads_per_process
+              -p recordcount=$num_keys \
+              -p foundationdb.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p updateproportion=$update_proportion \
+              -p threadcount=$threads_per_process
+
+Database Config:
+cluster_controller: 1
+commit_proxy: 2
+grv_proxy: 5
+log: 6
+stateless: 3
+storage: 17
+
+Process Counts:
+commit_proxies: 2
+grv_proxies: 6
+logs: 6
+redundancy_mode: double
+resolvers: 2
+storage: 17
+storage_engine: ssd-2
+usable_regions: 1
+
+Using cluster file `/var/dynamic-conf/fdb.cluster'.
+
+Unable to retrieve all status information.
+
+Configuration:
+  Redundancy mode        - double
+  Storage engine         - ssd-2
+  Coordinators           - 3
+  Desired Commit Proxies - 2
+  Desired GRV Proxies    - 6
+  Desired Resolvers      - 2
+  Desired Logs           - 6
+  Desired Remote Logs    - -1
+  Desired Log Routers    - -1
+  Usable Regions         - 1
+
+Cluster:
+  FoundationDB processes - 295
+  Zones                  - 34
+  Machines               - 34
+  Memory availability    - 3.8 GB per process on machine with least available
+                           >>>>> (WARNING: 4.0 GB recommended) <<<<<
+  Retransmissions rate   - 6 Hz
+  Fault Tolerance        - 1 machines
+  Server time            - 10/31/23 20:08:21
+
+Data:
+  Replication health     - Healthy
+  Moving data            - 0.000 GB
+  Sum of key-value sizes - 231.460 GB
+  Disk space used        - 669.928 GB
+
+Operating space:
+  Storage server         - 1770.2 GB free on most full server
+  Log server             - 1808.7 GB free on most full server
+
+Workload:
+  Read rate              - 75 Hz
+  Write rate             - 87014 Hz
+  Transactions started   - 87146 Hz
+  Transactions committed - 87062 Hz
+  Conflict rate          - 0 Hz
+
+Backup and DR:
+  Running backups        - 0
+  Running DRs            - 0
+
+Process performance details:
+  10.113.232.152:4501    ( 56% cpu; 12% machine; 0.991 Gbps;  1% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.113.232.153:4501    ( 11% cpu; 26% machine; 0.126 Gbps; 51% disk IO; 1.9 GB / 3.8 GB RAM  )
+
+latency probes after 5 minutes of running
+
+{
+  "latency_probe": {
+    "batch_priority_transaction_start_seconds": 0.008888479999999999,
+    "commit_seconds": 0.0054159200000000003,
+    "immediate_priority_transaction_start_seconds": 0.0089151899999999999,
+    "read_seconds": 0.00087523499999999992,
+    "transaction_start_seconds": 0.0088682199999999978
+  }
+}
+{
+  "batch": {
+    "count": 9,
+    "max": 0.00072455399999999997,
+    "mean": 0.00045159100000000005,
+    "median": 0.00051140799999999998,
+    "min": 0.00013899799999999999,
+    "p25": 0.00041818599999999997,
+    "p90": 0.00072455399999999997,
+    "p95": 0.00072455399999999997,
+    "p99": 0.00072455399999999997,
+    "p99.9": 0.00072455399999999997
+  },
+  "default": {
+    "count": 847238,
+    "max": 0.0095992100000000004,
+    "mean": 0.000199874,
+    "median": 0.00017833699999999998,
+    "min": 0.000062704100000000008,
+    "p25": 0.00012517,
+    "p90": 0.00027656600000000001,
+    "p95": 0.00031638099999999996,
+    "p99": 0.0006845,
+    "p99.9": 0.0036270600000000001
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 817502,
+    "max": 0.0050506600000000002,
+    "mean": 0.00022341399999999999,
+    "median": 0.00020050999999999999,
+    "min": 0.000060796700000000014,
+    "p25": 0.00014019,
+    "p90": 0.00032615700000000004,
+    "p95": 0.000386,
+    "p99": 0.00069880499999999993,
+    "p99.9": 0.00350118
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 881952,
+    "max": 0.0050010699999999998,
+    "mean": 0.00020205599999999999,
+    "median": 0.00018215199999999999,
+    "min": 0.000062704100000000008,
+    "p25": 0.00012946099999999999,
+    "p90": 0.000281334,
+    "p95": 0.00032281899999999996,
+    "p99": 0.00064349200000000007,
+    "p99.9": 0.00358772
+  }
+}
+{
+  "batch": {
+    "count": 5,
+    "max": 0.000614643,
+    "mean": 0.00037846600000000005,
+    "median": 0.00036191899999999999,
+    "min": 0.00018358199999999998,
+    "p25": 0.000342846,
+    "p90": 0.000614643,
+    "p95": 0.000614643,
+    "p99": 0.000614643,
+    "p99.9": 0.000614643
+  },
+  "default": {
+    "count": 875367,
+    "max": 0.0053811099999999997,
+    "mean": 0.00021136699999999998,
+    "median": 0.00019002,
+    "min": 0.000058889400000000013,
+    "p25": 0.00013422999999999999,
+    "p90": 0.000296593,
+    "p95": 0.000344753,
+    "p99": 0.000667334,
+    "p99.9": 0.0036556699999999998
+  }
+}
+{
+  "batch": {
+    "count": 5,
+    "max": 0.00057744999999999997,
+    "mean": 0.00030012100000000004,
+    "median": 0.00028872500000000004,
+    "min": 0.00013852099999999998,
+    "p25": 0.00017452199999999998,
+    "p90": 0.00057744999999999997,
+    "p95": 0.00057744999999999997,
+    "p99": 0.00057744999999999997,
+    "p99.9": 0.00057744999999999997
+  },
+  "default": {
+    "count": 873235,
+    "max": 0.0053136299999999997,
+    "mean": 0.00021845799999999999,
+    "median": 0.000195503,
+    "min": 0.000061988800000000019,
+    "p25": 0.00013923600000000002,
+    "p90": 0.00031328199999999996,
+    "p95": 0.00037097899999999996,
+    "p99": 0.00068163900000000005,
+    "p99.9": 0.00360656
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 889769,
+    "max": 0.0050320600000000005,
+    "mean": 0.000209166,
+    "median": 0.000186443,
+    "min": 0.000058651000000000012,
+    "p25": 0.00013184499999999998,
+    "p90": 0.00029754600000000004,
+    "p95": 0.00035309800000000004,
+    "p99": 0.00072193100000000009,
+    "p99.9": 0.0035431399999999997
+  }
+}
+
+---
+
+Running test final_r_1
+
+---
+
+YCSB Setup:
+          update_proportion=0.0
+          read_proportion=1.0
+          num_keys=100000000
+          value_size_bytes=2000
+          batch_size=100
+          num_clients=20
+          threads_per_process=32
+          max_execution_time_seconds=200000
+          keys_per_host=$((num_keys / num_clients))
+          operation_count=$((keys_per_process / batch_size))
+              -p recordcount=$num_keys \
+              -p db.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p updateproportion=$update_proportion \
+              -p threadcount=$threads_per_process
+              -p recordcount=$num_keys \
+              -p foundationdb.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p updateproportion=$update_proportion \
+              -p threadcount=$threads_per_process
+
+
+---
+
+Running test final_w_1
+
+---
+
+YCSB Setup:
+          update_proportion=0.0
+          read_proportion=0.0
+          num_keys=100000000
+          value_size_bytes=2000
+          batch_size=100
+          num_clients=20
+          threads_per_process=32
+          max_execution_time_seconds=200000
+          keys_per_host=$((num_keys / num_clients))
+          operation_count=$((keys_per_process / batch_size))
+              -p recordcount=$num_keys \
+              -p db.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p updateproportion=$update_proportion \
+              -p threadcount=$threads_per_process
+              -p recordcount=$num_keys \
+              -p foundationdb.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p updateproportion=$update_proportion \
+              -p threadcount=$threads_per_process
+
+Database Config:
+cluster_controller: 1
+commit_proxy: 2
+grv_proxy: 5
+log: 6
+stateless: 3
+storage: 17
+
+Process Counts:
+commit_proxies: 2
+grv_proxies: 6
+logs: 6
+redundancy_mode: double
+resolvers: 2
+storage: 17
+storage_engine: ssd-2
+usable_regions: 1
+
+Using cluster file `/var/dynamic-conf/fdb.cluster'.
+
+Configuration:
+  Redundancy mode        - double
+  Storage engine         - ssd-2
+  Coordinators           - 3
+  Desired Commit Proxies - 2
+  Desired GRV Proxies    - 6
+  Desired Resolvers      - 2
+  Desired Logs           - 6
+  Desired Remote Logs    - -1
+  Desired Log Routers    - -1
+  Usable Regions         - 1
+
+Cluster:
+  FoundationDB processes - 295
+  Zones                  - 34
+  Machines               - 34
+  Memory availability    - 3.8 GB per process on machine with least available
+                           >>>>> (WARNING: 4.0 GB recommended) <<<<<
+  Retransmissions rate   - 13 Hz
+  Fault Tolerance        - 1 machines
+  Server time            - 10/31/23 20:14:42
+
+Data:
+  Replication health     - Healthy
+  Moving data            - 0.000 GB
+  Sum of key-value sizes - 231.460 GB
+  Disk space used        - 666.572 GB
+
+Operating space:
+  Storage server         - 1770.4 GB free on most full server
+  Log server             - 1808.7 GB free on most full server
+
+Workload:
+  Read rate              - 194 Hz
+  Write rate             - 86809 Hz
+  Transactions started   - 86694 Hz
+  Transactions committed - 86866 Hz
+  Conflict rate          - 0 Hz
+
+Backup and DR:
+  Running backups        - 0
+  Running DRs            - 0
+
+Process performance details:
+  10.113.232.152:4501    ( 57% cpu; 12% machine; 0.990 Gbps;  1% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.113.232.153:4501    (  8% cpu; 23% machine; 0.126 Gbps; 71% disk IO; 2.7 GB / 3.8 GB RAM  )
+  10.113.232.153:4503    (  8% cpu; 23% machine; 0.126 Gbps; 73% disk IO; 2.3 GB / 3.8 GB RAM  )
+  10.113.232.153:4505    (  8% cpu; 23% machine; 0.126 Gbps; 71% disk IO; 2.7 GB / 3.8 GB RAM  )
+
+latency probes after 5 minutes of running
+
+{
+  "latency_probe": {
+    "batch_priority_transaction_start_seconds": 0.00050926200000000002,
+    "commit_seconds": 0.0054511999999999998,
+    "immediate_priority_transaction_start_seconds": 0.00091218899999999999,
+    "read_seconds": 0.000204086,
+    "transaction_start_seconds": 0.00049567200000000006
+  }
+}
+{
+  "batch": {
+    "count": 15,
+    "max": 0.0008239749999999999,
+    "mean": 0.00034667700000000004,
+    "median": 0.00030517599999999999,
+    "min": 0.000121117,
+    "p25": 0.000149488,
+    "p90": 0.00063657800000000006,
+    "p95": 0.0008239749999999999,
+    "p99": 0.0008239749999999999,
+    "p99.9": 0.0008239749999999999
+  },
+  "default": {
+    "count": 871065,
+    "max": 0.0101011,
+    "mean": 0.00020115199999999999,
+    "median": 0.00018096,
+    "min": 0.000061273600000000023,
+    "p25": 0.00012755400000000002,
+    "p90": 0.000278473,
+    "p95": 0.00032186500000000001,
+    "p99": 0.00070953400000000005,
+    "p99.9": 0.0034232099999999999
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 867981,
+    "max": 0.0055975899999999995,
+    "mean": 0.00022988699999999999,
+    "median": 0.00020384799999999999,
+    "min": 0.000059366200000000008,
+    "p25": 0.00014519699999999999,
+    "p90": 0.00033640899999999997,
+    "p95": 0.00040101999999999998,
+    "p99": 0.00074934999999999976,
+    "p99.9": 0.00341749
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 820804,
+    "max": 0.0051169399999999995,
+    "mean": 0.00020279299999999999,
+    "median": 0.00018238999999999999,
+    "min": 0.000058174100000000009,
+    "p25": 0.00012969999999999998,
+    "p90": 0.00028228800000000001,
+    "p95": 0.00032758700000000001,
+    "p99": 0.00069832800000000001,
+    "p99.9": 0.0034599299999999999
+  }
+}
+{
+  "batch": {
+    "count": 6,
+    "max": 0.00073337599999999999,
+    "mean": 0.00038556299999999995,
+    "median": 0.00022458999999999999,
+    "min": 0.00013470599999999998,
+    "p25": 0.000174761,
+    "p90": 0.00073337599999999999,
+    "p95": 0.00073337599999999999,
+    "p99": 0.00073337599999999999,
+    "p99.9": 0.00073337599999999999
+  },
+  "default": {
+    "count": 890131,
+    "max": 0.0062150999999999994,
+    "mean": 0.00021093499999999999,
+    "median": 0.00019025799999999998,
+    "min": 0.0000591278,
+    "p25": 0.000134945,
+    "p90": 0.000296831,
+    "p95": 0.00034356100000000004,
+    "p99": 0.00069665900000000008,
+    "p99.9": 0.0034318
+  }
+}
+{
+  "batch": {
+    "count": 4,
+    "max": 0.00073552099999999994,
+    "mean": 0.00057739,
+    "median": 0.00044751199999999995,
+    "min": 0.000409126,
+    "p25": 0.000409126,
+    "p90": 0.00073552099999999994,
+    "p95": 0.00073552099999999994,
+    "p99": 0.00073552099999999994,
+    "p99.9": 0.00073552099999999994
+  },
+  "default": {
+    "count": 847346,
+    "max": 0.0048384700000000001,
+    "mean": 0.00022937399999999999,
+    "median": 0.00020504,
+    "min": 0.000061750400000000011,
+    "p25": 0.000146389,
+    "p90": 0.00033163999999999996,
+    "p95": 0.00039219899999999998,
+    "p99": 0.00076031699999999994,
+    "p99.9": 0.00346875
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 853048,
+    "max": 0.0052502199999999999,
+    "mean": 0.00021118599999999998,
+    "median": 0.000189543,
+    "min": 0.00005984310000000001,
+    "p25": 0.00013232199999999998,
+    "p90": 0.000299454,
+    "p95": 0.00035190600000000003,
+    "p99": 0.00070071199999999993,
+    "p99.9": 0.0034294099999999999
+  }
+}
