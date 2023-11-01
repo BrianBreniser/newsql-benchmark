@@ -42,7 +42,7 @@ while true; do
         #echo "" >> results.txt
         # Had some broken pipe problems without using a tmp file.
         fdb exec -c fdb-cluster-1 -- fdbcli --exec "status details" > tmp.txt
-        head -50 tmp.txt >> results.txt
+        head -60 tmp.txt >> results.txt
         rm tmp.txt
         echo "" >> results.txt
     fi
@@ -56,17 +56,16 @@ while true; do
         break
     fi
 
-    # Needs to run last, because of the 'continue' statement that skips the rest of the loop
-    # If 30 seconds have passed, then collect latency metrics
+    # If time limit has passed, then collect latency metrics
     current_time=$(date +%s)
     if (( current_time > start_time + 120 )); then
         if [[ "$gatherLatencyMetrics" == "true" ]]; then
             echo "2 minutes have passed, saving latency probe and grv_latency metrics into results.txt"
             notify-send "2 minutes have passed, saving latency probe and grv_latency metrics into results.txt"
 
-            echo "latency probes after 5 minutes of running" >> results.txt
+            echo "latency probes after 2 minutes of running" >> results.txt
             echo "" >> results.txt
-            fdb exec -c fdb-cluster-1 -- fdbcli --exec "status json" > tmp.txt
+            fdb exec -c fdb-cluster-1 -- fdbcli --exec "status json" > tmp.txt # This get's around some broken pipe issues
             cat tmp.txt | jq '{latency_probe: .cluster.latency_probe}' >> results.txt
             fdb exec -c fdb-cluster-1 -- fdbcli --exec "status json" > tmp.txt
             cat tmp.txt | jq '.cluster.processes[].roles[].grv_latency_statistics' | grep -v '^null$' >> results.txt

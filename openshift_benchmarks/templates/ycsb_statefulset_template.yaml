@@ -24,7 +24,7 @@ spec:
               operator: In
               values:
               - ycsb-runner
-          topologyKey: topology.kubernetes.io/zone```
+          topologyKey: topology.kubernetes.io/zone
       serviceAccountName: ycsb-service-account
       topologySpreadConstraints:
       - maxSkew: 1
@@ -48,8 +48,8 @@ spec:
           cd ycsb-foundationdb-binding-0.18.0-SNAPSHOT
           now=$(date +"%Y_%m_%d_%H_%M_%S")
           log_file="ycsb_host_${host_index}__$now.log"
-          workloada='workloads/workloada'
-          workloadb='workloads/workloadb'
+          workloadload='workloads/workloada'
+          workloadrun='workloads/workloadc'
           update_proportion={{update_proportion}}
           read_proportion={{read_proportion}}
           insert_proportion={{insert_proportion}}
@@ -65,6 +65,7 @@ spec:
           keys_per_host=$((num_keys / num_clients))
           keys_per_process=$((keys_per_host / process_per_pod))
           operation_count=$((keys_per_process / batch_size))
+          override_operation_count={{override_operation_count}}
           start_key_offset=0
           start_key_per_host=$((host_index*keys_per_host+start_key_offset))
           while true; do
@@ -74,9 +75,12 @@ spec:
             fi
             sleep 5
           done
+          if [[ "$override_operation_count" == "true" ]]; then
+            operation_count=1000000000
+          fi
           load_phase() {
             ./bin/ycsb.sh load foundationdb -s \
-              -P $workloada \
+              -P $workloadload \
               -p foundationdb.apiversion=620 \
               -p foundationdb.clusterfile=$FDB_CLUSTER_FILE \
               -p recordcount=$num_keys \
@@ -95,7 +99,7 @@ spec:
           }
           run_phase() {
             ./bin/ycsb.sh run foundationdb -s \
-              -P $workloadb \
+              -P $workloadrun \
               -p foundationdb.apiversion=620 \
               -p foundationdb.clusterfile=$FDB_CLUSTER_FILE \
               -p recordcount=$num_keys \
