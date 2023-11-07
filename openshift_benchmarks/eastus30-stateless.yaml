@@ -1,0 +1,173 @@
+apiVersion: machine.openshift.io/v1beta1
+kind: MachineSet
+metadata:
+  name: fdb05-eastus-zone1-stateless
+  namespace: openshift-machine-api
+  labels:
+    machine.openshift.io/cluster-api-cluster: fdb05-dev-va7-9spzl
+    machine.openshift.io/cluster-api-machine-role: worker
+    machine.openshift.io/cluster-api-machine-type: worker
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      machine.openshift.io/cluster-api-cluster: fdb05-dev-va7-9spzl
+      machine.openshift.io/cluster-api-machineset: fdb05-eastus-zone1-stateless
+  template:
+    metadata:
+      labels:
+        machine.openshift.io/cluster-api-cluster: fdb05-dev-va7-9spzl
+        machine.openshift.io/cluster-api-machineset: fdb05-eastus-zone1-stateless
+        machine.openshift.io/cluster-api-machine-role: worker
+        machine.openshift.io/cluster-api-machine-type: worker
+    spec:
+      lifecycleHooks: {}
+      metadata: {}
+      providerSpec:
+        value:
+          acceleratedNetworking: true
+          apiVersion: machine.openshift.io/v1beta1
+          credentialsSecret:
+            name: azure-cloud-credentials
+            namespace: openshift-machine-api
+          diagnostics: {}
+          image:
+            offer: aro4
+            publisher: azureopenshift
+            resourceID: ""
+            sku: aro_412
+            version: 412.86.20230503
+          kind: AzureMachineProviderSpec
+          location: eastus2
+          metadata:
+            creationTimestamp: null
+          networkResourceGroup: rg-fdb05-dev-va7
+          osDisk:
+            diskSettings: {}
+            diskSizeGB: 128
+            managedDisk:
+              storageAccountType: Premium_LRS
+            osType: Linux
+          publicIP: false
+          publicLoadBalancer: fdb05-dev-va7-9spzl
+          resourceGroup: aro-ud4qwx5c
+          subnet: worker-subnet-1-fdb05-dev-va7
+          userDataSecret:
+            name: worker-user-data
+          vmSize: Standard_D4s_v3
+          vnet: vnet-fdb05-dev-va7
+          zone: "1"
+---
+
+apiVersion: machine.openshift.io/v1beta1
+kind: MachineSet
+metadata:
+  name: fdb05-eastus-zone2-stateless
+  namespace: openshift-machine-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      machine.openshift.io/cluster-api-cluster: fdb05-dev-va7-9spzl
+      machine.openshift.io/cluster-api-machineset: fdb05-eastus-zone2-stateless
+  template:
+    metadata:
+      labels:
+        machine.openshift.io/cluster-api-cluster: fdb05-dev-va7-9spzl
+        machine.openshift.io/cluster-api-machineset: fdb05-eastus-zone2-stateless
+        machine.openshift.io/cluster-api-machine-role: worker
+        machine.openshift.io/cluster-api-machine-type: worker
+    spec:
+      lifecycleHooks: {}
+      metadata: {}
+      providerSpec:
+        value:
+          acceleratedNetworking: true
+          apiVersion: machine.openshift.io/v1beta1
+          credentialsSecret:
+            name: azure-cloud-credentials
+            namespace: openshift-machine-api
+          diagnostics: {}
+          image:
+            offer: aro4
+            publisher: azureopenshift
+            resourceID: ""
+            sku: aro_412
+            version: 412.86.20230503
+          kind: AzureMachineProviderSpec
+          location: eastus2
+          metadata:
+            creationTimestamp: null
+          networkResourceGroup: rg-fdb05-dev-va7
+          osDisk:
+            diskSettings: {}
+            diskSizeGB: 128
+            managedDisk:
+              storageAccountType: Premium_LRS
+            osType: Linux
+          publicIP: false
+          publicLoadBalancer: fdb05-dev-va7-9spzl
+          resourceGroup: aro-ud4qwx5c
+          subnet: worker-subnet-1-fdb05-dev-va7
+          userDataSecret:
+            name: worker-user-data
+          vmSize: Standard_D4s_v3
+          vnet: vnet-fdb05-dev-va7
+          zone: "2"
+---
+
+apiVersion: machine.openshift.io/v1beta1
+kind: MachineSet
+metadata:
+  name: fdb05-eastus-zone333tateless
+  namespace: openshift-machine-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      machine.openshift.io/cluster-api-cluster: fdb05-dev-va7-9spzl
+      machine.openshift.io/cluster-api-machineset: fdb05-eastus-zone3-stateless
+  template:
+    metadata:
+      labels:
+        machine.openshift.io/cluster-api-cluster: fdb05-dev-va7-9spzl
+        machine.openshift.io/cluster-api-machineset: fdb05-eastus-zone3-stateless
+        machine.openshift.io/cluster-api-machine-role: worker
+        machine.openshift.io/cluster-api-machine-type: worker
+    spec:
+      lifecycleHooks: {}
+      metadata: {}
+      providerSpec:
+        value:
+          acceleratedNetworking: true
+          apiVersion: machine.openshift.io/v1beta1
+          credentialsSecret:
+            name: azure-cloud-credentials
+            namespace: openshift-machine-api
+          diagnostics: {}
+          image:
+            offer: aro4
+            publisher: azureopenshift
+            resourceID: ""
+            sku: aro_412
+            version: 412.86.20230503
+          kind: AzureMachineProviderSpec
+          location: eastus2
+          metadata:
+            creationTimestamp: null
+          networkResourceGroup: rg-fdb05-dev-va7
+          osDisk:
+            diskSettings: {}
+            diskSizeGB: 128
+            managedDisk:
+              storageAccountType: Premium_LRS
+            osType: Linux
+          publicIP: false
+          publicLoadBalancer: fdb05-dev-va7-9spzl
+          resourceGroup: aro-ud4qwx5c
+          subnet: worker-subnet-1-fdb05-dev-va7
+          userDataSecret:
+            name: worker-user-data
+          vmSize: Standard_D4s_v3
+          vnet: vnet-fdb05-dev-va7
+          zone: "3"
