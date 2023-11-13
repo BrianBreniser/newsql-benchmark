@@ -9,21 +9,21 @@ metadata:
     machine.openshift.io/cluster-api-cluster: fdb05-dev-va7-9spzl
     machine.openshift.io/cluster-api-machine-role: worker
     machine.openshift.io/cluster-api-machine-type: worker
-  name: fdb05-dev-va7-9spzl-worker-eastus21
+  name: fdb05-eastus-zone1-storage
   namespace: openshift-machine-api
 spec:
-  replicas: 7
+  replicas: 9
   selector:
     matchLabels:
       machine.openshift.io/cluster-api-cluster: fdb05-dev-va7-9spzl
-      machine.openshift.io/cluster-api-machineset: fdb05-dev-va7-9spzl-worker-eastus21
+      machine.openshift.io/cluster-api-machineset: fdb05-eastus-zone1-storage
   template:
     metadata:
       labels:
         machine.openshift.io/cluster-api-cluster: fdb05-dev-va7-9spzl
         machine.openshift.io/cluster-api-machine-role: worker
         machine.openshift.io/cluster-api-machine-type: worker
-        machine.openshift.io/cluster-api-machineset: fdb05-dev-va7-9spzl-worker-eastus21
+        machine.openshift.io/cluster-api-machineset: fdb05-eastus-zone1-storage
     spec:
       lifecycleHooks: {}
       metadata: {}
@@ -75,21 +75,21 @@ metadata:
     machine.openshift.io/cluster-api-cluster: fdb05-dev-va7-9spzl
     machine.openshift.io/cluster-api-machine-role: worker
     machine.openshift.io/cluster-api-machine-type: worker
-  name: fdb05-dev-va7-9spzl-worker-eastus22
+  name: fdb05-eastus-zone2-storage
   namespace: openshift-machine-api
 spec:
-  replicas: 7
+  replicas: 9
   selector:
     matchLabels:
       machine.openshift.io/cluster-api-cluster: fdb05-dev-va7-9spzl
-      machine.openshift.io/cluster-api-machineset: fdb05-dev-va7-9spzl-worker-eastus22
+      machine.openshift.io/cluster-api-machineset: fdb05-eastus-zone2-storage
   template:
     metadata:
       labels:
         machine.openshift.io/cluster-api-cluster: fdb05-dev-va7-9spzl
         machine.openshift.io/cluster-api-machine-role: worker
         machine.openshift.io/cluster-api-machine-type: worker
-        machine.openshift.io/cluster-api-machineset: fdb05-dev-va7-9spzl-worker-eastus22
+        machine.openshift.io/cluster-api-machineset: fdb05-eastus-zone2-storage
     spec:
       lifecycleHooks: {}
       metadata: {}
@@ -141,21 +141,21 @@ metadata:
     machine.openshift.io/cluster-api-cluster: fdb05-dev-va7-9spzl
     machine.openshift.io/cluster-api-machine-role: worker
     machine.openshift.io/cluster-api-machine-type: worker
-  name: fdb05-dev-va7-9spzl-worker-eastus23
+  name: fdb05-eastus-zone3-storage
   namespace: openshift-machine-api
 spec:
-  replicas: 7
+  replicas: 9
   selector:
     matchLabels:
       machine.openshift.io/cluster-api-cluster: fdb05-dev-va7-9spzl
-      machine.openshift.io/cluster-api-machineset: fdb05-dev-va7-9spzl-worker-eastus23
+      machine.openshift.io/cluster-api-machineset: fdb05-eastus-zone3-storage
   template:
     metadata:
       labels:
         machine.openshift.io/cluster-api-cluster: fdb05-dev-va7-9spzl
         machine.openshift.io/cluster-api-machine-role: worker
         machine.openshift.io/cluster-api-machine-type: worker
-        machine.openshift.io/cluster-api-machineset: fdb05-dev-va7-9spzl-worker-eastus23
+        machine.openshift.io/cluster-api-machineset: fdb05-eastus-zone3-storage
     spec:
       lifecycleHooks: {}
       metadata: {}

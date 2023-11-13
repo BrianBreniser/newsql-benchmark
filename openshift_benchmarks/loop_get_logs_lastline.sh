@@ -4,6 +4,7 @@ checkAllStarted="true"
 notify-send "Starting log loop"
 start_time=$(date +%s)
 gatherLatencyMetrics="true"
+exporterpod=$(oc get pods | grep "fdbexplorer" | awk '{print $1}')
 
 while true; do
     pods=$(oc get pods | rg -i benchmark | awk '{print $1}')
@@ -38,10 +39,10 @@ while true; do
         sleep 10
         notify-send "Collecting metrics from fdbcli"
         echo "Collecting metrics from fdbcli"
-        #fdb exec -c fdb-cluster-1 -- fdbcli --exec "status details" | rg Redundancy >> results.txt
-        #echo "" >> results.txt
+        oc exec "$exporterpod" -- fdbcli --exec "status details" | rg Redundancy >> results.txt
+        echo "" >> results.txt
         # Had some broken pipe problems without using a tmp file.
-        fdb exec -c fdb-cluster-1 -- fdbcli --exec "status details" > tmp.txt
+        oc exec "$exporterpod" -- fdbcli --exec "status details" > tmp.txt
         head -60 tmp.txt >> results.txt
         rm tmp.txt
         echo "" >> results.txt
@@ -65,9 +66,9 @@ while true; do
 
             echo "latency probes after 2 minutes of running" >> results.txt
             echo "" >> results.txt
-            fdb exec -c fdb-cluster-1 -- fdbcli --exec "status json" > tmp.txt # This get's around some broken pipe issues
+            oc exec "$exporterpod" -- fdbcli --exec "status json" > tmp.txt # This get's around some broken pipe issues
             cat tmp.txt | jq '{latency_probe: .cluster.latency_probe}' >> results.txt
-            fdb exec -c fdb-cluster-1 -- fdbcli --exec "status json" > tmp.txt
+            oc exec "$exporterpod" -- fdbcli --exec "status json" > tmp.txt
             cat tmp.txt | jq '.cluster.processes[].roles[].grv_latency_statistics' | grep -v '^null$' >> results.txt
 
             gatherLatencyMetrics="false"

@@ -2,38 +2,44 @@
 
 # cleanup our cluster
 oc delete statefulset ycsb-benchmark
-oc delete fdb/fdb-cluster
-
-# apply our templating
-./apply_templating.py "$1"
+oc delete fdb/fdb-cluster-eastus2-1
+oc delete fdb/fdb-cluster-eastus2-2
+oc delete fdb/fdb-cluster-eastus2-3
 
 # wait for the cluster to come down completely
-pods=$(oc get pods | wc -l)
+pods=$(oc get pods | grep -c "fdb-cluster")
 
-while [ "$pods" -gt 2 ]
+while [ "$pods" -gt 0 ] # No header line becuase of the grep fdb-cluster
 do
     sleep 5
-    pods=$(oc get pods | wc -l)
+    pods=$(oc get pods | grep -c "fdb-cluster")
 done
 
 # Set up our new cluster
-oc apply -f fdb.yaml
+oc apply -f fdbbackup1.yaml
+oc apply -f fdbbackup2.yaml
+oc apply -f fdbbackup3.yaml
 
-# Wati for thew new cluster to come up completely
-non_running_pods=$(oc get pods | grep -c Running)
+# Wait for thew new cluster to come up completely
+non_running_pods=$(oc get pods | grep "fdb-cluster" | grep -vc Running)
 
-while [ "$non_running_pods" -gt 1 ] # the header counts as the only line, -gt 1 means no pods are in a non-running state
+while [ "$non_running_pods" -gt 0 ] # No header line becuase of the grep fdb-cluster
 do
     sleep 5
-    non_running_pods=$(oc get pods | grep -c Running)
+    non_running_pods=$(oc get pods | grep "fdb-cluster" | grep -vc Running)
 done
 
-sleep 120 # Possibly something still needs to load even after the pods are up
+sleep 120 # it's possible something still needs to load even after the pods are up
 
-# Every 2 minutes send out a notifcation
+for i in $(oc get pods | rg "explorer|exporter" | awk '{print $1}'); do
+    oc delete pod $i;
+done
+
+sleep 120; # just wait for the pods to come back up statically
+
 while true
 do
-    sleep 120
+    sleep 60
     notify-send "Reminder: FDB is now up and running"
 done
 

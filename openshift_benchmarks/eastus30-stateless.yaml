@@ -8,7 +8,7 @@ metadata:
     machine.openshift.io/cluster-api-machine-role: worker
     machine.openshift.io/cluster-api-machine-type: worker
 spec:
-  replicas: 2
+  replicas: 7
   selector:
     matchLabels:
       machine.openshift.io/cluster-api-cluster: fdb05-dev-va7-9spzl
@@ -54,7 +54,7 @@ spec:
           subnet: worker-subnet-1-fdb05-dev-va7
           userDataSecret:
             name: worker-user-data
-          vmSize: Standard_D4s_v3
+          vmSize: Standard_F4s
           vnet: vnet-fdb05-dev-va7
           zone: "1"
 ---
@@ -65,7 +65,7 @@ metadata:
   name: fdb05-eastus-zone2-stateless
   namespace: openshift-machine-api
 spec:
-  replicas: 2
+  replicas: 7
   selector:
     matchLabels:
       machine.openshift.io/cluster-api-cluster: fdb05-dev-va7-9spzl
@@ -111,7 +111,7 @@ spec:
           subnet: worker-subnet-1-fdb05-dev-va7
           userDataSecret:
             name: worker-user-data
-          vmSize: Standard_D4s_v3
+          vmSize: Standard_F4s
           vnet: vnet-fdb05-dev-va7
           zone: "2"
 ---
@@ -119,10 +119,10 @@ spec:
 apiVersion: machine.openshift.io/v1beta1
 kind: MachineSet
 metadata:
-  name: fdb05-eastus-zone333tateless
+  name: fdb05-eastus-zone3-stateless
   namespace: openshift-machine-api
 spec:
-  replicas: 2
+  replicas: 7
   selector:
     matchLabels:
       machine.openshift.io/cluster-api-cluster: fdb05-dev-va7-9spzl
@@ -168,6 +168,6 @@ spec:
           subnet: worker-subnet-1-fdb05-dev-va7
           userDataSecret:
             name: worker-user-data
-          vmSize: Standard_D4s_v3
+          vmSize: Standard_F4s
           vnet: vnet-fdb05-dev-va7
           zone: "3"

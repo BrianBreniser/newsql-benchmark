@@ -15,6 +15,7 @@ echo "Gathering ycsb and fdb output"
 ./get_ycsb_fdb_setup.sh # gets ycsb and fdb output and puts it in results.txt automatically
 
 # Wait for the old pods to be deleted
+echo "Waiting for pods to terminate"
 non_running_pods=$(oc get pods | rg -i terminating | wc -l)
 
 while [ "$non_running_pods" -gt 0 ]

@@ -209,7 +209,7 @@
     "ycsb-statefulset": {
       "ycsb_load_or_run_phase": "load_phase",
       "replicas": 20,
-      "num_keys": 1000000000,
+      "num_keys": 600000000,
       "override_operation_count": "false",
       "threads_per_process": 32,
       "batch_size": 100,
