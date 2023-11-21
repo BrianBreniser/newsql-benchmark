@@ -53,6 +53,7 @@ spec:
           update_proportion={{update_proportion}}
           read_proportion={{read_proportion}}
           insert_proportion={{insert_proportion}}
+          read_modify_write_proportion={{read_modify_write_proportion}}
           num_keys={{num_keys}}
           value_size_bytes=2000
           batch_size={{batch_size}}
@@ -94,6 +95,7 @@ spec:
               -p readproportion=$read_proportion \
               -p updateproportion=$update_proportion \
               -p insertproportion=$insert_proportion \
+              -p readmodifywriteproportion=$read_modify_write_proportion
               -p requestdistribution=uniform \
               -p threadcount=$threads_per_process
           }
@@ -145,7 +147,7 @@ spec:
       volumes:
         - name: config-volume
           configMap:
-            name: fdb-cluster-1-config
+            name: fdb-cluster-eastus2-1-config
         - name: fdb-certs
           secret:
             secretName: fdb-certs
