@@ -1,0 +1,65 @@
+apiVersion: machine.openshift.io/v1beta1
+kind: MachineSet
+metadata:
+  annotations:
+    machine.openshift.io/GPU: '0'
+    machine.openshift.io/memoryMb: '4096'
+    machine.openshift.io/vCPU: '4'
+  name: fdb05-dev-va7-wddgt-worker-s3proxy
+  generation: 1
+  namespace: openshift-machine-api
+  labels:
+    machine.openshift.io/cluster-api-cluster: fdb05-dev-va7-wddgt-s3proxy
+    machine.openshift.io/cluster-api-machine-role: worker
+    machine.openshift.io/cluster-api-machine-type: worker
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      machine.openshift.io/cluster-api-cluster: fdb05-dev-va7-wddgt
+      machine.openshift.io/cluster-api-machineset: fdb05-dev-va7-wddgt-worker-s3proxy
+  template:
+    metadata:
+      labels:
+        machine.openshift.io/cluster-api-cluster: fdb05-dev-va7-wddgt
+        machine.openshift.io/cluster-api-machine-role: worker
+        machine.openshift.io/cluster-api-machine-type: worker
+        machine.openshift.io/cluster-api-machineset: fdb05-dev-va7-wddgt-worker-s3proxy
+    spec:
+      lifecycleHooks: {}
+      metadata: {}
+      providerSpec:
+        value:
+          osDisk:
+            diskSettings: {}
+            diskSizeGB: 128
+            managedDisk:
+              storageAccountType: Premium_LRS
+            osType: Linux
+          networkResourceGroup: rg-fdb05-dev-va7
+          publicLoadBalancer: fdb05-dev-va7-wddgt
+          userDataSecret:
+            name: worker-user-data
+          vnet: vnet-fdb05-dev-va7
+          credentialsSecret:
+            name: azure-cloud-credentials
+            namespace: openshift-machine-api
+          diagnostics: {}
+          zone: '1'
+          metadata:
+            creationTimestamp: null
+          publicIP: false
+          resourceGroup: aro-ohsggpsk
+          kind: AzureMachineProviderSpec
+          location: eastus2
+          vmSize: Standard_F8s_v2
+          image:
+            offer: aro4
+            publisher: azureopenshift
+            resourceID: ''
+            sku: aro_412
+            version: 412.86.20230503
+          acceleratedNetworking: true
+          subnet: worker-subnet-1-fdb05-dev-va7
+          apiVersion: machine.openshift.io/v1beta1
+

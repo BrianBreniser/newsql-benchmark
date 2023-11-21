@@ -4,7 +4,7 @@
 exporterpod=$(oc get pods | grep "fdbexplorer" | awk '{print $1}')
 
 # Get ycsb setup
-ycsbsetup=$(cat 'ycsb_statefulset.yaml' | rg 'update_proportion|read_proportion|insert_proportion|num_keys|value_size_bytes|batch_size|num_clients|threads_per_process|process_per_host|max_execution_time_seconds|seq|phase')
+ycsbsetup=$(cat 'ycsb_statefulset.yaml' | rg 'read_modify_write_proportion|update_proportion|read_proportion|insert_proportion|num_keys|value_size_bytes|batch_size|num_clients|threads_per_process|process_per_host|max_execution_time_seconds|seq|phase')
 
 # Get the YCSB setup
 echo "YCSB Setup:" >> results.txt

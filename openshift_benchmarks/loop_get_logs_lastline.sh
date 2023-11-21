@@ -64,10 +64,15 @@ while true; do
             echo "2 minutes have passed, saving latency probe and grv_latency metrics into results.txt"
             notify-send "2 minutes have passed, saving latency probe and grv_latency metrics into results.txt"
 
-            echo "latency probes after 2 minutes of running" >> results.txt
+            echo "Probes after 2 minutes of running" >> results.txt
             echo "" >> results.txt
+
+            oc exec "$exporterpod" -- fdbcli --exec "status details" > tmp.txt # This get's around some broken pipe issues
+            cat tmp.txt | grep -A 10 "Process performance" >> results.txt
+
             oc exec "$exporterpod" -- fdbcli --exec "status json" > tmp.txt # This get's around some broken pipe issues
             cat tmp.txt | jq '{latency_probe: .cluster.latency_probe}' >> results.txt
+
             oc exec "$exporterpod" -- fdbcli --exec "status json" > tmp.txt
             cat tmp.txt | jq '.cluster.processes[].roles[].grv_latency_statistics' | grep -v '^null$' >> results.txt
 

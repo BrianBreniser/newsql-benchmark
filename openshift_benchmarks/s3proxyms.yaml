@@ -1,0 +1,70 @@
+apiVersion: machine.openshift.io/v1beta1
+kind: MachineSet
+metadata:
+  annotations:
+    machine.openshift.io/GPU: "0"
+    machine.openshift.io/memoryMb: "65536"
+    machine.openshift.io/vCPU: "8"
+  creationTimestamp: "2023-11-13T21:04:49Z"
+  generation: 17
+  labels:
+    machine.openshift.io/cluster-api-cluster: fdb05-dev-va7-wddgt-s3proxy
+    machine.openshift.io/cluster-api-machine-role: worker
+    machine.openshift.io/cluster-api-machine-type: worker
+  name: fdb05-dev-va7-wddgt-worker-s3proxy
+  namespace: openshift-machine-api
+  resourceVersion: "7474904"
+  uid: 5f991501-5e2b-40db-a675-c11a59739991
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      machine.openshift.io/cluster-api-cluster: fdb05-dev-va7-wddgt
+      machine.openshift.io/cluster-api-machineset: fdb05-dev-va7-wddgt-worker-s3proxy
+  template:
+    metadata:
+      labels:
+        machine.openshift.io/cluster-api-cluster: fdb05-dev-va7-wddgt
+        machine.openshift.io/cluster-api-machine-role: worker
+        machine.openshift.io/cluster-api-machine-type: worker
+        machine.openshift.io/cluster-api-machineset: fdb05-dev-va7-wddgt-worker-s3proxy
+    spec:
+      lifecycleHooks: {}
+      metadata: {}
+      providerSpec:
+        value:
+          acceleratedNetworking: true
+          apiVersion: machine.openshift.io/v1beta1
+          credentialsSecret:
+            name: azure-cloud-credentials
+            namespace: openshift-machine-api
+          diagnostics: {}
+          image:
+            offer: aro4
+            publisher: azureopenshift
+            resourceID: ""
+            sku: aro_412
+            version: 412.86.20230503
+          kind: AzureMachineProviderSpec
+          location: eastus2
+          metadata:
+            creationTimestamp: null
+          networkResourceGroup: rg-fdb05-dev-va7
+          osDisk:
+            diskSettings: {}
+            diskSizeGB: 128
+            managedDisk:
+              storageAccountType: Premium_LRS
+            osType: Linux
+          publicIP: false
+          publicLoadBalancer: fdb05-dev-va7-wddgt
+          resourceGroup: aro-ohsggpsk
+          subnet: worker-subnet-1-fdb05-dev-va7
+          userDataSecret:
+            name: worker-user-data
+          vmSize: Standard_F4s_v2
+          vnet: vnet-fdb05-dev-va7
+          zone: "1"
+status:
+  observedGeneration: 17
+  replicas: 0
