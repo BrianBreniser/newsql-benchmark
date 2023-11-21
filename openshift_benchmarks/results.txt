@@ -2986,3 +2986,1157 @@ AverageUpdateLatency: 0
 95thPercentileInsertLatency: 0
 99thPercentileInsertLatency: 0
 
+------
+------
+
+Need to do "update" and read90readmodifyupdate10 workloads as well
+
+------
+------
+
+
+---
+
+Running test final_md_l_1
+
+---
+
+YCSB Setup:
+          update_proportion=0.0
+          read_proportion=0.0
+          insert_proportion=1.0
+          num_keys=300000000
+          value_size_bytes=2000
+          batch_size=100
+          num_clients=20
+          threads_per_process=32
+          max_execution_time_seconds=200000
+          keys_per_host=$((num_keys / num_clients))
+          operation_count=$((keys_per_process / batch_size))
+          load_phase() {
+              -p recordcount=$num_keys \
+              -p db.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p updateproportion=$update_proportion \
+              -p insertproportion=$insert_proportion \
+              -p threadcount=$threads_per_process
+          run_phase() {
+              -p recordcount=$num_keys \
+              -p foundationdb.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p insertproportion=$insert_proportion \
+              -p updateproportion=$update_proportion \
+              -p threadcount=$threads_per_process
+          for i in `seq 0 4`; do
+            load_phase $i &
+
+FDB Config:
+Using cluster file `/mnt/config-volume/cluster-file'.
+
+Configuration:
+  Redundancy mode        - three_data_hall
+  Storage engine         - ssd-2
+  Coordinators           - 9
+  Desired Commit Proxies - 3
+  Desired GRV Proxies    - 9
+  Desired Resolvers      - 2
+  Desired Logs           - 6
+  Desired Remote Logs    - -1
+  Desired Log Routers    - -1
+  Usable Regions         - 1
+
+Cluster:
+  FoundationDB processes - 171
+  Zones                  - 39
+  Machines               - 39
+  Memory availability    - 2.1 GB per process on machine with least available
+                           >>>>> (WARNING: 4.0 GB recommended) <<<<<
+  Retransmissions rate   - 0 Hz
+  Fault Tolerance        - 2 machines
+  Server time            - 11/20/23 21:06:09
+
+Data:
+  Replication health     - Healthy
+  Moving data            - 0.000 GB
+  Sum of key-value sizes - 0 MB
+  Disk space used        - 15.731 GB
+
+  Redundancy mode        - three_data_hall
+
+Using cluster file `/mnt/config-volume/cluster-file'.
+
+Configuration:
+  Redundancy mode        - three_data_hall
+  Storage engine         - ssd-2
+  Coordinators           - 9
+  Desired Commit Proxies - 3
+  Desired GRV Proxies    - 9
+  Desired Resolvers      - 2
+  Desired Logs           - 6
+  Desired Remote Logs    - -1
+  Desired Log Routers    - -1
+  Usable Regions         - 1
+
+Cluster:
+  FoundationDB processes - 171
+  Zones                  - 39
+  Machines               - 39
+  Memory availability    - 2.1 GB per process on machine with least available
+                           >>>>> (WARNING: 4.0 GB recommended) <<<<<
+  Retransmissions rate   - 7 Hz
+  Fault Tolerance        - 2 machines
+  Server time            - 11/20/23 21:09:07
+
+Data:
+  Replication health     - Healthy (Repartitioning)
+  Moving data            - 0.072 GB
+  Sum of key-value sizes - 1.918 GB
+  Disk space used        - 20.147 GB
+
+Operating space:
+  Storage server         - 1808.7 GB free on most full server
+  Log server             - 1809.6 GB free on most full server
+
+Workload:
+  Read rate              - 410 Hz
+  Write rate             - 21373 Hz
+  Transactions started   - 21361 Hz
+  Transactions committed - 21361 Hz
+  Conflict rate          - 0 Hz
+
+Backup and DR:
+  Running backups        - 0
+  Running DRs            - 0
+
+Process performance details:
+  10.113.232.132:4501    ( 17% cpu; 20% machine; 0.009 Gbps;  1% disk IO; 0.1 GB / 2.2 GB RAM  )
+  10.113.232.133:4501    ( 55% cpu; 48% machine; 0.039 Gbps;  1% disk IO; 0.2 GB / 2.2 GB RAM  )
+  10.113.232.134:4501    ( 17% cpu; 16% machine; 0.008 Gbps;  1% disk IO; 0.1 GB / 2.2 GB RAM  )
+  10.113.232.135:4501    ( 54% cpu; 54% machine; 0.330 Gbps;  2% disk IO; 0.2 GB / 2.2 GB RAM  )
+  10.113.232.136:4501    (  5% cpu;  8% machine; 0.005 Gbps;  1% disk IO; 0.2 GB / 2.2 GB RAM  )
+  10.113.232.137:4501    ( 18% cpu; 21% machine; 0.010 Gbps;  1% disk IO; 0.1 GB / 2.2 GB RAM  )
+  10.113.232.138:4501    ( 18% cpu; 19% machine; 0.009 Gbps;  2% disk IO; 0.1 GB / 2.2 GB RAM  )
+  10.113.232.139:4501    ( 19% cpu; 19% machine; 0.008 Gbps;  1% disk IO; 0.1 GB / 2.2 GB RAM  )
+  10.113.232.140:4501    ( 52% cpu; 50% machine; 0.330 Gbps;  1% disk IO; 0.2 GB / 2.1 GB RAM  )
+  10.113.232.141:4501    ( 16% cpu; 17% machine; 0.009 Gbps;  1% disk IO; 0.1 GB / 2.2 GB RAM  )
+  10.113.232.142:4501    (  8% cpu; 13% machine; 0.057 Gbps; 17% disk IO; 0.3 GB / 7.6 GB RAM  )
+  10.113.232.142:4503    (  7% cpu; 13% machine; 0.057 Gbps; 17% disk IO; 0.2 GB / 7.6 GB RAM  )
+  10.113.232.142:4505    (  9% cpu; 13% machine; 0.057 Gbps; 17% disk IO; 0.3 GB / 7.6 GB RAM  )
+  10.113.232.142:4507    (  8% cpu; 13% machine; 0.057 Gbps; 17% disk IO; 0.4 GB / 7.6 GB RAM  )
+
+latency probes after 2 minutes of running
+
+{
+  "latency_probe": {
+    "batch_priority_transaction_start_seconds": 0.00070643399999999992,
+    "commit_seconds": 0.0031993399999999997,
+    "immediate_priority_transaction_start_seconds": 0.00062680200000000009,
+    "read_seconds": 0.00029397000000000001,
+    "transaction_start_seconds": 0.00069832800000000001
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 79531,
+    "max": 0.0130799,
+    "mean": 0.00033011799999999996,
+    "median": 0.00026273700000000003,
+    "min": 0.00015187299999999999,
+    "p25": 0.00021600699999999999,
+    "p90": 0.00044632,
+    "p95": 0.00054645500000000005,
+    "p99": 0.00143552,
+    "p99.9": 0.0065147899999999995
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 61894,
+    "max": 0.0130563,
+    "mean": 0.00033738800000000004,
+    "median": 0.00025534599999999999,
+    "min": 0.00015330299999999998,
+    "p25": 0.00021219299999999998,
+    "p90": 0.00045180299999999997,
+    "p95": 0.00059676199999999992,
+    "p99": 0.00167179,
+    "p99.9": 0.0080878700000000005
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 72808,
+    "max": 0.0219209,
+    "mean": 0.00064919799999999992,
+    "median": 0.00033855400000000003,
+    "min": 0.00013256099999999998,
+    "p25": 0.000257254,
+    "p90": 0.00060749099999999993,
+    "p95": 0.0014119099999999999,
+    "p99": 0.0110919,
+    "p99.9": 0.017796000000000003
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 83930,
+    "max": 0.018439500000000001,
+    "mean": 0.00035973900000000003,
+    "median": 0.00029468500000000004,
+    "min": 0.00014877300000000002,
+    "p25": 0.00022649800000000003,
+    "p90": 0.00047373799999999997,
+    "p95": 0.00057315799999999994,
+    "p99": 0.00166106,
+    "p99.9": 0.0096297299999999995
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 84320,
+    "max": 0.017417699999999998,
+    "mean": 0.00035004899999999995,
+    "median": 0.00027346600000000004,
+    "min": 0.00015544900000000002,
+    "p25": 0.000216722,
+    "p90": 0.00047945999999999997,
+    "p95": 0.00058245699999999998,
+    "p99": 0.0017507099999999999,
+    "p99.9": 0.00826788
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 75154,
+    "max": 0.0135376,
+    "mean": 0.00028196100000000001,
+    "median": 0.000215054,
+    "min": 0.000099659000000000002,
+    "p25": 0.00016260099999999998,
+    "p90": 0.00040554999999999996,
+    "p95": 0.00050139400000000006,
+    "p99": 0.0014438599999999999,
+    "p99.9": 0.0066595099999999996
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 63805,
+    "max": 0.012032000000000001,
+    "mean": 0.00034947900000000003,
+    "median": 0.000281334,
+    "min": 0.00015115700000000002,
+    "p25": 0.000225782,
+    "p90": 0.000486851,
+    "p95": 0.00060486800000000005,
+    "p99": 0.0014991799999999999,
+    "p99.9": 0.0069599200000000005
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 93473,
+    "max": 0.012770400000000001,
+    "mean": 0.00035992100000000003,
+    "median": 0.00028801,
+    "min": 0.000153542,
+    "p25": 0.00022435199999999998,
+    "p90": 0.00050067900000000008,
+    "p95": 0.00063323999999999997,
+    "p99": 0.0016019299999999999,
+    "p99.9": 0.008679870000000001
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 78427,
+    "max": 0.0130537,
+    "mean": 0.000300267,
+    "median": 0.00022125199999999999,
+    "min": 0.00009036060000000001,
+    "p25": 0.00016021699999999999,
+    "p90": 0.00046253199999999998,
+    "p95": 0.00058865499999999999,
+    "p99": 0.00156879,
+    "p99.9": 0.0083966300000000004
+  }
+}
+Throughput (ops/sec): 21389
+Runtime (ms): 1403635564
+OperationCountInsert: 300000000
+ErrorCountInsert: 0
+SuccessCountInsert: 300000000
+SuccessCountInsertBatched: 0
+UnknownCountInsert: 0
+AverageInsertLatency: 4918
+OperationCountRead: 0
+ErrorCountRead: 0
+SuccessCountRead: 0
+SuccessCountReadBatched: 0
+UnknownCountRead: 0
+AverageReadLatency: 0
+95thPercentileReadLatency: 0
+99thPercentileReadLatency: 0
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+SuccessCountUpdateBatched: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 188
+99thPercentileUpdateLatency: 188
+95thPercentileInsertLatency: 7435
+99thPercentileInsertLatency: 15623
+
+---
+
+Running test final_md_u_timed_1
+
+---
+
+YCSB Setup:
+          update_proportion=1.0
+          read_proportion=0.0
+          insert_proportion=0.0
+          num_keys=300000000
+          value_size_bytes=2000
+          batch_size=50
+          num_clients=20
+          threads_per_process=32
+          max_execution_time_seconds=300
+          keys_per_host=$((num_keys / num_clients))
+          operation_count=$((keys_per_process / batch_size))
+          load_phase() {
+              -p recordcount=$num_keys \
+              -p db.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p updateproportion=$update_proportion \
+              -p insertproportion=$insert_proportion \
+              -p threadcount=$threads_per_process
+          run_phase() {
+              -p recordcount=$num_keys \
+              -p foundationdb.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p insertproportion=$insert_proportion \
+              -p updateproportion=$update_proportion \
+              -p threadcount=$threads_per_process
+          for i in `seq 0 4`; do
+            run_phase $i &
+
+FDB Config:
+Using cluster file `/mnt/config-volume/cluster-file'.
+
+Configuration:
+  Redundancy mode        - three_data_hall
+  Storage engine         - ssd-2
+  Coordinators           - 9
+  Desired Commit Proxies - 3
+  Desired GRV Proxies    - 9
+  Desired Resolvers      - 2
+  Desired Logs           - 6
+  Desired Remote Logs    - -1
+  Desired Log Routers    - -1
+  Usable Regions         - 1
+
+Cluster:
+  FoundationDB processes - 171
+  Zones                  - 39
+  Machines               - 39
+  Memory availability    - 2.0 GB per process on machine with least available
+                           >>>>> (WARNING: 4.0 GB recommended) <<<<<
+  Fault Tolerance        - 2 machines
+  Server time            - 11/21/23 01:15:04
+
+Data:
+  Replication health     - Healthy
+  Moving data            - 0.000 GB
+  Sum of key-value sizes - 345.779 GB
+  Disk space used        - 1.477 TB
+
+
+latency probes after 2 minutes of running
+
+{
+  "latency_probe": {
+    "batch_priority_transaction_start_seconds": 0.010383100000000001,
+    "commit_seconds": 0.0069851900000000005,
+    "immediate_priority_transaction_start_seconds": 0.010319200000000001,
+    "read_seconds": 0.00032567999999999996,
+    "transaction_start_seconds": 0.00067210200000000005
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 15064,
+    "max": 0.025790900000000002,
+    "mean": 0.00056578999999999993,
+    "median": 0.00041937799999999998,
+    "min": 0.000250578,
+    "p25": 0.00034403799999999996,
+    "p90": 0.00075101899999999991,
+    "p95": 0.0010700199999999999,
+    "p99": 0.00337076,
+    "p99.9": 0.0109978
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 14185,
+    "max": 0.022175300000000002,
+    "mean": 0.00054236200000000001,
+    "median": 0.00040769599999999998,
+    "min": 0.00024843200000000004,
+    "p25": 0.00033855400000000003,
+    "p90": 0.00069212900000000009,
+    "p95": 0.00096011199999999994,
+    "p99": 0.0032138800000000001,
+    "p99.9": 0.010422900000000001
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 14192,
+    "max": 0.024051000000000003,
+    "mean": 0.00100869,
+    "median": 0.00052308999999999993,
+    "min": 0.000257254,
+    "p25": 0.00042748499999999996,
+    "p90": 0.0015330299999999999,
+    "p95": 0.0031588099999999997,
+    "p99": 0.012216600000000001,
+    "p99.9": 0.0203273
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 15320,
+    "max": 0.022413300000000001,
+    "mean": 0.000608852,
+    "median": 0.00045919399999999995,
+    "min": 0.00025081600000000001,
+    "p25": 0.000366688,
+    "p90": 0.0008025170000000001,
+    "p95": 0.0011026899999999999,
+    "p99": 0.00375676,
+    "p99.9": 0.011086200000000001
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 13972,
+    "max": 0.0237763,
+    "mean": 0.00055896599999999993,
+    "median": 0.00041055699999999998,
+    "min": 0.000250578,
+    "p25": 0.00034713699999999997,
+    "p90": 0.00070428800000000007,
+    "p95": 0.00099754300000000004,
+    "p99": 0.0035610199999999998,
+    "p99.9": 0.0112479
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 15575,
+    "max": 0.022579200000000001,
+    "mean": 0.00057150600000000005,
+    "median": 0.00043582899999999999,
+    "min": 0.00024819400000000003,
+    "p25": 0.00035166700000000001,
+    "p90": 0.0007593630000000001,
+    "p95": 0.0010518999999999999,
+    "p99": 0.0033497800000000001,
+    "p99.9": 0.0103848
+  }
+}
+{
+  "batch": {
+    "count": 1,
+    "max": 0.0013930799999999999,
+    "mean": 0.0013930799999999999,
+    "median": 0.0013930799999999999,
+    "min": 0.0013930799999999999,
+    "p25": 0.0013930799999999999,
+    "p90": 0.0013930799999999999,
+    "p95": 0.0013930799999999999,
+    "p99": 0.0013930799999999999,
+    "p99.9": 0.0013930799999999999
+  },
+  "default": {
+    "count": 15527,
+    "max": 0.0195239,
+    "mean": 0.00055240600000000008,
+    "median": 0.00041055699999999998,
+    "min": 0.00024437900000000003,
+    "p25": 0.00034093899999999996,
+    "p90": 0.00070333499999999992,
+    "p95": 0.00100398,
+    "p99": 0.00326991,
+    "p99.9": 0.011256200000000001
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 14237,
+    "max": 0.0239534,
+    "mean": 0.00056105,
+    "median": 0.000421762,
+    "min": 0.00025534599999999999,
+    "p25": 0.000354528,
+    "p90": 0.00071716300000000005,
+    "p95": 0.0010249599999999999,
+    "p99": 0.0032813499999999997,
+    "p99.9": 0.010401500000000001
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 14899,
+    "max": 0.0214589,
+    "mean": 0.00056406000000000002,
+    "median": 0.00042748499999999996,
+    "min": 0.00024819400000000003,
+    "p25": 0.00035905800000000004,
+    "p90": 0.00071573300000000008,
+    "p95": 0.00099110599999999984,
+    "p99": 0.0032751600000000001,
+    "p99.9": 0.010868300000000001
+  }
+}
+Throughput (ops/sec): 160558
+Runtime (ms): 14744877
+OperationCountInsert: 0
+ErrorCountInsert: 0
+SuccessCountInsert: 0
+SuccessCountInsertBatched: 0
+UnknownCountInsert: 0
+AverageInsertLatency: 0
+OperationCountRead: 0
+ErrorCountRead: 0
+SuccessCountRead: 0
+SuccessCountReadBatched: 0
+UnknownCountRead: 0
+AverageReadLatency: 0
+95thPercentileReadLatency: 0
+99thPercentileReadLatency: 0
+OperationCountUpdate: 48298145
+ErrorCountUpdate: 0
+SuccessCountUpdate: 965962
+SuccessCountUpdateBatched: 47332183
+UnknownCountUpdate: 0
+AverageUpdateLatency: 14891
+95thPercentileUpdateLatency: 122
+99thPercentileUpdateLatency: 132735
+95thPercentileInsertLatency: 0
+99thPercentileInsertLatency: 0
+
+---
+
+Running test final_md_r90rmu10_timed_1
+
+---
+
+YCSB Setup:
+          update_proportion=0.0
+          read_proportion=0.9
+          insert_proportion=0.0
+          num_keys=300000000
+          value_size_bytes=2000
+          batch_size=50
+          num_clients=20
+          threads_per_process=32
+          max_execution_time_seconds=300
+          keys_per_host=$((num_keys / num_clients))
+          operation_count=$((keys_per_process / batch_size))
+          load_phase() {
+              -p recordcount=$num_keys \
+              -p db.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p updateproportion=$update_proportion \
+              -p insertproportion=$insert_proportion \
+              -p threadcount=$threads_per_process
+          run_phase() {
+              -p recordcount=$num_keys \
+              -p foundationdb.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p insertproportion=$insert_proportion \
+              -p updateproportion=$update_proportion \
+              -p threadcount=$threads_per_process
+          for i in `seq 0 4`; do
+            run_phase $i &
+
+FDB Config:
+Using cluster file `/mnt/config-volume/cluster-file'.
+
+Configuration:
+  Redundancy mode        - three_data_hall
+  Storage engine         - ssd-2
+  Coordinators           - 9
+  Desired Commit Proxies - 3
+  Desired GRV Proxies    - 9
+  Desired Resolvers      - 2
+  Desired Logs           - 6
+  Desired Remote Logs    - -1
+  Desired Log Routers    - -1
+  Usable Regions         - 1
+
+Cluster:
+  FoundationDB processes - 171
+  Zones                  - 39
+  Machines               - 39
+  Memory availability    - 2.0 GB per process on machine with least available
+                           >>>>> (WARNING: 4.0 GB recommended) <<<<<
+  Retransmissions rate   - 3 Hz
+  Fault Tolerance        - 2 machines
+  Server time            - 11/21/23 01:24:08
+
+Data:
+  Replication health     - Healthy
+  Moving data            - 0.000 GB
+  Sum of key-value sizes - 347.060 GB
+  Disk space used        - 1.472 TB
+
+  Redundancy mode        - three_data_hall
+
+Using cluster file `/mnt/config-volume/cluster-file'.
+
+Configuration:
+  Redundancy mode        - three_data_hall
+  Storage engine         - ssd-2
+  Coordinators           - 9
+  Desired Commit Proxies - 3
+  Desired GRV Proxies    - 9
+  Desired Resolvers      - 2
+  Desired Logs           - 6
+  Desired Remote Logs    - -1
+  Desired Log Routers    - -1
+  Usable Regions         - 1
+
+Cluster:
+  FoundationDB processes - 171
+  Zones                  - 39
+  Machines               - 39
+  Memory availability    - 2.0 GB per process on machine with least available
+                           >>>>> (WARNING: 4.0 GB recommended) <<<<<
+  Retransmissions rate   - 1331 Hz
+  Fault Tolerance        - 2 machines
+  Server time            - 11/21/23 01:26:02
+
+Data:
+  Replication health     - Healthy
+  Moving data            - 0.000 GB
+  Sum of key-value sizes - 347.085 GB
+  Disk space used        - 1.466 TB
+
+Operating space:
+  Storage server         - 1728.0 GB free on most full server
+  Log server             - 1793.6 GB free on most full server
+
+Workload:
+  Read rate              - 277429 Hz
+  Write rate             - 0 Hz
+  Transactions started   - 5189 Hz
+  Transactions committed - 0 Hz
+  Conflict rate          - 0 Hz
+
+Backup and DR:
+  Running backups        - 0
+  Running DRs            - 0
+
+Process performance details:
+  10.113.232.132:4501    ( 13% cpu; 15% machine; 0.007 Gbps;  2% disk IO; 0.1 GB / 2.1 GB RAM  )
+  10.113.232.133:4501    ( 27% cpu; 27% machine; 0.015 Gbps;  3% disk IO; 0.2 GB / 2.1 GB RAM  )
+  10.113.232.134:4501    ( 15% cpu; 18% machine; 0.007 Gbps;  1% disk IO; 0.1 GB / 2.1 GB RAM  )
+  10.113.232.135:4501    ( 82% cpu; 55% machine; 0.620 Gbps;  2% disk IO; 0.4 GB / 2.1 GB RAM  )
+  10.113.232.136:4501    (  5% cpu; 10% machine; 0.005 Gbps;  1% disk IO; 0.2 GB / 2.2 GB RAM  )
+  10.113.232.137:4501    ( 14% cpu; 19% machine; 0.008 Gbps;  1% disk IO; 0.1 GB / 2.2 GB RAM  )
+  10.113.232.138:4501    ( 13% cpu; 16% machine; 0.008 Gbps;  2% disk IO; 0.1 GB / 2.1 GB RAM  )
+  10.113.232.139:4501    ( 15% cpu; 17% machine; 0.008 Gbps;  1% disk IO; 0.1 GB / 2.1 GB RAM  )
+  10.113.232.140:4501    ( 68% cpu; 45% machine; 0.597 Gbps;  2% disk IO; 0.4 GB / 2.0 GB RAM  )
+  10.113.232.141:4501    ( 13% cpu; 14% machine; 0.008 Gbps;  1% disk IO; 0.1 GB / 2.1 GB RAM  )
+  10.113.232.142:4501    ( 19% cpu; 27% machine; 0.172 Gbps;100% disk IO; 3.9 GB / 6.7 GB RAM  )
+  10.113.232.142:4503    ( 19% cpu; 27% machine; 0.172 Gbps;100% disk IO; 3.8 GB / 6.7 GB RAM  )
+  10.113.232.142:4505    ( 19% cpu; 27% machine; 0.172 Gbps;100% disk IO; 3.8 GB / 6.7 GB RAM  )
+  10.113.232.142:4507    ( 19% cpu; 27% machine; 0.172 Gbps;100% disk IO; 3.9 GB / 6.7 GB RAM  )
+
+latency probes after 2 minutes of running
+
+{
+  "latency_probe": {
+    "batch_priority_transaction_start_seconds": 0.00059962300000000008,
+    "commit_seconds": 0.0081372300000000005,
+    "immediate_priority_transaction_start_seconds": 0.00064086900000000007,
+    "read_seconds": 0.00030326800000000004,
+    "transaction_start_seconds": 0.00070810300000000007
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 42013,
+    "max": 0.015920899999999998,
+    "mean": 0.000435482,
+    "median": 0.000348568,
+    "min": 0.00024342499999999999,
+    "p25": 0.00030898999999999998,
+    "p90": 0.00053215000000000001,
+    "p95": 0.00067281699999999992,
+    "p99": 0.00243115,
+    "p99.9": 0.0087242099999999979
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 40454,
+    "max": 0.016046499999999998,
+    "mean": 0.00042314499999999999,
+    "median": 0.00033497800000000004,
+    "min": 0.00023889499999999998,
+    "p25": 0.00029730800000000003,
+    "p90": 0.00044298199999999997,
+    "p95": 0.00056147599999999999,
+    "p99": 0.00264263,
+    "p99.9": 0.010710000000000001
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 42873,
+    "max": 0.024215,
+    "mean": 0.00089340799999999994,
+    "median": 0.00040507299999999999,
+    "min": 0.00024962399999999999,
+    "p25": 0.00033521699999999996,
+    "p90": 0.0014483899999999999,
+    "p95": 0.0030252899999999999,
+    "p99": 0.0117021,
+    "p99.9": 0.019608500000000001
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 40354,
+    "max": 0.015896800000000003,
+    "mean": 0.00046846699999999997,
+    "median": 0.00035643599999999996,
+    "min": 0.00024151800000000003,
+    "p25": 0.00031018300000000001,
+    "p90": 0.00059485400000000002,
+    "p95": 0.000736475,
+    "p99": 0.0028173899999999999,
+    "p99.9": 0.011029500000000001
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 42805,
+    "max": 0.0152855,
+    "mean": 0.00042244099999999996,
+    "median": 0.00033688500000000004,
+    "min": 0.00024270999999999999,
+    "p25": 0.00030350700000000001,
+    "p90": 0.00044894199999999997,
+    "p95": 0.00055384599999999998,
+    "p99": 0.0026388200000000001,
+    "p99.9": 0.0091133099999999995
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 42782,
+    "max": 0.016814199999999998,
+    "mean": 0.00042689299999999997,
+    "median": 0.00034022299999999996,
+    "min": 0.000240564,
+    "p25": 0.00030088399999999996,
+    "p90": 0.00047755199999999996,
+    "p95": 0.00060176799999999992,
+    "p99": 0.0026314300000000001,
+    "p99.9": 0.009349109999999999
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 41835,
+    "max": 0.0138338,
+    "mean": 0.00043456299999999995,
+    "median": 0.00034499199999999997,
+    "min": 0.00023937199999999998,
+    "p25": 0.00030231499999999999,
+    "p90": 0.00048255899999999997,
+    "p95": 0.00062513400000000006,
+    "p99": 0.0026512099999999998,
+    "p99.9": 0.0098762499999999996
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 41469,
+    "max": 0.015779499999999998,
+    "mean": 0.00043472400000000005,
+    "median": 0.000342846,
+    "min": 0.00024628599999999997,
+    "p25": 0.00031089800000000004,
+    "p90": 0.00045990899999999999,
+    "p95": 0.00057196599999999992,
+    "p99": 0.00278115,
+    "p99.9": 0.010043400000000001
+  }
+}
+{
+  "batch": {
+    "count": 0,
+    "max": 0,
+    "mean": 0,
+    "median": 0,
+    "min": 0,
+    "p25": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0,
+    "p99.9": 0
+  },
+  "default": {
+    "count": 41730,
+    "max": 0.0151267,
+    "mean": 0.00042586699999999997,
+    "median": 0.00034260700000000004,
+    "min": 0.000237703,
+    "p25": 0.00030589100000000003,
+    "p90": 0.00049066500000000005,
+    "p95": 0.00062012700000000005,
+    "p99": 0.00245452,
+    "p99.9": 0.0094594999999999992
+  }
+}
+Throughput (ops/sec): 501153
+Runtime (ms): 21043532
+OperationCountInsert: 0
+ErrorCountInsert: 0
+SuccessCountInsert: 0
+SuccessCountInsertBatched: 0
+UnknownCountInsert: 0
+AverageInsertLatency: 0
+OperationCountRead: 150636145
+ErrorCountRead: 0
+SuccessCountRead: 3012722
+SuccessCountReadBatched: 147623423
+UnknownCountRead: 0
+AverageReadLatency: 7063
+95thPercentileReadLatency: 2
+99thPercentileReadLatency: 250879
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+SuccessCountUpdateBatched: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 17967
+99thPercentileUpdateLatency: 76991
+95thPercentileInsertLatency: 0
+99thPercentileInsertLatency: 0
