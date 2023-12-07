@@ -6,3 +6,4 @@ statefulset-logs.txt
 status_json_details.json
 ycsb_statefulset.yaml
 pull-secret.txt
+loginto.sh
