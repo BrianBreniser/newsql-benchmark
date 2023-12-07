@@ -39,6 +39,10 @@ spec:
       - name: ycsb
         image: quay.io/breniserbrian/ycsb:latest
         command: ["/bin/bash", "-c"] 
+        resources:
+          requests:
+            cpu: "7"
+            memory: "10Gi"
         #run as root user to install packages
         securityContext:
           privileged: false

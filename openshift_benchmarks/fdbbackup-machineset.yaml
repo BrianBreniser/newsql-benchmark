@@ -1,0 +1,59 @@
+apiVersion: machine.openshift.io/v1beta1
+kind: MachineSet
+metadata:
+  labels:
+    machine.openshift.io/cluster-api-cluster: fdb05-dev-va7-wddgt-fdbbackup
+    machine.openshift.io/cluster-api-machine-role: worker
+    machine.openshift.io/cluster-api-machine-type: worker
+  name: fdb05-dev-va7-wddgt-worker-eastus21-fdbbackup
+  namespace: openshift-machine-api
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      machine.openshift.io/cluster-api-cluster: fdb05-dev-va7-wddgt
+      machine.openshift.io/cluster-api-machineset: fdb05-dev-va7-wddgt-worker-eastus21-fdbbackup
+  template:
+    metadata:
+      labels:
+        machine.openshift.io/cluster-api-cluster: fdb05-dev-va7-wddgt
+        machine.openshift.io/cluster-api-machine-role: worker
+        machine.openshift.io/cluster-api-machine-type: worker
+        machine.openshift.io/cluster-api-machineset: fdb05-dev-va7-wddgt-worker-eastus21-fdbbackup
+    spec:
+      lifecycleHooks: {}
+      metadata: {}
+      providerSpec:
+        value:
+          acceleratedNetworking: true
+          apiVersion: machine.openshift.io/v1beta1
+          credentialsSecret:
+            name: azure-cloud-credentials
+            namespace: openshift-machine-api
+          diagnostics: {}
+          image:
+            offer: aro4
+            publisher: azureopenshift
+            resourceID: ""
+            sku: aro_412
+            version: 412.86.20230503
+          kind: AzureMachineProviderSpec
+          location: eastus2
+          metadata:
+            creationTimestamp: null
+          networkResourceGroup: rg-fdb05-dev-va7
+          osDisk:
+            diskSettings: {}
+            diskSizeGB: 128
+            managedDisk:
+              storageAccountType: Premium_LRS
+            osType: Linux
+          publicIP: false
+          publicLoadBalancer: fdb05-dev-va7-wddgt
+          resourceGroup: aro-ohsggpsk
+          subnet: worker-subnet-1-fdb05-dev-va7
+          userDataSecret:
+            name: worker-user-data
+          vmSize: Standard_F8s_v2
+          vnet: vnet-fdb05-dev-va7
+          zone: "1"
