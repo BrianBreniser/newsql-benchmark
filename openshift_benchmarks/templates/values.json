@@ -320,6 +320,24 @@
     "machineset": {},
     "localstorage": {}
   },
+  "final_lg_w_timed_long_1": {
+    "fdb": {},
+    "ycsb-statefulset": {
+      "ycsb_load_or_run_phase": "run_phase",
+      "replicas": 20,
+      "num_keys": 1000000000,
+      "override_operation_count": "true",
+      "threads_per_process": 32,
+      "batch_size": 100,
+      "read_proportion": 0.0,
+      "update_proportion": 0.0,
+      "insert_proportion": 1.0,
+      "read_modify_write_proportion": 0.0,
+      "max_execution_time_seconds": 7200
+    },
+    "machineset": {},
+    "localstorage": {}
+  },
   "final_lg_r_1": {
     "fdb": {},
     "ycsb-statefulset": {
