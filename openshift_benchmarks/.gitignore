@@ -7,3 +7,5 @@ status_json_details.json
 ycsb_statefulset.yaml
 pull-secret.txt
 loginto.sh
+current_cluster.txt
+tmp.txt
