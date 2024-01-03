@@ -174,24 +174,6 @@
     "machineset": {},
     "localstorage": {}
   },
-  "final_md_w_timed_1": {
-    "fdb": {},
-    "ycsb-statefulset": {
-      "ycsb_load_or_run_phase": "run_phase",
-      "replicas": 20,
-      "num_keys": 300000000,
-      "override_operation_count": "true",
-      "threads_per_process": 32,
-      "batch_size": 100,
-      "read_proportion": 0.0,
-      "update_proportion": 0.0,
-      "insert_proportion": 1.0,
-      "read_modify_write_proportion": 0.0,
-      "max_execution_time_seconds": 300
-    },
-    "machineset": {},
-    "localstorage": {}
-  },
   "final_md_r_1": {
     "fdb": {},
     "ycsb-statefulset": {
@@ -246,6 +228,24 @@
     "machineset": {},
     "localstorage": {}
   },
+  "final_md_w_timed_1": {
+    "fdb": {},
+    "ycsb-statefulset": {
+      "ycsb_load_or_run_phase": "run_phase",
+      "replicas": 20,
+      "num_keys": 300000000,
+      "override_operation_count": "true",
+      "threads_per_process": 32,
+      "batch_size": 100,
+      "read_proportion": 0.0,
+      "update_proportion": 0.0,
+      "insert_proportion": 1.0,
+      "read_modify_write_proportion": 0.0,
+      "max_execution_time_seconds": 300
+    },
+    "machineset": {},
+    "localstorage": {}
+  },
   "final_md_r90rmu10_timed_1": {
     "fdb": {},
     "ycsb-statefulset": {
@@ -260,6 +260,79 @@
       "insert_proportion": 0.0,
       "read_modify_write_proportion": 0.1,
       "max_execution_time_seconds": 300
+    },
+    "machineset": {},
+    "localstorage": {}
+  },
+
+  "final_md_r_timed_15": {
+    "fdb": {},
+    "ycsb-statefulset": {
+      "ycsb_load_or_run_phase": "run_phase",
+      "replicas": 20,
+      "num_keys": 300000000,
+      "override_operation_count": "true",
+      "threads_per_process": 32,
+      "batch_size": 50,
+      "read_proportion": 1.0,
+      "update_proportion": 0.0,
+      "insert_proportion": 0.0,
+      "read_modify_write_proportion": 0.0,
+      "max_execution_time_seconds": 900
+    },
+    "machineset": {},
+    "localstorage": {}
+  },
+  "final_md_u_timed_15": {
+    "fdb": {},
+    "ycsb-statefulset": {
+      "ycsb_load_or_run_phase": "run_phase",
+      "replicas": 20,
+      "num_keys": 300000000,
+      "override_operation_count": "true",
+      "threads_per_process": 32,
+      "batch_size": 50,
+      "read_proportion": 0.0,
+      "update_proportion": 1.0,
+      "insert_proportion": 0.0,
+      "read_modify_write_proportion": 0.0,
+      "max_execution_time_seconds": 900
+    },
+    "machineset": {},
+    "localstorage": {}
+  },
+  "final_md_w_timed_15": {
+    "fdb": {},
+    "ycsb-statefulset": {
+      "ycsb_load_or_run_phase": "run_phase",
+      "replicas": 20,
+      "num_keys": 300000000,
+      "override_operation_count": "true",
+      "threads_per_process": 32,
+      "batch_size": 100,
+      "read_proportion": 0.0,
+      "update_proportion": 0.0,
+      "insert_proportion": 1.0,
+      "read_modify_write_proportion": 0.0,
+      "max_execution_time_seconds": 900
+    },
+    "machineset": {},
+    "localstorage": {}
+  },
+  "final_md_r90rmu10_timed_15": {
+    "fdb": {},
+    "ycsb-statefulset": {
+      "ycsb_load_or_run_phase": "run_phase",
+      "replicas": 20,
+      "num_keys": 300000000,
+      "override_operation_count": "true",
+      "threads_per_process": 32,
+      "batch_size": 50,
+      "read_proportion": 0.9,
+      "update_proportion": 0.0,
+      "insert_proportion": 0.0,
+      "read_modify_write_proportion": 0.1,
+      "max_execution_time_seconds": 900
     },
     "machineset": {},
     "localstorage": {}
