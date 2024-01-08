@@ -10,6 +10,7 @@ while [ $not_running -gt 0 ]; do
 done
 
 while true; do
+    echo "All machines running!!!"
     notify-send "All machines are now Running"
     sleep 30
 done
