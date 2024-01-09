@@ -4,7 +4,7 @@ checkAllStarted="true"
 notify-send "Starting log loop"
 start_time=$(date +%s)
 gatherLatencyMetrics="true"
-exporterpod=$(oc get pods | grep "fdbexplorer" | awk '{print $1}')
+exporterpod=$(oc get pods | grep "fdbexplorer" | awk '{print $1}') # I know it's not explorer, but it's the corret pod on 01
 
 while true; do
     pods=$(oc get pods | rg -i benchmark | awk '{print $1}')
