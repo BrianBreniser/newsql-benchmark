@@ -1,0 +1,2237 @@
+---
+
+Running test final_sm_l_1
+
+---
+
+YCSB Setup:
+          update_proportion=0.0
+          read_proportion=0.0
+          insert_proportion=1.0
+          read_modify_write_proportion=0.0
+          num_keys=3000000
+          value_size_bytes=2000
+          batch_size=100
+          num_clients=20
+          threads_per_process=16
+          max_execution_time_seconds=200000
+          keys_per_host=$((num_keys / num_clients))
+          operation_count=$((keys_per_process / batch_size))
+          load_phase() {
+              -p recordcount=$num_keys \
+              -p db.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p updateproportion=$update_proportion \
+              -p insertproportion=$insert_proportion \
+              -p readmodifywriteproportion=$read_modify_write_proportion
+              -p threadcount=$threads_per_process
+          run_phase() {
+              -p recordcount=$num_keys \
+              -p foundationdb.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p insertproportion=$insert_proportion \
+              -p updateproportion=$update_proportion \
+              -p threadcount=$threads_per_process
+          for i in `seq 0 4`; do
+            load_phase $i &
+
+FDB Config:
+Using cluster file `/mnt/config-volume/cluster-file'.
+
+Could not communicate with all of the coordination servers.
+  The database will remain operational as long as we
+  can connect to a quorum of servers, however the fault
+  tolerance of the system is reduced as long as the
+  servers remain disconnected.
+
+  10.113.181.132:4505  (reachable)
+  10.113.181.145:4503  (unreachable)
+  10.113.181.150:4503  (reachable)
+  10.113.181.154:4507  (reachable)
+  10.113.181.155:4505  (reachable)
+  10.113.181.156:4503  (reachable)
+  10.113.181.171:4503  (reachable)
+  10.113.181.185:4505  (reachable)
+  10.113.181.190:4507  (reachable)
+
+Configuration:
+  Redundancy mode        - triple
+  Storage engine         - ssd-redwood-1-experimental
+  Coordinators           - 9
+  Desired Commit Proxies - 6
+  Desired GRV Proxies    - 4
+  Desired Resolvers      - 1
+  Desired Logs           - 12
+  Desired Remote Logs    - -1
+  Desired Log Routers    - -1
+  Usable Regions         - 2
+
+  Redundancy mode        - triple
+
+Using cluster file `/mnt/config-volume/cluster-file'.
+
+Could not communicate with all of the coordination servers.
+  The database will remain operational as long as we
+  can connect to a quorum of servers, however the fault
+  tolerance of the system is reduced as long as the
+  servers remain disconnected.
+
+  10.113.181.132:4505  (reachable)
+  10.113.181.145:4503  (unreachable)
+  10.113.181.150:4503  (reachable)
+  10.113.181.154:4507  (reachable)
+  10.113.181.155:4505  (reachable)
+  10.113.181.156:4503  (reachable)
+  10.113.181.171:4503  (reachable)
+  10.113.181.185:4505  (reachable)
+  10.113.181.190:4507  (reachable)
+
+Configuration:
+  Redundancy mode        - triple
+  Storage engine         - ssd-redwood-1-experimental
+  Coordinators           - 9
+  Desired Commit Proxies - 6
+  Desired GRV Proxies    - 4
+  Desired Resolvers      - 1
+  Desired Logs           - 12
+  Desired Remote Logs    - -1
+  Desired Log Routers    - -1
+  Usable Regions         - 2
+  Regions: 
+    Primary -
+        Datacenter                    - dc1
+        Satellite datacenters         - dc2, dc3
+        Satellite Logs                - 3
+    Remote -
+        Datacenter                    - dc3
+        Satellite datacenters         - dc2, dc1
+        Satellite Logs                - 3
+
+Cluster:
+  FoundationDB processes - 282
+  Zones                  - 45
+  Machines               - 45
+  Memory availability    - 2.1 GB per process on machine with least available
+                           >>>>> (WARNING: 4.0 GB recommended) <<<<<
+  Retransmissions rate   - 41 Hz
+  Fault Tolerance        - 2 machines
+  Server time            - 01/10/24 00:22:31
+
+Data:
+  Replication health     - Healthy
+  Moving data            - 0.000 GB
+  Sum of key-value sizes - 134 MB
+  Disk space used        - 17.885 GB
+
+Operating space:
+  Storage server         - 1808.3 GB free on most full server
+  Log server             - 1809.6 GB free on most full server
+
+Workload:
+
+Probes after 2 minutes of running
+
+{
+  "batch": {
+    "count": 3,
+    "max": 0.092765600000000004,
+    "mean": 0.032512400000000004,
+    "median": 0.00311685,
+    "min": 0.00165486,
+    "p25": 0.00165486,
+    "p90": 0.092765600000000004,
+    "p95": 0.092765600000000004,
+    "p99": 0.092765600000000004,
+    "p99.9": 0.092765600000000004
+  },
+  "default": {
+    "count": 18920,
+    "max": 0.197631,
+    "mean": 0.028092800000000001,
+    "median": 0.0032367699999999999,
+    "min": 0.000029325500000000002,
+    "p25": 0.0019919899999999999,
+    "p90": 0.097708900000000001,
+    "p95": 0.10031000000000001,
+    "p99": 0.103422,
+    "p99.9": 0.19500600000000001
+  }
+}
+{
+  "batch": {
+    "count": 3,
+    "max": 0.092187600000000008,
+    "mean": 0.079928100000000002,
+    "median": 0.092001400000000011,
+    "min": 0.055595200000000004,
+    "p25": 0.055595200000000004,
+    "p90": 0.092187600000000008,
+    "p95": 0.092187600000000008,
+    "p99": 0.092187600000000008,
+    "p99.9": 0.092187600000000008
+  },
+  "default": {
+    "count": 19081,
+    "max": 0.19756300000000002,
+    "mean": 0.077453499999999995,
+    "median": 0.0884104,
+    "min": 0.00034904500000000003,
+    "p25": 0.066193599999999991,
+    "p90": 0.096137,
+    "p95": 0.098236300000000026,
+    "p99": 0.101074,
+    "p99.9": 0.16473600000000002
+  }
+}
+Throughput (ops/sec): 500
+Runtime (ms): 534585672
+OperationCountInsert: 3000000
+ErrorCountInsert: 0
+SuccessCountInsert: 3000000
+UnknownCountInsert: 0
+AverageInsertLatency: 181165
+OperationCountRead: 0
+ErrorCountRead: 0
+SuccessCountRead: 0
+UnknownCountRead: 0
+AverageReadLatency: 0
+95thPercentileReadLatency: 0
+99thPercentileReadLatency: 0
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 0
+99thPercentileUpdateLatency: 0
+
+---
+
+Running test final_sm_r_1
+
+---
+
+YCSB Setup:
+          update_proportion=0.0
+          read_proportion=1.0
+          insert_proportion=0.0
+          read_modify_write_proportion=0.0
+          num_keys=3000000
+          value_size_bytes=2000
+          batch_size=100
+          num_clients=40
+          threads_per_process=16
+          max_execution_time_seconds=900
+          keys_per_host=$((num_keys / num_clients))
+          operation_count=$((keys_per_process / batch_size))
+          load_phase() {
+              -p recordcount=$num_keys \
+              -p db.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p updateproportion=$update_proportion \
+              -p insertproportion=$insert_proportion \
+              -p readmodifywriteproportion=$read_modify_write_proportion
+              -p threadcount=$threads_per_process
+          run_phase() {
+              -p recordcount=$num_keys \
+              -p foundationdb.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p insertproportion=$insert_proportion \
+              -p updateproportion=$update_proportion \
+              -p threadcount=$threads_per_process
+          for i in `seq 0 4`; do
+            run_phase $i &
+
+FDB Config:
+Using cluster file `/mnt/config-volume/cluster-file'.
+
+Could not communicate with all of the coordination servers.
+  The database will remain operational as long as we
+  can connect to a quorum of servers, however the fault
+  tolerance of the system is reduced as long as the
+  servers remain disconnected.
+
+  10.113.181.132:4505  (reachable)
+  10.113.181.145:4503  (unreachable)
+  10.113.181.150:4503  (reachable)
+  10.113.181.154:4507  (reachable)
+  10.113.181.155:4505  (reachable)
+  10.113.181.156:4503  (reachable)
+  10.113.181.171:4503  (reachable)
+  10.113.181.185:4505  (reachable)
+  10.113.181.190:4507  (reachable)
+
+Configuration:
+  Redundancy mode        - triple
+  Storage engine         - ssd-redwood-1-experimental
+  Coordinators           - 9
+  Desired Commit Proxies - 6
+  Desired GRV Proxies    - 4
+  Desired Resolvers      - 1
+  Desired Logs           - 12
+  Desired Remote Logs    - -1
+  Desired Log Routers    - -1
+  Usable Regions         - 2
+
+Throughput (ops/sec): 17778
+Runtime (ms): 413869
+OperationCountInsert: 0
+ErrorCountInsert: 0
+SuccessCountInsert: 0
+UnknownCountInsert: 0
+AverageInsertLatency: 0
+OperationCountRead: 30000
+ErrorCountRead: 0
+SuccessCountRead: 0
+UnknownCountRead: 0
+AverageReadLatency: 6006
+95thPercentileReadLatency: 63903
+99thPercentileReadLatency: 71743
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 0
+99thPercentileUpdateLatency: 0
+
+---
+
+Running test final_sm_l_1
+
+---
+
+YCSB Setup:
+          update_proportion=0.0
+          read_proportion=0.0
+          insert_proportion=1.0
+          read_modify_write_proportion=0.0
+          num_keys=10000000
+          value_size_bytes=2000
+          batch_size=1000
+          num_clients=20
+          threads_per_process=16
+          max_execution_time_seconds=200000
+          keys_per_host=$((num_keys / num_clients))
+          operation_count=$((keys_per_process / batch_size))
+          load_phase() {
+              -p recordcount=$num_keys \
+              -p db.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p updateproportion=$update_proportion \
+              -p insertproportion=$insert_proportion \
+              -p readmodifywriteproportion=$read_modify_write_proportion
+              -p threadcount=$threads_per_process
+          run_phase() {
+              -p recordcount=$num_keys \
+              -p foundationdb.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p insertproportion=$insert_proportion \
+              -p updateproportion=$update_proportion \
+              -p threadcount=$threads_per_process
+          for i in `seq 0 4`; do
+            load_phase $i &
+
+FDB Config:
+Using cluster file `/mnt/config-volume/cluster-file'.
+
+Could not communicate with all of the coordination servers.
+  The database will remain operational as long as we
+  can connect to a quorum of servers, however the fault
+  tolerance of the system is reduced as long as the
+  servers remain disconnected.
+
+  10.113.181.132:4505  (reachable)
+  10.113.181.145:4503  (unreachable)
+  10.113.181.150:4503  (reachable)
+  10.113.181.154:4507  (reachable)
+  10.113.181.155:4505  (reachable)
+  10.113.181.156:4503  (reachable)
+  10.113.181.171:4503  (reachable)
+  10.113.181.185:4505  (reachable)
+  10.113.181.190:4507  (reachable)
+
+Configuration:
+  Redundancy mode        - triple
+  Storage engine         - ssd-redwood-1-experimental
+  Coordinators           - 9
+  Desired Commit Proxies - 6
+  Desired GRV Proxies    - 4
+  Desired Resolvers      - 1
+  Desired Logs           - 12
+  Desired Remote Logs    - -1
+  Desired Log Routers    - -1
+  Usable Regions         - 2
+
+
+---
+
+Running test final_sm_l_1
+
+---
+
+YCSB Setup:
+          update_proportion=0.0
+          read_proportion=0.0
+          insert_proportion=1.0
+          read_modify_write_proportion=0.0
+          num_keys=10000000
+          value_size_bytes=2000
+          batch_size=1000
+          num_clients=50
+          threads_per_process=16
+          max_execution_time_seconds=200000
+          keys_per_host=$((num_keys / num_clients))
+          operation_count=$((keys_per_process / batch_size))
+          load_phase() {
+              -p recordcount=$num_keys \
+              -p db.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p updateproportion=$update_proportion \
+              -p insertproportion=$insert_proportion \
+              -p readmodifywriteproportion=$read_modify_write_proportion
+              -p threadcount=$threads_per_process
+          run_phase() {
+              -p recordcount=$num_keys \
+              -p foundationdb.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p insertproportion=$insert_proportion \
+              -p updateproportion=$update_proportion \
+              -p threadcount=$threads_per_process
+          for i in `seq 0 4`; do
+            load_phase $i &
+
+FDB Config:
+Using cluster file `/mnt/config-volume/cluster-file'.
+
+Could not communicate with all of the coordination servers.
+  The database will remain operational as long as we
+  can connect to a quorum of servers, however the fault
+  tolerance of the system is reduced as long as the
+  servers remain disconnected.
+
+  10.113.181.132:4505  (reachable)
+  10.113.181.145:4503  (unreachable)
+  10.113.181.150:4503  (reachable)
+  10.113.181.154:4507  (reachable)
+  10.113.181.155:4505  (reachable)
+  10.113.181.156:4503  (reachable)
+  10.113.181.171:4503  (reachable)
+  10.113.181.185:4505  (reachable)
+  10.113.181.190:4507  (reachable)
+
+Configuration:
+  Redundancy mode        - triple
+  Storage engine         - ssd-redwood-1-experimental
+  Coordinators           - 9
+  Desired Commit Proxies - 6
+  Desired GRV Proxies    - 4
+  Desired Resolvers      - 1
+  Desired Logs           - 12
+  Desired Remote Logs    - -1
+  Desired Log Routers    - -1
+  Usable Regions         - 2
+
+  Redundancy mode        - triple
+
+Using cluster file `/mnt/config-volume/cluster-file'.
+
+Could not communicate with all of the coordination servers.
+  The database will remain operational as long as we
+  can connect to a quorum of servers, however the fault
+  tolerance of the system is reduced as long as the
+  servers remain disconnected.
+
+  10.113.181.132:4505  (reachable)
+  10.113.181.145:4503  (unreachable)
+  10.113.181.150:4503  (reachable)
+  10.113.181.154:4507  (reachable)
+  10.113.181.155:4505  (reachable)
+  10.113.181.156:4503  (reachable)
+  10.113.181.171:4503  (reachable)
+  10.113.181.185:4505  (reachable)
+  10.113.181.190:4507  (reachable)
+
+Configuration:
+  Redundancy mode        - triple
+  Storage engine         - ssd-redwood-1-experimental
+  Coordinators           - 9
+  Desired Commit Proxies - 6
+  Desired GRV Proxies    - 4
+  Desired Resolvers      - 1
+  Desired Logs           - 12
+  Desired Remote Logs    - -1
+  Desired Log Routers    - -1
+  Usable Regions         - 2
+  Regions: 
+    Primary -
+        Datacenter                    - dc1
+        Satellite datacenters         - dc2, dc3
+        Satellite Logs                - 3
+    Remote -
+        Datacenter                    - dc3
+        Satellite datacenters         - dc2, dc1
+        Satellite Logs                - 3
+
+Cluster:
+  FoundationDB processes - 282
+  Zones                  - 45
+  Machines               - 45
+  Memory availability    - 2.1 GB per process on machine with least available
+                           >>>>> (WARNING: 4.0 GB recommended) <<<<<
+  Retransmissions rate   - 32 Hz
+  Fault Tolerance        - 2 machines
+  Server time            - 01/10/24 02:55:17
+
+Data:
+  Replication health     - Healthy
+  Moving data            - 0.000 GB
+  Sum of key-value sizes - 3.559 GB
+  Disk space used        - 285.680 GB
+
+Operating space:
+  Storage server         - 1798.1 GB free on most full server
+  Log server             - 1809.6 GB free on most full server
+
+Workload:
+
+Probes after 2 minutes of running
+
+
+---
+
+Running test final_sm_l_1
+
+---
+
+YCSB Setup:
+          update_proportion=0.0
+          read_proportion=0.0
+          insert_proportion=1.0
+          read_modify_write_proportion=0.0
+          num_keys=1000000
+          value_size_bytes=2000
+          batch_size=1000
+          num_clients=50
+          threads_per_process=16
+          max_execution_time_seconds=200000
+          keys_per_host=$((num_keys / num_clients))
+          operation_count=$((keys_per_process / batch_size))
+          load_phase() {
+              -p recordcount=$num_keys \
+              -p db.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p updateproportion=$update_proportion \
+              -p insertproportion=$insert_proportion \
+              -p readmodifywriteproportion=$read_modify_write_proportion
+              -p threadcount=$threads_per_process
+          run_phase() {
+              -p recordcount=$num_keys \
+              -p foundationdb.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p insertproportion=$insert_proportion \
+              -p updateproportion=$update_proportion \
+              -p threadcount=$threads_per_process
+          for i in `seq 0 4`; do
+            load_phase $i &
+
+FDB Config:
+Using cluster file `/mnt/config-volume/cluster-file'.
+
+Could not communicate with all of the coordination servers.
+  The database will remain operational as long as we
+  can connect to a quorum of servers, however the fault
+  tolerance of the system is reduced as long as the
+  servers remain disconnected.
+
+  10.113.181.132:4505  (reachable)
+  10.113.181.145:4503  (unreachable)
+  10.113.181.150:4503  (reachable)
+  10.113.181.154:4507  (reachable)
+  10.113.181.155:4505  (reachable)
+  10.113.181.156:4503  (reachable)
+  10.113.181.171:4503  (reachable)
+  10.113.181.185:4505  (reachable)
+  10.113.181.190:4507  (reachable)
+
+Configuration:
+  Redundancy mode        - triple
+  Storage engine         - ssd-redwood-1-experimental
+  Coordinators           - 9
+  Desired Commit Proxies - 6
+  Desired GRV Proxies    - 4
+  Desired Resolvers      - 1
+  Desired Logs           - 12
+  Desired Remote Logs    - -1
+  Desired Log Routers    - -1
+  Usable Regions         - 2
+
+  Redundancy mode        - triple
+
+Using cluster file `/mnt/config-volume/cluster-file'.
+
+Could not communicate with all of the coordination servers.
+  The database will remain operational as long as we
+  can connect to a quorum of servers, however the fault
+  tolerance of the system is reduced as long as the
+  servers remain disconnected.
+
+  10.113.181.132:4505  (reachable)
+  10.113.181.145:4503  (unreachable)
+  10.113.181.150:4503  (reachable)
+  10.113.181.154:4507  (reachable)
+  10.113.181.155:4505  (reachable)
+  10.113.181.156:4503  (reachable)
+  10.113.181.171:4503  (reachable)
+  10.113.181.185:4505  (reachable)
+  10.113.181.190:4507  (reachable)
+
+Configuration:
+  Redundancy mode        - triple
+  Storage engine         - ssd-redwood-1-experimental
+  Coordinators           - 9
+  Desired Commit Proxies - 6
+  Desired GRV Proxies    - 4
+  Desired Resolvers      - 1
+  Desired Logs           - 12
+  Desired Remote Logs    - -1
+  Desired Log Routers    - -1
+  Usable Regions         - 2
+  Regions: 
+    Primary -
+        Datacenter                    - dc1
+        Satellite datacenters         - dc2, dc3
+        Satellite Logs                - 3
+    Remote -
+        Datacenter                    - dc3
+        Satellite datacenters         - dc2, dc1
+        Satellite Logs                - 3
+
+Cluster:
+  FoundationDB processes - 282
+  Zones                  - 45
+  Machines               - 45
+  Memory availability    - 2.1 GB per process on machine with least available
+                           >>>>> (WARNING: 4.0 GB recommended) <<<<<
+  Retransmissions rate   - 36 Hz
+  Fault Tolerance        - 2 machines
+  Server time            - 01/10/24 03:01:25
+
+Data:
+  Replication health     - Healthy
+  Moving data            - 0.000 GB
+  Sum of key-value sizes - 3.634 GB
+  Disk space used        - 302.467 GB
+
+Operating space:
+  Storage server         - 1797.6 GB free on most full server
+  Log server             - 1809.6 GB free on most full server
+
+Workload:
+
+Probes after 2 minutes of running
+
+Process performance details:
+  10.113.181.132:4501    (  3% cpu;  4% machine; 0.015 Gbps;  3% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.113.181.132:4503    (  3% cpu;  4% machine; 0.015 Gbps;  3% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.113.181.132:4505    (  3% cpu;  4% machine; 0.015 Gbps;  3% disk IO; 0.3 GB / 8.0 GB RAM  )
+  10.113.181.132:4507    (  3% cpu;  4% machine; 0.015 Gbps;  3% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.113.181.133:4501    (  1% cpu;  2% machine; 0.003 Gbps;  1% disk IO; 2.6 GB / 7.5 GB RAM  )
+  10.113.181.133:4503    (  1% cpu;  2% machine; 0.003 Gbps;  1% disk IO; 1.9 GB / 7.5 GB RAM  )
+  10.113.181.133:4505    (  1% cpu;  2% machine; 0.003 Gbps;  1% disk IO; 1.6 GB / 7.5 GB RAM  )
+  10.113.181.133:4507    (  1% cpu;  2% machine; 0.003 Gbps;  1% disk IO; 1.8 GB / 7.5 GB RAM  )
+  10.113.181.133:4509    (  1% cpu;  2% machine; 0.003 Gbps;  1% disk IO; 1.9 GB / 7.5 GB RAM  )
+  10.113.181.133:4511    (  1% cpu;  2% machine; 0.003 Gbps;  1% disk IO; 1.8 GB / 7.5 GB RAM  )
+Throughput (ops/sec): 500
+Runtime (ms): 359761491
+OperationCountInsert: 1000000
+ErrorCountInsert: 0
+SuccessCountInsert: 1000000
+UnknownCountInsert: 0
+AverageInsertLatency: 363308
+OperationCountRead: 0
+ErrorCountRead: 0
+SuccessCountRead: 0
+UnknownCountRead: 0
+AverageReadLatency: 0
+95thPercentileReadLatency: 0
+99thPercentileReadLatency: 0
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 0
+99thPercentileUpdateLatency: 0
+
+---
+
+Running test final_sm_r_1
+
+---
+
+YCSB Setup:
+          update_proportion=0.0
+          read_proportion=1.0
+          insert_proportion=0.0
+          read_modify_write_proportion=0.0
+          num_keys=1000000
+          value_size_bytes=2000
+          batch_size=100
+          num_clients=50
+          threads_per_process=16
+          max_execution_time_seconds=900
+          keys_per_host=$((num_keys / num_clients))
+          operation_count=$((keys_per_process / batch_size))
+          load_phase() {
+              -p recordcount=$num_keys \
+              -p db.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p updateproportion=$update_proportion \
+              -p insertproportion=$insert_proportion \
+              -p readmodifywriteproportion=$read_modify_write_proportion
+              -p threadcount=$threads_per_process
+          run_phase() {
+              -p recordcount=$num_keys \
+              -p foundationdb.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p insertproportion=$insert_proportion \
+              -p updateproportion=$update_proportion \
+              -p threadcount=$threads_per_process
+          for i in `seq 0 4`; do
+            run_phase $i &
+
+FDB Config:
+Using cluster file `/mnt/config-volume/cluster-file'.
+
+Could not communicate with all of the coordination servers.
+  The database will remain operational as long as we
+  can connect to a quorum of servers, however the fault
+  tolerance of the system is reduced as long as the
+  servers remain disconnected.
+
+  10.113.181.132:4505  (reachable)
+  10.113.181.145:4503  (unreachable)
+  10.113.181.150:4503  (reachable)
+  10.113.181.154:4507  (reachable)
+  10.113.181.155:4505  (reachable)
+  10.113.181.156:4503  (reachable)
+  10.113.181.171:4503  (reachable)
+  10.113.181.185:4505  (reachable)
+  10.113.181.190:4507  (reachable)
+
+Configuration:
+  Redundancy mode        - triple
+  Storage engine         - ssd-redwood-1-experimental
+  Coordinators           - 9
+  Desired Commit Proxies - 6
+  Desired GRV Proxies    - 4
+  Desired Resolvers      - 1
+  Desired Logs           - 12
+  Desired Remote Logs    - -1
+  Desired Log Routers    - -1
+  Usable Regions         - 2
+
+  Redundancy mode        - unknown
+
+
+Probes after 2 minutes of running
+
+Process performance details:
+
+Client time: 01/10/24 04:00:52
+Throughput (ops/sec): 1423332
+Runtime (ms): 224158968
+OperationCountInsert: 0
+ErrorCountInsert: 0
+SuccessCountInsert: 0
+UnknownCountInsert: 0
+AverageInsertLatency: 0
+OperationCountRead: 1281437334
+ErrorCountRead: 0
+SuccessCountRead: 12814372
+UnknownCountRead: 0
+AverageReadLatency: 3070
+95thPercentileReadLatency: 0
+99thPercentileReadLatency: 98175
+OperationCountUpdate: 0
+ErrorCountUpdate: 0
+SuccessCountUpdate: 0
+UnknownCountUpdate: 0
+AverageUpdateLatency: 0
+95thPercentileUpdateLatency: 0
+99thPercentileUpdateLatency: 0
+
+---
+
+Running test final_md_l_1
+
+---
+
+YCSB Setup:
+          update_proportion=0.0
+          read_proportion=0.0
+          insert_proportion=1.0
+          read_modify_write_proportion=0.0
+          num_keys=300000000
+          value_size_bytes=2000
+          batch_size=100
+          num_clients=20
+          threads_per_process=16
+          max_execution_time_seconds=200000
+          keys_per_host=$((num_keys / num_clients))
+          operation_count=$((keys_per_process / batch_size))
+          load_phase() {
+              -p recordcount=$num_keys \
+              -p db.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p updateproportion=$update_proportion \
+              -p insertproportion=$insert_proportion \
+              -p readmodifywriteproportion=$read_modify_write_proportion
+              -p threadcount=$threads_per_process
+          run_phase() {
+              -p recordcount=$num_keys \
+              -p foundationdb.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p insertproportion=$insert_proportion \
+              -p updateproportion=$update_proportion \
+              -p threadcount=$threads_per_process
+          for i in `seq 0 4`; do
+            load_phase $i &
+
+FDB Config:
+Using cluster file `/mnt/config-volume/cluster-file'.
+
+Could not communicate with all of the coordination servers.
+  The database will remain operational as long as we
+  can connect to a quorum of servers, however the fault
+  tolerance of the system is reduced as long as the
+  servers remain disconnected.
+
+  10.113.181.132:4505  (reachable)
+  10.113.181.145:4503  (unreachable)
+  10.113.181.150:4503  (reachable)
+  10.113.181.154:4507  (reachable)
+  10.113.181.155:4505  (reachable)
+  10.113.181.156:4503  (reachable)
+  10.113.181.171:4503  (reachable)
+  10.113.181.185:4505  (reachable)
+  10.113.181.190:4507  (reachable)
+
+Configuration:
+  Redundancy mode        - triple
+  Storage engine         - ssd-redwood-1-experimental
+  Coordinators           - 9
+  Desired Commit Proxies - 6
+  Desired GRV Proxies    - 4
+  Desired Resolvers      - 1
+  Desired Logs           - 12
+  Desired Remote Logs    - -1
+  Desired Log Routers    - -1
+  Usable Regions         - 2
+
+  Redundancy mode        - triple
+
+Using cluster file `/mnt/config-volume/cluster-file'.
+
+Could not communicate with all of the coordination servers.
+  The database will remain operational as long as we
+  can connect to a quorum of servers, however the fault
+  tolerance of the system is reduced as long as the
+  servers remain disconnected.
+
+  10.113.181.132:4505  (reachable)
+  10.113.181.145:4503  (unreachable)
+  10.113.181.150:4503  (reachable)
+  10.113.181.154:4507  (reachable)
+  10.113.181.155:4505  (reachable)
+  10.113.181.156:4503  (reachable)
+  10.113.181.171:4503  (reachable)
+  10.113.181.185:4505  (reachable)
+  10.113.181.190:4507  (reachable)
+
+Configuration:
+  Redundancy mode        - triple
+  Storage engine         - ssd-redwood-1-experimental
+  Coordinators           - 9
+  Desired Commit Proxies - 6
+  Desired GRV Proxies    - 4
+  Desired Resolvers      - 1
+  Desired Logs           - 12
+  Desired Remote Logs    - -1
+  Desired Log Routers    - -1
+  Usable Regions         - 2
+  Regions: 
+    Primary -
+        Datacenter                    - dc1
+        Satellite datacenters         - dc2, dc3
+        Satellite Logs                - 3
+    Remote -
+        Datacenter                    - dc3
+        Satellite datacenters         - dc2, dc1
+        Satellite Logs                - 3
+
+Cluster:
+  FoundationDB processes - 282
+  Zones                  - 45
+  Machines               - 45
+  Memory availability    - 2.0 GB per process on machine with least available
+                           >>>>> (WARNING: 4.0 GB recommended) <<<<<
+  Retransmissions rate   - 48 Hz
+  Fault Tolerance        - 2 machines
+  Server time            - 01/10/24 16:33:23
+
+Data:
+  Replication health     - Healthy
+  Moving data            - 0.000 GB
+  Sum of key-value sizes - 3.724 GB
+  Disk space used        - 490.928 GB
+
+Operating space:
+  Storage server         - 1790.9 GB free on most full server
+  Log server             - 1809.6 GB free on most full server
+
+Workload:
+
+Probes after 2 minutes of running
+
+Process performance details:
+  10.113.181.132:4501    (  3% cpu;  4% machine; 0.012 Gbps;  2% disk IO; 0.3 GB / 8.0 GB RAM  )
+  10.113.181.132:4503    (  3% cpu;  4% machine; 0.012 Gbps;  2% disk IO; 0.3 GB / 8.0 GB RAM  )
+  10.113.181.132:4505    (  4% cpu;  4% machine; 0.012 Gbps;  2% disk IO; 0.3 GB / 8.0 GB RAM  )
+  10.113.181.132:4507    (  3% cpu;  4% machine; 0.012 Gbps;  2% disk IO; 0.3 GB / 8.0 GB RAM  )
+  10.113.181.133:4501    (  2% cpu;  3% machine; 0.003 Gbps;  1% disk IO; 2.6 GB / 7.5 GB RAM  )
+  10.113.181.133:4503    (  1% cpu;  3% machine; 0.003 Gbps;  1% disk IO; 2.6 GB / 7.5 GB RAM  )
+  10.113.181.133:4505    (  1% cpu;  3% machine; 0.003 Gbps;  1% disk IO; 2.2 GB / 7.5 GB RAM  )
+  10.113.181.133:4507    (  1% cpu;  3% machine; 0.003 Gbps;  1% disk IO; 2.6 GB / 7.5 GB RAM  )
+  10.113.181.133:4509    (  1% cpu;  3% machine; 0.003 Gbps;  1% disk IO; 2.6 GB / 7.5 GB RAM  )
+  10.113.181.133:4511    (  1% cpu;  3% machine; 0.003 Gbps;  1% disk IO; 2.6 GB / 7.5 GB RAM  )
+{
+  "latency_probe": {
+    "batch_priority_transaction_start_seconds": 0.095303500000000027,
+    "commit_seconds": 0.036367900000000002,
+    "immediate_priority_transaction_start_seconds": 0.095188400000000006,
+    "read_seconds": 0.00058460199999999993,
+    "transaction_start_seconds": 0.095287300000000005
+  }
+}
+{
+  "batch": {
+    "count": 4,
+    "max": 0.0919373,
+    "mean": 0.077550800000000003,
+    "median": 0.06494430000000001,
+    "min": 0.062229400000000004,
+    "p25": 0.062229400000000004,
+    "p90": 0.0919373,
+    "p95": 0.0919373,
+    "p99": 0.0919373,
+    "p99.9": 0.0919373
+  },
+  "default": {
+    "count": 18589,
+    "max": 0.60716300000000001,
+    "mean": 0.087069399999999991,
+    "median": 0.088686699999999993,
+    "min": 0.00016498600000000002,
+    "p25": 0.083948899999999993,
+    "p90": 0.10234700000000001,
+    "p95": 0.18740900000000002,
+    "p99": 0.40362800000000004,
+    "p99.9": 0.49863300000000005
+  }
+}
+{
+  "batch": {
+    "count": 2,
+    "max": 0.089910000000000004,
+    "mean": 0.076669599999999991,
+    "median": 0.063429100000000002,
+    "min": 0.063429100000000002,
+    "p25": 0.063429100000000002,
+    "p90": 0.089910000000000004,
+    "p95": 0.089910000000000004,
+    "p99": 0.089910000000000004,
+    "p99.9": 0.089910000000000004
+  },
+  "default": {
+    "count": 18728,
+    "max": 0.114743,
+    "mean": 0.076510600000000012,
+    "median": 0.086965299999999995,
+    "min": 0.00017452199999999998,
+    "p25": 0.083856100000000003,
+    "p90": 0.0959425,
+    "p95": 0.097792900000000002,
+    "p99": 0.10097300000000001,
+    "p99.9": 0.103682
+  }
+}
+
+------
+
+Lots of grv proxies (12), and stil 6 commit proxis
+
+------
+
+
+---
+
+Running test final_md_l_1
+
+---
+
+YCSB Setup:
+          update_proportion=0.0
+          read_proportion=0.0
+          insert_proportion=1.0
+          read_modify_write_proportion=0.0
+          num_keys=300000000
+          value_size_bytes=2000
+          batch_size=100
+          num_clients=20
+          threads_per_process=16
+          max_execution_time_seconds=200000
+          keys_per_host=$((num_keys / num_clients))
+          operation_count=$((keys_per_process / batch_size))
+          load_phase() {
+              -p recordcount=$num_keys \
+              -p db.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p updateproportion=$update_proportion \
+              -p insertproportion=$insert_proportion \
+              -p readmodifywriteproportion=$read_modify_write_proportion
+              -p threadcount=$threads_per_process
+          run_phase() {
+              -p recordcount=$num_keys \
+              -p foundationdb.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p insertproportion=$insert_proportion \
+              -p updateproportion=$update_proportion \
+              -p threadcount=$threads_per_process
+          for i in `seq 0 4`; do
+            load_phase $i &
+
+FDB Config:
+Using cluster file `/mnt/config-volume/cluster-file'.
+
+Could not communicate with all of the coordination servers.
+  The database will remain operational as long as we
+  can connect to a quorum of servers, however the fault
+  tolerance of the system is reduced as long as the
+  servers remain disconnected.
+
+  10.113.181.132:4505  (reachable)
+  10.113.181.145:4503  (unreachable)
+  10.113.181.150:4503  (reachable)
+  10.113.181.154:4507  (reachable)
+  10.113.181.155:4505  (unreachable)
+  10.113.181.156:4503  (reachable)
+  10.113.181.171:4503  (reachable)
+  10.113.181.185:4505  (unreachable)
+  10.113.181.190:4507  (unreachable)
+
+Unable to locate a cluster controller within 2 seconds.  Check that there are
+server processes running.
+
+Configuration:
+  Redundancy mode        - unknown
+  Storage engine         - unknown
+  Coordinators           - unknown
+  Usable Regions         - unknown
+
+Cluster:
+  FoundationDB processes - unknown
+
+  Redundancy mode        - triple
+
+Using cluster file `/mnt/config-volume/cluster-file'.
+
+Could not communicate with all of the coordination servers.
+  The database will remain operational as long as we
+  can connect to a quorum of servers, however the fault
+  tolerance of the system is reduced as long as the
+  servers remain disconnected.
+
+  10.113.181.140:4503  (reachable)
+  10.113.181.145:4503  (unreachable)
+  10.113.181.149:4503  (reachable)
+  10.113.181.150:4503  (reachable)
+  10.113.181.151:4501  (reachable)
+  10.113.181.155:4503  (reachable)
+  10.113.181.156:4503  (reachable)
+  10.113.181.160:4503  (reachable)
+  10.113.181.177:4503  (reachable)
+
+Configuration:
+  Redundancy mode        - triple
+  Storage engine         - ssd-redwood-1-experimental
+  Coordinators           - 9
+  Desired Commit Proxies - 6
+  Desired GRV Proxies    - 12
+  Desired Resolvers      - 1
+  Desired Logs           - 12
+  Desired Remote Logs    - -1
+  Desired Log Routers    - -1
+  Usable Regions         - 2
+  Regions: 
+    Primary -
+        Datacenter                    - dc1
+        Satellite datacenters         - dc2, dc3
+        Satellite Logs                - 3
+    Remote -
+        Datacenter                    - dc3
+        Satellite datacenters         - dc2, dc1
+        Satellite Logs                - 3
+
+Cluster:
+  FoundationDB processes - 264
+  Zones                  - 45
+  Machines               - 45
+  Memory availability    - 2.0 GB per process on machine with least available
+                           >>>>> (WARNING: 4.0 GB recommended) <<<<<
+  Retransmissions rate   - 34 Hz
+  Fault Tolerance        - 2 machines
+  Server time            - 01/10/24 18:14:35
+
+Data:
+  Replication health     - Healthy (Repartitioning)
+  Moving data            - 0.021 GB
+  Sum of key-value sizes - 44 MB
+  Disk space used        - 12.013 GB
+
+Operating space:
+  Storage server         - 1808.5 GB free on most full server
+  Log server             - 1809.8 GB free on most full server
+
+Workload:
+
+Probes after 2 minutes of running
+
+Process performance details:
+  10.113.181.132:4501    (  1% cpu;  2% machine; 0.001 Gbps;  0% disk IO; 0.2 GB / 7.6 GB RAM  )
+  10.113.181.132:4503    (  0% cpu;  2% machine; 0.001 Gbps;  0% disk IO; 0.2 GB / 7.6 GB RAM  )
+  10.113.181.132:4505    (  1% cpu;  2% machine; 0.001 Gbps;  0% disk IO; 0.2 GB / 7.6 GB RAM  )
+  10.113.181.132:4507    (  1% cpu;  2% machine; 0.001 Gbps;  0% disk IO; 0.2 GB / 7.6 GB RAM  )
+  10.113.181.132:4509    (  1% cpu;  2% machine; 0.001 Gbps;  0% disk IO; 0.2 GB / 7.6 GB RAM  )
+  10.113.181.132:4511    (  1% cpu;  2% machine; 0.001 Gbps;  0% disk IO; 0.2 GB / 7.6 GB RAM  )
+  10.113.181.132:4513    (  1% cpu;  2% machine; 0.001 Gbps;  0% disk IO; 0.2 GB / 7.6 GB RAM  )
+  10.113.181.132:4515    (  1% cpu;  2% machine; 0.001 Gbps;  0% disk IO; 0.2 GB / 7.6 GB RAM  )
+  10.113.181.133:4501    (  1% cpu;  2% machine; 0.002 Gbps;  1% disk IO; 0.2 GB / 7.6 GB RAM  )
+  10.113.181.133:4503    (  1% cpu;  2% machine; 0.002 Gbps;  1% disk IO; 0.3 GB / 7.6 GB RAM  )
+{
+  "batch": {
+    "count": 2,
+    "max": 0.095573700000000011,
+    "mean": 0.048951100000000004,
+    "median": 0.0023286299999999999,
+    "min": 0.0023286299999999999,
+    "p25": 0.0023286299999999999,
+    "p90": 0.095573700000000011,
+    "p95": 0.095573700000000011,
+    "p99": 0.095573700000000011,
+    "p99.9": 0.095573700000000011
+  },
+  "default": {
+    "count": 21399,
+    "max": 0.20086800000000002,
+    "mean": 0.0261633,
+    "median": 0.0033619399999999999,
+    "min": 0.000019073500000000006,
+    "p25": 0.0020625599999999997,
+    "p90": 0.0961592,
+    "p95": 0.099950600000000001,
+    "p99": 0.105535,
+    "p99.9": 0.195295
+  }
+}
+{
+  "batch": {
+    "count": 2,
+    "max": 0.09680720000000001,
+    "mean": 0.093101600000000007,
+    "median": 0.089396000000000003,
+    "min": 0.089396000000000003,
+    "p25": 0.089396000000000003,
+    "p90": 0.09680720000000001,
+    "p95": 0.09680720000000001,
+    "p99": 0.09680720000000001,
+    "p99.9": 0.09680720000000001
+  },
+  "default": {
+    "count": 21313,
+    "max": 0.192555,
+    "mean": 0.08043829999999999,
+    "median": 0.089472299999999991,
+    "min": 0.000184298,
+    "p25": 0.086485599999999996,
+    "p90": 0.095605900000000008,
+    "p95": 0.097957600000000006,
+    "p99": 0.101678,
+    "p99.9": 0.19198500000000002
+  }
+}
+
+------
+
+All changes the same, plus we upped the stateless pods from 3 to 6 in both dc1 and dc3 regions
+
+------
+
+---
+
+Running test final_md_l_1
+
+---
+
+YCSB Setup:
+          update_proportion=0.0
+          read_proportion=0.0
+          insert_proportion=1.0
+          read_modify_write_proportion=0.0
+          num_keys=300000000
+          value_size_bytes=2000
+          batch_size=100
+          num_clients=20
+          threads_per_process=16
+          max_execution_time_seconds=200000
+          keys_per_host=$((num_keys / num_clients))
+          operation_count=$((keys_per_process / batch_size))
+          load_phase() {
+              -p recordcount=$num_keys \
+              -p db.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p updateproportion=$update_proportion \
+              -p insertproportion=$insert_proportion \
+              -p readmodifywriteproportion=$read_modify_write_proportion
+              -p threadcount=$threads_per_process
+          run_phase() {
+              -p recordcount=$num_keys \
+              -p foundationdb.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p insertproportion=$insert_proportion \
+              -p updateproportion=$update_proportion \
+              -p threadcount=$threads_per_process
+          for i in `seq 0 4`; do
+            load_phase $i &
+
+FDB Config:
+Using cluster file `/mnt/config-volume/cluster-file'.
+
+Could not communicate with all of the coordination servers.
+  The database will remain operational as long as we
+  can connect to a quorum of servers, however the fault
+  tolerance of the system is reduced as long as the
+  servers remain disconnected.
+
+  10.113.181.140:4503  (reachable)
+  10.113.181.145:4503  (unreachable)
+  10.113.181.149:4503  (reachable)
+  10.113.181.150:4503  (reachable)
+  10.113.181.151:4501  (reachable)
+  10.113.181.155:4503  (reachable)
+  10.113.181.156:4503  (reachable)
+  10.113.181.160:4503  (reachable)
+  10.113.181.177:4503  (reachable)
+
+Cluster file contents do not match current cluster connection string.
+
+The file contains the connection string:
+fdb_cluster_1:Ly9LkO04OpMtMw4QlK6cgGLyqQfNkgDB@10.113.181.150:4501,10.113.181.15
+3:4503,10.113.181.154:4503,10.113.181.155:4503,10.113.181.156:4503,10.113.181.17
+4:4501,10.113.181.177:4503,10.113.181.181:4503,10.113.181.185:4503
+
+The current connection string is:
+fdb_cluster_1:YWphrkobRniDHsnjRRa3vo1hLphVsaZc@10.113.181.140:4503,10.113.181.14
+5:4503,10.113.181.149:4503,10.113.181.150:4503,10.113.181.151:4501,10.113.181.15
+5:4503,10.113.181.156:4503,10.113.181.160:4503,10.113.181.177:4503
+
+  Redundancy mode        - triple
+
+Using cluster file `/mnt/config-volume/cluster-file'.
+
+Configuration:
+  Redundancy mode        - triple
+  Storage engine         - ssd-redwood-1-experimental
+  Coordinators           - 9
+  Desired Commit Proxies - 6
+  Desired GRV Proxies    - 12
+  Desired Resolvers      - 1
+  Desired Logs           - 12
+  Desired Remote Logs    - -1
+  Desired Log Routers    - -1
+  Usable Regions         - 2
+  Regions: 
+    Primary -
+        Datacenter                    - dc1
+        Satellite datacenters         - dc2, dc3
+        Satellite Logs                - 3
+    Remote -
+        Datacenter                    - dc3
+        Satellite datacenters         - dc2, dc1
+        Satellite Logs                - 3
+
+Cluster:
+  FoundationDB processes - 270
+  Zones                  - 51
+  Machines               - 51
+  Memory availability    - 1.8 GB per process on machine with least available
+                           >>>>> (WARNING: 4.0 GB recommended) <<<<<
+  Retransmissions rate   - 33 Hz
+  Fault Tolerance        - 2 machines
+  Server time            - 01/10/24 18:37:23
+
+Data:
+  Replication health     - Healthy
+  Moving data            - 0.000 GB
+  Sum of key-value sizes - 54 MB
+  Disk space used        - 11.626 GB
+
+Operating space:
+  Storage server         - 1808.4 GB free on most full server
+  Log server             - 1809.8 GB free on most full server
+
+Workload:
+  Read rate              - 68 Hz
+  Write rate             - 785 Hz
+  Transactions started   - 788 Hz
+  Transactions committed - 791 Hz
+  Conflict rate          - 0 Hz
+
+Backup and DR:
+  Running backups        - 0
+  Running DRs            - 0
+
+Process performance details:
+  10.113.181.132:4501    (  1% cpu;  2% machine; 0.002 Gbps;  1% disk IO; 0.1 GB / 7.6 GB RAM  )
+  10.113.181.132:4503    (  1% cpu;  2% machine; 0.002 Gbps;  1% disk IO; 0.1 GB / 7.6 GB RAM  )
+  10.113.181.132:4505    (  1% cpu;  2% machine; 0.002 Gbps;  1% disk IO; 0.1 GB / 7.6 GB RAM  )
+  10.113.181.132:4507    (  1% cpu;  2% machine; 0.002 Gbps;  1% disk IO; 0.1 GB / 7.6 GB RAM  )
+  10.113.181.132:4509    (  1% cpu;  2% machine; 0.002 Gbps;  1% disk IO; 0.1 GB / 7.6 GB RAM  )
+
+Probes after 2 minutes of running
+
+Process performance details:
+  10.113.181.132:4501    (  1% cpu;  2% machine; 0.003 Gbps;  1% disk IO; 0.2 GB / 7.6 GB RAM  )
+  10.113.181.132:4503    (  1% cpu;  2% machine; 0.003 Gbps;  1% disk IO; 0.1 GB / 7.6 GB RAM  )
+  10.113.181.132:4505    (  1% cpu;  2% machine; 0.003 Gbps;  1% disk IO; 0.1 GB / 7.6 GB RAM  )
+  10.113.181.132:4507    (  1% cpu;  2% machine; 0.003 Gbps;  1% disk IO; 0.1 GB / 7.6 GB RAM  )
+  10.113.181.132:4509    (  1% cpu;  2% machine; 0.003 Gbps;  1% disk IO; 0.1 GB / 7.6 GB RAM  )
+  10.113.181.132:4511    (  1% cpu;  2% machine; 0.003 Gbps;  1% disk IO; 0.1 GB / 7.6 GB RAM  )
+  10.113.181.132:4513    (  1% cpu;  2% machine; 0.003 Gbps;  1% disk IO; 0.1 GB / 7.6 GB RAM  )
+  10.113.181.132:4515    (  1% cpu;  2% machine; 0.003 Gbps;  1% disk IO; 0.1 GB / 7.6 GB RAM  )
+  10.113.181.133:4501    (  1% cpu;  2% machine; 0.004 Gbps;  1% disk IO; 0.1 GB / 7.6 GB RAM  )
+  10.113.181.133:4503    (  1% cpu;  2% machine; 0.004 Gbps;  1% disk IO; 0.1 GB / 7.6 GB RAM  )
+
+------
+
+Scaling down the cluster to try a new approach
+
+------
+
+
+---
+
+Running test final_md_l_1
+
+---
+
+YCSB Setup:
+          update_proportion=0.0
+          read_proportion=0.0
+          insert_proportion=1.0
+          read_modify_write_proportion=0.0
+          num_keys=300000000
+          value_size_bytes=2000
+          batch_size=100
+          num_clients=20
+          threads_per_process=16
+          max_execution_time_seconds=200000
+          keys_per_host=$((num_keys / num_clients))
+          operation_count=$((keys_per_process / batch_size))
+          load_phase() {
+              -p recordcount=$num_keys \
+              -p db.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p updateproportion=$update_proportion \
+              -p insertproportion=$insert_proportion \
+              -p readmodifywriteproportion=$read_modify_write_proportion
+              -p threadcount=$threads_per_process
+          run_phase() {
+              -p recordcount=$num_keys \
+              -p foundationdb.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p insertproportion=$insert_proportion \
+              -p updateproportion=$update_proportion \
+              -p threadcount=$threads_per_process
+          for i in `seq 0 4`; do
+            load_phase $i &
+
+FDB Config:
+Using cluster file `/mnt/config-volume/cluster-file'.
+
+9 client(s) reported: Cluster file contents do not match current cluster connection string. Verify the cluster file and its parent directory are writable and that the cluster file has not been overwritten externally.
+  10.113.179.159:47290
+  10.113.179.159:51634
+  10.113.179.159:51862
+  10.113.179.159:40196
+  ...
+
+Configuration:
+  Redundancy mode        - triple
+  Storage engine         - ssd-redwood-1-experimental
+  Coordinators           - 9
+  Desired Commit Proxies - 4
+  Desired GRV Proxies    - 2
+  Desired Resolvers      - 1
+  Desired Logs           - 7
+  Desired Remote Logs    - -1
+  Desired Log Routers    - -1
+  Usable Regions         - 2
+  Regions: 
+    Primary -
+        Datacenter                    - dc1
+        Satellite datacenters         - dc2, dc3
+        Satellite Logs                - 3
+    Remote -
+        Datacenter                    - dc3
+        Satellite datacenters         - dc2, dc1
+        Satellite Logs                - 3
+
+  Redundancy mode        - triple
+
+Using cluster file `/mnt/config-volume/cluster-file'.
+
+9 client(s) reported: Cluster file contents do not match current cluster connection string. Verify the cluster file and its parent directory are writable and that the cluster file has not been overwritten externally.
+  10.113.179.159:47290
+  10.113.179.159:51634
+  10.113.179.159:51862
+  10.113.179.159:40196
+  ...
+
+Configuration:
+  Redundancy mode        - triple
+  Storage engine         - ssd-redwood-1-experimental
+  Coordinators           - 9
+  Desired Commit Proxies - 4
+  Desired GRV Proxies    - 2
+  Desired Resolvers      - 1
+  Desired Logs           - 7
+  Desired Remote Logs    - -1
+  Desired Log Routers    - -1
+  Usable Regions         - 2
+  Regions: 
+    Primary -
+        Datacenter                    - dc1
+        Satellite datacenters         - dc2, dc3
+        Satellite Logs                - 3
+    Remote -
+        Datacenter                    - dc3
+        Satellite datacenters         - dc2, dc1
+        Satellite Logs                - 3
+
+Cluster:
+  FoundationDB processes - 68
+  Zones                  - 19
+  Machines               - 19
+  Memory availability    - 2.1 GB per process on machine with least available
+                           >>>>> (WARNING: 4.0 GB recommended) <<<<<
+  Retransmissions rate   - 11 Hz
+  Fault Tolerance        - 2 machines
+  Server time            - 01/10/24 19:14:55
+
+Data:
+  Replication health     - Healthy
+  Moving data            - 0.000 GB
+  Sum of key-value sizes - 93 MB
+  Disk space used        - 6.371 GB
+
+Operating space:
+  Storage server         - 1808.1 GB free on most full server
+  Log server             - 1808.1 GB free on most full server
+
+Workload:
+  Read rate              - 37 Hz
+  Write rate             - 1355 Hz
+  Transactions started   - 1366 Hz
+  Transactions committed - 1356 Hz
+  Conflict rate          - 0 Hz
+
+Backup and DR:
+  Running backups        - 0
+  Running DRs            - 0
+
+Probes after 2 minutes of running
+
+Process performance details:
+  10.113.181.134:4501    (  3% cpu;  2% machine; 0.020 Gbps;  5% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.113.181.134:4503    (  3% cpu;  2% machine; 0.020 Gbps;  5% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.113.181.142:4501    (  4% cpu;  8% machine; 0.004 Gbps;  2% disk IO; 0.2 GB / 2.1 GB RAM  )
+  10.113.181.144:4501    (  3% cpu;  6% machine; 0.009 Gbps;  1% disk IO; 0.2 GB / 2.1 GB RAM  )
+  10.113.181.150:4501    (  0% cpu;  1% machine; 0.000 Gbps;  0% disk IO; 0.1 GB / 8.0 GB RAM  )
+  10.113.181.150:4503    (  0% cpu;  1% machine; 0.000 Gbps;  0% disk IO; 0.1 GB / 8.0 GB RAM  )
+  10.113.181.152:4501    ( 10% cpu; 17% machine; 0.058 Gbps;  2% disk IO; 0.2 GB / 2.1 GB RAM  )
+  10.113.181.154:4501    (  3% cpu;  2% machine; 0.020 Gbps;  7% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.113.181.154:4503    (  3% cpu;  2% machine; 0.020 Gbps;  7% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.113.181.163:4501    (  1% cpu;  4% machine; 0.022 Gbps;  9% disk IO; 0.2 GB / 7.6 GB RAM  )
+{
+  "latency_probe": {
+    "batch_priority_transaction_start_seconds": 0.0053696600000000001,
+    "commit_seconds": 0.00189996,
+    "immediate_priority_transaction_start_seconds": 0.0044743999999999999,
+    "read_seconds": 0.00033545499999999997,
+    "transaction_start_seconds": 0.095967500000000011
+  }
+}
+{
+  "batch": {
+    "count": 9,
+    "max": 0.086572399999999994,
+    "mean": 0.011372,
+    "median": 0.0019340499999999999,
+    "min": 0.0014793899999999999,
+    "p25": 0.0018386799999999999,
+    "p90": 0.086572399999999994,
+    "p95": 0.086572399999999994,
+    "p99": 0.086572399999999994,
+    "p99.9": 0.086572399999999994
+  },
+  "default": {
+    "count": 41546,
+    "max": 0.0969198,
+    "mean": 0.019441700000000003,
+    "median": 0.0019528899999999999,
+    "min": 0.00012135499999999999,
+    "p25": 0.0011846999999999999,
+    "p90": 0.088470899999999991,
+    "p95": 0.089789399999999991,
+    "p99": 0.091970200000000002,
+    "p99.9": 0.094357300000000005
+  }
+}
+{
+  "batch": {
+    "count": 5,
+    "max": 0.00104284,
+    "mean": 0.00050253899999999998,
+    "median": 0.00039792099999999997,
+    "min": 0.00026655200000000003,
+    "p25": 0.00033926999999999997,
+    "p90": 0.00104284,
+    "p95": 0.00104284,
+    "p99": 0.00104284,
+    "p99.9": 0.00104284
+  },
+  "default": {
+    "count": 41871,
+    "max": 0.055553000000000005,
+    "mean": 0.00051189900000000001,
+    "median": 0.000096082700000000014,
+    "min": 0.0000064373000000000002,
+    "p25": 0.00003600120000000001,
+    "p90": 0.00073218299999999997,
+    "p95": 0.0011517999999999999,
+    "p99": 0.0021650799999999998,
+    "p99.9": 0.053060500000000003
+  }
+}
+
+---
+
+Running test final_md_l_1
+
+---
+
+YCSB Setup:
+          update_proportion=0.0
+          read_proportion=0.0
+          insert_proportion=1.0
+          read_modify_write_proportion=0.0
+          num_keys=300000000
+          value_size_bytes=2000
+          batch_size=100
+          num_clients=20
+          threads_per_process=16
+          max_execution_time_seconds=200000
+          keys_per_host=$((num_keys / num_clients))
+          operation_count=$((keys_per_process / batch_size))
+          load_phase() {
+              -p recordcount=$num_keys \
+              -p db.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p updateproportion=$update_proportion \
+              -p insertproportion=$insert_proportion \
+              -p readmodifywriteproportion=$read_modify_write_proportion
+              -p threadcount=$threads_per_process
+          run_phase() {
+              -p recordcount=$num_keys \
+              -p foundationdb.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p insertproportion=$insert_proportion \
+              -p updateproportion=$update_proportion \
+              -p threadcount=$threads_per_process
+          for i in `seq 0 4`; do
+            load_phase $i &
+
+FDB Config:
+Using cluster file `/mnt/config-volume/cluster-file'.
+
+Configuration:
+  Redundancy mode        - triple
+  Storage engine         - ssd-redwood-1-experimental
+  Coordinators           - 9
+  Desired Commit Proxies - 4
+  Desired GRV Proxies    - 2
+  Desired Resolvers      - 1
+  Desired Logs           - 7
+  Desired Remote Logs    - -1
+  Desired Log Routers    - -1
+  Usable Regions         - 2
+  Regions: 
+    Primary -
+        Datacenter                    - dc1
+        Satellite datacenters         - dc2, dc3
+        Satellite Logs                - 3
+    Remote -
+        Datacenter                    - dc3
+        Satellite datacenters         - dc2, dc1
+        Satellite Logs                - 3
+
+Cluster:
+  FoundationDB processes - 70
+  Zones                  - 21
+  Machines               - 21
+  Memory availability    - 2.1 GB per process on machine with least available
+                           >>>>> (WARNING: 4.0 GB recommended) <<<<<
+
+  Redundancy mode        - triple
+
+Using cluster file `/mnt/config-volume/cluster-file'.
+
+Configuration:
+  Redundancy mode        - triple
+  Storage engine         - ssd-redwood-1-experimental
+  Coordinators           - 9
+  Desired Commit Proxies - 4
+  Desired GRV Proxies    - 2
+  Desired Resolvers      - 1
+  Desired Logs           - 7
+  Desired Remote Logs    - -1
+  Desired Log Routers    - -1
+  Usable Regions         - 2
+  Regions: 
+    Primary -
+        Datacenter                    - dc1
+        Satellite datacenters         - dc2, dc3
+        Satellite Logs                - 3
+    Remote -
+        Datacenter                    - dc3
+        Satellite datacenters         - dc2, dc1
+        Satellite Logs                - 3
+
+Cluster:
+  FoundationDB processes - 70
+  Zones                  - 21
+  Machines               - 21
+  Memory availability    - 2.1 GB per process on machine with least available
+                           >>>>> (WARNING: 4.0 GB recommended) <<<<<
+  Retransmissions rate   - 16 Hz
+  Fault Tolerance        - 2 machines
+  Server time            - 01/10/24 19:19:25
+
+Data:
+  Replication health     - Healthy
+  Moving data            - 0.000 GB
+  Sum of key-value sizes - 366 MB
+  Disk space used        - 26.032 GB
+
+Operating space:
+  Storage server         - 1805.0 GB free on most full server
+  Log server             - 1805.0 GB free on most full server
+
+Workload:
+  Read rate              - 26 Hz
+  Write rate             - 1865 Hz
+  Transactions started   - 1869 Hz
+  Transactions committed - 1866 Hz
+  Conflict rate          - 0 Hz
+
+Backup and DR:
+  Running backups        - 0
+  Running DRs            - 0
+
+Process performance details:
+  10.113.181.134:4501    (  4% cpu;  3% machine; 0.024 Gbps; 10% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.113.181.134:4503    (  4% cpu;  3% machine; 0.024 Gbps; 10% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.113.181.142:4501    (  7% cpu; 11% machine; 0.021 Gbps;  2% disk IO; 0.2 GB / 2.1 GB RAM  )
+  10.113.181.144:4501    (  5% cpu;  7% machine; 0.012 Gbps;  1% disk IO; 0.2 GB / 2.1 GB RAM  )
+  10.113.181.150:4501    (  0% cpu;  1% machine; 0.000 Gbps;  0% disk IO; 0.1 GB / 8.0 GB RAM  )
+
+
+---
+
+Running test final_md_l_1
+
+---
+
+YCSB Setup:
+          update_proportion=0.0
+          read_proportion=0.0
+          insert_proportion=1.0
+          read_modify_write_proportion=0.0
+          num_keys=300000000
+          value_size_bytes=2000
+          batch_size=100
+          num_clients=20
+          threads_per_process=16
+          max_execution_time_seconds=200000
+          keys_per_host=$((num_keys / num_clients))
+          operation_count=$((keys_per_process / batch_size))
+          load_phase() {
+              -p recordcount=$num_keys \
+              -p db.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p updateproportion=$update_proportion \
+              -p insertproportion=$insert_proportion \
+              -p readmodifywriteproportion=$read_modify_write_proportion
+              -p threadcount=$threads_per_process
+          run_phase() {
+              -p recordcount=$num_keys \
+              -p foundationdb.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p insertproportion=$insert_proportion \
+              -p updateproportion=$update_proportion \
+              -p threadcount=$threads_per_process
+          for i in `seq 0 4`; do
+            load_phase $i &
+
+FDB Config:
+Using cluster file `/mnt/config-volume/cluster-file'.
+
+Configuration:
+  Redundancy mode        - triple
+  Storage engine         - ssd-redwood-1-experimental
+  Coordinators           - 9
+  Desired Commit Proxies - 4
+  Desired GRV Proxies    - 2
+  Desired Resolvers      - 1
+  Desired Logs           - 7
+  Desired Remote Logs    - -1
+  Desired Log Routers    - -1
+  Usable Regions         - 2
+  Regions: 
+    Primary -
+        Datacenter                    - dc1
+        Satellite datacenters         - dc2, dc3
+        Satellite Logs                - 3
+    Remote -
+        Datacenter                    - dc3
+        Satellite datacenters         - dc2, dc1
+        Satellite Logs                - 3
+
+Cluster:
+  FoundationDB processes - 72
+  Zones                  - 23
+  Machines               - 23
+  Memory availability    - 1.9 GB per process on machine with least available
+                           >>>>> (WARNING: 4.0 GB recommended) <<<<<
+
+  Redundancy mode        - triple
+
+Using cluster file `/mnt/config-volume/cluster-file'.
+
+Configuration:
+  Redundancy mode        - triple
+  Storage engine         - ssd-redwood-1-experimental
+  Coordinators           - 9
+  Desired Commit Proxies - 4
+  Desired GRV Proxies    - 2
+  Desired Resolvers      - 1
+  Desired Logs           - 7
+  Desired Remote Logs    - -1
+  Desired Log Routers    - -1
+  Usable Regions         - 2
+  Regions: 
+    Primary -
+        Datacenter                    - dc1
+        Satellite datacenters         - dc2, dc3
+        Satellite Logs                - 3
+    Remote -
+        Datacenter                    - dc3
+        Satellite datacenters         - dc2, dc1
+        Satellite Logs                - 3
+
+Cluster:
+  FoundationDB processes - 72
+  Zones                  - 23
+  Machines               - 23
+  Memory availability    - 1.9 GB per process on machine with least available
+                           >>>>> (WARNING: 4.0 GB recommended) <<<<<
+  Retransmissions rate   - 9 Hz
+  Fault Tolerance        - 2 machines
+  Server time            - 01/10/24 19:22:52
+
+Data:
+  Replication health     - Healthy
+  Moving data            - 0.000 GB
+  Sum of key-value sizes - 365 MB
+  Disk space used        - 48.223 GB
+
+Operating space:
+  Storage server         - 1801.2 GB free on most full server
+  Log server             - 1801.2 GB free on most full server
+
+Workload:
+  Read rate              - 11 Hz
+  Write rate             - 1983 Hz
+  Transactions started   - 2001 Hz
+  Transactions committed - 1972 Hz
+  Conflict rate          - 0 Hz
+
+Backup and DR:
+  Running backups        - 0
+  Running DRs            - 0
+
+Process performance details:
+  10.113.181.134:4501    (  4% cpu;  2% machine; 0.024 Gbps;  6% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.113.181.134:4503    (  4% cpu;  2% machine; 0.024 Gbps;  6% disk IO; 0.3 GB / 8.0 GB RAM  )
+  10.113.181.138:4501    (  9% cpu; 11% machine; 0.004 Gbps;  2% disk IO; 0.1 GB / 2.1 GB RAM  )
+  10.113.181.142:4501    (  2% cpu;  6% machine; 0.001 Gbps;  2% disk IO; 0.2 GB / 2.1 GB RAM  )
+  10.113.181.144:4501    (  4% cpu;  7% machine; 0.012 Gbps;  1% disk IO; 0.2 GB / 2.1 GB RAM  )
+
+Probes after 2 minutes of running
+
+Process performance details:
+  10.113.181.134:4501    (  4% cpu;  2% machine; 0.024 Gbps;  8% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.113.181.134:4503    (  3% cpu;  2% machine; 0.024 Gbps;  8% disk IO; 0.3 GB / 8.0 GB RAM  )
+  10.113.181.138:4501    (  9% cpu; 12% machine; 0.004 Gbps;  2% disk IO; 0.1 GB / 2.1 GB RAM  )
+  10.113.181.142:4501    (  3% cpu;  7% machine; 0.002 Gbps;  2% disk IO; 0.2 GB / 2.1 GB RAM  )
+  10.113.181.144:4501    (  4% cpu;  9% machine; 0.013 Gbps;  1% disk IO; 0.2 GB / 2.1 GB RAM  )
+  10.113.181.148:4501    (  0% cpu;  5% machine; 0.000 Gbps;  1% disk IO; 0.1 GB / 1.9 GB RAM  )
+  10.113.181.150:4501    (  0% cpu;  2% machine; 0.001 Gbps;  0% disk IO; 0.2 GB / 8.0 GB RAM  )
+  10.113.181.150:4503    (  0% cpu;  2% machine; 0.001 Gbps;  0% disk IO; 0.1 GB / 8.0 GB RAM  )
+  10.113.181.152:4501    (  4% cpu;  7% machine; 0.004 Gbps;  2% disk IO; 0.2 GB / 2.1 GB RAM  )
+  10.113.181.154:4501    (  3% cpu;  2% machine; 0.026 Gbps;  7% disk IO; 0.2 GB / 8.0 GB RAM  )
+{
+  "latency_probe": {
+    "batch_priority_transaction_start_seconds": 0.00047826799999999995,
+    "commit_seconds": 0.053734800000000006,
+    "immediate_priority_transaction_start_seconds": 0.0039141200000000001,
+    "read_seconds": 0.00032973299999999997,
+    "transaction_start_seconds": 0.0028889200000000001
+  }
+}
+{
+  "batch": {
+    "count": 4,
+    "max": 0.00039792099999999997,
+    "mean": 0.000354111,
+    "median": 0.00033211700000000005,
+    "min": 0.00032138800000000003,
+    "p25": 0.00032138800000000003,
+    "p90": 0.00039792099999999997,
+    "p95": 0.00039792099999999997,
+    "p99": 0.00039792099999999997,
+    "p99.9": 0.00039792099999999997
+  },
+  "default": {
+    "count": 129556,
+    "max": 0.028355600000000002,
+    "mean": 0.00069450699999999992,
+    "median": 0.00045871699999999998,
+    "min": 0.000085592299999999997,
+    "p25": 0.00030755999999999996,
+    "p90": 0.00100994,
+    "p95": 0.0012657599999999999,
+    "p99": 0.0080776200000000006,
+    "p99.9": 0.022907300000000002
+  }
+}
+
+---
+
+Running test final_md_l_1
+
+---
+
+YCSB Setup:
+          update_proportion=0.0
+          read_proportion=0.0
+          insert_proportion=1.0
+          read_modify_write_proportion=0.0
+          num_keys=300000000
+          value_size_bytes=2000
+          batch_size=100
+          num_clients=20
+          threads_per_process=16
+          max_execution_time_seconds=200000
+          keys_per_host=$((num_keys / num_clients))
+          operation_count=$((keys_per_process / batch_size))
+          load_phase() {
+              -p recordcount=$num_keys \
+              -p db.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p updateproportion=$update_proportion \
+              -p insertproportion=$insert_proportion \
+              -p readmodifywriteproportion=$read_modify_write_proportion
+              -p threadcount=$threads_per_process
+          run_phase() {
+              -p recordcount=$num_keys \
+              -p foundationdb.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p insertproportion=$insert_proportion \
+              -p updateproportion=$update_proportion \
+              -p threadcount=$threads_per_process
+          for i in `seq 0 4`; do
+            load_phase $i &
+
+FDB Config:
+Using cluster file `/mnt/config-volume/cluster-file'.
+
+Configuration:
+  Redundancy mode        - triple
+  Storage engine         - ssd-redwood-1-experimental
+  Coordinators           - 9
+  Desired Commit Proxies - 6
+  Desired GRV Proxies    - 2
+  Desired Resolvers      - 1
+  Desired Logs           - 11
+  Desired Remote Logs    - -1
+  Desired Log Routers    - -1
+  Usable Regions         - 2
+  Regions: 
+    Primary -
+        Datacenter                    - dc1
+        Satellite datacenters         - dc2, dc3
+        Satellite Logs                - 3
+    Remote -
+        Datacenter                    - dc3
+        Satellite datacenters         - dc2, dc1
+        Satellite Logs                - 3
+
+Cluster:
+  FoundationDB processes - 102
+  Zones                  - 35
+  Machines               - 35
+  Memory availability    - 1.8 GB per process on machine with least available
+                           >>>>> (WARNING: 4.0 GB recommended) <<<<<
+
+  Redundancy mode        - triple
+
+Using cluster file `/mnt/config-volume/cluster-file'.
+
+Configuration:
+  Redundancy mode        - triple
+  Storage engine         - ssd-redwood-1-experimental
+  Coordinators           - 9
+  Desired Commit Proxies - 6
+  Desired GRV Proxies    - 2
+  Desired Resolvers      - 1
+  Desired Logs           - 11
+  Desired Remote Logs    - -1
+  Desired Log Routers    - -1
+  Usable Regions         - 2
+  Regions: 
+    Primary -
+        Datacenter                    - dc1
+        Satellite datacenters         - dc2, dc3
+        Satellite Logs                - 3
+    Remote -
+        Datacenter                    - dc3
+        Satellite datacenters         - dc2, dc1
+        Satellite Logs                - 3
+
+Cluster:
+  FoundationDB processes - 102
+  Zones                  - 35
+  Machines               - 35
+  Memory availability    - 1.8 GB per process on machine with least available
+                           >>>>> (WARNING: 4.0 GB recommended) <<<<<
+  Retransmissions rate   - 64 Hz
+  Fault Tolerance        - 2 machines
+  Server time            - 01/10/24 20:03:09
+
+Data:
+  Replication health     - Healthy
+  Moving data            - 0.000 GB
+  Sum of key-value sizes - 8.548 GB
+  Disk space used        - 182.980 GB
+
+Operating space:
+  Storage server         - 1780.0 GB free on most full server
+  Log server             - 1809.5 GB free on most full server
+
+Workload:
+  Read rate              - 49 Hz
+  Write rate             - 3251 Hz
+  Transactions started   - 3266 Hz
+  Transactions committed - 3251 Hz
+  Conflict rate          - 0 Hz
+
+Backup and DR:
+  Running backups        - 0
+  Running DRs            - 0
+
+Process performance details:
+  10.113.181.132:4501    (  3% cpu;  5% machine; 0.026 Gbps;  4% disk IO; 1.6 GB / 7.5 GB RAM  )
+  10.113.181.132:4503    (  3% cpu;  5% machine; 0.026 Gbps;  4% disk IO; 1.6 GB / 7.5 GB RAM  )
+  10.113.181.132:4505    (  3% cpu;  5% machine; 0.026 Gbps;  4% disk IO; 1.6 GB / 7.5 GB RAM  )
+  10.113.181.132:4507    (  3% cpu;  5% machine; 0.026 Gbps;  4% disk IO; 1.8 GB / 7.5 GB RAM  )
+  10.113.181.132:4509    (  3% cpu;  5% machine; 0.026 Gbps;  4% disk IO; 1.8 GB / 7.5 GB RAM  )
+
+Probes after 2 minutes of running
+
+Process performance details:
+  10.113.181.132:4501    (  3% cpu;  5% machine; 0.026 Gbps;  4% disk IO; 2.2 GB / 7.5 GB RAM  )
+  10.113.181.132:4503    (  3% cpu;  5% machine; 0.026 Gbps;  4% disk IO; 1.9 GB / 7.5 GB RAM  )
+  10.113.181.132:4505    (  3% cpu;  5% machine; 0.026 Gbps;  4% disk IO; 1.9 GB / 7.5 GB RAM  )
+  10.113.181.132:4507    (  3% cpu;  5% machine; 0.026 Gbps;  4% disk IO; 2.2 GB / 7.5 GB RAM  )
+  10.113.181.132:4509    (  3% cpu;  5% machine; 0.026 Gbps;  4% disk IO; 2.2 GB / 7.5 GB RAM  )
+  10.113.181.132:4511    (  3% cpu;  5% machine; 0.026 Gbps;  4% disk IO; 1.9 GB / 7.5 GB RAM  )
+  10.113.181.132:4513    (  3% cpu;  5% machine; 0.026 Gbps;  4% disk IO; 2.2 GB / 7.5 GB RAM  )
+  10.113.181.132:4515    (  3% cpu;  5% machine; 0.026 Gbps;  4% disk IO; 2.2 GB / 7.5 GB RAM  )
+  10.113.181.133:4501    (  7% cpu;  4% machine; 0.037 Gbps; 14% disk IO; 0.3 GB / 8.0 GB RAM  )
+  10.113.181.133:4503    (  7% cpu;  4% machine; 0.037 Gbps; 14% disk IO; 0.3 GB / 8.0 GB RAM  )
+{
+  "latency_probe": {
+    "batch_priority_transaction_start_seconds": 0.0049176200000000002,
+    "commit_seconds": 0.0067517799999999998,
+    "immediate_priority_transaction_start_seconds": 0.0048475300000000001,
+    "read_seconds": 0.0067093399999999994,
+    "transaction_start_seconds": 0.0049104700000000001
+  }
+}
+{
+  "batch": {
+    "count": 6,
+    "max": 0.0063230999999999999,
+    "mean": 0.0026187099999999998,
+    "median": 0.00183201,
+    "min": 0.00098228499999999984,
+    "p25": 0.0012323899999999999,
+    "p90": 0.0063230999999999999,
+    "p95": 0.0063230999999999999,
+    "p99": 0.0063230999999999999,
+    "p99.9": 0.0063230999999999999
+  },
+  "default": {
+    "count": 195170,
+    "max": 0.090528200000000003,
+    "mean": 0.00663636,
+    "median": 0.00091338199999999991,
+    "min": 0.00010705,
+    "p25": 0.00049185800000000007,
+    "p90": 0.0047371399999999999,
+    "p95": 0.065933900000000004,
+    "p99": 0.073697799999999994,
+    "p99.9": 0.080923600000000012
+  }
+}
+
+---
+
+Running test final_md_l_1
+
+---
+
+YCSB Setup:
+          update_proportion=0.0
+          read_proportion=0.0
+          insert_proportion=1.0
+          read_modify_write_proportion=0.0
+          num_keys=300000000
+          value_size_bytes=2000
+          batch_size=100
+          num_clients=20
+          threads_per_process=16
+          max_execution_time_seconds=200000
+          keys_per_host=$((num_keys / num_clients))
+          operation_count=$((keys_per_process / batch_size))
+          load_phase() {
+              -p recordcount=$num_keys \
+              -p db.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p updateproportion=$update_proportion \
+              -p insertproportion=$insert_proportion \
+              -p readmodifywriteproportion=$read_modify_write_proportion
+              -p threadcount=$threads_per_process
+          run_phase() {
+              -p recordcount=$num_keys \
+              -p foundationdb.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p insertproportion=$insert_proportion \
+              -p updateproportion=$update_proportion \
+              -p threadcount=$threads_per_process
+          for i in `seq 0 4`; do
+            load_phase $i &
+
+FDB Config:
+Using cluster file `/mnt/config-volume/cluster-file'.
+
+Cluster file contents do not match current cluster connection string.
+
+The file contains the connection string:
+fdb_cluster_1:eAxzvRZfIYFUhVdYRXi87OQ5LerdLWvQ@10.113.181.134:4501,10.113.181.15
+0:4501,10.113.181.154:4503,10.113.181.168:4511,10.113.181.176:4501,10.113.181.17
+7:4501,10.113.181.179:4501,10.113.181.185:4503,10.113.181.186:4505
+
+The current connection string is:
+fdb_cluster_1:51D153Gb6msNudkVjfeYaaGKsZhAo8WV@10.113.181.133:4503,10.113.181.13
+9:4501,10.113.181.150:4503,10.113.181.153:4503,10.113.181.164:4515,10.113.181.17
+7:4503,10.113.181.179:4501,10.113.181.185:4503,10.113.181.186:4515
+
+Verify the cluster file and its parent directory are writable and that the
+cluster file has not been overwritten externally. To change coordinators without
+manual intervention, the cluster file and its containing folder must be writable
+by all servers and clients. If a majority of the coordinators referenced by the
+old connection string are lost, the database will stop working until the correct
+cluster file is distributed to all processes.
+
+4 client(s) reported: Cluster file contents do not match current cluster connection string. Verify the cluster file and its parent directory are writable and that the cluster file has not been overwritten externally.
+  10.113.179.159:42662
+  10.113.179.159:39096
+  10.113.179.159:60684
+  10.113.181.190:56546
+
+Configuration:
+  Redundancy mode        - triple
+
+  Redundancy mode        - triple
+
+Using cluster file `/mnt/config-volume/cluster-file'.
+
+Cluster file contents do not match current cluster connection string.
+
+The file contains the connection string:
+fdb_cluster_1:eAxzvRZfIYFUhVdYRXi87OQ5LerdLWvQ@10.113.181.134:4501,10.113.181.15
+0:4501,10.113.181.154:4503,10.113.181.168:4511,10.113.181.176:4501,10.113.181.17
+7:4501,10.113.181.179:4501,10.113.181.185:4503,10.113.181.186:4505
+
+The current connection string is:
+fdb_cluster_1:51D153Gb6msNudkVjfeYaaGKsZhAo8WV@10.113.181.133:4503,10.113.181.13
+9:4501,10.113.181.150:4503,10.113.181.153:4503,10.113.181.164:4515,10.113.181.17
+7:4503,10.113.181.179:4501,10.113.181.185:4503,10.113.181.186:4515
+
+Verify the cluster file and its parent directory are writable and that the
+cluster file has not been overwritten externally. To change coordinators without
+manual intervention, the cluster file and its containing folder must be writable
+by all servers and clients. If a majority of the coordinators referenced by the
+old connection string are lost, the database will stop working until the correct
+cluster file is distributed to all processes.
+
+106 client(s) reported: Cluster file contents do not match current cluster connection string. Verify the cluster file and its parent directory are writable and that the cluster file has not been overwritten externally.
+  10.113.179.139:42758
+  10.113.179.139:42766
+  10.113.179.140:33220
+  10.113.179.153:47518
+  ...
+
+Configuration:
+  Redundancy mode        - triple
+  Storage engine         - ssd-redwood-1-experimental
+  Coordinators           - 9
+  Desired Commit Proxies - 6
+  Desired GRV Proxies    - 2
+  Desired Resolvers      - 1
+  Desired Logs           - 7
+  Desired Remote Logs    - -1
+  Desired Log Routers    - -1
+  Usable Regions         - 2
+  Regions: 
+    Primary -
+        Datacenter                    - dc1
+        Satellite datacenters         - dc2, dc3
+        Satellite Logs                - 3
+    Remote -
+        Datacenter                    - dc3
+        Satellite datacenters         - dc2, dc1
+        Satellite Logs                - 3
+
+Cluster:
+  FoundationDB processes - 96
+  Zones                  - 33
+  Machines               - 33
+  Memory availability    - 1.8 GB per process on machine with least available
+                           >>>>> (WARNING: 4.0 GB recommended) <<<<<
+  Retransmissions rate   - 58 Hz
+  Fault Tolerance        - 2 machines
+  Server time            - 01/10/24 21:15:02
+
+Data:
+
+Probes after 2 minutes of running
+
+Process performance details:
+  10.113.181.132:4501    (  3% cpu;  5% machine; 0.027 Gbps;  5% disk IO; 3.1 GB / 7.2 GB RAM  )
+  10.113.181.132:4503    (  3% cpu;  5% machine; 0.027 Gbps;  5% disk IO; 3.2 GB / 7.2 GB RAM  )
+  10.113.181.132:4505    (  3% cpu;  5% machine; 0.027 Gbps;  5% disk IO; 3.1 GB / 7.2 GB RAM  )
+  10.113.181.132:4507    (  4% cpu;  5% machine; 0.027 Gbps;  5% disk IO; 3.3 GB / 7.2 GB RAM  )
+  10.113.181.132:4509    (  3% cpu;  5% machine; 0.027 Gbps;  5% disk IO; 3.1 GB / 7.2 GB RAM  )
+  10.113.181.132:4511    (  3% cpu;  5% machine; 0.027 Gbps;  5% disk IO; 3.1 GB / 7.2 GB RAM  )
+  10.113.181.132:4513    (  3% cpu;  5% machine; 0.027 Gbps;  5% disk IO; 3.0 GB / 7.2 GB RAM  )
+  10.113.181.132:4515    (  4% cpu;  5% machine; 0.027 Gbps;  5% disk IO; 3.1 GB / 7.2 GB RAM  )
+  10.113.181.133:4501    (  7% cpu;  3% machine; 0.037 Gbps; 12% disk IO; 0.8 GB / 8.0 GB RAM  )
+  10.113.181.133:4503    (  7% cpu;  3% machine; 0.037 Gbps; 12% disk IO; 0.6 GB / 8.0 GB RAM  )
+{
+  "latency_probe": {
+    "batch_priority_transaction_start_seconds": 0.030463,
+    "commit_seconds": 0.0032234200000000003,
+    "immediate_priority_transaction_start_seconds": 0.030334200000000002,
+    "read_seconds": 0.00045704800000000005,
+    "transaction_start_seconds": 0.0304532
+  }
+}
+{
+  "batch": {
+    "count": 4,
+    "max": 0.029978000000000001,
+    "mean": 0.0093440399999999996,
+    "median": 0.0028469599999999999,
+    "min": 0.00044465099999999995,
+    "p25": 0.00044465099999999995,
+    "p90": 0.029978000000000001,
+    "p95": 0.029978000000000001,
+    "p99": 0.029978000000000001,
+    "p99.9": 0.029978000000000001
+  },
+  "default": {
+    "count": 191455,
+    "max": 0.173785,
+    "mean": 0.009326570000000001,
+    "median": 0.00140905,
+    "min": 0.000108719,
+    "p25": 0.0007200240000000001,
+    "p90": 0.033093900000000002,
+    "p95": 0.063674000000000008,
+    "p99": 0.0793629,
+    "p99.9": 0.087866299999999994
+  }
+}
