@@ -52,7 +52,7 @@ spec:
           now=$(date +"%Y_%m_%d_%H_%M_%S")
           log_file="ycsb_host_${host_index}__$now.log"
           workloadload='workloads/workloada'
-          workloadrun='workloads/workloadc'
+          workloadrun='workloads/workloadf'
           update_proportion={{update_proportion}}
           read_proportion={{read_proportion}}
           insert_proportion={{insert_proportion}}
@@ -98,7 +98,7 @@ spec:
               -p readproportion=$read_proportion \
               -p updateproportion=$update_proportion \
               -p insertproportion=$insert_proportion \
-              -p readmodifywriteproportion=$read_modify_write_proportion
+              -p readmodifywriteproportion=$read_modify_write_proportion \
               -p requestdistribution=uniform \
               -p threadcount=$threads_per_process
           }
@@ -116,6 +116,7 @@ spec:
               -p readproportion=$read_proportion \
               -p insertproportion=$insert_proportion \
               -p updateproportion=$update_proportion \
+              -p readmodifywriteproportion=$read_modify_write_proportion \
               -p requestdistribution=uniform \
               -p threadcount=$threads_per_process
           }

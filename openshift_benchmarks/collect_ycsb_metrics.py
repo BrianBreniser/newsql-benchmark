@@ -1,3 +1,7 @@
+"""
+Docstring for the py formatter to be happy with
+"""
+
 import subprocess
 import os
 import re
@@ -34,6 +38,12 @@ metrics = [
         "value": 0,
     },
     {
+        "grep": "[INSERT], Return=BATCHED_OK",
+        "op": "sum",
+        "metric": "SuccessCountInsertBatched",
+        "value": 0,
+    },
+    {
         "grep": "[INSERT], Return=UNEXPECTED_STATE",
         "op": "sum",
         "metric": "UnknownCountInsert",
@@ -64,6 +74,12 @@ metrics = [
         "value": 0,
     },
     {
+        "grep": "[READ], Return=BATCHED_OK",
+        "op": "sum",
+        "metric": "SuccessCountReadBatched",
+        "value": 0,
+    },
+    {
         "grep": "[READ], Return=UNEXPECTED_STATE",
         "op": "sum",
         "metric": "UnknownCountRead",
@@ -88,6 +104,54 @@ metrics = [
         "value": 0,
     },
     {
+        "grep": "[READ-MODIFY-WRITE], Operations",
+        "op": "sum",
+        "metric": "OperationCountReadModifyWrite",
+        "value": 0,
+    },
+    {
+        "grep": "[READ-MODIFY-WRITE], Return=ERROR",
+        "op": "sum",
+        "metric": "ErrorCountReadModifyWrite",
+        "value": 0,
+    },
+    {
+        "grep": "[READ-MODIFY-WRITE], Return=OK",
+        "op": "sum",
+        "metric": "SuccessCountReadModifyWrite",
+        "value": 0,
+    },
+    {
+        "grep": "[READ-MODIFY-WRITE], Return=BATCHED_OK",
+        "op": "sum",
+        "metric": "SuccessCountReadModifyWriteBatched",
+        "value": 0,
+    },
+    {
+        "grep": "[READ-MODIFY-WRITE], Return=UNEXPECTED_STATE",
+        "op": "sum",
+        "metric": "UnknownCountReadModifyWrite",
+        "value": 0,
+    },
+    {
+        "grep": "[READ-MODIFY-WRITE], AverageLatency",
+        "op": "max",
+        "metric": "AverageReadModifyWriteLatency",
+        "value": 0,
+    },
+    {
+        "grep": "[READ-MODIFY-WRITE], 95thPercentileLatency",
+        "op": "max",
+        "metric": "95thPercentileReadModifyWriteLatency",
+        "value": 0,
+    },
+    {
+        "grep": "[READ-MODIFY-WRITE], 99thPercentileLatency",
+        "op": "max",
+        "metric": "99thPercentileReadModifyWriteLatency",
+        "value": 0,
+    },
+    {
         "grep": "[UPDATE], Operations",
         "op": "sum",
         "metric": "OperationCountUpdate",
@@ -103,6 +167,12 @@ metrics = [
         "grep": "[UPDATE], Return=OK",
         "op": "sum",
         "metric": "SuccessCountUpdate",
+        "value": 0,
+    },
+    {
+        "grep": "[UPDATE], Return=BATCHED_OK",
+        "op": "sum",
+        "metric": "SuccessCountUpdateBatched",
         "value": 0,
     },
     {
@@ -188,10 +258,10 @@ def aggregate_statefulset_logs(namespace, name):
 
 
 if __name__ == "__main__":
-    namespace = "dc1"
-    name = "ycsb"
+    NS = "dc1"
+    N = "ycsb"
 
-    aggregate_statefulset_logs(namespace, name)
+    aggregate_statefulset_logs(NS, N)
 
-    for metric in metrics:
-        print(metric["metric"] + ": " + str(metric["value"]))
+    for m in metrics:
+        print(m["metric"] + ": " + str(m["value"]))

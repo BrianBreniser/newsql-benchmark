@@ -7,9 +7,13 @@ do
 
     echo "Running test $arg"
     notify-send "Running test $arg"
-
     ./reset_ycsb.sh "$arg"
+
+    echo -e "\n-\n\nFinished with test $arg\n\n-\n" >> results.txt
     notify-send "Finished test $arg"
     #ntfy "finished test $arg"
 done
+
+echo "Finished running every single test"
+#ntfy "finished test $arg"
 

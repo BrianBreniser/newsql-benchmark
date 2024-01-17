@@ -34,11 +34,14 @@ while true; do
     if [[ "$allStarted" == "true" && "$checkAllStarted" == "true" ]]; then
         notify-send "All pods started"
         checkAllStarted="false"
-        notify-send "Waiting 10 seconds for pods to warm up"
         echo "Waiting 10 seconds for pods to warm up"
         sleep 10
-        notify-send "Collecting metrics from fdbcli"
         echo "Collecting metrics from fdbcli"
+
+        # Let's get fdbcli status details one last time
+        echo "Probes after all pods have started and 10 seconds have passed" >> results.txt
+        echo "" >> results.txt
+
         oc exec "$exporterpod" -- fdbcli --exec "status details" | rg Redundancy >> results.txt
         echo "" >> results.txt
         # Had some broken pipe problems without using a tmp file.
@@ -52,6 +55,16 @@ while true; do
     # If all pods are done, then break out of the loop
     if [[ "$allDone" == "true" ]]; then
         echo "All pods finished, now collecting metrics into results.txt"
+
+        # Let's get fdbcli status details one last time
+        echo "Probes after all pods are finished" >> results.txt
+        echo "" >> results.txt
+
+        oc exec "$exporterpod" -- fdbcli --exec "status details" > tmp.txt # This gets around some broken pipe issues
+        cat tmp.txt >> results.txt
+
+        echo "" >> results.txt
+
         notify-send "All pods finished, now collecting metrics into results.txt"
         python3 collect_ycsb_metrics.py >> results.txt
         break
@@ -62,19 +75,20 @@ while true; do
     if (( current_time > start_time + 120 )); then
         if [[ "$gatherLatencyMetrics" == "true" ]]; then
             echo "2 minutes have passed, saving latency probe and grv_latency metrics into results.txt"
-            notify-send "2 minutes have passed, saving latency probe and grv_latency metrics into results.txt"
 
             echo "Probes after 2 minutes of running" >> results.txt
             echo "" >> results.txt
 
-            oc exec "$exporterpod" -- fdbcli --exec "status details" > tmp.txt # This get's around some broken pipe issues
-            cat tmp.txt | grep -A 10 "Process performance" >> results.txt
+            oc exec "$exporterpod" -- fdbcli --exec "status details" > tmp.txt # This gets around some broken pipe issues
+            cat tmp.txt >> results.txt
 
             oc exec "$exporterpod" -- fdbcli --exec "status json" > tmp.txt # This get's around some broken pipe issues
             cat tmp.txt | jq '{latency_probe: .cluster.latency_probe}' >> results.txt
 
-            oc exec "$exporterpod" -- fdbcli --exec "status json" > tmp.txt
+            oc exec "$exporterpod" -- fdbcli --exec "status json" > tmp.txt # This get's around some broken pipe issues
             cat tmp.txt | jq '.cluster.processes[].roles[].grv_latency_statistics' | grep -v '^null$' >> results.txt
+
+            echo "" >> results.txt
 
             gatherLatencyMetrics="false"
         fi

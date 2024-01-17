@@ -3,14 +3,12 @@
 # cleanup our cluster
 oc delete statefulset ycsb-benchmark
 
-notify-send "Waiting for pods to terminate"
+echo "Waiting for pods to terminate"
 
 # apply our templating
 ./apply_templating.py "$1"
+echo "Templating $1 applied"
 
-notify-send "Templating $1 applied"
-
-notify-send "Gathering ycsb and fdb output"
 echo "Gathering ycsb and fdb output"
 ./get_ycsb_fdb_setup.sh # gets ycsb and fdb output and puts it in results.txt automatically
 
