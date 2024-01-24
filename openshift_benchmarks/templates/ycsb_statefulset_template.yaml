@@ -85,13 +85,12 @@ spec:
           load_phase() {
             ./bin/ycsb.sh load foundationdb -s \
               -P $workloadload \
-              -p foundationdb.apiversion=620 \
               -p foundationdb.clusterfile=$FDB_CLUSTER_FILE \
               -p recordcount=$num_keys \
               -p insertstart=$(($1*keys_per_process+start_key_per_host)) \
               -p insertcount=$keys_per_process \
               -p operationcount=$operation_count \
-              -p db.batchsize=$batch_size \
+              -p foundationdb.batchsize=$batch_size \
               -p maxexecutiontime=$max_execution_time_seconds \
               -p fieldcount=$field_count \
               -p fieldlength=$field_length \
@@ -105,7 +104,6 @@ spec:
           run_phase() {
             ./bin/ycsb.sh run foundationdb -s \
               -P $workloadrun \
-              -p foundationdb.apiversion=620 \
               -p foundationdb.clusterfile=$FDB_CLUSTER_FILE \
               -p recordcount=$num_keys \
               -p operationcount=$operation_count \
