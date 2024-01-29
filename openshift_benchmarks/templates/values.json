@@ -157,15 +157,69 @@
     "localstorage": {}
   },
 
-  "final_md_l_1_smaller": {
+  "final_md_l_1_a": {
     "fdb": {},
     "ycsb-statefulset": {
       "ycsb_load_or_run_phase": "load_phase",
-      "replicas": 10,
+      "replicas": 1,
       "num_keys": 300000000,
       "override_operation_count": "false",
       "threads_per_process": 16,
-      "batch_size": 100,
+      "batch_size": 50,
+      "read_proportion": 0.0,
+      "update_proportion": 0.0,
+      "insert_proportion": 1.0,
+      "read_modify_write_proportion": 0.0,
+      "max_execution_time_seconds": 200000
+    },
+    "machineset": {},
+    "localstorage": {}
+  },
+  "final_md_l_1_b": {
+    "fdb": {},
+    "ycsb-statefulset": {
+      "ycsb_load_or_run_phase": "load_phase",
+      "replicas": 2,
+      "num_keys": 300000000,
+      "override_operation_count": "false",
+      "threads_per_process": 16,
+      "batch_size": 50,
+      "read_proportion": 0.0,
+      "update_proportion": 0.0,
+      "insert_proportion": 1.0,
+      "read_modify_write_proportion": 0.0,
+      "max_execution_time_seconds": 200000
+    },
+    "machineset": {},
+    "localstorage": {}
+  },
+  "final_md_l_1_c": {
+    "fdb": {},
+    "ycsb-statefulset": {
+      "ycsb_load_or_run_phase": "load_phase",
+      "replicas": 4,
+      "num_keys": 300000000,
+      "override_operation_count": "false",
+      "threads_per_process": 16,
+      "batch_size": 50,
+      "read_proportion": 0.0,
+      "update_proportion": 0.0,
+      "insert_proportion": 1.0,
+      "read_modify_write_proportion": 0.0,
+      "max_execution_time_seconds": 200000
+    },
+    "machineset": {},
+    "localstorage": {}
+  },
+  "final_md_l_1_d": {
+    "fdb": {},
+    "ycsb-statefulset": {
+      "ycsb_load_or_run_phase": "load_phase",
+      "replicas": 8,
+      "num_keys": 300000000,
+      "override_operation_count": "false",
+      "threads_per_process": 16,
+      "batch_size": 50,
       "read_proportion": 0.0,
       "update_proportion": 0.0,
       "insert_proportion": 1.0,
