@@ -3,7 +3,8 @@
 checkAllStarted="true"
 notify-send "Starting log loop"
 start_time=$(date +%s)
-gatherLatencyMetrics="true"
+gatherLatencyMetrics_2="true"
+gatherLatencyMetrics_10="true"
 exporterpod=$(oc get pods | grep "fdbexplorer" | awk '{print $1}') # I know it's not explorer, but it's the corret pod on 01
 
 while true; do
@@ -73,7 +74,7 @@ while true; do
     # If time limit has passed, then collect latency metrics
     current_time=$(date +%s)
     if (( current_time > start_time + 120 )); then
-        if [[ "$gatherLatencyMetrics" == "true" ]]; then
+        if [[ "$gatherLatencyMetrics_2" == "true" ]]; then
             echo "2 minutes have passed, saving latency probe and grv_latency metrics into results.txt"
 
             echo "Probes after 2 minutes of running" >> results.txt
@@ -90,7 +91,29 @@ while true; do
 
             echo "" >> results.txt
 
-            gatherLatencyMetrics="false"
+            gatherLatencyMetrics_2="false"
+        fi
+    fi
+
+    if (( current_time > start_time + 600 )); then
+        if [[ "$gatherLatencyMetrics_10" == "true" ]]; then
+            echo "10 minutes have passed, saving latency probe and grv_latency metrics into results.txt"
+
+            echo "Probes after 10 minutes of running" >> results.txt
+            echo "" >> results.txt
+
+            oc exec "$exporterpod" -- fdbcli --exec "status details" > tmp.txt # This gets around some broken pipe issues
+            cat tmp.txt >> results.txt
+
+            oc exec "$exporterpod" -- fdbcli --exec "status json" > tmp.txt # This get's around some broken pipe issues
+            cat tmp.txt | jq '{latency_probe: .cluster.latency_probe}' >> results.txt
+
+            oc exec "$exporterpod" -- fdbcli --exec "status json" > tmp.txt # This get's around some broken pipe issues
+            cat tmp.txt | jq '.cluster.processes[].roles[].grv_latency_statistics' | grep -v '^null$' >> results.txt
+
+            echo "" >> results.txt
+
+            gatherLatencyMetrics_10="false"
         fi
     fi
 

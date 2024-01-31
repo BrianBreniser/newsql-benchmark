@@ -165,7 +165,7 @@
       "num_keys": 300000000,
       "override_operation_count": "false",
       "threads_per_process": 16,
-      "batch_size": 50,
+      "batch_size": 150,
       "read_proportion": 0.0,
       "update_proportion": 0.0,
       "insert_proportion": 1.0,
@@ -183,7 +183,7 @@
       "num_keys": 300000000,
       "override_operation_count": "false",
       "threads_per_process": 16,
-      "batch_size": 50,
+      "batch_size": 150,
       "read_proportion": 0.0,
       "update_proportion": 0.0,
       "insert_proportion": 1.0,
@@ -201,7 +201,7 @@
       "num_keys": 300000000,
       "override_operation_count": "false",
       "threads_per_process": 16,
-      "batch_size": 50,
+      "batch_size": 150,
       "read_proportion": 0.0,
       "update_proportion": 0.0,
       "insert_proportion": 1.0,
@@ -219,7 +219,7 @@
       "num_keys": 300000000,
       "override_operation_count": "false",
       "threads_per_process": 16,
-      "batch_size": 50,
+      "batch_size": 150,
       "read_proportion": 0.0,
       "update_proportion": 0.0,
       "insert_proportion": 1.0,
@@ -380,6 +380,78 @@
 
 
 
+  "final_md_r_10_timed_15": {
+    "fdb": {},
+    "ycsb-statefulset": {
+      "ycsb_load_or_run_phase": "run_phase",
+      "replicas": 10,
+      "num_keys": 300000000,
+      "override_operation_count": "true",
+      "threads_per_process": 16,
+      "batch_size": 200,
+      "read_proportion": 1.0,
+      "update_proportion": 0.0,
+      "insert_proportion": 0.0,
+      "read_modify_write_proportion": 0.0,
+      "max_execution_time_seconds": 900
+    },
+    "machineset": {},
+    "localstorage": {}
+  },
+  "final_md_u_10_timed_15": {
+    "fdb": {},
+    "ycsb-statefulset": {
+      "ycsb_load_or_run_phase": "run_phase",
+      "replicas": 10,
+      "num_keys": 300000000,
+      "override_operation_count": "true",
+      "threads_per_process": 16,
+      "batch_size": 200,
+      "read_proportion": 0.0,
+      "update_proportion": 1.0,
+      "insert_proportion": 0.0,
+      "read_modify_write_proportion": 0.0,
+      "max_execution_time_seconds": 900
+    },
+    "machineset": {},
+    "localstorage": {}
+  },
+  "final_md_w_10_timed_15": {
+    "fdb": {},
+    "ycsb-statefulset": {
+      "ycsb_load_or_run_phase": "run_phase",
+      "replicas": 10,
+      "num_keys": 300000000,
+      "override_operation_count": "true",
+      "threads_per_process": 16,
+      "batch_size": 200,
+      "read_proportion": 0.0,
+      "update_proportion": 0.0,
+      "insert_proportion": 1.0,
+      "read_modify_write_proportion": 0.0,
+      "max_execution_time_seconds": 900
+    },
+    "machineset": {},
+    "localstorage": {}
+  },
+  "final_md_r90rmu10_10_timed_15": {
+    "fdb": {},
+    "ycsb-statefulset": {
+      "ycsb_load_or_run_phase": "run_phase",
+      "replicas": 10,
+      "num_keys": 300000000,
+      "override_operation_count": "true",
+      "threads_per_process": 16,
+      "batch_size": 200,
+      "read_proportion": 0.9,
+      "update_proportion": 0.0,
+      "insert_proportion": 0.0,
+      "read_modify_write_proportion": 0.1,
+      "max_execution_time_seconds": 900
+    },
+    "machineset": {},
+    "localstorage": {}
+  },
 
 
 
@@ -395,7 +467,7 @@
       "num_keys": 300000000,
       "override_operation_count": "true",
       "threads_per_process": 16,
-      "batch_size": 100,
+      "batch_size": 200,
       "read_proportion": 1.0,
       "update_proportion": 0.0,
       "insert_proportion": 0.0,
@@ -413,7 +485,7 @@
       "num_keys": 300000000,
       "override_operation_count": "true",
       "threads_per_process": 16,
-      "batch_size": 100,
+      "batch_size": 200,
       "read_proportion": 0.0,
       "update_proportion": 1.0,
       "insert_proportion": 0.0,
@@ -431,7 +503,7 @@
       "num_keys": 300000000,
       "override_operation_count": "true",
       "threads_per_process": 16,
-      "batch_size": 100,
+      "batch_size": 200,
       "read_proportion": 0.0,
       "update_proportion": 0.0,
       "insert_proportion": 1.0,
@@ -449,7 +521,7 @@
       "num_keys": 300000000,
       "override_operation_count": "true",
       "threads_per_process": 16,
-      "batch_size": 100,
+      "batch_size": 200,
       "read_proportion": 0.9,
       "update_proportion": 0.0,
       "insert_proportion": 0.0,
@@ -475,7 +547,7 @@
       "num_keys": 300000000,
       "override_operation_count": "true",
       "threads_per_process": 16,
-      "batch_size": 100,
+      "batch_size": 200,
       "read_proportion": 1.0,
       "update_proportion": 0.0,
       "insert_proportion": 0.0,
@@ -493,7 +565,7 @@
       "num_keys": 300000000,
       "override_operation_count": "true",
       "threads_per_process": 16,
-      "batch_size": 100,
+      "batch_size": 200,
       "read_proportion": 0.0,
       "update_proportion": 1.0,
       "insert_proportion": 0.0,
@@ -511,7 +583,7 @@
       "num_keys": 300000000,
       "override_operation_count": "true",
       "threads_per_process": 16,
-      "batch_size": 100,
+      "batch_size": 200,
       "read_proportion": 0.0,
       "update_proportion": 0.0,
       "insert_proportion": 1.0,
@@ -529,7 +601,7 @@
       "num_keys": 300000000,
       "override_operation_count": "true",
       "threads_per_process": 16,
-      "batch_size": 100,
+      "batch_size": 200,
       "read_proportion": 0.9,
       "update_proportion": 0.0,
       "insert_proportion": 0.0,
@@ -551,7 +623,7 @@
       "num_keys": 300000000,
       "override_operation_count": "true",
       "threads_per_process": 16,
-      "batch_size": 100,
+      "batch_size": 200,
       "read_proportion": 1.0,
       "update_proportion": 0.0,
       "insert_proportion": 0.0,
@@ -569,7 +641,7 @@
       "num_keys": 300000000,
       "override_operation_count": "true",
       "threads_per_process": 16,
-      "batch_size": 100,
+      "batch_size": 200,
       "read_proportion": 0.0,
       "update_proportion": 1.0,
       "insert_proportion": 0.0,
@@ -587,7 +659,7 @@
       "num_keys": 300000000,
       "override_operation_count": "true",
       "threads_per_process": 16,
-      "batch_size": 100,
+      "batch_size": 200,
       "read_proportion": 0.0,
       "update_proportion": 0.0,
       "insert_proportion": 1.0,
@@ -605,7 +677,7 @@
       "num_keys": 300000000,
       "override_operation_count": "true",
       "threads_per_process": 16,
-      "batch_size": 100,
+      "batch_size": 200,
       "read_proportion": 0.9,
       "update_proportion": 0.0,
       "insert_proportion": 0.0,
@@ -631,7 +703,7 @@
       "num_keys": 300000000,
       "override_operation_count": "true",
       "threads_per_process": 16,
-      "batch_size": 100,
+      "batch_size": 200,
       "read_proportion": 1.0,
       "update_proportion": 0.0,
       "insert_proportion": 0.0,
@@ -649,7 +721,7 @@
       "num_keys": 300000000,
       "override_operation_count": "true",
       "threads_per_process": 16,
-      "batch_size": 100,
+      "batch_size": 200,
       "read_proportion": 0.0,
       "update_proportion": 1.0,
       "insert_proportion": 0.0,
@@ -667,7 +739,7 @@
       "num_keys": 300000000,
       "override_operation_count": "true",
       "threads_per_process": 16,
-      "batch_size": 100,
+      "batch_size": 200,
       "read_proportion": 0.0,
       "update_proportion": 0.0,
       "insert_proportion": 1.0,
@@ -685,7 +757,7 @@
       "num_keys": 300000000,
       "override_operation_count": "true",
       "threads_per_process": 16,
-      "batch_size": 100,
+      "batch_size": 200,
       "read_proportion": 0.9,
       "update_proportion": 0.0,
       "insert_proportion": 0.0,
@@ -695,6 +767,14 @@
     "machineset": {},
     "localstorage": {}
   },
+
+
+
+
+
+
+
+
 
   "final_lg_l_1": {
     "fdb": {},
