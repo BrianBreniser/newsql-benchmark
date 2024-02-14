@@ -1,4 +1,8 @@
 #!/bin/bash
+cat $1 | rg -i "throughput|Running\ test" | rg -A1 "_l_"
+echo ""
+echo "=================="
+echo ""
 cat $1 | rg -i "throughput|Running\ test" | rg -A1 "_r_"
 echo ""
 echo "============"

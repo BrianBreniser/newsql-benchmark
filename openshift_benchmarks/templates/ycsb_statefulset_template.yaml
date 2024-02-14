@@ -65,7 +65,7 @@ spec:
           field_length=100
           threads_per_process={{threads_per_process}}
           max_execution_time_seconds={{max_execution_time_seconds}}
-          process_per_pod=5
+          process_per_pod=1
           keys_per_host=$((num_keys / num_clients))
           keys_per_process=$((keys_per_host / process_per_pod))
           operation_count=$((keys_per_process / batch_size))
@@ -118,7 +118,7 @@ spec:
               -p requestdistribution=uniform \
               -p threadcount=$threads_per_process
           }
-          for i in `seq 0 4`; do
+          for i in `seq 0 0`; do
             {{ycsb_load_or_run_phase}} $i &
           done
           wait

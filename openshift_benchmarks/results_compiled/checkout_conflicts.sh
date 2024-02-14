@@ -1,4 +1,8 @@
 #!/bin/bash
+cat $1 | rg -i "minutes|conflict|running test" | rg -A6 -i "_l_" | rg -A6 -i "running test"
+echo ""
+echo "=================="
+echo ""
 cat $1 | rg -i "minutes|conflict|running test" | rg -A6 -i "_r_" | rg -A6 -i "running test"
 echo ""
 echo "=================="
