@@ -6,11 +6,11 @@ do
     echo -e "\n---\n\nRunning test $arg\n\n---\n" >> results.txt
 
     echo "Running test $arg"
-    notify-send "Running test $arg"
+    ./notify-send.sh "Running test $arg"
     ./reset_ycsb.sh "$arg"
 
     echo -e "\n-\n\nFinished with test $arg\n\n-\n" >> results.txt
-    notify-send "Finished test $arg"
+    ./notify-send.sh "Finished test $arg"
     #ntfy "finished test $arg"
 done
 

@@ -2,7 +2,7 @@
 
 echo "deleting machines"
 # Delete MachineSets
-for i in $(oc get machinesets -n openshift-machine-api | rg stateless | awk '{print $1}'); do
+for i in $(oc get machinesets -n openshift-machine-api | grep stateless | awk '{print $1}'); do
     oc delete machineset -n openshift-machine-api "$i"
 done
 
@@ -24,7 +24,7 @@ fi
 echo "Remdinding you every 30 seconds that stateless machines have been deleted"
 while true; do
     sleep 30
-    notify-send "Reminder: Stateless machines have been deleted"
+    ./notify-send.sh "Reminder: Stateless machines have been deleted"
 done
 
 

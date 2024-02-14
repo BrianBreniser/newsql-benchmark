@@ -9,7 +9,7 @@ touch "$tmp_logfile"
 namespace_list="dc1 dc2 dc3"
 
 for namespace in $namespace_list; do
-    for pod in $(oc get pods -n "$namespace" | rg storage | awk '{print $1}'); do
+    for pod in $(oc get pods -n "$namespace" | grep storage | awk '{print $1}'); do
         echo "STARTED: Getting tlogs from pod $pod in namespace $namespace"
         printf "\nANCHOR: pod %s in namespace %s\n\n" "$pod" "$namespace" >> "$tmp_logfile"
         exactlogfile=$(oc exec -c foundationdb -n "$namespace" "$pod" -- sh -c "ls /var/log/fdb-trace-logs/fdbmonitor*")

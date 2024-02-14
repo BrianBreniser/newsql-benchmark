@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 while true; do
-    pods=$(oc get pods | rg -i benchmark | awk '{print $1}')
+    pods=$(oc get pods | rep -i benchmark | awk '{print $1}')
     for pod in $pods; do
         oc logs "$pod"
     done

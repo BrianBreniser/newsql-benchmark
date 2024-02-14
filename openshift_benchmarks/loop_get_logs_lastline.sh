@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
 checkAllStarted="true"
-notify-send "Starting log loop"
+./notify-send.sh "Starting log loop"
 start_time=$(date +%s)
 gatherLatencyMetrics_2="true"
 gatherLatencyMetrics_10="true"
 exporterpod=$(oc get pods | grep "fdbexplorer" | awk '{print $1}') # I know it's not explorer, but it's the corret pod on 01
 
 while true; do
-    pods=$(oc get pods | rg -i benchmark | awk '{print $1}')
+    pods=$(oc get pods | grep -i benchmark | awk '{print $1}')
     allDone="true"
     allStarted="true"
     echo ""
@@ -33,7 +33,7 @@ while true; do
     # If all pods have started, then wait 2 minutes for pods to warm up
     # Then collect metrics from fdbcli
     if [[ "$allStarted" == "true" && "$checkAllStarted" == "true" ]]; then
-        notify-send "All pods started"
+        ./notify-send.sh "All pods started"
         checkAllStarted="false"
         echo "Waiting 10 seconds for pods to warm up"
         sleep 10
@@ -43,7 +43,7 @@ while true; do
         echo "Probes after all pods have started and 10 seconds have passed" >> results.txt
         echo "" >> results.txt
 
-        oc exec "$exporterpod" -- fdbcli --exec "status details" | rg Redundancy >> results.txt
+        oc exec "$exporterpod" -- fdbcli --exec "status details" | grep Redundancy >> results.txt
         echo "" >> results.txt
         # Had some broken pipe problems without using a tmp file.
         oc exec "$exporterpod" -- fdbcli --exec "status details" > tmp.txt
@@ -66,7 +66,7 @@ while true; do
 
         echo "" >> results.txt
 
-        notify-send "All pods finished, now collecting metrics into results.txt"
+        ./notify-send.sh "All pods finished, now collecting metrics into results.txt"
         python3 collect_ycsb_metrics.py >> results.txt
         break
     fi
@@ -121,5 +121,5 @@ while true; do
 done
 
 echo "Run completely finished"
-notify-send "Run completely finished"
+./notify-send.sh "Run completely finished"
 

@@ -14,15 +14,15 @@ echo "Gathering ycsb and fdb output"
 
 # Wait for the old pods to be deleted
 echo "Waiting for pods to terminate"
-non_running_pods=$(oc get pods | rg -i terminating | wc -l)
+non_running_pods=$(oc get pods | grep -i terminating | wc -l)
 
 while [ "$non_running_pods" -gt 0 ]
 do
     sleep 5
-    non_running_pods=$(oc get pods | rg -i terminating | wc -l)
+    non_running_pods=$(oc get pods | grep -i terminating | wc -l)
 done
 
-notify-send "All pods terminated"
+./notify-send.sh "All pods terminated"
 
 sleep 10
 
@@ -30,7 +30,7 @@ sleep 10
 oc apply -f ycsb_statefulset.yaml
 
 # I always run this after anyways
-notify-send "ycsb benchmark started"
+./notify-send.sh "ycsb benchmark started"
 
 sleep 10
 

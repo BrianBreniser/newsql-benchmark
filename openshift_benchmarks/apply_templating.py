@@ -4,8 +4,9 @@
 import json
 import sys
 
+# Yes these needs to be commented, this is how pylint works
 # Pylint: ignore lines too long
-# pylint: disable=C0301 # Yes it needs to be commented, this is how pylint works
+# pylint: disable=C0301
 
 # set up logging
 import logging
