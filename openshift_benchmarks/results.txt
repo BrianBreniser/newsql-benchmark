@@ -1,0 +1,47 @@
+------
+
+More tests, with new configuration this time
+
+------
+
+---
+
+Running test final_md_l_1
+
+---
+
+YCSB Setup:
+          update_proportion=0.0
+          read_proportion=0.0
+          insert_proportion=1.0
+          read_modify_write_proportion=0.0
+          num_keys=300000000
+          value_size_bytes=2000
+          batch_size=100
+          num_clients=20
+          threads_per_process=16
+          max_execution_time_seconds=200000
+          keys_per_host=$((num_keys / num_clients))
+          operation_count=$((keys_per_process / batch_size))
+          load_phase() {
+              -p recordcount=$num_keys \
+              -p foundationdb.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p updateproportion=$update_proportion \
+              -p insertproportion=$insert_proportion \
+              -p readmodifywriteproportion=$read_modify_write_proportion \
+              -p threadcount=$threads_per_process
+          run_phase() {
+              -p recordcount=$num_keys \
+              -p foundationdb.batchsize=$batch_size \
+              -p maxexecutiontime=$max_execution_time_seconds \
+              -p readproportion=$read_proportion \
+              -p insertproportion=$insert_proportion \
+              -p updateproportion=$update_proportion \
+              -p readmodifywriteproportion=$read_modify_write_proportion \
+              -p threadcount=$threads_per_process
+          for i in `seq 0 0`; do
+            load_phase $i &
+
+FDB Config:
